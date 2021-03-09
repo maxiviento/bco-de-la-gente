@@ -1,0 +1,164 @@
+<div class="row align-items-center">
+  <div class="col">
+    <h4 class="display-4">ELIMINAR LÍNEA DE PRÉSTAMO</h4>
+  </div>
+</div>
+<div class="row line-divider-bottom">
+  <div class="col">
+    <h5><strong>Datos de la línea</strong></h5>
+  </div>
+</div>
+
+<div class="card-pane" style="margin-top: 15px;">
+  <div class="row">
+    <div class="col-md-3 col-lg-3 col-xl-3 form-inline">
+      <label for="conOng" class="form-control-label" style="padding-right: 10px"> ¿Trabaja con ONG?
+      </label>
+      <input type="text" id="conOng" style="width: 50px;" class="form-control text-center"
+        [value]="lineaPrestamo.conOng ? 'SI' : 'NO'" disabled>
+    </div>
+
+    <div class="col-md-3 col-lg-3 col-xl-3 form-inline">
+      <label for="conCurso" class="form-control-label" style="padding-right: 10px"> ¿Requiere curso de capacitación?
+      </label>
+      <input type="text" id="conCurso" style="width: 50px;" class="form-control text-center"
+        [value]="lineaPrestamo.conCurso ? 'SI' : 'NO'" disabled>
+    </div>
+
+    <div class="col-md-3 col-lg-3 col-xl-3 form-inline">
+      <label for="conPrograma" class="form-control-label" style="padding-right: 10px"> ¿Trabaja con algún programa de
+        gobierno?
+      </label>
+      <input type="text" id="conPrograma" style="width: 50px;" class="form-control text-center"
+        [value]="lineaPrestamo.conPrograma ? 'SI' : 'NO'" disabled>
+    </div>
+    <div class="col-md-3 col-lg-3 col-xl-3 form-inline">
+      <label for="programa" class="form-control-label" style="padding-right: 10px"> Programas</label>
+      <input id="programa" type="text"
+             class="form-control text-center"
+             [value]="lineaPrestamo.nombrePrograma != '' ? lineaPrestamo.nombrePrograma : 'SIN PROGRAMA'"
+             disabled>
+    </div>
+    <div class="col-md-3 col-lg-3 col-xl-3 form-inline">
+      <label for="deptoLocalidad" class="form-control-label" style="padding-right: 10px"> ¿Trabaja con departamento y localidad?
+      </label>
+      <input id="deptoLocalidad" type="text" style="width: 50px;"
+             class="form-control text-center"
+             [value]="lineaPrestamo.deptoLocalidad ? 'SI' : 'NO'" disabled>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xl-4 col-lg-4 col-md-4 form-group">
+      <label for="txt_nombre_linea" class="form-control-label"> Nombre de la línea </label>
+      <input type="text" id="txt_nombre_linea" class="form-control" [value]="lineaPrestamo.nombre" disabled>
+    </div>
+
+    <div class="col-xl-4 col-lg-4 col-md-4 form-group">
+      <label for="cb_destinatario" class="form-control-label"> Destinatario </label>
+      <input type="text" id="cb_destinatario" class="form-control" [value]="lineaPrestamo.nombreSexoDestinatario"
+        disabled>
+    </div>
+
+    <div class="col-xl-4 col-lg-4 col-md-4 form-group">
+      <label for="cb_motivo_destino" class="form-control-label"> Motivo destino </label>
+      <input type="text" id="cb_motivo_destino" class="form-control" [value]="lineaPrestamo.nombreMotivoDestino"
+        disabled>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col form-group">
+      <label for="txt_descripcion_linea" class="form-control-label"> Descripción de la línea </label>
+      <textarea id="txt_descripcion_linea" type="text" class="form-control" [value]="lineaPrestamo.descripcion" rows="2"
+        disabled></textarea>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col form-group">
+      <label for="txt_objetivo_linea" class="form-control-label"> Objetivo </label>
+      <textarea id="txt_objetivo_linea" type="text" class="form-control" [value]="lineaPrestamo.objetivo" rows="2"
+        disabled></textarea>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xl-8 col-lg-8 col-md-8 form-group">
+      <label for="txt_color_linea" class="form-control-label"> Color representativo de la línea de préstamo </label>
+      <button type="button" class="btn btn-default btn-lg" style="border: 1px solid; border-radius: 10px"
+        [style.background]="lineaPrestamo.color" id="txt_color_linea" disabled></button>
+    </div>
+  </div>
+</div>
+
+<div class="card-pane" style="margin-top: 15px;" *ngIf="detallesLineaPrestamo.length">
+  <table class="table table-bordered">
+    <thead>
+      <th class="align-middle">INTEGRANTES SOCIOS</th>
+      <th class="align-middle">MONTO TOPE SOCIO INTEGRANTE</th>
+      <th class="align-middle">MONTO PRESTABLE</th>
+      <th class="align-middle">CANT. MIN-MAX INTEGRANTES</th>
+      <th class="align-middle">TIPO FINANCIAMIENTO</th>
+      <th class="align-middle">PLAZO DEVOLUCIÓN MÁXIMO</th>
+      <th class="align-middle">VALOR ESTIMADO CUOTA SOLIDARIA</th>
+      <th class="align-middle">GARANTÍA</th>
+      <th class="align-middle">FECHA DE BAJA</th>
+      <th class="align-middle" *ngIf="hayDetallesDadosBaja()">ACCIONES</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let detalle of detallesLineaPrestamo">
+        <td class="align-middle">{{detalle.nombreSocioIntegrante}}</td>
+        <td class="align-middle">{{detalle.montoTope != 0 ? detalle.montoTope : 'N/A'}}</td>
+        <td class="align-middle">{{detalle.montoPrestable}}</td>
+        <td class="align-middle">{{detalle.cantidadMinimaIntegrantes}} - {{detalle.cantidadMaximaIntegrantes}}</td>
+        <td class="align-middle">{{detalle.nombreTipoFinanciamiento}}</td>
+        <td class="align-middle">{{detalle.plazoDevolucion}}</td>
+        <td class="align-middle">{{detalle.valorCuotaSolidaria}}</td>
+        <td class="align-middle">{{detalle.nombreTipoGarantia}}</td>
+        <td class="align-middle">{{detalle.fechaBaja ? (detalle.fechaBaja | date: 'dd/MM/yyyy') : '-'}}</td>
+        <td class="align-middle" *ngIf="hayDetallesDadosBaja()">
+          <button type="button" class="btn btn-link" ngbTooltip="Eliminar"
+            [routerLink]="['/eliminacion-detalle-linea', detalle.id]" *ngIf="!detalle.fechaBaja">
+            <i class="material-icons">delete</i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="row line-divider-bottom" style="padding: 5px !important;">
+  <div class="col">
+    <h5><strong>Datos de la baja</strong></h5>
+  </div>
+</div>
+
+<div [formGroup]="form" class="card-pane" style="margin-top: 15px;">
+  <div class="row">
+    <div class="col-xl-4 col-lg-4 col-md-4 form-group">
+      <label for="tx_fecha" class="form-control-label">Fecha de baja</label>
+      <input type="text" id="tx_fecha" class="form-control" [value]="fechaActual | date:'dd/MM/yyyy' " disabled>
+    </div>
+
+    <div class="col-lg-7 col-xl-7 form-group" [errorFeedback]="form.get('idMotivoBaja')">
+      <label for="cb_motivo_baja">Motivo baja</label>
+      <select class="form-control" id="cb_motivo_baja" formControlName="idMotivoBaja">
+        <option [ngValue]="null" disabled>Seleccione...</option>
+        <option *ngFor="let motivo of motivosBaja" [ngValue]="motivo.id">
+          {{motivo.descripcion}}
+        </option>
+        <control-messages [control]="form.get('idMotivoBaja')"></control-messages>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="row ">
+  <div class="col">
+    <button class="btn btn-primary pull-right" type="button" (click)="darDeBajaLinea()" [disabled]="!form.valid">
+      Aceptar
+    </button>
+    <a [routerLink]="['/bandeja-lineas']" class="btn btn-secondary pull-right separador-botones">Cancelar</a>
+  </div>
+</div>

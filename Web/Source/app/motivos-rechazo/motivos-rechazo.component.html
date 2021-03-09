@@ -1,0 +1,112 @@
+<div class="row line-divider-bottom align-items-center">
+  <div class="col">
+    <h1 class="display-4">CONSULTAR MOTIVO RECHAZO</h1>
+  </div>
+  <div class="col-md-2 col-lg-2 col-xl-2">
+    <a [routerLink]="['/nuevo-motivo-rechazo']" class="btn btn-warning pull-right">NUEVO</a>
+  </div>
+</div>
+
+<form [formGroup]="form" novalidate>
+  <h3>Filtros de búsqueda
+    <button class="signo-ayuda" ngbTooltip="Los campos marcados con (*) son obligatorios."> ?</button>
+  </h3>
+  <div class="card-pane">
+    <div class="row">
+      <div class="form-group col-md-2 col-lg-2 col-xl-2" [errorFeedback]="form.get('ambito')">
+        <label for="cb_ambito" class="form-control-label">Ámbito <span class="obligatorio"> (*)</span>:</label>
+        <select id="cb_ambito" class="form-control" formControlName="ambito">
+          <option [ngValue]="null">Seleccione</option>
+          <option *ngFor="let ambito of ambitos" [ngValue]="ambito.id">
+            {{ambito.descripcion | uppercase}}
+          </option>
+        </select>
+        <control-messages [control]="form.get('ambito')"></control-messages>
+      </div>
+
+      <div class="form-group col-3 " [errorFeedback]="form.get('abreviatura')">
+        <label for="txt_nombre" class="form-control-label">Nombre del motivo:</label>
+        <input type="text" class="form-control" id="txt_nombre" formControlName="abreviatura"
+          [ngbTypeahead]="searchMotivos" [inputFormatter]="showMotivos" [resultFormatter]="showMotivos">
+        <control-messages [control]="form.get('abreviatura')"></control-messages>
+      </div>
+
+      <div class="form-group col-2 " [errorFeedback]="form.get('codigo')">
+        <label for="txt_codigo" class="form-control-label">Código de motivo:</label>
+        <input type="text" class="form-control" id="txt_codigo" formControlName="codigo">
+        <control-messages [control]="form.get('codigo')"></control-messages>
+      </div>
+
+      <div class="form-group only-form-check col">
+          <label class="form-check-label custom-control check-bge-control">
+            <input type="checkbox" class="form-check-input" formControlName="incluirDadosBaja" class="check-bge">
+            <span class="check-marcado"></span>
+            <span class="custom-control-description">Incluir dados de baja</span>
+          </label>
+      </div>
+    </div>
+  </div>
+  <div class="row row-section">
+    <div class="form-group col">
+      <button class="btn btn-primary pull-right" (click)="consultarMotivosRechazo()" [disabled]="form.invalid">
+        <i class="material-icons icono-accion alinear-texto-con-icono">search</i>
+        <span class="alinear-texto-con-icono">CONSULTAR</span>
+      </button>
+    </div>
+  </div>
+</form>
+
+<div class="row align-items-center line-divider-bottom">
+  <div class="col ml-auto">
+    <h3>Resultados</h3>
+  </div>
+</div>
+
+<div [hidden]="(motivosRechazo.length)" class="card-pane separador">
+  No hay resultados para mostrar.
+</div>
+
+<div [hidden]="!motivosRechazo.length" class="card-pane separador">
+  <div class="row row-section line-divider-bottom">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th class="align-middle">ÁMBITO</th>
+          <th class="align-middle">CÓDIGO</th>
+          <th class="align-middle text-left">NOMBRE</th>
+          <th class="align-middle">¿ES AUTOMÁTICO?</th>
+          <th class="align-middle" *ngIf="consultaMotivos.incluirDadosDeBaja">FECHA DE BAJA</th>
+          <th class="align-middle">ACCIONES</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let motivo of motivosRechazo">
+          <td class="align-middle">{{motivo.ambito.nombre}}</td>
+          <td class="align-middle">{{motivo.codigo}}</td>
+          <td class="align-middle text-left">{{motivo.nombre}}</td>
+          <td class="align-middle">{{motivo.esAutomatico ? 'Si' : 'No'}}</td>
+          <td class="align-middle" *ngIf="consultaMotivos.incluirDadosDeBaja">
+            {{(motivo.estaDadaDeBaja() ? motivo.fechaUltimaModificacion : null) | date: 'dd/MM/yyyy'}}
+          </td>
+          <td class="align-middle">
+            <button type="button" class="btn btn-link"
+              [routerLink]="['/consulta-motivo-rechazo',motivo.id, motivo.ambito.id]" ngbTooltip="Ver">
+              <i class="material-icons icono-accion">zoom_in</i>
+            </button>
+            <button type="button" class="btn btn-link" [disabled]="motivo.estaDadaDeBaja() || motivo.esPredefinido"
+              ngbTooltip="Editar" [routerLink]="['/edicion-motivo-rechazo', motivo.id, motivo.ambito.id]">
+              <i class="material-icons icono-accion">mode_edit</i>
+            </button>
+            <button type="button" class="btn btn-link" [disabled]="motivo.estaDadaDeBaja() || motivo.esPredefinido"
+              ngbTooltip="Dar de baja" [routerLink]="['/eliminacion-motivo-rechazo',motivo.id, motivo.ambito.id]">
+              <i class="material-icons icono-accion">delete</i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+  </div>
+  <paginacion [pagina]="pagina | async" (paginaModificada)="consultarMotivosRechazo($event)">
+  </paginacion>
+</div>

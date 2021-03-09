@@ -1,0 +1,108 @@
+<div class="row bordered align-items-center">
+  <div class="col">
+    <h1 class="display-4">CONSULTAR USUARIOS</h1>
+  </div>
+  <div class="col-xl-2 col-lg-2 col-md-2">
+    <a class="btn btn-warning pull-right" [routerLink]="['/usuarios/nuevo']">NUEVO</a>
+  </div>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="consultarUsuarios()">
+  <div class="card-pane">
+    <div class="row">
+      <div class="form-group col-md-3 col-xl-3 col-lg-3" [errorFeedback]="form.get('cuil')">
+        <label for="txt_cuil" class="form-control-label">CUIL</label>
+        <input type="text" id="txt_cuil" formControlName="cuil" class="form-control" placeholder="CUIL usuario" />
+        <control-messages [control]="form.get('cuil')"></control-messages>
+      </div>
+      <div class="form-group col-md-4 col-lg-4 col-xl-4">
+        <label for="cb_perfil">Perfil</label>
+        <select id="cb_perfil" class="form-control" formControlName="perfilId">
+          <option value=""> Seleccione</option>
+          <option *ngFor="let perfil of perfiles" [ngValue]="perfil.id">
+            {{perfil.nombre | uppercase}}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group col alinear-check">
+        <label for="ck_dadosBaja" class="form-check-label custom-control check-bge-control">
+          <input id="ck_dadosBaja" type="checkbox" class="check-bge" formControlName="incluyeBajas">
+          <span class="check-marcado"></span>
+          <span class="custom-control-description">Incluir dados de baja</span>
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="row row-section">
+      <div class="form-group col">
+      <button type="submit" [disabled]="!form.valid" class="btn btn-primary pull-right">
+        <i class=" material-icons icono-accion alinear-texto-con-icono">search</i>
+        <span class="alinear-texto-con-icono">CONSULTAR</span>
+      </button>
+    </div>
+  </div>
+</form>
+<div class="row align-items-center">
+  <div class="col ml-auto">
+    <h3>Resultados</h3>
+  </div>
+</div>
+
+<div [hidden]="!usuarios.length" class="card-pane">
+  <table class="table table-bordered table-striped table-sm">
+    <thead>
+      <tr>
+        <th class="align-middle">#</th>
+        <th class="align-middle">NOMBRE</th>
+        <th class="align-middle">APELLIDO</th>
+        <th class="align-middle">CUIL</th>
+        <th class="align-middle">PERFIL</th>
+        <th class="align-middle" *ngIf="mostrarBajas">FECHA BAJA</th>
+        <th class="align-middle acciones">ACCIONES</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let usuario of usuarios; let indice=index">
+        <td class="align-middle">
+          {{indice+1 }}
+        </td>
+        <td class="align-middle">
+          {{usuario.nombre}}
+        </td>
+        <td class="align-middle">
+          {{usuario.apellido}}
+        </td>
+        <td class="align-middle">
+          {{usuario.sistema? "" : usuario.cuil}}
+        </td>
+        <td class="align-middle">
+          {{usuario.nombrePerfil}}
+        </td>
+        <td class="align-middle"  *ngIf="mostrarBajas">
+          {{usuario.fechaBaja ? (usuario.fechaBaja | date: 'dd/MM/yyyy') : '-'}}
+        </td>
+        <td class="align-middle">
+          <button type="button" class="btn btn-link btn-acciones-md" ngbTooltip="Ver"
+                  [routerLink]="['/usuarios',usuario.id,'visualizacion']" *ngIf="!usuario.sistema">
+            <i class="material-icons icono-accion">zoom_in</i>
+          </button>
+          <button type="button" class="btn btn-link btn-acciones-md" ngbTooltip="Editar"
+                  [routerLink]="['/usuarios', usuario.id, 'edicion']" [disabled]="!usuario.activo" *ngIf="!usuario.sistema">
+            <i class="material-icons icono-accion">mode_edit</i>
+          </button>
+          <button type="button" class="btn btn-link btn-acciones-md" ngbTooltip="Eliminar"
+                  [routerLink]="['/usuarios',usuario.id,'eliminacion']" [disabled]="!usuario.activo" *ngIf="!usuario.sistema">
+            <i class="material-icons icono-accion">delete</i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <paginacion [pagina]="pagina | async" (paginaModificada)="consultarUsuarios($event)">
+  </paginacion>
+</div>
+
+<div [hidden]="usuarios.length" class="card-pane separador">
+  No hay resultados para mostrar.
+</div>

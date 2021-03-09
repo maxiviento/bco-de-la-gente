@@ -1,0 +1,11 @@
+<form [formGroup]="form">
+
+  <div class="requisito form-group mr-auto full-height justify-content-start" style="padding: 0px !important;">
+    <label class="custom-control check-bge-control">
+      <input type="checkbox" class="check-bge" formControlName="seleccionado">
+      <span class="check-marcado"></span>
+      <span class="custom-control-description">{{form.get('nombre').value}}</span>
+    </label>
+  </div>
+
+</form>

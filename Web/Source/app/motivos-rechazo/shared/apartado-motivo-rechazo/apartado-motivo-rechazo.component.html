@@ -1,0 +1,51 @@
+<form [formGroup]="form">
+
+  <div class="card-pane">
+    <div class="row fila">
+      <div class="form-group col-1" [errorFeedback]="form.get('codigo')">
+        <label for="txt_codigo" class="form-control-label"> Código: </label>
+        <input type="text" id="txt_codigo" class="form-control" formControlName="codigo"
+               [attr.disabled]="!habilitado ? true: null">
+        <control-messages [control]="form.get('codigo')"></control-messages>
+      </div>
+      <div class="form-group col-2" [errorFeedback]="form.get('abreviatura')">
+        <label for="txt_abreviatura" class="form-control-label"> Abreviatura:</label>
+        <input type="text" id="txt_abreviatura" class="form-control" formControlName="abreviatura"
+          [attr.disabled]="!habilitado ? true: null">
+        <control-messages [control]="form.get('abreviatura')"></control-messages>
+      </div>
+
+      <div class="form-group col-3" [errorFeedback]="form.get('ambito')">
+        <label for="cb_ambito" class="form-control-label">Ámbito<span *ngIf="habilitado ? true: null"  class="obligatorio"> (*)</span>:</label>
+        <select id="cb_ambito" class="form-control" formControlName="ambito" [attr.disabled]="deshabilitarAmbito()">
+          <option value="null" disabled>Seleccione</option>
+          <option *ngFor="let ambito of ambitos" [ngValue]="ambito.id">
+            {{ambito.descripcion | uppercase}}
+          </option>
+        </select>
+        <control-messages [control]="form.get('ambito')"></control-messages>
+      </div>
+    </div>
+
+    <div class="row fila">
+      <div class="form-group col-8" [errorFeedback]="form.get('nombre')">
+        <label for="txt_nombre" class="form-control-label"> Nombre <span *ngIf="habilitado ? true: null"  class="obligatorio"> (*)</span>:</label>
+        <input type="text" id="txt_nombre" class="form-control" formControlName="nombre"
+          [attr.disabled]="!habilitado ? true: null">
+        <control-messages [control]="form.get('nombre')"></control-messages>
+      </div>
+    </div>
+
+    <div class="row fila">
+      <div class="form-group col-8" [errorFeedback]="form.get('descripcion')">
+        <label for="txt_descripcion" class="form-control-label">Descripción<span *ngIf="habilitado ? true: null"  class="obligatorio">
+            (*)</span>:</label>
+        <textarea rows="3" id="txt_descripcion" class="form-control" formControlName="descripcion"
+          [attr.disabled]="!habilitado ? true: null">
+       </textarea>
+        <control-messages [control]="form.get('descripcion')"></control-messages>
+      </div>
+    </div>
+  </div>
+
+</form>

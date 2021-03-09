@@ -1,0 +1,117 @@
+<form [formGroup]="form" novalidate>
+  <div class="card-pane card-margin-top" *ngIf="editable">
+    <div class="row">
+      <div class="form-group col-lg-4 col-xl-4" [errorFeedback]="form.get('idItemInversion')">
+        <label for="cmb_tipo_inversion">Tipo de inversión<span class="obligatorio"> (*)</span></label>
+        <select id="cmb_tipo_inversion" class="form-control" formControlName="idItemInversion">
+          <option value="null" disabled>Seleccione</option>
+          <option *ngFor="let itemInversion of itemsInversion" [ngValue]="itemInversion.id">
+            {{itemInversion.descripcion | uppercase}}
+          </option>
+        </select>
+        <control-messages [control]="form.get('idItemInversion')"></control-messages>
+      </div>
+      <div *ngIf="descripcionHabilitada" class="form-group col-lg-8 col-xl-8"
+        [errorFeedback]="form.get('descripcionInversion')">
+        <label for="txt_descripcion_inversion" style="padding-top: 0px !important;" class="col-form-label">Descripción
+          de inversión<span class="obligatorio"> (*)</span></label>
+        <textarea class="form-control" id="txt_descripcion_inversion" formControlName="descripcionInversion"></textarea>
+        <control-messages [control]="form.get('descripcionInversion')"></control-messages>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-lg-3 col-xl-3 col-md-3" [errorFeedback]="form.get('cantidadNuevos')">
+        <label for="txt_cantidad_nuevos" class="col-form-label">Cantidad de bienes nuevos</label>
+
+        <input type="text" class="form-control" id="txt_cantidad_nuevos" formControlName="cantidadNuevos">
+        <control-messages [control]="form.get('cantidadNuevos')"></control-messages>
+      </div>
+      <div class="form-group col-lg-3 col-xl-3 col-md-3" [errorFeedback]="form.get('precioNuevos')">
+        <label for="txt_precio_nuevos" class="col-form-label">Precio de bienes nuevos</label>
+        <div class="input-group">
+          <span class="input-group-addon span-pesos">$</span>
+          <input type="text" class="form-control txt-pesos" id="txt_precio_nuevos" formControlName="precioNuevos">
+        </div>
+        <control-messages [control]="form.get('precioNuevos')"></control-messages>
+      </div>
+      <div class="form-group col-lg-3 col-xl-3 col-md-3 verticalLine" [errorFeedback]="form.get('cantidadUsados')">
+        <label for="txt_cantidad_usados" class="col-form-label">Cantidad de bienes usados</label>
+        <input type="text" class="form-control" id="txt_cantidad_usados" formControlName="cantidadUsados">
+        <control-messages [control]="form.get('cantidadUsados')"></control-messages>
+      </div>
+      <div class="form-group col-lg-3 col-xl-3 col-md-3" [errorFeedback]="form.get('precioUsados')">
+        <label for="txt_precio_usados" class="col-form-label">Precio de bienes usados</label>
+        <div class="input-group">
+          <span class="input-group-addon span-pesos">$</span>
+          <input type="text" class="form-control txt-pesos" id="txt_precio_usados" formControlName="precioUsados">
+        </div>
+        <control-messages [control]="form.get('precioUsados')"></control-messages>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <p class="small alinear-texto-con-icono">
+          <span class="obligatorio">(*) </span>
+          Ingrese ambos datos del nuevo bien para registrarlo.</p>
+      </div>
+      <div class="col-6">
+        <p class="small alinear-texto-con-icono">
+          <span class="obligatorio">(*) </span>
+          Ingrese ambos datos del bien usado para registrarlo.</p>
+      </div>
+    </div>
+
+  </div>
+  <div id="row_acciones" class="row row-section" *ngIf="editable">
+    <div class="col">
+      <button [disabled]="!form.valid || !permitirAgregar || !editable" class="btn btn-warning pull-right"
+        (click)="agregarInversion()">
+        <i class="material-icons icono-accion alinear-texto-con-icono">add</i>
+        <span class="alinear-texto-con-icono">AGREGAR</span>
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="inversionesRealizadas?.length > 0" class="card-pane">
+    <table class="table table-sm table-striped table-bordered">
+      <thead>
+        <tr>
+          <th class="align-middle"> DESCRIPCIÓN</th>
+          <th class="align-middle"> CANT. NUEVOS</th>
+          <th class="align-middle"> PRECIO NUEVOS</th>
+          <th class="align-middle"> CANT. USADOS</th>
+          <th class="align-middle"> PRECIO USADOS</th>
+          <th class="align-middle"> CANTIDAD TOTAL</th>
+          <th class="align-middle"> PRECIO TOTAL</th>
+          <th style="width: 10%" class="align-middle"> ACCIONES</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let inversion of inversionesRealizadas; let indice = index">
+          <td class="align-middle">{{inversion.observaciones}}</td>
+          <td class="align-middle">{{inversion.cantidadNuevos ? inversion.cantidadNuevos : '0'}}</td>
+          <td class="align-middle">{{inversion.precioNuevos ? "$ " + inversion.precioNuevos : '0'}}</td>
+          <td class="align-middle">{{inversion.cantidadUsados ? inversion.cantidadUsados : '0'}}</td>
+          <td class="align-middle">{{inversion.precioUsados ? "$ " + inversion.precioUsados : '0'}}</td>
+          <td class="align-middle">{{sumarCantidades(inversion.cantidadNuevos, inversion.cantidadUsados)}}</td>
+          <td class="align-middle">{{"$ " + calcularTotal(inversion)}}</td>
+          <td style="width: 10%" class="align-middle">
+            <button type="button" class="btn btn-link" *ngIf="editable" ngbTooltip="Eliminar Detalle"
+              (click)="eliminarDetalle(indice, inversion.id)">
+              <i class="material-icons icono-accion">clear</i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="row">
+      <div class="col">
+        <label class="col-form-label pull-right">{{descripcionTotalResultado}}
+          <b>{{sumarPrecios() | currency:'ARS':true:'1.2-2'}}</b></label>
+      </div>
+    </div>
+  </div>
+</form>

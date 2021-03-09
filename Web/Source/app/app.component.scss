@@ -1,0 +1,73 @@
+$gray: #546363;
+$gray-light: #707E7E;
+@import '../styles/variables';
+
+body {
+  margin-bottom: 130px;
+  background: rgba(217, 217, 217, 0.69);
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+.verticalLine {
+  border-left: thick solid #c5c5c5;
+  border-width: 1px;
+}
+
+main.container-fluid {
+  padding-bottom: 30px;
+  padding-top: 25px;
+}
+
+.footer {
+  position: absolute;
+  padding-top: 5px;
+  bottom: 0;
+  color: white;
+  border-radius: 0;
+  width: 100%;
+  height: 75px;
+  background-color: $lightergrey;
+}
+
+#logoMinisterio{
+  float: left;
+  width: 310px;
+}
+
+#firmaGob{
+  float: right;
+  width: 310px;
+}
+
+.span-pesos {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  background-color: #7a7a7a;
+  color: #ffffff;
+}
+
+.txt-pesos {
+  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+}
+
+.span-cuotas {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background-color: #7a7a7a;
+  color: #ffffff;
+}
+
+.txt-cuotas {
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+}
+
+
+
+
+

@@ -1,0 +1,113 @@
+<form [formGroup]="form" novalidate>
+  <div class="row">
+    <div class="col-md-4 col-lg-4 col-xl-4 form-group">
+      <label class="custom-control check-bge-control " for="conOng">
+        <input type="checkbox" id="conOng" class="check-bge" formControlName="conOng">
+        <span class="check-marcado"></span>
+        <span class="custom-control-description">¿Línea trabaja con ONG?</span>
+      </label>
+    </div>
+    <div class="col-md-4 col-lg-4 col-xl-4 form-group">
+      <label class=" custom-control check-bge-control" for="conPrograma">
+        <input type="checkbox" class="check-bge" formControlName="conPrograma" id="conPrograma">
+        <span class="check-marcado"></span>
+        <span class="custom-control-description">¿Línea trabaja con algún programa de gobierno?</span>
+      </label>
+    </div>
+    <div class="col-md-4 col-lg-4 col-xl-4 form-group">
+      <label class=" custom-control check-bge-control" for="deptoLocalidad">
+        <input type="checkbox" class="check-bge" formControlName="deptoLocalidad" id="deptoLocalidad">
+        <span class="check-marcado"></span>
+        <span class="custom-control-description">¿Trabaja con departamento y localidad?</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-md-4 col-lg-4 col-xl-4 form-group">
+      <label class=" custom-control check-bge-control" for="conCurso">
+        <input type="checkbox" class="check-bge" formControlName="conCurso" id="conCurso">
+        <span class="check-marcado"></span>
+        <span class="custom-control-description">¿Requiere curso de capacitación?</span>
+      </label>
+    </div>
+    <div class="col-md-3 col-lg-3 col-xl-3 form-group">
+      <select id="cb_programa" class="form-control" formControlName="programa">
+        <option value="null" disabled>
+          Seleccione
+        </option>
+        <option *ngFor="let item of programas" [ngValue]="item.id">
+          {{item.nombre | uppercase}}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xl-4 col-lg-4 col-md-4 form-group" [errorFeedback]="form.get('nombre')">
+      <label for="txt_nombre_linea" class="form-control-label"> Nombre de la línea<span class="obligatorio"> (*)</span>:
+      </label>
+      <input type="text" id="txt_nombre_linea" class="form-control" formControlName="nombre">
+      <control-messages [control]="form.get('nombre')"></control-messages>
+    </div>
+
+    <div class="col-xl-4 col-lg-4 col-md-4 form-group">
+      <label for="cb_destinatario">Destinatario<span class="obligatorio"> (*)</span>:</label>
+      <select id="cb_destinatario" class="form-control" formControlName="destinatario">
+        <option value="null" disabled>
+          Seleccione
+        </option>
+        <option *ngFor="let item of destinatarios" [ngValue]="item.id">
+          {{item.descripcion | uppercase}}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-xl-4 col-lg-4 col-md-4 form-group">
+      <label for="cb_motivo_destino">Motivo destino<span class="obligatorio"> (*)</span>:
+      </label>
+      <select id="cb_motivo_destino" class="form-control" formControlName="motivoDestino">
+        <option value="null" disabled>
+          Seleccione
+        </option>
+        <option *ngFor="let item of motivosDestinos" [ngValue]="item.id">
+          {{item.descripcion | uppercase}}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xl-6 col-lg-6 col-md-6 form-group" [errorFeedback]="form.get('descripcion')">
+      <label for="txt_descripcion_linea" class="form-control-label"> Descripción de la línea<span class="obligatorio">
+          (*)</span>:
+      </label>
+      <textarea id="txt_descripcion_linea" type="text" class="form-control" formControlName="descripcion" rows="3">
+      </textarea>
+      <control-messages [control]="form.get('descripcion')"></control-messages>
+    </div>
+
+    <div class="col-xl-6 col-lg-6 col-md-6 form-group" [errorFeedback]="form.get('objetivo')">
+      <label for="txt_objetivo_linea" class="form-control-label">
+        Objetivo<span class="obligatorio"> (*)</span>:
+      </label>
+      <textarea id="txt_objetivo_linea" type="text" class="form-control" formControlName="objetivo" rows="3">
+              </textarea>
+      <control-messages [control]="form.get('objetivo')"></control-messages>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xl-6 col-lg-6 col-md-6 form-group" style="margin-top: 10px;">
+      <label for="txt_color_linea" class="form-control-label" style="padding-right: 10px">
+        Color representativo de la línea de préstamo<span class="obligatorio"> (*)</span>:
+      </label>
+      <button type="button" (click)="clickColor()" class="btn btn-default btn-lg"
+        style="border: 1px solid; border-radius: 10px;" [style.background]="colorLineaSeleccionado"></button>
+
+      <input id="txt_color_linea" #txt_color_linea formControlName="color"
+        style="width: 0px; height: 0px; visibility: hidden;" [value]="null" [colorPicker]="colorLineaSeleccionado"
+        (colorPickerChange)="onChangeColor($event)">
+    </div>
+  </div>
+</form>

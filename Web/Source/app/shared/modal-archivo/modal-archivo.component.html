@@ -1,0 +1,82 @@
+<div class="modal-header">
+  <h4 class="modal-title"><strong>GESTIÓN DE ARCHIVOS</strong><h6>{{item.nombre}}</h6></h4>
+  <button type="button" class="close" aria-label="Close" (click)="cancelar()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <div class="col-lg-12">
+    <div *ngIf="item.subeArchivo && !soloHistorial">
+      <h6><strong><em>Subir archivos</em></strong></h6>
+      <div class="row row-section" style="padding-bottom: 1px">
+        <div class="col-lg-3">
+          <bg-seleccion-archivo
+            [accept]="'image/jpeg, image/png, application/pdf'"
+            [maxSize]="maxSize"
+            (archivoSeleccionado)="archivoSeleccionado($event)">
+          </bg-seleccion-archivo>
+        </div>
+        <div class="col-lg-9" *ngIf="documentacion.documento?.name">
+          <span
+            style="padding-left: 10px; padding-top: 5px"><em>{{documentacion.documento.name | uppercase}}</em></span>
+          <button class="btn btn-link" (click)="armarDocumentacion()"><i class="material-icons">clear</i></button>
+        </div>
+        <div class="col-lg-9" *ngIf="!documentacion.documento?.name">
+        </div>
+      </div>
+      <div class="row row-section" style="padding-top: 1px">
+        <div class="col">
+          <div class="pull-right">
+            <button class="btn-primary"
+                    [disabled]="!documentacion.documento?.name"
+                    (click)="guardar()">Guardar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h6><strong><em>Historial</em></strong></h6>
+    <div [hidden]="!(documentos.length == 0)" class="row">
+      No hay archivos para mostrar.
+    </div>
+    <div [hidden]="(documentos.length == 0)">
+      <table style="font-size:75%" class="table" id="tabla-documentos">
+        <thead>
+        <th class="align-middle">FECHA HISTORIAL</th>
+        <th class="align-middle">NOMBRE ARCHIVO</th>
+        <th class="align-middle">EXTENSIÓN</th>
+        <th class="align-middle">USUARIO</th>
+        <th class="align-middle">ACCIONES</th>
+        </thead>
+        <tbody>
+        <tr *ngFor="let documento of documentos">
+          <td class="align-middle">{{documento.fechaAlta | date:'dd/MM/yyyy' }}</td>
+          <td class="align-middle">{{documento.nombreArchivo}}</td>
+          <td class="align-middle">{{documento.extension}}</td>
+          <td class="align-middle">{{documento.nombreUsuario}}</td>
+          <td class="align-middle">
+            <button type="button"
+                    class="btn btn-link boton-grilla"
+                    ngbTooltip="Descargar"
+                    (click)="descargarArchivo(documento.id, item.idItem, documento.nombreArchivo)">
+              <i class="material-icons">save_alt</i>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <paginacion [pagina]="pagina | async"
+                  (paginaModificada)="consultarDocumentacion($event)">
+      </paginacion>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <div class="row">
+    <div class="col">
+      <button type="button" class="btn btn-primary" (click)="cancelar()">ACEPTAR</button>
+    </div>
+  </div>
+</div>

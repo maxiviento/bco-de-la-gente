@@ -1,0 +1,77 @@
+<div class="modal-header">
+  <h4 class="modal-title">GENERAR ADENDA PARA EL LOTE</h4>
+  <button type="button" class="close" aria-label="Close" (click)="cerrar(tieneRespuesta)">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <form [formGroup]="form">
+    <table class="table table-bordered table-sm table-striped">
+      <thead>
+        <tr>
+          <th class="align-middle">LÍNEA DE MICRO PRÉSTAMO</th>
+          <th class="align-middle">PORCENTAJE DE AUMENTO</th>
+          <th class="align-middle">MONTO FIJO</th>
+          <th class="align-middle">CANTIDAD DE CUOTAS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr [formGroup]="resultado" *ngFor="let resultado of lineasFormArray.controls">
+          <td class="align-top alinear-texto">{{resultado.get('nombreLinea').value}}</td>
+          <td class="align-top">
+            <div class="input-group">
+              <input type="text" class="form-control txt-monto" id="txt_porcentaje" formControlName="porcentaje">
+              <span class="input-group-addon span-monto" id="txt_porcentaje_addon">%</span>
+            </div>
+            <div class="input-group">
+              <control-messages [control]="resultado.get('porcentaje')"></control-messages>
+            </div>
+          </td>
+          <td class="align-top">
+            <div class="input-group">
+              <input type="text" class="form-control txt-monto" id="txt_monto" formControlName="montoFijo">
+              <span class="input-group-addon span-monto" id="txt_monto_addon">$</span>
+            </div>
+            <div class="input-group">
+              <control-messages [control]="resultado.get('montoFijo')"></control-messages>
+            </div>
+
+          </td>
+          <td class="align-top">
+            <div class="input-group">
+              <input type="text" class="form-control txt-cuotas" id="txt_cuotas" formControlName="cuotas">
+              <span class="input-group-addon span-cuotas">Cuotas</span>
+            </div>
+            <div class="input-group">
+              <control-messages [control]="resultado.get('cuotas')"></control-messages>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+
+  <div class="card-pane card-margin-top" *ngIf="tieneRespuesta">
+    <div class="text-center">
+      <h5 class="text-center text-muted alinear-texto-con-icono confirmacion">{{mensaje}}</h5>
+      <i *ngIf="lineas.length == 1 && adendaConfirmada"
+        class="material-icons icono-accion alinear-texto-con-icono text-muted">done</i>
+      <i *ngIf="lineas.length > 1 && adendaConfirmada"
+        class="material-icons icono-accion alinear-texto-con-icono text-muted">done_all</i>
+      <i *ngIf="!adendaConfirmada" class="material-icons icono-accion alinear-texto-con-icono text-muted">clear</i>
+    </div>
+  </div>
+
+  <div class="row row-section">
+    <div class="col">
+      <div class="pull-right">
+        <button *ngIf="!tieneRespuesta" type="button" class="btn btn-primary" [disabled]="form.invalid || procesando"
+          (click)="confirmarAdenda()">CONFIRMAR
+        </button>
+        <button *ngIf="tieneRespuesta" type="button" class="btn btn-secondary" (click)="cerrar(true)">CERRAR
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

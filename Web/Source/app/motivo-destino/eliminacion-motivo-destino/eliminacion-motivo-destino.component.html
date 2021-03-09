@@ -1,0 +1,39 @@
+<div class="row line-divider-bottom align-items-center">
+  <div class="col">
+    <h4 class="display-4">DAR DE BAJA MOTIVO DESTINO</h4>
+  </div>
+</div>
+<form [formGroup]="form" novalidate>
+  <bg-apartado-motivo-destino
+    [motivo]="apartadoMotivoDestino"
+    [editable]="false">
+  </bg-apartado-motivo-destino>
+
+  <div class="card-pane">
+    <div class="row row-section">
+      <div class="col-lg-5 col-xl-5" [errorFeedback]="form.get('motivoBaja')">
+        <label for="ddl_motivo_baja">Motivo baja</label>
+        <select class="form-control"
+                id="ddl_motivo_baja"
+                formControlName="motivoBaja">
+          <option value="" disabled>Seleccione...</option>
+          <option *ngFor="let motivo of motivosBaja"
+                  [value]=motivo.id>
+            {{motivo.descripcion}}
+          </option>
+          <control-messages [control]="form.get('motivoBaja')"></control-messages>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-primary pull-right" (click)="eliminarMotivoDestino()" [disabled]="form.invalid"
+              type="button">Aceptar
+      </button>
+      <a class="btn btn-secondary pull-right" [routerLink]="['/motivos-destino']">Cancelar</a>
+    </div>
+  </div>
+
+</form>

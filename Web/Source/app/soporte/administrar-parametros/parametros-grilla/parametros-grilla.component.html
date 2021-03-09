@@ -1,0 +1,44 @@
+<table class="table table-striped table-bordered">
+  <thead>
+  <tr>
+    <th class="align-middle">Nombre</th>
+    <th class="align-middle">Descripción</th>
+    <th class="align-middle w-15">Tipo</th>
+    <th class="align-middle w-15">Valor</th>
+    <th class="align-middle">Fecha desde</th>
+    <th class="align-middle">Es vigente</th>
+    <th class="align-middle line-divider-left">Acciones</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr class="line-divider-bottom" *ngFor="let parametro of parametros">
+    <td class="align-middle">
+      {{ parametro.nombre }}
+    </td>
+    <td class="align-middle">
+      {{ parametro.descripcion }}
+    </td>
+    <td class="align-middle">
+      {{ parametro.nombreTipoDato }}
+    </td>
+    <td class="align-middle">
+      {{ getValor(parametro)}}
+    </td>
+    <td class="align-middle">
+      {{ parametro.fechaDesde | date: 'dd/MM/yyyy' }}
+    </td>
+    <td  class="align-middle">
+      {{ parametro.vigente ? 'SI' : 'NO'}}
+    </td>
+    <td class=" line-divider-left align-middle">
+      <button type="button"
+              class="btn btn-link"
+              ngbTooltip="Editar"
+              (click)="modificado.emit(parametro)"
+              [hidden]="!parametro.vigente">
+        <i class="material-icons icono-accion">mode_edit</i>
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>

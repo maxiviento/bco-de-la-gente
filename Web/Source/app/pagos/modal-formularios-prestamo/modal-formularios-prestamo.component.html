@@ -1,0 +1,40 @@
+<div class="modal-header">
+  <h4 class="modal-title"><strong>FORMULARIOS DEL PRÉSTAMO</strong></h4>
+  <button type="button" class="close" aria-label="Close" (click)="cancelar()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div [hidden]="!formularioResultados.length" class="modal-body">
+  <table class="table table-bordered">
+    <thead>
+    <th class="align-middle">BENEFICIARIO</th>
+    <th class="align-middle">CUIL/DNI</th>
+    <th class="align-middle">ORIGEN</th>
+    <th class="align-middle">NRO FORMULARIO</th>
+    <th class="align-middle">ESTADO</th>
+    <th class="align-middle">MONTO</th>
+    </thead>
+    <tbody>
+    <tr *ngFor="let formulario of formularioResultados">
+      <td class="align-middle">{{formulario.beneficiario}}</td>
+      <td class="align-middle">{{formulario.cuil}}</td>
+      <td class="align-middle">{{formulario.origen}}</td>
+      <td class="align-middle">{{formulario.nroFormulario}}</td>
+      <td class="align-middle">{{formulario.estado}}</td>
+      <td class="align-middle">{{formulario.montoFormulario === 0 ? '-' : formulario.montoFormulario | moneda}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="modal-footer">
+  <div class="row">
+    <div class="col">
+      <button type="button"
+              class="btn btn-secondary pull-right"
+              (click)="cancelar()">SALIR
+      </button>
+    </div>
+  </div>
+</div>

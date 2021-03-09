@@ -1,0 +1,43 @@
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+
+namespace Configuracion.Aplicacion.Comandos
+{
+    public class ItemComando
+    {
+        public ItemComando(long? id, string nombre, string descripcion, long? idMotivoBaja)
+        {
+            Id = id;
+            Nombre = nombre;
+            Descripcion = descripcion;
+            IdUsuarioUltimaModificacion = 1;
+            if (idMotivoBaja == 0)
+            {
+                IdMotivoBaja = -1;
+            }
+            else
+            {
+                IdMotivoBaja = idMotivoBaja;
+            }
+            this.FechaUltimaModificacion = DateTime.Now;
+        }
+
+        public long? Id { get; set; }
+
+        [Required(ErrorMessage = "El nombre del ítem es requerido."),
+            MaxLength(50, ErrorMessage = "El nombre del ítem tiene un largo máximo de 50 caracteres.")]
+        public string Nombre { get; set; }
+
+        [Required(ErrorMessage = "La descripción del ítem es requerido."),
+            MaxLength(200, ErrorMessage = "La descripción del ítem tiene un largo máximo de 200 caracteres.")]
+        public string Descripcion { get; set; }
+
+        public DateTime? FechaUltimaModificacion { get; set; }
+
+        public long? IdUsuarioUltimaModificacion { get; set; }
+
+        public long? IdMotivoBaja { get; set; }
+
+        public DateTime? FechaBaja { get; set; }
+    }
+}

@@ -1,0 +1,212 @@
+<form [formGroup]="formConsulta" novalidate>
+  <div [hidden]="adendaConfirmada">
+    <h3>Filtros de búsqueda
+      <button class="signo-ayuda" ngbTooltip="Los campos marcados con (*) son obligatorios."> ?</button>
+    </h3>
+    <div class="card-pane">
+      <div class="spacer"></div>
+      <!-- R O W -->
+      <div class="row">
+        <!-- C O L 1/2 -->
+        <div class="col">
+          <div class="form-group row" [errorFeedback]="formConsulta.get('nroPrestamoChecklist')">
+            <label for="txt_nro_prestamo" class="col-md-5 col-lg-5 col-xl-5 col-form-label">N°
+              Préstamo-Checklist:</label>
+            <div class=" col-md-7 col-lg-7 col-xl-7">
+              <input type="text" class="form-control" id="txt_nro_prestamo" formControlName="nroPrestamoChecklist">
+              <control-messages [control]="formConsulta.get('nroPrestamoChecklist')"></control-messages>
+            </div>
+          </div>
+          <div class="form-group row" [errorFeedback]="formConsulta.get('nroFormulario')">
+            <label for="txt_nro_formulario" class="col-md-5 col-lg-5 col-xl-5 col-form-label">N° Formulario:</label>
+            <div class=" col-md-7 col-lg-7 col-xl-7">
+              <input type="text" class="form-control" id="txt_nro_formulario" formControlName="nroFormulario">
+              <control-messages [control]="formConsulta.get('nroFormulario')"></control-messages>
+            </div>
+          </div>
+        </div>
+        <div class="verticalLine"></div>
+        <!-- C O L 2/2 -->
+        <div class="col">
+          <div class="form-group row">
+            <label for="cb_origen" class="col-md-5 col-lg-5 col-xl-5 col-form-label">Origen:</label>
+            <div class=" col-md-7 col-lg-7 col-xl-7">
+              <select id="cb_origen" class="form-control" formControlName="origen">
+                <option value="null">
+                  Seleccione
+                </option>
+                <option *ngFor="let item of CBOrigen" [ngValue]="item.clave">
+                  {{item.valor | uppercase}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row" [errorFeedback]="formConsulta.get('lineas')">
+            <label for="cb_lineas" class="col-md-5 col-lg-5 col-xl-5 col-form-label">Línea de préstamo</label>
+            <div class="col-md-7 col-lg-7 col-xl-7">
+              <ng-select id="cb_lineas" [dataSource]="{list: CBLineas, name:'descripcion', id:'id'}" [multiple]="true"
+                         [cutDisplay]="2" formControlName="lineas" [selected]="formConsulta.get('lineas').value"
+                         [clientMode]="true">
+              </ng-select>
+              <control-messages [control]="formConsulta.get('lineas')"></control-messages>
+            </div>
+          </div>
+        </div>
+      </div>
+      <filtro-domicilio (departamentosSeleccionados)="guardarDepartamentosSeleccionados($event)"
+                        (localidadesSeleccionadas)="guardarLocalidadesSeleccionadas($event)"></filtro-domicilio>
+      <bg-busqueda-por-persona></bg-busqueda-por-persona>
+    </div>
+    <div class="row row-section">
+      <div class="form-group col">
+        <button class="btn btn-primary pull-right" (click)="consultar()"
+                [disabled]="adendaConfirmada">
+          <i class="material-icons icono-accion alinear-texto-con-icono">search</i>
+          <span class="alinear-texto-con-icono">CONSULTAR</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<div class="row bordered align-items-center titulo-grilla">
+  <div class="col">
+    <h1 class="display-4">FORMULARIOS PARA ARMAR ADENDA</h1>
+  </div>
+</div>
+<div class="card-pane" *ngIf="!bandejaResultados.length">
+  No hay resultados para mostrar.
+</div>
+
+<div class="card-pane" *ngIf="bandejaResultados.length">
+  <div class="col-auto form-group pull-right">
+    <label for="checkbox-todos" class="custom-control check-bge-control">
+      <input id="checkbox-todos" type="checkbox" [checked]="todosSeleccionados" (click)="seleccionarTodos()"
+             class="check-bge" [disabled]="adendaConfirmada">
+      <span class="check-marcado"></span>
+      <span class="custom-control-description">Seleccionar todos de la consulta previa</span>
+    </label>
+  </div>
+
+  <table class="table table-bordered table-striped table-sm">
+    <thead>
+    <tr>
+      <th class="align-middle">DEPARTAMENTO</th>
+      <th class="align-middle">LOCALIDAD</th>
+      <th class="align-middle">LINEA</th>
+      <th class="align-middle">NRO PRÉSTAMO</th>
+      <th class="align-middle">NRO FORMULARIO</th>
+      <th class="align-middle">APELLIDO Y NOMBRE DEL SOLICITANTE</th>
+      <th class="align-middle">MONTO OTORGADO</th>
+      <th class="align-middle">ACCIÓN</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr [formGroup]="resultado" *ngFor="let resultado of resultadoFormArray.controls">
+      <td class="align-middle">{{resultado.get('departamento').value}}</td>
+      <td class="align-middle">{{resultado.get('localidad').value}}</td>
+      <td class="align-middle">{{resultado.get('linea').value}}</td>
+      <td class="align-middle">{{resultado.get('nroPrestamo').value}}</td>
+      <td class="align-middle">{{resultado.get('nroFormulario').value}}</td>
+      <td class="align-middle">{{resultado.get('nombreYApellido').value}}</td>
+      <td class="align-middle">{{resultado.get('montoOtorgado').value}}</td>
+      <td class="align-middle">
+        <button *ngIf="!resultado.get('agregado').value" type="button"
+                class="btn btn-link boton-grilla"
+                ngbTooltip="Agregar préstamo"
+                (click)="agregarPrestamo(resultado.get('nroPrestamo').value)"
+                [disabled]="adendaConfirmada">
+          <i class="material-icons icono-accion">
+            note_add
+          </i>
+        </button>
+        <button *ngIf="resultado.get('agregado').value" type="button"
+                class="btn btn-link boton-grilla"
+                ngbTooltip="Quitar préstamo"
+                (click)="quitarPrestamo(resultado.get('nroPrestamo').value)"
+                [disabled]="adendaConfirmada">
+          <i class="material-icons icono-accion">
+            clear
+          </i>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <paginacion [pagina]="pagina | async" (paginaModificada)="consultarFormularios($event)">
+  </paginacion>
+</div>
+
+<div class="row bordered align-items-center titulo-grilla">
+  <div class="col">
+    <h1 class="display-4">FORMULARIOS SELECCIONADOS PARA ARMAR ADENDA</h1>
+  </div>
+</div>
+
+<div *ngIf="!bandejaSeleccionados.length" class="card-pane">
+  No hay resultados para mostrar.
+</div>
+
+<div id="collapseFormulariosAgrupados" *ngIf="bandejaSeleccionados.length" class="card-pane">
+  <table class="table table-sm table-striped table-bordered">
+    <thead>
+    <tr>
+      <th class="align-middle">DEPARTAMENTO</th>
+      <th class="align-middle">LOCALIDAD</th>
+      <th class="align-middle">LÍNEA</th>
+      <th class="align-middle">NRO PRÉSTAMO</th>
+      <th class="align-middle">NRO FORMULARIO</th>
+      <th class="align-middle">CUIL/DNI</th>
+      <th class="align-middle">APELLIDO Y NOMBRE DEL SOLICITANTE</th>
+      <th class="align-middle">MONTO PRÉSTAMO</th>
+      <th class="align-middle">ESTADO PRÉSTAMO</th>
+      <th class="align-middle">ESTADO FORMULARIO</th>
+      <th class="align-middle">ACCIÓN</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr [formGroup]="seleccionado" *ngFor="let seleccionado of seleccionadosFormArray.controls">
+      <td class="align-middle ">{{seleccionado.get('departamento').value}}</td>
+      <td class="align-middle ">{{seleccionado.get('localidad').value}}</td>
+      <td class="align-middle ">{{seleccionado.get('linea').value}}</td>
+      <td class="align-middle ">{{seleccionado.get('nroPrestamo').value}}</td>
+      <td class="align-middle ">{{seleccionado.get('nroFormulario').value}}</td>
+      <td
+        class="align-middle ">{{seleccionado.get('cuil').value ? seleccionado.get('cuil').value : seleccionado.get('nroDocumento').value}}</td>
+      <td class="align-middle ">{{seleccionado.get('nombreYApellido').value}}</td>
+      <td class="align-middle ">{{seleccionado.get('montoPrestamo').value}}</td>
+      <td class="align-middle ">{{seleccionado.get('estadoPrestamo').value}}</td>
+      <td class="align-middle ">{{seleccionado.get('estadoFormulario').value}}</td>
+      <td class="align-middle">
+        <button type="button"
+                class="btn btn-link boton-grilla"
+                ngbTooltip="Quitar préstamo"
+                (click)="quitarPrestamo(seleccionado.get('nroPrestamo').value)"
+                [disabled]="adendaConfirmada">
+          <i class="material-icons icono-accion">
+            clear
+          </i>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <paginacion [pagina]="paginaSeleccionados | async" (paginaModificada)="consultarSiguientesSeleccionados($event)">
+  </paginacion>
+</div>
+
+<div class="row row-section">
+  <div class="form-group col">
+    <div class="pull-right">
+      <a
+        [routerLink]="['/bandeja-lotes']"
+        class="btn btn-secondary separador-botones">VOLVER</a>
+      <button class="btn btn-primary" (click)="crearAdenda()"
+              [disabled]="!bandejaSeleccionados.length || adendaConfirmada">
+        <i class="material-icons icono-accion alinear-texto-con-icono">done</i>
+        <span class="alinear-texto-con-icono">CONFIRMAR ADENDA</span>
+      </button>
+    </div>
+  </div>
+</div>

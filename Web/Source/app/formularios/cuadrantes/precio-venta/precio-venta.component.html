@@ -1,0 +1,213 @@
+<div id="row_titulo" class="row row-title line-divider-bottom">
+  <div class="col">
+    <strong>
+      <h4 class="card-title w-75">DETERMINAR EL PRECIO DE VENTA DE SU PRODUCTO O SERVICIO PRINCIPAL</h4>
+    </strong>
+  </div>
+</div>
+
+<!--Mensaje de alerta por falta de emprendimiento-->
+<div class="alert alert-warning alerta-emprendimiento" role="alert" *ngIf="!formulario?.datosEmprendimiento?.id">Es
+  requerido cargar los datos del emprendimiento para poder guardar los datos ingresados en este cuadrante.
+</div>
+
+<form [formGroup]="form">
+  <div class="card-pane">
+    <div class="row  card-body">
+      <div class="col-md-4 col-xl-4" [errorFeedback]="form.get('unidadesEstimadas')">
+        <label for="txt_unidades_estimadas" class="col-form-label"> Unidades estimadas a vender mensualmente<span class="obligatorio"> (*)</span>
+        </label>
+        <input type="text" class="form-control" formControlName="unidadesEstimadas" id="txt_unidades_estimadas"
+          size="15px" align="center" (blur)="calcularTotales()">
+        <control-messages [control]="form.get('unidadesEstimadas')"></control-messages>
+      </div>
+
+      <div class="col-md-8 col-xl-8" [errorFeedback]="form.get('producto')">
+        <label for="txt_nombre_producto" class="col-form-label"> ¿Cuál es el producto?<span class="obligatorio"> (*)</span></label>
+        <input type="text" class="form-control" formControlName="producto" id="txt_nombre_producto">
+        <control-messages [control]="form.get('producto')"></control-messages>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-pane card-margin-top">
+    <div>
+      <div>
+        <h4 class="table-title">COSTOS VARIABLES<span class="obligatorio"> (*)</span></h4>
+        <table class="table table-bordered" id="tabla-costos-variables">
+          <thead>
+            <th class="align-middle">TIPO</th>
+            <th class="align-middle">MENSUALES</th>
+            <th class="align-middle">PESOS POR UNIDAD</th>
+            <th class="align-middle"></th>
+          </thead>
+          <tbody *ngFor="let costoVariableObject of costosVariables">
+            <tr>
+              <td class="align-middle">{{costoVariableObject.nombre}}</td>
+              <td class="align-middle">{{costoVariableObject.valorMensual | moneda}}</td>
+              <td class="align-middle">{{costoVariableObject.precioUnitario | moneda}}</td>
+              <td class="align-middle">
+                <button type="button" class="btn btn-link boton-grilla" ngbTooltip="Eliminar"
+                  [disabled]="!this.editable" (click)="eliminarCostoVariable(costoVariableObject)">
+                  <i class="material-icons icono-accion">delete</i>
+                </button>
+              </td>
+            </tr>
+            <tr *ngIf="costoVariableObject.idItem === 99">
+              <td>
+                Detalle
+              </td>
+              <td class="align-middle">{{costoVariableObject.detalle}}</td>
+            </tr>
+          </tbody>
+          <tbody>
+            <tr [formGroup]="formNuevoCostoVariable">
+              <td [errorFeedback]="formNuevoCostoVariable.get('idTipo')">
+                <ng-select id="cb_tipo_costo_variable"
+                  [dataSource]="{list: itemsPrecioVentaVariables, name:'nombre', id:'id'}" formControlName="idTipo"
+                  [selected]="formNuevoCostoVariable.get('idTipo').value" [clientMode]="true">
+                </ng-select>
+                <control-messages [control]="formNuevoCostoVariable.get('idTipo')"></control-messages>
+              </td>
+
+              <td class="columna-monto" [errorFeedback]="formNuevoCostoVariable.get('mensuales')">
+                <input type="text" class="form-control" formControlName="mensuales">
+                <control-messages [control]="formNuevoCostoVariable.get('mensuales')"></control-messages>
+              </td>
+
+              <td class="columna-monto" [errorFeedback]="formNuevoCostoVariable.get('precioUnitario')">
+              </td>
+              <td>
+                <button type="button" class="btn btn-link boton-grilla" ngbTooltip="Agregar" [disabled]="!this.editable"
+                  (click)="agregarCostoVariable(formNuevoCostoVariable)">
+                  <i class="material-icons icono-accion">add_circle</i>
+                </button>
+              </td>
+            </tr>
+            <tr *ngIf="formNuevoCostoVariable.get('idTipo').value === 99" [formGroup]="formNuevoCostoVariable">
+              <td>
+                Detalle
+              </td>
+              <td class="columna-detalle-variables" [errorFeedback]="formNuevoCostoVariable.get('detalle')">
+                <input type="text" class="form-control" formControlName="detalle">
+                <control-messages [control]="formNuevoCostoVariable.get('detalle')"></control-messages>
+              </td>
+            </tr>
+
+          </tbody>
+          <tfoot>
+            <td class="tfooter-total columna-monto"></td>
+            <td class="tfooter-total columna-detalle-fijos text-right"></td>
+            <td class="tfooter-total columna-monto">TOTAL (A): {{totalCostosVariables | moneda}}</td>
+            <td class="tfooter-total columna-monto"></td>
+          </tfoot>
+        </table>
+      </div>
+      <div>
+        <h4 class="table-title">COSTOS FIJOS<span class="obligatorio"> (*)</span></h4>
+        <table class="table table-bordered" id="tabla-gastos">
+          <thead>
+            <th class="align-middle">TIPO</th>
+            <th class="align-middle">MENSUALES</th>
+            <th class="align-middle">COSTO UNITARIO</th>
+            <th class="align-middle"></th>
+          </thead>
+          <tbody *ngFor="let costoFijo of costosFijos">
+            <tr>
+              <td class="align-middle">{{costoFijo.nombre}}</td>
+              <td class="align-middle">{{costoFijo.valorMensual | moneda}}</td>
+              <td class="align-middle">{{costoFijo.precioUnitario | moneda}}</td>
+              <td class="align-middle">
+                <button type="button" class="btn btn-link boton-grilla" ngbTooltip="Eliminar"
+                  (click)="eliminarCostoFijo(costoFijo)" [disabled]="costoFijo.idItem === 9999 || !this.editable">
+                  <i class="material-icons icono-accion">delete</i>
+                </button>
+              </td>
+            </tr>
+            <tr *ngIf="costoFijo.idItem === 999">
+              <td>
+                Detalle
+              </td>
+              <td class="align-middle">{{costoFijo.detalle}}</td>
+            </tr>
+          </tbody>
+
+          <tbody>
+            <tr [formGroup]="formNuevoCostoFijo">
+              <td [errorFeedback]="formNuevoCostoFijo.get('idTipo')">
+                <ng-select id="cb_tipo_costo_fijo" [dataSource]="{list: itemsPrecioVentaFijos, name:'nombre', id:'id'}"
+                  formControlName="idTipo" [selected]="formNuevoCostoFijo.get('idTipo').value" [clientMode]="true">
+                </ng-select>
+                <control-messages [control]="formNuevoCostoFijo.get('idTipo')"></control-messages>
+              </td>
+
+              <td class="columna-monto" [errorFeedback]="formNuevoCostoFijo.get('mensuales')">
+                <input type="text" class="form-control" formControlName="mensuales">
+                <control-messages [control]="formNuevoCostoFijo.get('mensuales')"></control-messages>
+              </td>
+
+              <td class="columna-monto" [errorFeedback]="formNuevoCostoFijo.get('precioUnitario')">
+              </td>
+
+              <td>
+                <button type="button" class="btn btn-link boton-grilla" ngbTooltip="Agregar" [disabled]="!this.editable"
+                  (click)="agregarCostoFijo(formNuevoCostoFijo)">
+                  <i class="material-icons icono-accion">add_circle</i>
+                </button>
+              </td>
+            </tr>
+            <tr *ngIf="formNuevoCostoFijo.get('idTipo').value === 999" [formGroup]="formNuevoCostoFijo">
+              <td>
+                Detalle
+              </td>
+              <td class="columna-detalle-variables" [errorFeedback]="formNuevoCostoFijo.get('detalle')">
+                <input type="text" class="form-control" formControlName="detalle">
+                <control-messages [control]="formNuevoCostoFijo.get('detalle')"></control-messages>
+              </td>
+            </tr>
+
+          </tbody>
+          <tfoot>
+            <td class="tfooter-total columna-monto"></td>
+            <td class="tfooter-total columna-detalle-fijos text-right"></td>
+            <td class="tfooter-total columna-monto">TOTAL (B): {{totalCostosFijos | moneda}}</td>
+            <td class="tfooter-total columna-monto"></td>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+
+    <hr>
+    <div class="row row-section">
+      <div align="center" class="col-md-2 col-lg-2 col-xl-2 total-label">
+        <label for="p_total_costos_variables">Costos variables por unidad (A)</label>
+        <p id="p_total_costos_variables" class="p-total">
+          {{totalCostosVariables | moneda}}</p>
+      </div>
+      <div class="col-1 text-center">
+        <i class="material-icons operador-numerico icono">add</i>
+      </div>
+      <div align="center" class="col-md-2 col-lg-2 col-xl-2 total-label">
+        <label for="p_total_costos_fijos">Costos fijos por unidad(B)</label>
+        <p id="p_total_costos_fijos" class="p-total">
+          {{totalCostosFijos | moneda}}</p>
+      </div>
+      <div class="col-1 text-center">
+        <i class="material-icons operador-numerico icono">add</i>
+      </div>
+      <div align="center" class="col-md-2 col-lg-2 col-xl-2 total-label">
+        <label>Ganancia por unidad (estimar)<span class="obligatorio"> (*)</span></label>
+        <input type="text" class="form-control" formControlName="ganancia" size="15px">
+        <control-messages [control]="form.get('ganancia')"></control-messages>
+      </div>
+      <div class="col-1 text-center">
+        <i class="material-icons operador-numerico icono">drag_handle</i>
+      </div>
+      <div align="center" class="col-md-2 col-lg-2 col-xl-2 total-label">
+        <label for="p_precio_unitario">Precio de venta unitario</label>
+        <p id="p_precio_unitario" class="p-total">
+          {{precioDeVentaUnitario | moneda}}</p>
+      </div>
+    </div>
+  </div>
+</form>

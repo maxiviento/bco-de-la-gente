@@ -1,0 +1,114 @@
+<div class="row row-title line-divider-bottom align-items-center">
+  <div class="col">
+    <h1 class="display-4">GENERAR INFORMES BANCO</h1>
+  </div>
+</div>
+<div class="row row-section">
+
+  <div class="col-12">
+    <form [formGroup]="form" novalidate>
+      <h3>Filtros de búsqueda</h3>
+      <div class="card-pane">
+        <div class="row row-section">
+          <div class="col-4">
+            <div class="form-group row" [errorFeedback]="form.get('fechaDesde')">
+              <label for="txt_fecha_desde" class="col-5 col-form-label">Fecha desde
+                <span class="obligatorio"> (*)</span>:</label>
+              <div class="col-4">
+                <input id="txt_fecha_desde" class="form-control " ngbDatepicker #fecha_desde="ngbDatepicker"
+                       (click)="fecha_desde.toggle()" placeholder="dd/mm/aaaa" formControlName="fechaDesde"/>
+                <control-messages [control]="form.get('fechaDesde')"></control-messages>
+              </div>
+            </div>
+
+            <div class="form-group row" [errorFeedback]="form.get('fechaHasta')">
+              <label for="txt_fecha_hasta" class="col-5 col-form-label">Fecha hasta
+                <span class="obligatorio"> (*)</span>:</label>
+              <div class="col-4">
+                <input id="txt_fecha_hasta" class="form-control" ngbDatepicker #fecha_hasta="ngbDatepicker"
+                       (click)="fecha_hasta.toggle()" placeholder="dd/mm/aaaa" formControlName="fechaHasta"/>
+                <control-messages [control]="form.get('fechaHasta')"></control-messages>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-8 form-group">
+            <label>Seleccione el tipo de reporte para generar:<span class="obligatorio"> (*)</span></label>
+            <div class="alinear-checks">
+              <input type="radio" [value]="1" id="radioInforme" formControlName="radioTipoReporte"
+                     name="radioTipoReporte">
+              <label for="radioInforme">Informes banco</label>
+            </div>
+            <div class="alinear-checks">
+              <input type="radio" [value]="2" formControlName="radioTipoReporte" id="radioExportacion"
+                     name="radioTipoReporte">
+              <label for="radioExportacion">Exportaciones de datos</label>
+            </div>
+          </div>
+
+          <div class="col-4"></div>
+
+          <div class="form-group col-8" *ngIf="tipoReporte == 1">
+            <label>Seleccione los reportes a imprimir:<span class="obligatorio"> (*)</span></label>
+            <div class="form-group row alinear-checks">
+              <div class="margin-right col-4" [ngClass]="{'col-6': (indice > 3)}"
+                   *ngFor="let rep of informesBanco; let indice = index">
+                <div *ngIf="indice < 2">
+                  <label [attr.for]="'ck_rep_in' + indice" class="custom-control check-bge-control">
+                    <input [attr.id]="'ck_rep_in' + indice" type="checkbox" class="check-bge"
+                           (change)="checkInformes(rep.id, $event)" [value]="rep.id" [checked]="rep.seleccionado">
+                    <span class="check-marcado"></span>
+                    <span class="custom-control-description">{{rep.descripcion}}</span>
+                  </label>
+                </div>
+                <div *ngIf="indice > 1 && indice < 4">
+                  <label [attr.for]="'ck_rep_in' + indice" class="custom-control check-bge-control">
+                    <input [attr.id]="'ck_rep_in' + indice" type="checkbox" class="check-bge"
+                           (change)="checkInformes(rep.id, $event)" [value]="rep.id" [checked]="rep.seleccionado">
+                    <span class="check-marcado"></span>
+                    <span class="custom-control-description">{{rep.descripcion}}</span>
+                  </label>
+                </div>
+                <div *ngIf="indice > 3">
+                  <label [attr.for]="'ck_rep_in' + indice" class="custom-control check-bge-control">
+                    <input [attr.id]="'ck_rep_in' + indice" type="checkbox" class="check-bge"
+                           (change)="checkInformes(rep.id, $event)" [value]="rep.id" [checked]="rep.seleccionado">
+                    <span class="check-marcado"></span>
+                    <span class="custom-control-description">{{rep.descripcion}}</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group col-8" *ngIf="tipoReporte == 2">
+            <label>Seleccione los datos para generar la exportación:<span class="obligatorio"> (*)</span></label>
+            <div class="form-group row alinear-checks">
+              <div class="margin-right col-4" [ngClass]="{'col-6': (indice > 3)}"
+                   *ngFor="let rep of exportacionesBanco; let indice = index">
+                <div *ngIf="indice < 2">
+                  <label [attr.for]="'ck_rep_in' + indice" class="custom-control check-bge-control">
+                    <input [attr.id]="'ck_rep_in' + indice" type="checkbox" class="check-bge"
+                           (change)="checkInformes(rep.id, $event)" [value]="rep.id" [checked]="rep.seleccionado">
+                    <span class="check-marcado"></span>
+                    <span class="custom-control-description">{{rep.descripcion}}</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </form>
+    <div class="row row-section justify-content-end">
+      <div class="col-12 col-md-3 col-lg-2 col-xl-2">
+        <button type="submit" [disabled]="form.invalid || this.informesAImprimir.length === 0"
+                (click)="generarInformesBanco()" class="btn btn-primary pull-right">
+          <i class="material-icons icono-accion alinear-texto-con-icono">print</i>
+          <span class="alinear-texto-con-icono">Generar</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

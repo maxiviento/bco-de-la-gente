@@ -1,0 +1,14 @@
+<div class="select2-results-container" [hidden]="items == undefined || items.length == 0"
+     id="resultsContainer" style="overflow-y: auto !important; max-height: 30vh !important;">
+    <div *ngFor="let item of items; let i = index;">
+        <div class="select2-result" id="item_{{i}}"
+             (mousedown)="onItemSelected(item)"
+             [class.selected]="isSelected(item)"
+             [class.active]="i === activeIndex"
+             (mouseover)="onMouseOver(i)"
+             (mouseenter)="onHovering($event)"
+             [innerHtml]="sanitize(item.text | highLight:inputText)">
+        </div>
+    </div>
+</div>
+

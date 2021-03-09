@@ -1,0 +1,79 @@
+<div class="row">
+  <h3 class="display-6 col-auto">Resultados:</h3>
+  <h5 class="margin-resultados">{{totalizador? '(' + totalizador + ' formulario/s)': ''}}</h5>
+  <div class="col-auto">
+    <single-spinner></single-spinner>
+  </div>
+</div>
+
+<div class="card-pane" [hidden]="bandejaResultados.length">
+  No hay resultados para mostrar.
+</div>
+
+<div class="card-pane" [hidden]="!bandejaResultados.length">
+
+  <table class="table table-bordered table-striped table-sm">
+    <thead>
+      <tr>
+        <th class="align-middle">LINEA</th>
+        <th class="align-middle">DEPARTAMENTO</th>
+        <th class="align-middle">LOCALIDAD</th>
+        <th class="align-middle">SOLICITANTE</th>
+        <th class="align-middle">CUIL/DNI SOLICITANTE</th>
+        <th class="align-middle">N° PRESTAMO</th>
+        <th class="align-middle">N° FORMULARIO</th>
+        <th class="align-middle">ORIGEN</th>
+        <th class="align-middle">N° CHEQUE</th>
+        <th class="align-middle">FECHA VENCIMIENTO</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let resultado of formulariosFormArray.controls" [formGroup]="resultado">
+      <td class="align-middle">{{resultado.get('linea').value}}</td>
+      <td class="align-middle">{{resultado.get('departamento').value}}</td>
+      <td class="align-middle">{{resultado.get('localidad').value}}</td>
+      <td class="align-middle">{{resultado.get('apellidoNombreSolicitante').value}}</td>
+      <td class="align-middle">{{resultado.get('cuilSolicitante').value}}</td>
+      <td class="align-middle">{{resultado.get('nroPrestamo').value}}</td>
+      <td class="align-middle">{{resultado.get('nroFormulario').value}}</td>
+      <td class="align-middle">{{resultado.get('origen').value}}</td>
+      <td *ngIf="resultado.get('nroCheque').value" class="align-middle">
+        {{resultado.get('nroCheque').value}}
+        <button type="button" class="btn btn-link boton-grilla" ngbTooltip="Editar nro cheque"
+                (click)="editarNumeroCheque(resultado)">
+          <i class="material-icons">edit</i>
+        </button>
+
+        <button type="button" class="btn btn-link boton-grilla" ngbTooltip="Borrar nro cheque"
+                (click)="borrarNumeroCheque(resultado)">
+          <i class="material-icons">delete_forever</i>
+        </button>
+      </td>
+      <td *ngIf="!resultado.get('nroCheque').value" class="align-middle">
+        <input type="text" class="form-control text-center" id="txt_cheque" formControlName="nroChequeNuevo" maxlength="15"
+               (change)="cambioNumeroCheque(resultado)">
+      </td>
+      <td *ngIf="resultado.get('fechaVencimientoCheque').value" class="align-middle">
+        {{resultado.get('fechaVencimientoCheque').value | date:'dd/MM/yyyy'}}
+
+        <button type="button" class="btn btn-link boton-grilla" ngbTooltip="Editar fecha"
+                (click)="editarFechaCheque(resultado)">
+          <i class="material-icons">edit</i>
+        </button>
+
+        <button type="button" class="btn btn-link boton-grilla" ngbTooltip="Borrar fecha"
+                (click)="borrarFechaCheque(resultado)">
+          <i class="material-icons">delete_forever</i>
+        </button>
+      </td>
+      <td *ngIf="!resultado.get('fechaVencimientoCheque').value" class="align-middle">
+        <input class="form-control text-center" id="txt_vencimiento_cheque" ngbDatepicker #fecha_hasta="ngbDatepicker"
+               (click)="fecha_hasta.toggle()"  placeholder="dd/mm/aaaa" formControlName="fechaChequeNuevo"
+         (ngModelChange)="cambioFechaCheque(resultado)">
+      </td>
+    </tbody>
+  </table>
+
+  <paginacion [pagina]="pagina | async" (paginaModificada)="consultarSiguientePagina($event)">
+  </paginacion>
+</div>

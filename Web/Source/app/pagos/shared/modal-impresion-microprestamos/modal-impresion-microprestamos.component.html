@@ -1,0 +1,29 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{title || 'Confirm'}}</h4>
+  <button type="button" class="close" (click)="cerrar()">&times;</button>
+</div>
+
+<div class="modal-body">
+  <form [formGroup]="form">
+
+    <div class="row row-section">
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button type="button"
+          [hidden]="false"
+          class="btn btn-primary"
+          (click)="confirmarImpresion()">CONFIRMAR
+  </button>
+  <button type="button"
+          [hidden]="true"
+          class="btn btn-secondary"
+          (click)="cancelarImpresion()">CANCELAR IMPRESIÓN
+  </button>
+  <button type="button"
+          class="btn btn-secondary"
+          (click)="cerrar()">CANCELAR
+  </button>
+</div>

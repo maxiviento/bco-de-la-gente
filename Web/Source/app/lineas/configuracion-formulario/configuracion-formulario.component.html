@@ -1,0 +1,126 @@
+<div class="row bordered align-items-center">
+  <div class="col-xl-10 col-lg-10">
+    <div class="display-4">Configuración Formulario</div>
+  </div>
+</div>
+
+<form [formGroup]="form" novalidate>
+
+  <div class="card-pane">
+    <div class="form-group col-xl-6 col-lg-6 col-md-6">
+      <label for="cb_linea" class="form-control-label">LÍNEA <span class="obligatorio">(*) </span>:</label>
+      <ng-select id="cb_linea" [dataSource]="{list: lineas, name:'descripcion'}" [selected]="form.get('linea').value"
+        formControlName="linea" [clientMode]="true">
+      </ng-select>
+    </div>
+    <div class="form-group col-xl-6 col-lg-6 col-md-6">
+      <label for="cb_detalle_linea" class="form-control-label">DETALLE LÍNEA <span class="obligatorio">(*) </span>:</label>
+      <ng-select id="cb_detalle_linea"
+                 [dataSource]="{list: lsDetalles, name:'visualizacion', id: 'idDetalleLinea'}"
+                 [selected]="form.get('detalleLinea').value"
+                 formControlName="detalleLinea"
+                 [clientMode]="true">
+      </ng-select>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="form.get('detalleLinea').value" id="tabla-cuadrantes">
+    <div class="card-pane col-md-5 col-lg-5 col-xl-5 line-divider-right">
+
+      <h3>Elementos disponibles</h3>
+      <div class="row line-divider-bottom">
+        <div class="col-md-10 col-lg-10 col-xl-10 full-height mr-auto  justify-content-start">Nombre</div>
+        <div class="col"></div>
+      </div>
+
+      <div [formGroup]="cuadrante" *ngFor="let cuadrante of cuadrantesFormArray.controls; let indice=index"
+        class="row line-divider-bottom">
+        <div class="col-lg-10 col-xl-10 full-height mr-auto line-divider-right  justify-content-start"
+          ngbPopover="{{cuadrante.get('descripcion').value}}" popoverTitle="{{cuadrante.get('nombre').value}}"
+          placement="top" triggers="mouseenter:mouseleave">
+          {{cortarNombre(cuadrante.get('nombre').value)}}
+        </div>
+
+        <div class="col-md-2 col-lg-2 col-xl-2 full-height mr-auto ">
+          <button type="button" class="btn btn-link" ngbTooltip="Mover" [attr.disabled]="editable  ? null : true"
+            (click)="moverADerecha(indice)">
+            <i class="material-icons">arrow_forward</i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-pane col-md-7 col-lg-7 col-xl-7">
+      <h3>Elementos de la configuración</h3>
+      <div class="row line-divider-bottom">
+        <div class="col-md-7 col-lg-7 col-xl-6 full-height  justify-content-start">Nombre</div>
+        <div class="col-md-4 col-lg-4 col-xl-4 full-height ">
+          <div id="margen-impresion">{{'Impresión'}}</div>
+          <div id="margen-pantalla">{{'Pantalla'}}</div>
+        </div>
+      </div>
+      <div
+        *ngFor="let cuadranteOrdenado of cuadrantesOrdenadosFormArray.controls;let indice= index; let primero = first; let ultimo = last"
+        class="row" [formGroup]="cuadranteOrdenado">
+        <div class="col-md-7 col-lg-7 col-xl-7 full-height  line-divider-bottom justify-content-start"
+          ngbPopover="{{cuadranteOrdenado.get('descripcion').value}}"
+          popoverTitle="{{cuadranteOrdenado.get('nombre').value}}" placement="top" triggers="mouseenter:mouseleave">
+          {{cortarNombre(cuadranteOrdenado.get('nombre').value)}}
+        </div>
+
+        <div
+          class="col-md-2 col-lg-2 col-xl-2 full-height  line-divider-left line-divider-bottom justify-content-around">
+          <label class="custom-control check-bge-control">
+              <input type="checkbox" [attr.id]="'ck_i' + indice"  class="check-bge" formControlName="ck_impresion">
+              <span class="check-marcado"></span>
+            </label>
+
+            <label class="custom-control check-bge-control">
+              <input type="checkbox" [attr.id]="'ck_p' + indice" class="check-bge" formControlName="ck_pantalla">
+              <span class="check-marcado"></span>
+            </label>
+        </div>
+
+        <div class="col-md-3 col-lg-3 col-xl-3 full-height line-divider-left line-divider-bottom">
+          <button type="button" class="btn btn-link" ngbTooltip="Mover" [attr.disabled]="editable  ? null : true"
+            (click)="moverAIzquierda(indice)">
+            <i class="material-icons">arrow_back</i>
+          </button>
+          <button type="button" class="btn btn-link" ngbTooltip="Subir" [attr.disabled]="editable  ? null : true"
+            (click)="subir(indice)" *ngIf="!primero">
+            <i class="material-icons">arrow_upward</i>
+          </button>
+          <button type="button" class="btn btn-link" ngbTooltip="Bajar" [attr.disabled]="editable  ? null : true"
+            (click)="bajar(indice)" *ngIf="!ultimo">
+            <i class="material-icons">arrow_downward</i>
+          </button>
+        </div>
+      </div>
+      <div class="row" *ngIf="hayCuadrantesOrdenados()">
+        <div class="col-md-7 col-lg-7 col-xl-7 full-height">
+        </div>
+        <div
+          class="col-md-2 col-lg-2 col-xl-2 full-height">
+          <label for="ck_seleccionar_todos" class="pull-right align-middle custom-control check-bge-control">
+            <input id="ck_seleccionar_todos" type="checkbox" class="check-bge"
+                   formControlName="ck_seleccionarTodos"
+                   [checked]="todosSeleccionados()"
+                   (click)="seleccionarTodos()">
+                   <span class="check-marcado"></span>
+                   <span class="custom-control-description">Todos</span>
+
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-primary pull-right" (click)="guardarConfiguracion()" *ngIf="editable"
+        [disabled]="form.invalid || !validarTiposSalida()">GUARDAR
+      </button>
+      <button class="btn btn-secondary pull-right" [routerLink]="['/']">VOLVER
+      </button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,106 @@
+<form [formGroup]="formModalidad">
+  <div class="card-pane">
+    <div class="row">
+      <div class="col">
+        Datos complementarios
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-4" [errorFeedback]="formModalidad.get('modalidad')">
+        <label for="cb_modalidad" class="col-form-label">Modalidad de pago:
+          <span class="obligatorio"> (*)</span></label>
+        <select id="cb_modalidad" class="form-control" formControlName="modalidad">
+          <option value="null" disabled>
+            Seleccione
+          </option>
+          <option *ngFor="let modalidad of modalidades" [ngValue]="modalidad.id">
+            {{modalidad.descripcion | uppercase}}
+          </option>
+        </select>
+        <control-messages [control]="formModalidad.get('modalidad')"></control-messages>
+      </div>
+
+      <div class="form-group col-4" [errorFeedback]="formModalidad.get('elemento')" disabled>
+        <label for="cb_elemento" class="col-form-label">Elemento de pago:
+          <span class="obligatorio"> (*)</span></label>
+        <select id="cb_elemento" class="form-control" formControlName="elemento" [attr.disabled]="esModal? true: null">
+          <option value="null" disabled>
+            Seleccione
+          </option>
+          <option *ngFor="let elemento of elementos" [ngValue]="elemento.id">
+            {{elemento.descripcion | uppercase}}
+          </option>
+        </select>
+        <control-messages [control]="formModalidad.get('elemento')"></control-messages>
+      </div>
+      <div class="form-group col-4" [errorFeedback]="formModalidad.get('convenio')">
+        <label for="cb_convenio" class="col-form-label">Convenio de pago:
+          <span class="obligatorio"> (*)</span></label>
+        <select id="cb_convenio" class="form-control" formControlName="convenio">
+          <option value="null" disabled>
+            Seleccione
+          </option>
+          <option *ngFor="let convenio of convenios" [ngValue]="convenio.id">
+            {{convenio.nombre | uppercase}}
+          </option>
+        </select>
+        <control-messages [control]="formModalidad.get('convenio')"></control-messages>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-4" [errorFeedback]="formModalidad.get('fechaPago')">
+        <label for="txt_fecha_pago" class="col-form-label">Fecha inicio pago:
+          <span class="obligatorio"> (*)</span></label>
+        <div>
+          <input id="txt_fecha_pago" class="form-control" ngbDatepicker #input_fecha="ngbDatepicker"
+                 (click)="input_fecha.toggle()" placeholder="dd/mm/aaaa" formControlName="fechaPago"
+                 [disabled]="loteConfirmado"/>
+          <control-messages [control]="formModalidad.get('fechaPago')"></control-messages>
+        </div>
+      </div>
+      <div class="form-group col-4" [errorFeedback]="formModalidad.get('fechaFinPago')">
+        <label for="txt_fecha_fin_pago" class="col-form-label">Fecha fin de pago:
+          <span class="obligatorio"> (*)</span></label>
+        <div>
+          <input id="txt_fecha_fin_pago" class="form-control" ngbDatepicker #input_fecha_fin="ngbDatepicker"
+                 (click)="input_fecha_fin.toggle()" placeholder="dd/mm/aaaa" formControlName="fechaFinPago"
+                 [disabled]="loteConfirmado"/>
+          <control-messages [control]="formModalidad.get('fechaFinPago')"></control-messages>
+        </div>
+      </div>
+      <div class="col col-lg-4" *ngIf="creacionLote">
+        <label for="txt_meses_gracia" class="form-control-label">Mes/es de gracia <label class="obligatorio">
+          (*)</label> :</label>
+        <input type="text" id="txt_meses_gracia" [disabled]="loteConfirmado" class="form-control"
+               formControlName="mesesGracia">
+        <control-messages [control]="formModalidad.get('mesesGracia')"></control-messages>
+        <small>La creación del lote generará los planes de cuota. Ingrese mes/es de gracia.</small>
+      </div>
+    </div>
+    <div class="row" *ngIf="!creacionLote">
+      <div class="form-group col-4 align-items-center" style="margin-top: 15px">
+        <label class="custom-control check-bge-control">
+          <input type="checkbox" class="check-bge"
+                 formControlName="modificaMesGracia">
+          <span class="check-marcado"></span>
+          <span class="custom-control-description">
+              ¿Modifica mes de gracia?
+  </span>
+        </label>
+      </div>
+      <div class="form-group" *ngIf="formModalidad.get('modificaMesGracia').value">
+        <label for="mes_gracia_modificacion" class="form-control-label">Mes/es de gracia <label class="obligatorio">
+          (*)</label> :</label>
+        <input type="text" id="mes_gracia_modificacion" class="form-control"
+               formControlName="mesesGraciaModificacion">
+        <control-messages [control]="formModalidad.get('mesesGraciaModificacion')"></control-messages>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <small *ngIf="!creacionLote"><i>*Se generara un nuevo plan de cuotas si modifica la fecha fin de pago o si modifica el mes de gracia</i></small>
+      </div>
+    </div>
+  </div>
+</form>

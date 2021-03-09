@@ -1,0 +1,17 @@
+<div class="modal-header">
+  <h3 class="modal-title mr-auto">Editar persona</h3>
+  <button type="button" class="close" (click)="activeModal.dismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <grupo-unico [recurso]="urlEditarPersona" [dni]="persona.nroDocumento" [sexo]="persona.sexoId"
+               [pais]="persona.codigoPais"
+               ancho="700px"></grupo-unico>
+</div>
+<div class="modal-footer">
+  <button type="button"
+          class="btn btn-secondary"
+          (click)="activeModal.close(true)">Cerrar
+  </button>
+</div>

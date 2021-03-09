@@ -1,0 +1,73 @@
+<div class="row bordered align-items-center">
+  <div class="col">
+    <h1 class="display-4">GENERAR LOTE PAGO</h1>
+  </div>
+</div>
+
+<form [formGroup]="formAsignarMontoDisponible" novalidate>
+  <div class="row">
+    <div class="form-group col-md-6 col-lg-6 col-xl-6"
+         [errorFeedback]="formAsignarMontoDisponible.get('nombreLote')">
+      <label for="txt_nombre_lote">Nombre lote <span class="obligatorio">(*)</span>:</label>
+      <input type="text" class="form-control" id="txt_nombre_lote" formControlName="nombreLote">
+      <control-messages [control]="formAsignarMontoDisponible.get('nombreLote')"></control-messages>
+    </div>
+  </div>
+</form>
+
+<div class="card-pane">
+  <div class="row">
+    <div class="form-group col-md-6 col-lg-6 col-xl-6">
+      Asignar monto disponible
+    </div>
+    <div *ngIf="montoSeleccionado.montoAUsar" class="form-group col-md-4 col-lg-4 col-xl-4" id="monto-seleccionado">
+      Monto disponible seleccionado:
+      {{montoSeleccionado.montoAUsar | moneda}}
+    </div>
+  </div>
+  <table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+      <th class="align-middle">N° MONTO DISPONIBLE</th>
+      <th class="align-middle">FECHA ALTA</th>
+      <th class="align-middle">DESCRIPCIÓN</th>
+      <th class="align-middle">TOTAL MONTO DISPONIBLE</th>
+      <th class="align-middle">MONTO DISPONIBLE USADO</th>
+      <th class="align-middle">MONTO DISPONIBLE A USAR</th>
+      <th class="align-middle">SELECCIÓN</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let resultado of asignarMontoDisponibleFormArray.controls" [formGroup]="resultado">
+      <td class="align-middle">{{resultado.get('nroMonto').value}}</td>
+      <td class="align-middle">{{resultado.get('fechaAlta').value | date:'dd/MM/yyyy'}}</td>
+      <td class="align-middle">{{resultado.get('descripcion').value}}</td>
+      <td class="align-middle">
+        {{resultado.get('montoTotal').value | moneda}}
+      </td>
+      <td class="align-middle">{{resultado.get('montoUsado').value | moneda}}
+      </td>
+      <td class="align-middle valores-verde">
+        {{resultado.get('montoAUsar').value | moneda}}
+      </td>
+      <td class="align-middle">
+        <input type="radio" name="seleccionado" formControlName="seleccionado"
+               (click)="clickMonto(resultado.get('idMontoDisponible').value)"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<bg-modalidad-pago [loteConfirmado]="false" [creacionLote]="true">
+</bg-modalidad-pago>
+
+<div class="row">
+  <div class="form-group col">
+    <button [hidden]="modalidad.formModalidad.disabled" [disabled]="!modalidad.esValido() || !validarQueHayaSeleccionadoUnMonto() || !formAsignarMontoDisponible.valid" class="btn btn-primary pull-right"
+            (click)="generar()">GENERAR
+    </button>
+    <button class="btn btn-secondary pull-right separador-botones"
+            (click)="volver()">VOLVER
+    </button>
+  </div>
+</div>

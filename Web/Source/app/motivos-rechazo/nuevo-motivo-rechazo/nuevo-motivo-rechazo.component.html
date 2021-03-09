@@ -1,0 +1,23 @@
+<div class="row line-divider-bottom align-items-center">
+  <div class="col">
+    <h4 class="display-4">NUEVO MOTIVO RECHAZO</h4>
+  </div>
+</div>
+<form [formGroup]="form" novalidate>
+  <bg-apartado-motivo-rechazo
+    [motivo]="apartadoMotivoRechazo"
+    [habilitado]="true"
+    [edicion]="false"
+    [ambitos]="ambitos">
+  </bg-apartado-motivo-rechazo>
+
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-primary pull-right" (click)="verificarYRegistrar()" [disabled]="form.invalid"
+              type="button">ACEPTAR
+      </button>
+      <a class="btn btn-secondary pull-right separador separador-botones" [routerLink]="['/motivos-rechazo']">CANCELAR</a>
+    </div>
+  </div>
+
+</form>

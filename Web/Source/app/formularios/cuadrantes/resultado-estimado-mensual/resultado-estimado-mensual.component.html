@@ -1,0 +1,124 @@
+<div id="row_titulo" class="row row-title line-divider-bottom">
+  <div class="col">
+    <h4 class="card-title w-75">CUADRO DE RESULTADO MENSUAL ESTIMADO</h4>
+  </div>
+</div>
+
+<div class="card-pane card-margin-top" *ngIf="mostrarCuadrante()">
+  <div class="text-center text-danger">
+    <h5>
+      ¡No se encontraron datos requeridos!
+    </h5>
+    <h6>
+      Regrese a "determinar el precio de venta de su producto" y cargue los datos de su producto o servicio.
+    </h6>
+  </div>
+</div>
+
+<div *ngIf="!mostrarCuadrante()">
+  <div class="card-pane card-margin-top">
+    <div><h5><b>VENTAS - INGRESOS MENSUALES</b></h5></div>
+
+    <div class="card-pane">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <th class="align-middle padding_cabecera"> LISTADO DE PRODUCTOS Y/O SERVICIOS A VENDER</th>
+          <th class="align-middle padding_cabecera"> CANTIDAD (UNIDADES) A VENDER POR MES</th>
+          <th class="align-middle padding_cabecera"> PRECIO TOTAL DEL PRODUCTO</th>
+          <th class="align-middle padding_cabecera"><b> INGRESO TOTAL MENSUAL</b></th>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="align-middle padding_filas">{{precioVenta.producto}}</td>
+            <td class="align-middle padding_filas">{{precioVenta.unidadesEstimadas}}</td>
+            <td class="align-middle padding_filas">{{precioUnitarioProducto | moneda}}</td>
+            <td class="align-middle padding_filas">{{totalVentas | moneda}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="row">
+        <div class="col-lg-10 col-md-10">
+          <label class="float-right titulo_resultado">SUMA TOTAL DE INGRESOS MENSUALES</label>
+        </div>
+        <div class="col-lg-2 col-md-2">
+          <h4 class="resultado_sumatoria"><b>{{totalVentas | moneda}}</b></h4>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-pane card-margin-top">
+    <h5><b>GASTOS MENSUALES</b></h5>
+    <div class="card-pane">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <th class="align-middle padding_cabecera"> GASTOS Y COSTOS MENSUALES PARA GENERAR Y VENDER SUS PRODUCTOS Y
+            SERVICIOS
+          </th>
+          <th class="align-middle padding_cabecera"> COSTE UNITARIO</th>
+          <th class="align-middle padding_cabecera"><b> TOTAL DEL GASTO / COSTO</b></th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let costo of precioVenta.costos">
+            <td class="align-middle padding_filas">{{costo.nombre}}</td>
+            <td class="align-middle padding_filas">{{costo.precioUnitario | moneda}}</td>
+            <td class="align-middle padding_filas">{{costo.valorMensual | moneda}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="row">
+        <div class="col-lg-10 col-md-10">
+          <label class="float-right titulo_resultado">SUMA TOTAL DE GASTOS MENSUALES</label>
+        </div>
+        <div class="col-lg-2 col-md-2">
+          <h4 class="resultado_sumatoria"><b>{{totalGastos| moneda}}</b></h4>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-pane card-margin-top">
+    <div class="row row-section">
+      <div class="col-lg-6 col-md-6">
+        <h5><b>GANANCIA ESTIMADA MENSUAL</b>
+          <br>
+          <small>Ingresos menos gastos es igual a ganancia estimada</small>
+        </h5>
+      </div>
+    </div>
+    <div class="row row-section">
+
+      <div class="col-lg-2 col-md-2 texto_resaltado">
+        <h5 class="recuadro_monto">
+          {{(totalVentas ? totalVentas : 0) | moneda}}
+        </h5>
+        <h5 class="texto_resaltado">A</h5>
+      </div>
+
+      <div class="col-1 text-center">
+        <i class="material-icons icono">remove</i>
+      </div>
+
+      <div class="col-lg-2 col-md-2 texto_resaltado">
+        <h5 class="recuadro_monto">
+          {{(totalGastos ? totalGastos : 0) | moneda}}
+        </h5>
+        <h5 class="texto_resaltado">B</h5>
+      </div>
+
+      <div class="col-1 text-center">
+        <i class="material-icons icono">drag_handle</i>
+      </div>
+
+      <div class="col-lg-2 col-md-2">
+        <h4 class="texto_resaltado"
+            [ngClass]="sumarTotales() > 0? 'recuadro_resultado_positivo': 'recuadro_resultado_negativo'">
+          {{sumarTotales() | moneda}}
+        </h4>
+      </div>
+    </div>
+
+    <div *ngIf="sumarTotales() < 0">
+      <p class="text-danger">Atención: revise los datos ingresados en inversiones y/o productos o servicios
+        para evitar pérdida de ingresos.</p></div>
+  </div>
+</div>

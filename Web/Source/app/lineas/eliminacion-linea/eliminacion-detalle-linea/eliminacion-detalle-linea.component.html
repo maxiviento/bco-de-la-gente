@@ -1,0 +1,61 @@
+<div class="row row-section align-items-center">
+  <div class="col">
+    <h4 class="display-4">ELIMINAR DETALLE DE LA LÍNEA DE MICRO-PRÉSTAMO:
+      <small>{{detalleLinea.nombreLinea}}</small>
+    </h4>
+  </div>
+</div>
+
+<div class="row line-divider-bottom">
+  <div class="col">
+    <h5><strong>Detalle seleccionado</strong></h5>
+  </div>
+</div>
+
+<div [formGroup]="form" class="card-pane card-margin-top" *ngIf="detalleForm">
+  <bg-linea-detalle
+    *ngIf="detalleForm"
+    [detalle]="detalleLineaForm"
+    [vistaModal]="true"
+    [integrantes]="integrantes"
+    [financiamientos]="financiamientos"
+    [intereses]="intereses"
+    [garantias]="garantias"
+    [conveniosPago]="conveniosPago"
+    [conveniosRecupero]="conveniosRecupero">
+  </bg-linea-detalle>
+</div>
+
+<div class="row line-divider-bottom" style="padding: 5px !important;">
+  <div class="col">
+    <h5><strong>Datos de la baja</strong></h5>
+  </div>
+</div>
+
+<div [formGroup]="formBaja" class="card-pane" style="margin-top: 15px;" *ngIf="formBaja">
+  <div class="row">
+    <div class="col-xl-4 col-lg-4 col-md-4 form-group">
+      <label for="tx_fecha" class="form-control-label">Fecha de baja</label>
+      <input type="text" id="tx_fecha" class="form-control" [value]="fechaActual | date:'dd/MM/yyyy' " disabled>
+    </div>
+    <div class="col-lg-5 col-xl-5 form-group" [errorFeedback]="formBaja.get('idMotivoBaja')">
+      <label for="cb_motivo_baja">Motivo baja</label>
+      <select class="form-control" id="cb_motivo_baja" formControlName="idMotivoBaja">
+        <option [ngValue]="null" disabledk>Seleccione...</option>
+        <option *ngFor="let motivo of motivosBaja" [ngValue]="motivo.id">
+          {{motivo.descripcion}}
+        </option>
+        <control-messages [control]="formBaja.get('idMotivoBaja')"></control-messages>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="row" *ngIf="detalleForm">
+  <div class="col">
+    <button class="btn btn-primary pull-right" type="button" (click)="darDeBajaDetalleLinea()" [disabled]="!formBaja.valid">
+      Aceptar
+    </button>
+    <a [routerLink]="['/bandeja-lineas']" class="btn btn-secondary pull-right separador-botones">Cancelar</a>
+  </div>
+</div>

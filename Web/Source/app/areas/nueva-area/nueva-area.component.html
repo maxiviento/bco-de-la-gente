@@ -1,0 +1,33 @@
+<div class="row bordered align-items-center">
+  <div class="col">
+    <h4 class="display-4">NUEVA ÁREA</h4>
+  </div>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="registrar()" novalidate>
+  <div class="card-pane">
+    <div class="row">
+      <div class="form-group col-md-5 col-lg-5 col-xl-5" [errorFeedback]="form.get('nombre')">
+        <label for="txt_nombre_area" class="form-control-label">Nombre <span class="obligatorio">(*) </span>:</label>
+        <input type="text" id="txt_nombre_area" formControlName="nombre" class="form-control">
+        <control-messages [control]="form.get('nombre')"></control-messages>
+      </div>
+      <div class="form-group col-md-12 col-lg-12 col-xl-8" [errorFeedback]="form.get('descripcion')">
+        <label for="txt_descripcion_area" class="form-control-label">Descripción <span class="obligatorio">(*) </span>:</label>
+        <textarea id="txt_descripcion_area" formControlName="descripcion" class="form-control" type="text"
+          rows="3"></textarea>
+        <control-messages [control]="form.get('descripcion')"></control-messages>
+      </div>
+    </div>
+  </div>
+  <div class="row row-section">
+    <div class="col">
+      <div class="pull-right">
+        <a [routerLink]="['/areas']" class="btn btn-secondary separador-botones"> CANCELAR
+        </a>
+        <button type="submit" [disabled]="!form.valid" class="btn btn-primary"> ACEPTAR
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

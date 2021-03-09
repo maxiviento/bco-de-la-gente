@@ -1,0 +1,16 @@
+<div class="row bordered align-items-center">
+  <div class="col">
+    <h1 class="display-4">{{titulo}}</h1>
+  </div>
+</div>
+
+<bg-busqueda-persona
+  style="margin-top: 15px !important;"
+  [sexoId]="garante.sexoId" [codigoPais]="garante.codigoPais"
+  [nroDocumento]="garante.nroDocumento"
+  (personaConsultada)="personaConsultada($event)"
+  [editable]="true">
+</bg-busqueda-persona>
+
+
+

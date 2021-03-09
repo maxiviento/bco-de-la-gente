@@ -1,0 +1,66 @@
+.cuotas-tabs {
+  padding-top: 20px;
+  display: block;
+}
+
+.cuota-tab {
+  cursor: pointer;
+}
+
+.borde-derecha {
+  border-right: 1px solid black;
+}
+
+.cuota-extra {
+  //background-color: lightcoral;
+  background-color: lightblue;
+}
+
+.cuota-superada {
+  background-color: lightsalmon;
+}
+
+.table-headers {
+  background-color: whitesmoke;
+}
+
+.montos-negrita {
+  margin-top: 30px;
+  font-weight: bold;
+}
+
+.monto-span {
+  border-radius: 7px;
+}
+
+.monto-superior {
+  background-color: #b36bd3;
+}
+
+.monto-inferior {
+  background-color: yellow;
+}
+
+.monto-equilibrado {
+  background-color: lightgreen;
+}
+
+.tabla-cuotas-scroll {
+  display: flex;
+  overflow-x: overlay;
+}
+
+.tabla-cuotas-scroll::-webkit-scrollbar {
+  width: 12px;
+  height: 10px;
+}
+
+.tabla-cuotas-scroll::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.tabla-cuotas-scroll::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}

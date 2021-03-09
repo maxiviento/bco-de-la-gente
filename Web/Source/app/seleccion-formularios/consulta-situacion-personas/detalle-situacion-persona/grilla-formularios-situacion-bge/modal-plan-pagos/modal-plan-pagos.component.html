@@ -1,0 +1,27 @@
+<div class="modal-header">
+  <h4 class="modal-title">Plan de cuotas del formulario</h4>
+  <button type="button" class="close" (click)="cerrar()">&times;</button>
+</div>
+
+<div class="modal-body">
+  <div class="card-pane" style="margin-top: 15px !important;">
+    <div class="text-center text-danger" *ngIf="planes.length === 0">
+      <h5>
+        ¡No hay un plan de cuotas para este formulario!
+      </h5>
+    </div>
+    <bg-grilla-plan-pagos></bg-grilla-plan-pagos>
+    <div class="row acciones" *ngIf="planes.length > 0">
+      <div class="col">
+        <div class="pull-right">
+          <button type="button" class="btn btn-primary pull-right" (click)="imprimir()">
+            <i class="material-icons alinear-texto-con-icono">print</i>
+            <span class="alinear-texto-con-icono">IMPRIMIR</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

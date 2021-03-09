@@ -1,0 +1,66 @@
+<div class="row row-title line-divider-bottom">
+  <div class="col">
+    <h1 class="display-4">Búsqueda persona</h1>
+  </div>
+</div>
+<div [formGroup]="form">
+  <div class="card-pane card-margin-top">
+    <div class="row row-section">
+      <div class="row col-8">
+        <div class="form-group col-4">
+          <label for="cb_paisBeneficiario">País</label><span class="obligatorio"> (*)</span>
+          <select id="cb_paisBeneficiario" class="form-control" formControlName="paisBeneficiario">
+            <option value="">
+              Seleccione
+            </option>
+            <option *ngFor="let pais of paises" [ngValue]="pais.id">
+              {{pais.descripcion | uppercase}}
+            </option>
+          </select>
+        </div>
+        <div class="form-group col-4">
+          <label for="cb_sexoBeneficiario">Género</label><span class="obligatorio"> (*)</span>
+          <select id="cb_sexoBeneficiario" class="form-control" formControlName="sexoBeneficiario">
+            <option value="">
+              Seleccione
+            </option>
+            <option *ngFor="let genero of generos" [ngValue]="'0' + genero.id">
+              {{genero.descripcion | uppercase}}
+            </option>
+          </select>
+        </div>
+        <div class="form-group col-4" [errorFeedback]="form.get('documento')">
+          <label for="txt_documento" class="form-control-label">Documento</label><span class="obligatorio"> (*)</span>
+          <input type="text" id="txt_documento" (keydown.enter)="consultarPersona()" formControlName="documento"
+                 class="form-control" placeholder="Número de documento"/>
+          <control-messages [control]="form.get('documento')"></control-messages>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row row-section">
+  <div class="col">
+    <button type="button" (click)="consultarPersona()" [disabled]="!form.valid"
+            class="btn btn-primary alinear-texto-con-icono pull-right">
+      <i class="material-icons icono-accion alinear-texto-con-icono">search</i>
+      <span class="alinear-texto-con-icono">CONSULTAR</span>
+    </button>
+    <button type="button" class="btn btn-link pull-right" (click)="editarPersona()" [disabled]="!form.valid">
+      <i class="material-icons icono-accion alinear-texto-con-icono">edit</i>
+      <span class="alinear-texto-con-icono">EDITAR PERSONA</span>
+    </button>
+    <button type="button" class="btn btn-link pull-right" (click)="registrarPersona()" [disabled]="!form.valid">
+      <i class="material-icons icono-accion alinear-texto-con-icono">add</i>
+      <span class="alinear-texto-con-icono">NUEVA PERSONA</span>
+    </button>
+    <button type="button" class="btn btn-link pull-right" (click)="editarDatosContacto()" [disabled]="!form.valid">
+      <i class="material-icons icono-accion alinear-texto-con-icono">edit</i>
+      <span class="alinear-texto-con-icono">DATOS DE CONTACTO</span>
+    </button>
+  </div>
+</div>
+<div *ngIf="consultado">
+  <grupo-unico [grupoUnico]="grupoUnicoConsulta">
+  </grupo-unico>
+</div>

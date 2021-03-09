@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6B5E397A-3637-4DDF-8E3B-DDAC31389DB5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Infraestructura.Core.CiDi</RootNamespace>
+    <AssemblyName>Infraestructura.Core.CiDi</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;RELEASE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Staging|AnyCPU'">
+    <OutputPath>bin\Staging\</OutputPath>
+    <DefineConstants>TRACE;STAGING</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Testing|AnyCPU'">
+    <OutputPath>bin\Testing\</OutputPath>
+    <DefineConstants>TRACE;TESTING</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Utn|AnyCPU'">
+    <OutputPath>bin\Utn\</OutputPath>
+    <DefineConstants>TRACE;TESTING</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CiDi.SDK.Common, Version=2.0.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CiDi.SDK.2.0.9\lib\NET45\CiDi.SDK.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CiDi.SDK.Comunicaciones.Service, Version=2.0.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CiDi.SDK.2.0.9\lib\NET45\CiDi.SDK.Comunicaciones.Service.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CiDi.SDK.Documentacion.Service, Version=2.0.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CiDi.SDK.2.0.9\lib\NET45\CiDi.SDK.Documentacion.Service.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CiDi.SDK.Documentacion.WebApi.NET45">
+      <HintPath>..\..\packages\CiDi.SDK.WebApi.1.2.0\lib\CiDi.SDK.Documentacion.WebApi.NET45.dll</HintPath>
+    </Reference>
+    <Reference Include="CiDi.SDK.Login.Service, Version=2.0.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\CiDi.SDK.2.0.9\lib\NET45\CiDi.SDK.Login.Service.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="CiDi.SDK.Login.WebApi.NET45">
+      <HintPath>..\..\packages\CiDi.SDK.WebApi.1.2.0\lib\CiDi.SDK.Login.WebApi.NET45.dll</HintPath>
+    </Reference>
+    <Reference Include="CryptoManagerV4.0">
+      <HintPath>..\Core.CiDi.Documentos\lib\CryptoManagerV4.0.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Jwt, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.Security.Jwt.3.0.1\lib\net45\Microsoft.Owin.Security.Jwt.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.IdentityModel.Tokens.Jwt.4.0.0\lib\net45\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Api\ApiComunicaciones.cs" />
+    <Compile Include="Api\ApiCuenta.cs" />
+    <Compile Include="Api\ApiDocumentos.cs" />
+    <Compile Include="Api\ApiHistoricos.cs" />
+    <Compile Include="Api\ApiDomicilios.cs" />
+    <Compile Include="Api\ApiGruposFamiliares.cs" />
+    <Compile Include="Api\ApiPersonas.cs" />
+    <Compile Include="Configuration\CidiConfigurationManager.cs" />
+    <Compile Include="Configuration\Sections\CidiEndpoint.cs" />
+    <Compile Include="Configuration\Sections\CidiEndpointCollection.cs" />
+    <Compile Include="Configuration\Sections\CidiEnvironment.cs" />
+    <Compile Include="Configuration\Sections\CidiEnvironmentCollection.cs" />
+    <Compile Include="Configuration\Sections\CidiSection.cs" />
+    <Compile Include="Configuration\URLCidiEnum.cs" />
+    <Compile Include="Model\DatosEmail.cs" />
+    <Compile Include="Model\Persona\DatosPersonaCompleto.cs" />
+    <Compile Include="Model\DocumentoCdd.cs" />
+    <Compile Include="Model\Domicilio.cs" />
+    <Compile Include="Model\Email.cs" />
+    <Compile Include="Model\Entrada.cs" />
+    <Compile Include="Model\IUsuario.cs" />
+    <Compile Include="Model\Representado.cs" />
+    <Compile Include="Model\RespuestaEmail.cs" />
+    <Compile Include="Model\RespuestaUsuario.cs" />
+    <Compile Include="Model\UsuarioCidi.cs" />
+    <Compile Include="OAuth\ApplicationRefreshTokenProvider.cs" />
+    <Compile Include="OAuth\CiDiClaimTypes.cs" />
+    <Compile Include="OAuth\CustomAuthorizeAttribute.cs" />
+    <Compile Include="OAuth\OAuthAuthorizationProvider.cs" />
+    <Compile Include="OAuth\QueryStringOAuthBearerProvider .cs" />
+    <Compile Include="OAuth\TokenRequest.cs" />
+    <Compile Include="CiDiExtentions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\AppComunicacionUtil.cs" />
+    <Compile Include="Util\GlobalVars.cs" />
+    <Compile Include="Util\HttpWebRequestUtil.cs" />
+    <Compile Include="Util\TokenUtil.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="lib\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Modulos\Identidad\Identidad.Aplicacion.Servicios\Identidad.Aplicacion.Servicios.csproj">
+      <Project>{3ED765AD-8FF6-4E57-AE7D-BAB92D64A6E1}</Project>
+      <Name>Identidad.Aplicacion.Servicios</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Modulos\Identidad\Identidad.Dominio\Identidad.Dominio.csproj">
+      <Project>{D67F744C-5347-406D-B853-E7C5E3AD45DA}</Project>
+      <Name>Identidad.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core.Cidi.AppComunicacion\Core.Cidi.AppComunicacion.csproj">
+      <Project>{f52b0b47-7f3b-4b4e-adc4-1cb13ddebe22}</Project>
+      <Name>Core.Cidi.AppComunicacion</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core.CiDi.Documentos\Core.CiDi.Documentos.csproj">
+      <Project>{79846da7-5993-4db5-bd40-ef3fb692f8d1}</Project>
+      <Name>Core.CiDi.Documentos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core.Comun\Core.Comun.csproj">
+      <Project>{6D014EE5-0745-4A72-8EE0-07E134CF8F3C}</Project>
+      <Name>Core.Comun</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

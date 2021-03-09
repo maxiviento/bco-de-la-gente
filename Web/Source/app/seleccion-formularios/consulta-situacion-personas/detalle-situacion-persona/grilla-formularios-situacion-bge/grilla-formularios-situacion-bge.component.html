@@ -1,0 +1,75 @@
+<div class="row-section" [hidden]="formulariosSituacion.length">
+  <h4 class="text-center">
+    <small>{{mensajeResultado}}</small>
+  </h4>
+</div>
+<div class="card-pane card-margin-top card-overflow" [hidden]="!formulariosSituacion.length">
+  <table class="table table-bordered table-striped table-sm">
+    <thead>
+    <tr>
+      <th class="align-middle">FECHA SEGUIMIENTO FORMULARIO</th>
+      <th class="align-middle">N° LINEA</th>
+      <th class="align-middle">ORIGEN</th>
+      <th class="align-middle">N° FORMULARIO</th>
+      <th class="align-middle">FECHA CARGA FORMULARIO</th>
+      <th class="align-middle">GARANTE / SOLICITANTE</th>
+      <th class="align-middle">ESTADO FORMULARIO</th>
+      <th class="align-middle">MOTIVO RECHAZO FORMULARIO</th>
+      <th class="align-middle">N° PRÉSTAMO</th>
+      <th class="align-middle">ESTADO PRÉSTAMO</th>
+      <th class="align-middle">MOTIVO RECHAZO PRÉSTAMO</th>
+      <th class="align-middle">IMPORTE</th>
+      <th class="align-middle">CANTIDAD DE CUOTAS</th>
+      <th class="align-middle">CANTIDAD DE CUOTAS PAGAS</th>
+      <th class="align-middle">ACCIONES</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let formulario of formulariosSituacion">
+      <td class="align-middle">{{ formulario.fecSeguimiento | date:'dd/MM/yyyy'}}</td>
+      <td class="align-middle">{{ formulario.lineaPrestamo }}</td>
+      <td class="align-middle">{{ formulario.origFormulario }}</td>
+      <td class="align-middle">{{ formulario.nroFormulario }}</td>
+      <td class="align-middle">{{ formulario.fecAlta | date:'dd/MM/yyyy'}}</td>
+      <td class="align-middle">{{ formulario.situacionGarantia }}</td>
+      <td class="align-middle">{{ formulario.estFormulario }}</td>
+      <td class="align-middle">{{ formulario.motRechazoForm }}</td>
+      <td class="align-middle">{{ formulario.nroPrestamo }}</td>
+      <td class="align-middle">{{ formulario.estPrestamo }}</td>
+      <td class="align-middle">{{ formulario.motRechazoPrest }}</td>
+      <td class="align-middle">{{ formulario.montoPrestamo }}</td>
+      <td class="align-middle">{{ formulario.cantCuotas }}</td>
+      <td class="align-middle">{{ formulario.cantCuotasPagadas }}</td>
+      <td class="align-middle">
+        <div class="d-inline row">
+          <button type="button"
+                  class="btn btn-link boton-grilla"
+                  ngbTooltip="Visualizar el plan de cuotas"
+                  [disabled]="!formulario.tienePlanCuotas"
+                  (click)="consultarPlanDePagos(formulario.idFormulario)">
+            <i class="material-icons icono-accion">date_range</i>
+          </button>
+          <button type="button"
+                  class="btn btn-link boton-grilla"
+                  ngbTooltip="Ver motivos de rechazo"
+                  [disabled]="formulario.idEstadoFormulario != estadosFormulario.RECHAZADO"
+                  (click)="mostrarModalMotivosRechazo(formulario.idFormulario, formulario.idPrestamo, formulario.numeroCaja)">
+            <i class="material-icons icono-accion">do_not_disturb_alt</i>
+          </button>
+          <button type="button"
+                  class="btn btn-link boton-grilla"
+                  ngbTooltip="Ver historial"
+                  [disabled]="!formulario.nroPrestamo || formulario.idEstadoPrestamo == estadosPrestamo.CREADO"
+                  (click)="mostrarModalVerHistorial(formulario.idPrestamo)">
+            <i class="material-icons icono-accion">history</i>
+          </button>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <paginacion [pagina]="pagina | async"
+              (paginaModificada)="paginaSiguiente($event)">
+  </paginacion>
+</div>

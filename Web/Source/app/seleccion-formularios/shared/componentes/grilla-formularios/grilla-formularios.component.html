@@ -1,0 +1,64 @@
+<div class="row">
+  <h3 class="display-6 col-auto">Resultados:</h3>
+  <h5 class="margin-resultados">{{totalizador ? '(' + totalizador + ' formulario/s)' : ''}}</h5>
+  <div class="col-auto">
+    <single-spinner></single-spinner>
+  </div>
+</div>
+
+<div [formGroup]="form" class="card-pane card-margin-top" [hidden]="!formularios.length">
+  <div class="pull-right" *ngIf="formulariosFa.length > 1">
+    <label for="ck_seleccionar_todos" class="custom-control check-bge-control">
+      <input id="ck_seleccionar_todos" type="checkbox" class="check-bge"
+             [checked]="todosSeleccionados()"
+             (click)="clickSeleccionarTodos($event.target.checked)">
+      <span class="check-marcado"></span>
+      <span class="custom-control-description">Seleccionar todos</span>
+    </label>
+  </div>
+  <table class="table table-striped table-bordered">
+    <thead>
+    <tr>
+      <th class="align-middle">CUIL/DNI</th>
+      <th class="align-middle">BENEFICIARIO</th>
+      <th class="align-middle">LÍNEA</th>
+      <th class="align-middle">N° PRÉSTAMO</th>
+      <th class="align-middle">N° FORMULARIO</th>
+      <th class="align-middle">BANCO</th>
+      <th class="align-middle">SUCURSAL</th>
+      <th class="align-middle">ACCIÓN</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr [formGroup]="formulario" *ngFor="let formulario of formulariosFa.controls">
+      <td class="align-middle">{{formulario.get('cuilDni').value }}</td>
+      <td class="align-middle">{{formulario.get('apellidoNombre').value}}</td>
+      <td class="align-middle">{{formulario.get('nombreLinea').value}}</td>
+      <td class="align-middle">{{formulario.get('nroPrestamo').value}}</td>
+      <td class="align-middle">{{formulario.get('nroFormulario').value}}</td>
+      <td class="align-middle">{{formulario.get('nombreBanco').value || '-'}}</td>
+      <td class="align-middle">{{formulario.get('nombreSucursal').value || '-'}}</td>
+      <td class="align-middle">
+        <button type="button" class="btn btn-link" ngbTooltip="Añadir" #toolTipQuitar="ngbTooltip"
+                *ngIf="!estaSeleccionado(formulario.get('idFormulario').value)"
+                (click)="agregarFormulario(formulario.get('idFormulario').value)">
+          <i class="material-icons icono-accion">note_add</i>
+        </button>
+
+        <button type="button" class="btn btn-link" ngbTooltip="Quitar" #toolTipQuitar="ngbTooltip"
+                *ngIf="estaSeleccionado(formulario.get('idFormulario').value)"
+                (click)="quitarFormulario(formulario.get('idFormulario').value, toolTipQuitar)">
+          <i class="material-icons icono-accion">clear</i>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <paginacion [pagina]="pagina | async" (paginaModificada)="consultarSiguientesFormularios($event)">
+  </paginacion>
+</div>
+
+<div class="col card-pane" *ngIf="!formularios.length" style="margin-top: 15px !important;">
+  <h6>No se encontraron formularios asociados a la búsqueda.</h6>
+</div>

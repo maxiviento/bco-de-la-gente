@@ -1,0 +1,35 @@
+<div class="modal-header">
+    <h4 class="modal-title"><strong>AGREGAR DETALLE DE LA LÍNEA DE PRÉSTAMO</strong></h4>
+    <button type="button" class="close" aria-label="Close" (click)="cancelar()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div [formGroup]="form" class="modal-body">
+    <bg-linea-detalle
+            *ngIf="detalleForm"
+            [detalle]="detalleLineaForm"
+            [vistaModal]="esEdicion"
+            [integrantes]="integrantes"
+            [financiamientos]="financiamientos"
+            [intereses]="intereses"
+            [garantias]="garantias"
+            [conveniosPago]="conveniosPago"
+            [conveniosRecupero]="conveniosRecupero">
+    </bg-linea-detalle>
+</div>
+
+<div class="modal-footer">
+    <div class="row">
+        <div class="col">
+            <button type="button"
+                    class="btn btn-primary pull-right"
+                    (click)="guardarDetalle()"
+                    [disabled]="!esDetalleValido()">ACEPTAR
+            </button>
+            <button type="button"
+                    class="btn btn-secondary pull-right padding-botones"
+                    (click)="cancelar()">CANCELAR
+            </button>
+        </div>
+    </div>
+</div>

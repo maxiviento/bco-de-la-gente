@@ -1,0 +1,68 @@
+<form [formGroup]="form" class="{{class}}">
+  <div class="card-pane">
+    <div class="row padding-right-component">
+      <div class="col-xl-4 col-lg-4">
+        <div class="form-group row">
+          <label for="cb_pais" class="col-form-label col-xl-4 col-lg-4 col-md-4">
+            País<span class="obligatorio">(*)</span>
+          </label>
+          <div class="col-md-8 col-lg-8 col-xl-8">
+            <select id="cb_pais" class="form-control" formControlName="codigoPais"
+              [attr.disabled]="editable ? null : 'disabled'" tabindex="1">
+              <option value="null">Seleccione</option>
+              <option *ngFor="let pais of paises" [ngValue]="pais.id">{{pais.descripcion | uppercase}}</option>
+            </select>
+          </div>
+          <control-messages [control]="form.get('codigoPais')"></control-messages>
+        </div>
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-4">
+        <div class="form-group row">
+          <label for="cb_sexo" class="col-xl-4 col-lg-4 col-form-label">Género<span class="obligatorio">
+              (*)</span></label>
+          <div class="col-md-8 col-lg-8 col-xl-8">
+            <select id="cb_sexo" class="form-control" formControlName="sexoId"
+              [attr.disabled]="editable ? null : 'disabled'" tabindex="2">
+              <option value="null">Seleccione</option>
+              <option *ngFor="let sexo of sexos" [ngValue]="'0' + sexo.id">{{sexo.descripcion | uppercase}}</option>
+            </select>
+          </div>
+          <control-messages [control]="form.get('sexoId')"></control-messages>
+        </div>
+      </div>
+      <div class="col-xl-4 col-lg-4 col-md-4">
+        <div class="form-group row" [errorFeedback]="form.get('nroDocumento')">
+          <label for="txt_documento" class="col-form-label"
+            [ngClass]="{'col-xl-4 col-lg-4': modal, 'col-xl-4 col-lg-4':!modal}">Documento<span class="obligatorio">
+              (*)</span></label>
+          <div class="col-md-8 col-lg-8 col-xl-8">
+            <input type="text" id="txt_documento" formControlName="nroDocumento" class="form-control"
+              placeholder="Número de Documento" [readonly]="!editable" tabindex="3" />
+            <control-messages [control]="form.get('nroDocumento')"></control-messages>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="row row-section">
+    <div class="col">
+      <button type="button" class="btn btn-primary pull-right" (click)="consultarPersona()" type="submit"
+        (ngSubmit)="consultarPersona()" [disabled]="!form.valid || !editable" tabindex="4">
+        <i class="material-icons icono-accion alinear-texto-con-icono">search</i>
+        <span class="alinear-texto-con-icono">CONSULTAR</span>
+      </button>
+      <button class="btn btn-link pull-right separador-botones" *ngIf="registraPersona" (click)="registrarPersona()"
+        [disabled]="!form.valid || !editable" type="button" tabindex="5">
+        <i class="material-icons icono-accion alinear-texto-con-icono">add</i>
+        <span class="alinear-texto-con-icono">NUEVA PERSONA</span>
+      </button>
+      <button class="btn btn-link pull-right separador-botones" *ngIf="registraPersona" (click)="editarPersona()"
+        [disabled]="!form.valid || !editable" type="button" tabindex="6">
+        <i class="material-icons icono-accion alinear-texto-con-icono">edit</i>
+        <span class="alinear-texto-con-icono">EDITAR PERSONA</span>
+      </button>
+    </div>
+  </div>
+</form>

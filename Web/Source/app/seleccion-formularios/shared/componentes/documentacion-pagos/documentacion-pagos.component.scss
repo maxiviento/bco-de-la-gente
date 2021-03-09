@@ -1,0 +1,36 @@
+.radio-button{
+  width: 450px;
+  text-align: left;
+}
+.margin-right {
+  margin-right: 30px;
+}
+
+.margin-left {
+  margin-left: 0;
+}
+
+.margin-top-15{
+  margin-top: 15px !important;
+}
+
+@keyframes spin {
+  to {transform: rotate(360deg);}
+}
+.loader-modal:before {
+   content: '';
+   box-sizing: border-box;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   width: 20px;
+   height: 20px;
+   margin-top: -10px;
+   margin-left: -10px;
+   border-radius: 50%;
+   border: 2px solid transparent;
+   border-top-color: #07d;
+   border-bottom-color: #07d;
+   animation: spin 1.7s ease infinite;
+   padding-bottom: 10px;
+ }

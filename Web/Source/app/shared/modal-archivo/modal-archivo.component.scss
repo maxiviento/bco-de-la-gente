@@ -1,0 +1,23 @@
+#tabla-documentos {
+  margin-right: 10px;
+  margin-left: 10px;
+  background-color: whitesmoke;
+  border-radius: 20px;
+  border-color: black
+}
+
+#btn_adjuntar {
+  margin-top: 2rem;
+}
+
+#btn_guardar {
+  margin-top: 2rem;
+}
+
+.table th, .table td {
+  border-top: transparent;
+}
+
+.modal_archivo {
+  z-index: 0;
+}

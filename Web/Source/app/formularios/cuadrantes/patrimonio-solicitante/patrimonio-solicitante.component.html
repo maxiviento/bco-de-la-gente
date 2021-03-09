@@ -1,0 +1,120 @@
+<div id="row_titulo" class="row row-title line-divider-bottom">
+  <div class="col">
+    <strong>
+      <h4 class="card-title w-75">PATRIMONIO DEL SOLICITANTE
+      </h4>
+    </strong>
+  </div>
+</div>
+
+<form [formGroup]="form">
+  <div class="card-pane card-margin-top" [formGroup]="form">
+    <div class="row">
+      <div class="col-4 divisorVertical">
+        <div class="form-group row">
+          <label
+            class="col-7 col-form-label font-weight-bold label_radio_si_no label_radio_inmueble">¿Dispone de una
+            casa o algún inmueble?</label>
+          <div class="col-2 radio_si_no" id="radio-inmueble">
+            <label>
+              <span class="custom-control-description">Si</span>
+              <input type="radio" formControlName="tieneInmueble" [tabIndex]="1" [value]="true"
+                     [disabled]="!this.editable" [checked]="patrimonioSolicitante.inmueblePropio">
+            </label>
+            <label>
+              <span class="custom-control-description">No</span>
+              <input type="radio" formControlName="tieneInmueble" [tabIndex]="2" [value]="false"
+                     [checked]="!patrimonioSolicitante.inmueblePropio">
+            </label>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-12">
+            <label for="txt_nro_monto" class="alinear_abajo">¿Qué valor estima que tiene?</label>
+            <div class="input_patrimonio_dinero input-group">
+              <span class="input-group-addon span-pesos">$</span>
+              <input type="text" class="form-control txt-pesos text-right" id="txt_nro_monto"
+                formControlName="valorInmueble" [tabIndex]="3" (change)="calcularTotal()">
+            </div>
+            <control-messages [control]="form.get('valorInmueble')"></control-messages>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-4 divisorVertical">
+
+        <div class="form-group row">
+          <label class="col-6 col-form-label font-weight-bold label_radio_si_no">¿Dispone de algún
+            vehículo?:</label>
+          <div class="col-2 radio_si_no" >
+            <label>
+              <span class="custom-control-description">Si</span>
+              <input type="radio" formControlName="tieneVehiculo" [tabindex]="4" [value]="true"
+              [checked]="patrimonioSolicitante.vehiculoPropio">
+            </label>
+            <label>
+              <span class="custom-control-description">No</span>
+              <input type="radio" formControlName="tieneVehiculo" [tabindex]="5" [value]="false"
+              [checked]="!patrimonioSolicitante.vehiculoPropio">
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-3">
+            <label for="txt_cant_vehiculos" class="alinear_abajo">¿Cuántos?</label>
+            <input type="text" class="form-control input_patrimonio" id="txt_cant_vehiculos"
+              formControlName="cantVehiculos" [tabIndex]="6">
+            <control-messages [control]="form.get('cantVehiculos')"></control-messages>
+          </div>
+
+          <div class="col-3">
+            <label for="txt_modelo_año">Modelos (año)</label>
+            <input type="text" class="form-control input_patrimonio" id="txt_modelo_año"
+              formControlName="modeloVehiculos" [tabIndex]="7">
+            <control-messages [control]="form.get('modeloVehiculos')"></control-messages>
+          </div>
+
+          <div class="col-6">
+            <label for="txt_valor_vehiculos">¿Qué valor estima que tienen?</label>
+            <div class="input_patrimonio_dinero input-group">
+              <span class="input-group-addon span-pesos" placement="bottom"
+                ngbTooltip="Ingrese un monto estimado para el total de los precios de sus vehículos">$</span>
+              <input type="text" class="form-control txt-pesos text-right" id="txt_valor_vehiculos"
+                formControlName="valorVehiculos" [tabIndex]="8" (change)="calcularTotal()">
+            </div>
+            <control-messages [control]="form.get('valorVehiculos')"></control-messages>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-4">
+        <div class="fila-nula"></div>
+
+        <div class="form-group row">
+          <div class="col-12">
+            <label for="txt_deudas">Deudas (por ejemplo: vivienda, artículos del hogar, vehículo)</label>
+            <div class="input_patrimonio_dinero input-group">
+              <span class="input-group-addon span-pesos">$</span>
+              <input type="text" class="form-control txt-pesos text-right" id="txt_deudas" formControlName="valorDeudas"
+                [tabIndex]="9" (change)="calcularTotal()">
+            </div>
+            <control-messages [control]="form.get('valorDeudas')"></control-messages>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="form-group row">
+      <div class="col float-right">
+        <label class="titulo_resultado">MONTO TOTAL ESTIMADO ENTRE INMUEBLES Y VEHÍCULOS:</label>
+        <h4 class="resultado_sumatoria"><b>{{(total ? total : 0)| currency:'ARS':true:'1.0'}}</b></h4>
+      </div>
+    </div>
+
+  </div>
+</form>

@@ -1,0 +1,131 @@
+<div class="row bordered align-items-center">
+  <div class="col">
+    <h1 class="display-4">CONSULTAR MONTO DISPONIBLE</h1>
+  </div>
+  <div class="col-md-2 col-lg-2 col-xl-2">
+    <button class="btn btn-warning pull-right" [routerLink]="['/nuevo-monto-disponible']">NUEVO
+    </button>
+  </div>
+</div>
+
+<form [formGroup]="form" novalidate>
+
+  <h3>Filtros de búsqueda <button class="signo-ayuda" ngbTooltip="Los campos marcados con (*) son obligatorios.">
+      ?</button> </h3>
+
+  <div class="card-pane" id="fitros_busqueda">
+    <!-- R O W -->
+    <div class="row">
+      <!-- C O L 1/2 -->
+      <div class="col">
+        <div class="card-title">
+          Fecha depósito bancario
+        </div>
+        <div class="form-group row" [errorFeedback]="form.get('fechaDesde')">
+          <label for="txt_fecha_desde" class="col-md-4 col-lg-4 col-xl-4 col-form-label">Fecha desde <label
+              class="obligatorio"> (*)</label> :</label>
+          <div class="col-md-6 col-lg-6 col-xl-6">
+            <input id="txt_fecha_desde" class="form-control" ngbDatepicker #fecha_desde="ngbDatepicker"
+              (click)="fecha_desde.toggle()" placeholder="dd/mm/aaaa" formControlName="fechaDesde" />
+            <control-messages [control]="form.get('fechaDesde')"></control-messages>
+          </div>
+        </div>
+
+        <div class="form-group row" [errorFeedback]="form.get('fechaHasta')">
+          <label for="txt_fecha_hasta" class="col-md-4 col-lg-4 col-xl-4 col-form-label">Fecha hasta <label
+              class="obligatorio"> (*)</label> :</label>
+          <div class="col-md-6 col-lg-6 col-xl-6">
+            <input id="txt_fecha_hasta" class="form-control" ngbDatepicker #fecha_hasta="ngbDatepicker"
+              (click)="fecha_hasta.toggle()" placeholder="dd/mm/aaaa" formControlName="fechaHasta" />
+            <control-messages [control]="form.get('fechaHasta')"></control-messages>
+          </div>
+        </div>
+
+      </div>
+      <div class="verticalLine"></div>
+      <!-- C O L 2/2 -->
+      <div class="col">
+        <div class="spacer5"></div>
+        <div class="form-group row row-bottom-margin" [errorFeedback]="form.get('nroMonto')">
+          <label for="txt_nro_monto" class="col-md-4 col-lg-4 col-xl-4 col-form-label">Número monto:</label>
+          <div class="col-md-6 col-lg-6 col-xl-6">
+            <input type="text" class="form-control" id="txt_nro_monto" formControlName="nroMonto">
+            <control-messages [control]="form.get('nroMonto')"></control-messages>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-xl-9 col-lg-9 col-md-9" id="check_incluirBaja">
+            <label class="custom-control check-bge-control">
+              <input type="checkbox" class="check-bge" formControlName="incluirBaja">
+              <span class="check-marcado"></span>
+              <span class="custom-control-description">Incluir dados de baja</span>
+            </label>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="row row-section">
+    <div class="form-group col">
+      <button class="btn btn-primary pull-right" (click)="consultar()">
+        <i class="material-icons icono-accion alinear-texto-con-icono">search</i>
+        <span class="alinear-texto-con-icono">CONSULTAR</span>
+      </button>
+    </div>
+  </div>
+</form>
+
+<div *ngIf="!(bandejaResultados.length)" class="card-pane">
+  No hay resultados para mostrar.
+</div>
+
+<div [hidden]="!bandejaResultados.length" class="card-pane">
+  <table class="table table-sm table-striped table-bordered">
+    <thead>
+      <th class="align-middle">NÚMERO</th>
+      <th class="align-middle">DESCRIPCIÓN</th>
+      <th class="align-middle">SALDO</th>
+      <th class="align-middle">FECHA DEPÓSITO</th>
+      <th class="align-middle">FECHA INICIO</th>
+      <th class="align-middle">FECHA FIN</th>
+      <th class="align-middle" *ngIf="consulta.incluirBaja">FECHA BAJA</th>
+      <th class="align-middle">ACCIONES</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let resultado of bandejaResultados">
+        <td class="align-middle">{{resultado.nroMonto}}</td>
+        <td class="align-middle">{{resultado.descripcion}}</td>
+        <td class="align-middle">{{resultado.saldo |  moneda}}</td>
+        <td class="align-middle">{{resultado.fechaDepositoBancario | date:'dd/MM/yyyy'}}</td>
+        <td class="align-middle">{{resultado.fechaInicio | date:'dd/MM/yyyy'}}</td>
+        <td class="align-middle">{{resultado.fechaFin | date:'dd/MM/yyyy'}}</td>
+        <td class="align-middle" *ngIf="consulta.incluirBaja">
+          {{(resultado.idMotivoBaja ? resultado.fechaUltimaModificacion : null) | date: 'dd/MM/yyyy'}}
+        </td>
+        <td class="align-middle">
+
+          <button type="button" class="btn btn-link boton-grilla" ngbTooltip="Ver"
+            [routerLink]="['/consulta-monto-disponible/' + resultado.id]">
+            <i class="material-icons icono-accion">zoom_in</i>
+          </button>
+
+          <button type="button" class="btn btn-link boton-grilla" ngbTooltip="Editar"
+            [routerLink]="['/edicion-monto-disponible/' + resultado.id]" [disabled]="resultado.idMotivoBaja">
+            <i class="material-icons icono-accion">mode_edit</i>
+          </button>
+
+          <button type="button" class="btn btn-link boton-grilla" ngbTooltip="Dar de baja"
+            [routerLink]="['/baja-monto-disponible/' + resultado.id]" [disabled]="resultado.idMotivoBaja">
+            <i class="material-icons icono-accion">do_not_disturb_alt</i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <paginacion [pagina]="pagina | async" (paginaModificada)="consultar($event)">
+  </paginacion>
+</div>

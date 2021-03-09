@@ -1,0 +1,69 @@
+.sin-margen{
+  padding: 0;
+}
+
+.h-linea{
+  font-weight: bold;
+  background-color: #2957a4;
+  color: white;
+  border-radius: 8px;
+  padding-left: 10px;
+}
+
+.h-linea > small {
+  //font-weight: 500;
+}
+
+#registrar-formulario{
+  font-weight: 600;
+  background-color: #2957a4;
+  color: white;
+  border-radius: 8px;
+  padding-left: 10px;
+}
+
+#fila_volver{
+  margin-top: 10px;
+}
+
+.h-motivo-rechazo{
+  font-weight: bold;
+  background-color: #e8181e;
+  color: white;
+  border-radius: 8px;
+  padding-left: 10px;
+}
+
+.h-logo-linea{
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+  .bge-scroll {
+    display: flex;
+    overflow-x: overlay;
+  }
+
+  .bge-scroll::-webkit-scrollbar {
+    width: 10px;
+    height: 0.75rem;
+  }
+  
+  .bge-scroll::-webkit-scrollbar-track {
+    border-radius: 10px;
+    //Color interior
+    background: #e5e6e6;
+    box-shadow: 0 0 1px 1px #bbb, inset 0 0 7px rgba(0,0,0,0.3)
+  }
+
+  .bge-scroll::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: linear-gradient(left, #96A6BF, #63738C);
+    //Glow exterior
+    box-shadow: inset 0 0 1px 1px rgb(71, 71, 71);
+  }
+  
+  .bge-scroll::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(left, #8391A6, #536175);
+  }

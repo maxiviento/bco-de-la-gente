@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1515EDCC-3A84-41BE-84BD-2DAE03F10D63}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Pagos.Aplicacion.Comandos</RootNamespace>
+    <AssemblyName>Pagos.Aplicacion.Comandos</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Utn|AnyCPU'">
+    <OutputPath>bin\Utn\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CargaDatosChequeComando.cs" />
+    <Compile Include="ActualizaModalidadComando.cs" />
+    <Compile Include="CargaDevengadoComando.cs" />
+    <Compile Include="AgregarPrestamoComando.cs" />
+    <Compile Include="GenerarAdendaComando.cs" />
+    <Compile Include="ProvidenciaComando.cs" />
+    <Compile Include="ConfirmarLoteComando.cs" />
+    <Compile Include="CrearNotaBancoConsulta.cs" />
+    <Compile Include="DesagruparLoteComando.cs" />
+    <Compile Include="GenerarPlanPagosComando.cs" />
+    <Compile Include="ImportarArchivoRecuperoComando.cs" />
+    <Compile Include="ImportarArchivoResultadoBancoComando.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegistrarExcelSuafComando.cs" />
+    <Compile Include="RegistrarLoteSuafComando.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Infraestructura\Core.Comun\Core.Comun.csproj">
+      <Project>{6D014EE5-0745-4A72-8EE0-07E134CF8F3C}</Project>
+      <Name>Core.Comun</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infraestructura\Core\Core.csproj">
+      <Project>{9A556492-41B7-4B2A-BB4C-DA4F2A08ADFD}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Pagos.Aplicacion.Consultas\Pagos.Aplicacion.Consultas.csproj">
+      <Project>{9e11d788-0690-47b0-806a-87d29b7878b0}</Project>
+      <Name>Pagos.Aplicacion.Consultas</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

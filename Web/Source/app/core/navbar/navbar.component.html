@@ -1,0 +1,324 @@
+<nav class="navbar navbar-expand-md navbar-inverse navbar-background line-divider-bottom">
+  <button *ngIf="(usuarioActual | async)"
+          class="navbar-toggler navbar-toggler-right collapsed"
+          aria-controls="collapseExample"
+          type="button"
+          (click)="menuColapsado = !menuColapsado"
+          [attr.aria-expanded]="!menuColapsado"
+          aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="#" (click)="clearLocalStorage()">
+    <img src="../../../assets/img/BGE-final.png" height="50">
+  </a>
+  <div *ngIf="(usuarioActual | async)"
+       id="collapseExample"
+       class="collapse navbar-collapse line-divider-top"
+       [ngbCollapse]="menuColapsado">
+
+    <div class="navbar-nav ml-auto nav-icons-left">
+      <div class="nav-item out-borders align-items-center nav-link" ngbDropdown>
+        <button class="btn nav-item nav-link" type="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false" ngbDropdownToggle
+                *ifPermission="['/bandeja-recupero','/bandeja-resultado-banco']"
+        >
+          <i class="material-icons">account_balance</i>RECUPERO
+        </button>
+        <div ngbDropdownMenu class="dropdown-menu dropdown-color multi-level" aria-labelledby="dd_evaluaciones">
+          <li><a class="dropdown-item"
+                 routerLinkActive="active"
+                 [routerLinkActiveOptions]="{exact: true}"
+                 [routerLink]="['/bandeja-recupero']"
+                 *ifPermission="'/bandeja-recupero'">
+
+            BANDEJA RECUPERO</a></li>
+
+          <li><a class="dropdown-item"
+                 routerLinkActive="active"
+                 [routerLinkActiveOptions]="{exact: true}"
+                 [routerLink]="['/bandeja-resultado-banco']"
+                 *ifPermission="'/bandeja-resultado-banco'">
+
+            BANDEJA RESULTADO BANCO</a></li>
+        </div>
+      </div>
+
+      <div class="nav-item out-borders align-items-center nav-link" ngbDropdown>
+        <button class="btn nav-item nav-link" type="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false" ngbDropdownToggle
+                *ifPermission="['/monto-disponible','/bandeja-suaf','/bandeja-lotes']">
+          <i class="material-icons">monetization_on</i>PAGOS
+        </button>
+        <div ngbDropdownMenu class="dropdown-menu dropdown-color multi-level" aria-labelledby="dd_evaluaciones">
+          <li><a class="dropdown-item"
+                 routerLinkActive="active"
+                 [routerLinkActiveOptions]="{exact: true}"
+                 [routerLink]="['/monto-disponible']"
+                 *ifPermission="'/monto-disponible'">
+            MONTO DISPONIBLE</a></li>
+          <li><a class="dropdown-item"
+                 routerLinkActive="active"
+                 [routerLinkActiveOptions]="{exact: true}"
+                 [routerLink]="['/bandeja-suaf']"
+                 *ifPermission="'/bandeja-suaf'">
+            BANDEJA SUAF</a></li>
+          <li><a class="dropdown-item"
+                 routerLinkActive="active"
+                 [routerLinkActiveOptions]="{exact: true}"
+                 [routerLink]="['/bandeja-lotes']"
+                 *ifPermission="'/bandeja-lotes'">
+            GESTIÓN LOTES PAGO</a></li>
+          <li><a class="dropdown-item"
+                 routerLinkActive="active"
+                 [routerLinkActiveOptions]="{exact: true}"
+                 [routerLink]="['/bandeja-cambio-estado']"
+                 *ifPermission="'/bandeja-cambio-estado'">
+            BANDEJA CAMBIO ESTADO</a></li>
+          <li><a class="dropdown-item"
+                 routerLinkActive="active"
+                 [routerLinkActiveOptions]="{exact: true}"
+                 [routerLink]="['/bandeja-cheques']"
+                 *ifPermission="'/bandeja-cheques'">
+            BANDEJA CHEQUE</a></li>
+        </div>
+      </div>
+
+      <a class="nav-item align-items-center nav-link"
+         routerLinkActive="active"
+         [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/formularios']"
+         *ifPermission="'/formularios'">
+        <i class="material-icons">assignment</i>FORMULARIOS
+      </a>
+
+      <a class="nav-item align-items-center nav-link" routerLinkActive="active"
+         [routerLinkActiveOptions]="{exact: true}" [routerLink]="['/bandeja-prestamos']"
+         *ifPermission="'/bandeja-prestamos'">
+        <i class="material-icons">playlist_add_check</i>PRÉSTAMOS
+      </a>
+
+      <div class="nav-item out-borders align-items-center nav-link" ngbDropdown>
+        <button class="btn nav-item nav-link" type="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false" ngbDropdownToggle
+                *ifPermission="['/areas','/etapas','/items','/parametros','/motivos-destino','/motivos-rechazo']">
+          <i class="material-icons">settings_applications</i>SOPORTE
+        </button>
+        <div ngbDropdownMenu class="dropdown-menu dropdown-color multi-level" aria-labelledby="dd_evaluaciones">
+          <li>
+            <a class="dropdown-item"
+               routerLinkActive="active" *ifPermission="'/monitor-procesos'"
+               [routerLinkActiveOptions]="{exact: true}"
+               [routerLink]="['/monitor-procesos']">MONITOR DE PROCESOS
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item"
+               routerLinkActive="active" *ifPermission="'/actualizar-sucursal'"
+               [routerLinkActiveOptions]="{exact: true}"
+               [routerLink]="['/actualizar-sucursal']">ACTUALIZAR SUCURSAL
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item"
+               routerLinkActive="active" *ifPermission="'/actualizar-plan-pagos'"
+               [routerLinkActiveOptions]="{exact: true}"
+               [routerLink]="['/actualizar-plan-pagos']">ADMINISTRAR PLAN DE CUOTAS
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item"
+               routerLinkActive="active" *ifPermission="'/deuda-grupo-conviviente'"
+               [routerLinkActiveOptions]="{exact: true}"
+               [routerLink]="['/deuda-grupo-conviviente']">DEUDA GRUPO CONVIVIENTE
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item"
+               routerLinkActive="active" *ifPermission="'/imprimir-documentacion'"
+               [routerLinkActiveOptions]="{exact: true}"
+               [routerLink]="['/imprimir-documentacion']">IMPRIMIR DOCUMENTACIÓN
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item"
+               routerLinkActive="active" *ifPermission="'/reporte-formulario-linea'"
+               [routerLinkActiveOptions]="{exact: true}"
+               [routerLink]="['/reporte-formulario-linea']">IMPRIMIR FORMULARIO POR LÍNEA
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item"
+               routerLinkActive="active" *ifPermission="'/condicion-economica'"
+               [routerLinkActiveOptions]="{exact: true}"
+               [routerLink]="['/condicion-economica']">RENTAS
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item"
+               routerLinkActive="active" *ifPermission="'/control-sintys'"
+               [routerLinkActiveOptions]="{exact: true}"
+               [routerLink]="['/control-sintys']">CONTROL SINTYS
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item"
+               routerLinkActive="active" *ifPermission="'/reporte-providencia'"
+               [routerLinkActiveOptions]="{exact: true}"
+               [routerLink]="['/reporte-providencia']">REPORTE PROVIDENCIA
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item"
+               routerLinkActive="active"
+               [routerLinkActiveOptions]="{exact: true}"
+               [routerLink]="['/consultar-situacion-bge']"
+               *ifPermission="'/consultar-situacion-bge'">CONSULTAR SITUACIÓN BGE POR PERSONA
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item"
+               routerLinkActive="active"
+               [routerLinkActiveOptions]="{exact: true}"
+               [routerLink]="['/grupo-familiar']"
+               *ifPermission="'/grupo-familiar'">MODIFICAR GRUPO FAMILIAR
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item"
+               routerLinkActive="active"
+               [routerLinkActiveOptions]="{exact: true}"
+               [routerLink]="['/generar-informes-banco']"
+               *ifPermission="'/generar-informes-banco'">GENERAR INFORMES BANCO
+            </a>
+          </li>
+          <li class="dropdown-submenu">
+            <a class="dropdown-item dropdown-toggle" href="#">OTRAS FUNCIONES</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item"
+                     routerLinkActive="active"
+                     [routerLinkActiveOptions]="{exact: true}"
+                     [routerLink]="['/areas']"
+                     *ifPermission="'/areas'">ÁREAS
+              </a></li>
+              <li><a class="dropdown-item"
+                     routerLinkActive="active"
+                     [routerLinkActiveOptions]="{exact: true}"
+                     [routerLink]="['/etapas']"
+                     *ifPermission="'/etapas'">ETAPAS
+              </a></li>
+              <li><a class="dropdown-item"
+                     routerLinkActive="active"
+                     [routerLinkActiveOptions]="{exact: true}"
+                     [routerLink]="['/items']"
+                     *ifPermission="'/items'">ITEMS
+              </a></li>
+              <li>
+                <a class="dropdown-item"
+                   routerLinkActive="active"
+                   [routerLinkActiveOptions]="{exact: true}"
+                   [routerLink]="['/parametros']"
+                   *ifPermission="'/parametros'">PARÁMETROS
+                </a></li>
+              <li>
+                <a class="dropdown-item"
+                   routerLinkActive="active"
+                   [routerLinkActiveOptions]="{exact: true}"
+                   [routerLink]="['/manuales']"
+                   *ifPermission="'/manuales'">MANUALES DE USUARIO
+                </a></li>
+              <li>
+                <a class="dropdown-item"
+                   routerLinkActive="active"
+                   [routerLinkActiveOptions]="{exact: true}"
+                   [routerLink]="['/motivos-destino']"
+                   *ifPermission="'/motivos-destino'">MOTIVOS DESTINO
+                </a></li>
+              <li>
+                <a class="dropdown-item"
+                   routerLinkActive="active"
+                   [routerLinkActiveOptions]="{exact: true}"
+                   [routerLink]="['/motivos-rechazo']"
+                   *ifPermission="'/motivos-rechazo'">MOTIVOS RECHAZO
+                </a>
+              </li>
+<!--              <li>
+                <a class="dropdown-item"
+                   routerLinkActive="active"
+                   [routerLinkActiveOptions]="{exact: true}"
+                   [routerLink]="['/consultar-tablas-definidas']"
+                   *ifPermission="'/consultar-tablas-definidas'">CONSULTAR TABLAS DEFINIDAS
+                </a>
+              </li>-->
+            </ul>
+          </li>
+        </div>
+      </div>
+
+      <div class="nav-item out-borders align-items-center nav-link" ngbDropdown>
+        <button class="btn nav-item nav-link" type="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false" ngbDropdownToggle
+                *ifPermission="['/configuracion-checklist','/configuracion-formulario','/bandeja-lineas']">
+          <i class="material-icons">settings</i>CONFIGURACIÓN
+        </button>
+        <div ngbDropdownMenu class="dropdown-menu dropdown-color multi-level" aria-labelledby="dd_evaluaciones">
+          <li><a class="dropdown-item"
+                 routerLinkActive="active"
+                 [routerLinkActiveOptions]="{exact: true}"
+                 [routerLink]="['/configuracion-checklist']"
+                 *ifPermission="'/configuracion-checklist'">CHECKLIST
+          </a></li>
+          <li><a class="dropdown-item"
+                 routerLinkActive="active"
+                 [routerLinkActiveOptions]="{exact: true}"
+                 [routerLink]="['/configuracion-formulario']"
+                 *ifPermission="'/configuracion-formulario'">FORMULARIOS
+          </a></li>
+          <li><a class="dropdown-item"
+                 routerLinkActive="active"
+                 [routerLinkActiveOptions]="{exact: true}"
+                 [routerLink]="['/bandeja-lineas']"
+                 *ifPermission="'/bandeja-lineas'">LÍNEAS
+          </a></li>
+        </div>
+      </div>
+
+      <div class="nav-item out-borders align-items-center nav-link" ngbDropdown>
+        <button class="btn nav-item nav-link" type="button" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false" ngbDropdownToggle
+                *ifPermission="['/usuarios','/perfiles']">
+          <i class="material-icons">people</i>USUARIOS
+        </button>
+        <div ngbDropdownMenu class="dropdown-menu dropdown-color multi-level" aria-labelledby="dd_evaluaciones">
+          <li><a class="dropdown-item"
+                 routerLinkActive="active"
+                 [routerLinkActiveOptions]="{exact: true}"
+                 [routerLink]="['/usuarios']"
+                 *ifPermission="'/usuarios'">USUARIOS
+          </a></li>
+          <li><a class="dropdown-item"
+                 routerLinkActive="active"
+                 [routerLinkActiveOptions]="{exact: true}"
+                 [routerLink]="['/perfiles']"
+                 *ifPermission="'/perfiles'">PERFILES
+          </a></li>
+        </div>
+      </div>
+
+    </div>
+    <div class="nav-item out-borders align-items-center nav-link nav-icons-right" placement="bottom-right" ngbDropdown>
+      <button class="btn nav-item nav-link" type="button" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false" ngbDropdownToggle>
+        <img src="../../../assets/img/ico_ciudig32.png" class="foto-perfil" alt="Logo Inicio Sesión">
+        {{usuario.nombre | uppercase}} {{usuario.apellido | uppercase}}
+      </button>
+      <div ngbDropdownMenu class="dropdown-menu dropdown-color multi-level" aria-labelledby="dd_evaluaciones">
+        <li>
+          <a class="dropdown-item"
+             routerLinkActive="active"
+             [routerLinkActiveOptions]="{exact: true}" (click)="cerrarSesion()">
+            CERRAR SESIÓN
+          </a>
+        </li>
+      </div>
+    </div>
+  </div>
+</nav>

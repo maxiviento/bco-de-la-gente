@@ -1,0 +1,50 @@
+<div class="ng-select-container" [ngClass]="superiorDivClass" [class.readonly]="disabled">
+  <ul [class]="getCss()"
+      (click)="focusInputAndShowResults()"
+      [ngClass]="{'simple-selection':!multiple,'multiple-selection':multiple}">
+
+    <li *ngFor="let item of selectedItems"
+        class="ng-select-selected"
+        [class.badge]="multiple"
+        [class.badge-secondary]="multiple"
+        [class.badge-multiple]="multiple">
+      <span>{{cutText(item.text)}}</span>
+      <a class="ng-select-selection-remove" (click)="removeItem(item)" *ngIf="!disabled">
+        <i class="material-icons" [class.text-info]="!multiple">clear</i>
+      </a>
+    </li>
+    <li class="ng-select-input">
+      <input #termInput type="text"
+             [placeholder]="getPlaceholder()"
+             [formControl]="term"
+             [style.width]="getInputWidth()"
+             [class.hideable]='isHideable()'
+             (focus)="onFocus()"
+             (blur)="onBlur()"
+             (keyup)="onKeyUp($event)"
+             (keydown)="onKeyDown($event)"
+             (keypress)="onKeyPress($event)"
+             *ngIf="!disabled"/>
+    </li>
+  </ul>
+  <span class="caret" (click)="focusInputAndShowResults()">
+    <i class="material-icons" *ngIf="!selectedItems.length && !resultsVisible">keyboard_arrow_down</i>
+    <i class="material-icons" *ngIf="!selectedItems.length && resultsVisible">keyboard_arrow_up</i>
+  </span>
+
+  <div class="results-container" [hidden]="!resultsVisible">
+        <span class="results-msg" *ngIf="listData && (listData.length + selectedItems.length) < resultsCount">
+            {{getCountMessage()}}
+        </span>
+    <span class="results-msg no-results-msg" *ngIf="searchFocused && listData && listData.length === 0">
+            {{messages && messages.noResultsAvailableMsg ? messages.noResultsAvailableMsg : NO_RESULTS_MSG}}
+        </span>
+
+    <ng-select-results #results
+                       [selectedItems]="selectedItems"
+                       [items]="listData"
+                       [inputText]="inputText"
+                       (itemSelectedEvent)="onItemSelected($event)">
+    </ng-select-results>
+  </div>
+</div>

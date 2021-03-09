@@ -1,0 +1,236 @@
+<div class="row bordered align-items-center">
+  <div class="col">
+    <h1 class="display-4">CONFORMAR PRÉSTAMO</h1>
+  </div>
+</div>
+<form [formGroup]="form" novalidate>
+  <h3>Filtros de búsqueda
+    <button class="signo-ayuda" ngbTooltip="Los campos marcados con (*) son obligatorios."> ?</button>
+  </h3>
+  <div class="card-pane">
+    <!--R O W  1/2 -->
+    <div class="row bottom-buffer">
+      <!--C O L 1/3 -->
+      <div class="col ">
+        <!-- fecha Desde -->
+        <div class="form-group row" [errorFeedback]="form.get('fechaDesde')">
+          <label for="txt_fecha_desde" class="col-md-5 col-lg-5 col-xl-5 col-form-label">Fecha desde<span
+            class="obligatorio"> (*)</span>:</label>
+          <div class="col-md-6 col-lg-6 col-xl-6">
+            <input id="txt_fecha_desde" class="form-control" ngbDatepicker #fecha_desde="ngbDatepicker"
+                   (click)="fecha_desde.toggle()" placeholder="dd/mm/aaaa" formControlName="fechaDesde"/>
+          </div>
+          <control-messages [control]="form.get('fechaDesde')"></control-messages>
+        </div>
+        <div class="spacer5"></div>
+        <!-- fecha Hasta -->
+        <div class="form-group row" [errorFeedback]="form.get('fechaHasta')">
+          <label for="txt_fecha_hasta" class="col-md-5 col-lg-5 col-xl-5 col-form-label">Fecha hasta<span
+            class="obligatorio"> (*)</span>:</label>
+          <div class="col-md-6 col-lg-6 col-xl-6">
+            <input id="txt_fecha_hasta" class="form-control" ngbDatepicker #fecha_hasta="ngbDatepicker"
+                   (click)="fecha_hasta.toggle()" placeholder="dd/mm/aaaa" formControlName="fechaHasta"/>
+          </div>
+          <control-messages [control]="form.get('fechaHasta')"></control-messages>
+        </div>
+        <div class="spacer5"></div>
+        <filtro-domicilio-bandeja (departamentosSeleccionados)="guardarDepartamentosSeleccionados($event)"
+                                  (localidadesSeleccionadas)="guardarLocalidadesSeleccionadas($event)">
+        </filtro-domicilio-bandeja>
+      </div>
+      <div class="verticalLine"></div>
+      <!--C O L 2/3 -->
+      <div class="col">
+        <!-- origen -->
+        <div class="form-group row">
+          <label for="cb_origen" class="col-xl-5 col-lg-5 col-md-5 col-form-label">Origen:</label>
+          <div class="col-xl-7 col-lg-7 col-md-7">
+            <ng-select id="cb_origen" [dataSource]="{list: CBOrigen, name:'valor', id:'clave'}" formControlName="origen"
+                       [selected]="form.get('origen').value" [clientMode]="true">
+            </ng-select>
+          </div>
+        </div>
+        <!--        <div class="spacer5"></div>-->
+        <!-- estado -->
+        <multiple-seleccion [titulo]="'Estado formulario'"
+                            [colDiv]="7"
+                            [colLabel]="5"
+                            [tipoCombo]="'comboEstadoFormulario'"
+                            (opcionesSeleccionadas)="guardarEstadosSeleccionadas($event)">
+        </multiple-seleccion>
+        <div class="form-group row" [errorFeedback]="form.get('numeroFormulario')">
+          <label class="col-xl-5 col-lg-5 col-md-5 col-form-label">Número formulario:</label>
+          <div class="col-xl-7 col-lg-7 col-md-7">
+            <input type="text" class="form-control" id="txt_numero" formControlName="numeroFormulario">
+            <control-messages [control]="form.get('numeroFormulario')"></control-messages>
+          </div>
+        </div>
+        <!--        <div class="spacer5"></div>-->
+      </div>
+      <div class="verticalLine"></div>
+      <!--C O L 3/3 -->
+      <div class="col">
+        <!-- numero -->
+        <div class="form-group row" [errorFeedback]="form.get('cuil')">
+          <label class="col-xl-5 col-lg-5 col-md-5 col-form-label">CUIL:</label>
+          <div class="col-xl-7 col-lg-7 col-md-7">
+            <input type="text" class="form-control" id="txt_cuil" formControlName="cuil">
+            <control-messages [control]="form.get('cuil')"></control-messages>
+          </div>
+        </div>
+        <div class="form-group row" [errorFeedback]="form.get('dni')">
+          <label class="col-xl-5 col-lg-5 col-md-5 col-form-label">DNI:</label>
+          <div class="col-xl-7 col-lg-7 col-md-7">
+            <input type="text" class="form-control" id="txt_dni" formControlName="dni">
+            <control-messages [control]="form.get('dni')"></control-messages>
+          </div>
+        </div>
+        <div class="form-group row" [errorFeedback]="form.get('nombre')">
+          <label class="col-xl-5 col-lg-5 col-md-5 col-form-label">Nombre:</label>
+          <div class="col-xl-7 col-lg-7 col-md-7">
+            <input type="text" class="form-control" id="txt_nombre" formControlName="nombre">
+            <control-messages [control]="form.get('nombre')"></control-messages>
+          </div>
+        </div>
+        <div class="form-group row" [errorFeedback]="form.get('apellido')">
+          <label class="col-xl-5 col-lg-5 col-md-5 col-form-label">Apellido:</label>
+          <div class="col-xl-7 col-lg-7 col-md-7">
+            <input type="text" class="form-control" id="txt_apellido" formControlName="apellido">
+            <control-messages [control]="form.get('apellido')"></control-messages>
+          </div>
+        </div>
+        <div class="spacer5"></div>
+      </div>
+    </div>
+
+    <div class="row box-linea-formulario">
+      <div class="col-md-12 col-lg-12 col-xl-12">
+        <multiple-seleccion [titulo]="'Línea micro-préstamo'"
+                            #lineas
+                            [tipoCombo]="'comboLinea'"
+                            [colDiv]="8"
+                            [colLabel]="3"
+                            (opcionesSeleccionadas)="guardarLineasSeleccionadas($event)">
+        </multiple-seleccion>
+      </div>
+    </div>
+    <!--    <bg-busqueda-por-persona></bg-busqueda-por-persona>-->
+  </div>
+  <div class="row row-section">
+    <div class="form-group col">
+      <button class="btn btn-primary pull-right" (click)="consultarFormularios(true)"
+              [disabled]="form.invalid">
+        <i class="material-icons icono-accion alinear-texto-con-icono">search</i>
+        <span class="alinear-texto-con-icono">CONSULTAR</span>
+      </button>
+    </div>
+  </div>
+</form>
+
+<div class="row bordered align-items-center titulo-grilla">
+  <div class="col">
+    <h1 class="display-4">FORMULARIOS ENCONTRADOS</h1>
+  </div>
+</div>
+<div [hidden]="formularioResultados.length" class="card-pane">
+  No hay resultados para mostrar.
+</div>
+<div [hidden]="!formularioResultados.length" class="card-pane">
+  <table class="table table-sm table-bordered">
+    <thead>
+    <tr>
+      <th class="align-middle">NRO FORMULARIO</th>
+      <th class="align-middle">LOCALIDAD</th>
+      <th class="align-middle ">LÍNEA</th>
+      <th class="align-middle ">APELLIDO Y NOMBRE DEL SOLICITANTE</th>
+      <th class="align-middle ">CUIL DEL SOLICITANTE</th>
+      <th class="align-middle ">FECHA DE ESTADO</th>
+      <th class="align-middle ">ESTADO</th>
+      <th class="align-middle ">ORIGEN</th>
+      <th class="align-middle ">AGRUPAR</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let formulario of formularioResultados"
+        [class.seleccionado]="esSeleccionado(formulario.nroAgrupamiento)"
+        [ngClass]="{ 'linea-no-seleccionable': primerFormularioSeleccionado && !formulario.esSeleccionable }">
+      <td class="aling-middle">{{formulario.nroFormulario}}</td>
+      <td class="align-middle ">{{formulario.localidad}}</td>
+      <td class="align-middle ">{{formulario.linea}}</td>
+      <td class="align-middle ">{{formulario.apellidoNombreSolicitante}}</td>
+      <td class="align-middle ">{{formulario.cuilSolicitante}}</td>
+      <td class="align-middle ">{{formulario.fechaEstado | date:'dd/MM/yyyy'}}</td>
+      <td class="align-middle ">{{formulario.estado}}</td>
+      <td class="align-middle ">{{formulario.origen}}</td>
+      <td class="align-middle ">
+        <button *ngIf="formulario.puedeGenerarPrestamo" type="button" class="btn btn-link"
+                ngbTooltip="Agregar formularios"
+                (click)="agregarFormulariosParaAgrupar(formulario.nroAgrupamiento)"
+                [disabled]="esSeleccionado(formulario.nroAgrupamiento)">
+          <i class="material-icons icono-accion">note_add</i>
+        </button>
+        <button *ngIf="!formulario.puedeGenerarPrestamo" type="button" class="btn btn-link"
+                ngbTooltip="No se puede generar préstamo de este formulario porque no cumple el mínimo de integrantes requerido.">
+          <i class="material-icons icono-accion">not_interested</i>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <paginacion [pagina]="pagina | async" (paginaModificada)="consultarFormularios(false, $event)">
+  </paginacion>
+</div>
+
+<div class="row bordered align-items-center titulo-grilla">
+  <div class="col">
+    <h1 class="display-4">FORMULARIOS PARA ARMAR PRÉSTAMOS</h1>
+  </div>
+</div>
+
+<div *ngIf="!formulariosParaConformarPrestamo.length" class="card-pane">
+  No hay resultados para mostrar.
+</div>
+
+<div id="collapseFormulariosAgrupados" *ngIf="formulariosParaConformarPrestamo.length" class="card-pane">
+  <table class="table table-sm table-striped table-bordered">
+    <thead>
+    <tr>
+      <th class="align-middle ">LÍNEA</th>
+      <th class="align-middle ">NRO. FORMULARIO</th>
+      <th class="align-middle">APELIIDO Y NOMBRE</th>
+      <th class="align-middle ">CUIL</th>
+      <th class="align-middle ">ORIGEN</th>
+      <th class="align-middle ">ACCIONES</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let formulario of formulariosParaConformarPrestamo">
+      <td class="align-middle ">{{formulario.nombreLinea}}</td>
+      <td class="align-middle ">{{formulario.nroFormulario}}</td>
+      <td class="align-middle ">{{formulario.apellido}}, {{formulario.nombre}}</td>
+      <td class="align-middle ">{{formulario.cuil? formulario.cuil : formulario.nroDocumento}}</td>
+      <td class="align-middle ">{{formulario.origen}}</td>
+      <td class="align-middle ">
+        <button type="button" class="btn btn-link" ngbTooltip="Ver formulario"
+                [routerLink]="['/prestamo/formulario/ver/' + formulario.idFormulario]">
+          <i class="material-icons icono-accion">zoom_in</i>
+        </button>
+        <button type="button" class="btn btn-link" ngbTooltip="Quitar agrupamiento"
+                (click)="quitarFormulariosParaConformarPrestamo(formulario.id)">
+          <i class="material-icons icono-accion">clear</i>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="col">
+  <div class="pull-right">
+    <a [routerLink]="['/bandeja-prestamos']" class="btn btn-secondary separador-botones">VOLVER</a>
+    <button type="button" (click)="generarPrestamos()" class="btn btn-primary"
+            [disabled]="formulariosParaConformarPrestamo.length == 0">
+      GENERAR PRESTAMOS
+    </button>
+  </div>
+</div>

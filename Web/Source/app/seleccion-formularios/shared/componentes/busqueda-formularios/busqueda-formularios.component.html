@@ -1,0 +1,94 @@
+<div class="row align-items-center" style="margin-top: 15px !important;">
+  <div class="col ml-auto">
+    <h3>Filtros de búsqueda </h3>
+  </div>
+</div>
+
+<form [formGroup]="form" novalidate>
+  <div class="card-pane">
+    <!-- R O W -->
+    <div class="row">
+      <!-- C O L 1/3 -->
+      <div class="col">
+        <!-- dni -->
+        <div class="form-group row" [errorFeedback]="form.get('dni')">
+          <label for="tx_dni" class="col-md-3 col-lg-3 col-xl-3 col-form-label">DNI:</label>
+          <div class="col-md-7 col-lg-7 col-xl-7">
+            <input type="text" id="tx_dni" formControlName="dni" class="form-control">
+            <control-messages [control]="form.get('dni')"></control-messages>
+          </div>
+        </div>
+        <!-- cuil -->
+        <div class="form-group row" [errorFeedback]="form.get('cuil')">
+          <label for="tx_cuil" class="col-md-3 col-lg-3 col-xl-3 col-form-label">CUIL:</label>
+          <div class="col-md-7 col-lg-7 col-xl-7">
+            <input type="text" id="tx_cuil" formControlName="cuil" class="form-control">
+            <control-messages [control]="form.get('cuil')"></control-messages>
+          </div>
+        </div>
+      </div>
+      <div class="verticalLine"></div>
+      <!-- C O L 2/3 -->
+      <div class="col">
+        <!-- numero prestamos -->
+        <div class="form-group row" [errorFeedback]="form.get('nroPrestamo')">
+          <label for="tx_prestamo" class="col-md-4 col-lg-4 col-xl-4 col-form-label">N° Préstamo:</label>
+          <div class="col-md-6 col-lg-6 col-xl-6">
+            <input type="text" id="tx_prestamo" formControlName="nroPrestamo" class="form-control">
+            <control-messages [control]="form.get('nroPrestamo')"></control-messages>
+          </div>
+        </div>
+        <div class="spacer5"></div>
+        <!-- numero formulario -->
+        <div class="form-group row" [errorFeedback]="form.get('nroFormulario')">
+          <label for="tx_formulario" class="col-md-4 col-lg-4 col-xl-4col-form-label">N° Formulario:</label>
+          <div class="col-md-6 col-lg-6 col-xl-6">
+            <input type="text" id="tx_formulario" formControlName="nroFormulario" class="form-control">
+            <control-messages [control]="form.get('nroFormulario')"></control-messages>
+          </div>
+        </div>
+        <!-- lote -->
+        <div class="form-group row" *ngIf="mostrarComboLotes">
+          <!--<label for="cb_lote" class="col-md-4 col-lg-4 col-xl-4 col-form-label">Lote:<span *ngIf="esRequerido(form.get('idLote'))" class="required"> (*)</span></label>-->
+          <label for="cb_lote" class="col-md-4 col-lg-4 col-xl-4 col-form-label">Lote:</label>
+          <div class="col-md-6 col-lg-6 col-xl-6">
+            <ng-select id="cb_lote" [dataSource]="{list: lotes, name:'descripcion', id:'id'}" formControlName="idLote"
+              [selected]="form.get('idLote').value" [clientMode]="true">
+            </ng-select>
+          </div>
+        </div>
+      </div>
+      <div class="verticalLine"></div>
+      <!-- C O L 3/3 -->
+      <div class="col">
+        <!-- departamento -->
+        <div class="form-group row">
+          <label for="cb_departamento" class="col-md-4 col-lg-4 col-xl-4 col-form-label">Departamento:</label>
+          <div class="col-md-6 col-lg-6 col-xl-6">
+            <ng-select id="cb_departamento" [dataSource]="{list: departamentos, name:'valor', id:'clave'}"
+              formControlName="idDepartamento" [selected]="form.get('idDepartamento').value" [clientMode]="true">
+            </ng-select>
+          </div>
+        </div>
+        <!-- localidad -->
+        <div class="form-group row">
+          <label for="cb_localidad" class="col-md-4 col-lg-4 col-xl-4 col-form-label">Localidad:<span
+              *ngIf="esRequerido(form.get('idLocalidad'))" class="required"> (*)</span></label>
+          <div class="col-md-6 col-lg-6 col-xl-6">
+            <ng-select id="cb_localidad" [dataSource]="{list: localidades, name:'valor', id:'clave'}"
+              formControlName="idLocalidad" [selected]="form.get('idLocalidad').value" [clientMode]="true">
+            </ng-select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-primary pull-right" type="button" [disabled]="form.invalid"
+        (click)="prepararForm()">
+      <i class="material-icons icono-accion alinear-texto-con-icono">search</i>
+      <span class="alinear-texto-con-icono">CONSULTAR</span></button>
+    </div>
+  </div>
+</form>

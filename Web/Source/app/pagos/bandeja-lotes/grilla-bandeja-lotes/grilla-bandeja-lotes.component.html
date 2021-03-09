@@ -1,0 +1,151 @@
+<div class="row">
+  <h3 class="display-6 col-auto">Resultados:</h3>
+  <h5 class="margin-resultados">{{totalizador ? '(' + totalizador + ' lote/s)' : ''}}</h5>
+  <div class="col-auto">
+    <single-spinner></single-spinner>
+  </div>
+</div>
+<div class="card-pane" [hidden]="bandejaResultados.length">
+  No hay resultados para mostrar.
+</div>
+
+<div class="card-pane" [hidden]="!bandejaResultados.length">
+
+  <table class="table table-bordered table-striped table-sm">
+    <thead>
+    <tr>
+      <th class="align-middle">FECHA LOTE</th>
+      <th class="align-middle">NÚMERO LOTE</th>
+      <th class="align-middle">NOMBRE LOTE</th>
+      <th class="align-middle">CANT DE PRÉSTAMOS</th>
+      <th class="align-middle">CANT DE BENEFICIARIOS</th>
+      <th class="align-middle">MONTO TOTAL PRÉSTAMOS</th>
+      <th class="align-middle">MONTO COMISIÓN BANCO</th>
+      <th class="align-middle">MONTO IVA</th>
+      <th class="align-middle">SELECCIÓN</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr [formGroup]="resultado" *ngFor="let resultado of lotesFormArray.controls">
+      <td class="align-middle">{{resultado.get('fechaLote').value | date:'dd/MM/yyyy'}}</td>
+      <td class="align-middle">{{resultado.get('nroLote').value}}</td>
+      <td class="align-middle">{{resultado.get('nombreLote').value}}</td>
+      <td class="align-middle">{{resultado.get('cantPrestamos').value}}</td>
+      <td class="align-middle">{{resultado.get('cantBeneficiarios').value}}</td>
+      <td class="align-middle">
+        {{resultado.get('montoTotal').value | moneda}}
+      </td>
+      <td class="align-middle">
+        {{resultado.get('comision').value | moneda}}
+      </td>
+      <td class="align-middle">
+        {{resultado.get('iva').value | moneda}}
+      </td>
+      <td class="align-middle">
+        <div class="nav-item align-items-center nav-link" ngbDropdown #ngbDropdown=ngbDropdown aria-disabled="true"
+             (mouseover)="ngbDropdown.open()" (mouseleave)="ngbDropdown.toggle()">
+          <button class="btn nav-item nav-link btn-link btn-desplegar" type="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
+            <i class="material-icons">settings</i>
+          </button>
+          <div ngbDropdownMenu class="dropdown-menu dropdown-color" aria-labelledby="dd_evaluaciones">
+            <div class="flex-row">
+              <button type="button" class="btn btn-link boton-grilla" ngbTooltip="Ver"
+                      [routerLink]="['/detalle-lote-ver/' + resultado.get('idLote').value]">
+                <i class="material-icons icono-accion">zoom_in</i>
+              </button>
+
+              <button type="button"
+                      class="btn btn-link boton-grilla"
+                      ngbTooltip="Desagrupar"
+                      [disabled]="resultado.get('idTipoLote').value === 4 || resultado.get('idTipoLote').value === 6 || !(resultado.get('cantPrestamos').value > 0) || !(resultado.get('permiteLiberar').value)"
+                      [routerLink]="['/desagrupar-lote/' + resultado.get('idLote').value]">
+                <i class="material-icons icono-accion">blur_on</i>
+              </button>
+
+              <button type="button"
+                      class="btn btn-link boton-grilla"
+                      ngbTooltip="Liberar"
+                      [disabled]="resultado.get('idTipoLote').value === 4 || resultado.get('idTipoLote').value === 6 || !(resultado.get('cantPrestamos').value > 0) || !(resultado.get('permiteLiberar').value)"
+                      [routerLink]="['/liberar-lote/' + resultado.get('idLote').value]">
+                <i class="material-icons icono-accion">rotate_left</i>
+              </button>
+            </div>
+            <div class="flex-row">
+              <!--Icono para generacion de excel para el banco. Se encuentra oculto en lotes con modalidad de pago cheque-->
+              <button type="button"
+                      class="btn btn-link boton-grilla"
+                      ngbTooltip="Generar excel banco"
+                      *ngIf="resultado.get('idTipoLote').value === 2 || resultado.get('idTipoLote').value === 4"
+                      [disabled]="!(resultado.get('cantPrestamos').value > 0)"
+                      (click)="imprimirExcel(resultado.get('idLote').value)">
+                <i class="material-icons icono-accion">print</i>
+              </button>
+              <!--Icono para generacion de excel para los cheques. Se encuentra oculto en lotes cuya modalidad de pago no es cheque-->
+              <button type="button"
+                      class="btn btn-link boton-grilla"
+                      ngbTooltip="Generar excel cheque"
+                      *ngIf="resultado.get('idTipoLote').value === 5 || resultado.get('idTipoLote').value === 6"
+                      [disabled]="!(resultado.get('cantPrestamos').value > 0)"
+                      (click)="imprimirExcelCheques(resultado.get('idLote').value)">
+                <i class="material-icons icono-accion">print</i>
+              </button>
+
+              <button type="button"
+                      class="btn btn-link boton-grilla"
+                      ngbTooltip="Nota"
+                      [disabled]="!(resultado.get('cantPrestamos').value > 0)"
+                      (click)="imprimirNota(resultado.get('idLote').value)">
+                <i class="material-icons icono-accion">note</i>
+              </button>
+
+              <button type="button"
+                      class="btn btn-link boton-grilla"
+                      ngbTooltip="Plan de cuotas"
+                      [disabled]="!(resultado.get('cantPrestamos').value > 0)"
+                      [routerLink]="['/actualizar-plan-pagos/lote/' + resultado.get('idLote').value]">
+                <i class="material-icons icono-accion">
+                  date_range
+                </i>
+              </button>
+            </div>
+            <div class="flex-row">
+              <button type="button"
+                      class="btn btn-link boton-grilla"
+                      ngbTooltip="Actualizar sucursal bancaria"
+                      [disabled]="!(resultado.get('cantPrestamos').value > 0)"
+                      [routerLink]="['/actualizar-sucursal/lote/' + resultado.get('idLote').value]">
+                <i class="material-icons icono-accion">account_balance</i>
+              </button>
+
+              <button type="button"
+                      class="btn btn-link boton-grilla"
+                      ngbTooltip="Actualizar información complementaria"
+                      [disabled]="!(resultado.get('cantPrestamos').value > 0)"
+                      (click)="actualizarModalidadPago(resultado.get('idLote').value)">
+                <i class="material-icons icono-accion">more_horiz</i>
+              </button>
+
+              <button type="button" class="btn btn-link boton-grilla"
+                      ngbTooltip="Crear adenda"
+                      [disabled]="(!(resultado.get('cantPrestamos').value > 0)) || resultado.get('idTipoLote').value === 4 || resultado.get('idTipoLote').value === 6"
+                      [routerLink]="['/bandeja-crear-adenda/' + resultado.get('idLote').value]">
+                <i class="material-icons icono-accion">library_books</i>
+              </button>
+              <button type="button" class="btn btn-link boton-grilla"
+                      ngbTooltip="Agregar préstamo"
+                      [disabled]="resultado.get('idTipoLote').value === 4 || resultado.get('idTipoLote').value === 6 || !(resultado.get('cantPrestamos').value > 0) || !(resultado.get('permiteLiberar').value)"
+                      [routerLink]="['/agregar-lote/' + resultado.get('idLote').value]">
+                <i class="material-icons icono-accion">note_add</i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <paginacion [pagina]="pagina | async" (paginaModificada)="consultarSiguientePagina($event)">
+  </paginacion>
+</div>

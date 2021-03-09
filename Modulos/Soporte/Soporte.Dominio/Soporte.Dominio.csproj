@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EF479E97-DF28-47F9-8265-6CCD16529F4E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Soporte.Dominio</RootNamespace>
+    <AssemblyName>Soporte.Dominio</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Utn|AnyCPU'">
+    <OutputPath>bin\Utn\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IRepositorio\IMonitorProcesosRepositorio.cs" />
+    <Compile Include="IRepositorio\IProvidenciaRepositorio.cs" />
+    <Compile Include="IRepositorio\IDocumentacionRepositorio.cs" />
+    <Compile Include="IRepositorio\IParametrosRepositorio.cs" />
+    <Compile Include="IRepositorio\IDeudaGrupoRepositorio.cs" />
+    <Compile Include="IRepositorio\ISintysRepositorio.cs" />
+    <Compile Include="IRepositorio\IRentaRepositorio.cs" />
+    <Compile Include="Modelo\CabeceraHistorialDeudaGrupo.cs" />
+    <Compile Include="Modelo\CertificadoRentas.cs" />
+    <Compile Include="Modelo\CertificadoSingleton.cs" />
+    <Compile Include="Modelo\DatoMonitorProcesos.cs" />
+    <Compile Include="Modelo\DatoProvidencia.cs" />
+    <Compile Include="Modelo\DatoRenta.cs" />
+    <Compile Include="Modelo\DatoHistorialDeuda.cs" />
+    <Compile Include="Modelo\DatoSintys.cs" />
+    <Compile Include="Modelo\CabeceraHistorialSintys.cs" />
+    <Compile Include="Modelo\HistorialSintys.cs" />
+    <Compile Include="Modelo\HistorialRentas.cs" />
+    <Compile Include="Modelo\Documentacion.cs" />
+    <Compile Include="Modelo\ItemDocumentos\IDocItemContext.cs" />
+    <Compile Include="Modelo\ItemDocumentos\IDocItemStrategy.cs" />
+    <Compile Include="Modelo\ItemDocumentos\ItemDocumentoEnum.cs" />
+    <Compile Include="Modelo\TipoApoderadoEnum.cs" />
+    <Compile Include="Modelo\MotivoRechazoEnum.cs" />
+    <Compile Include="Modelo\Parametro.cs" />
+    <Compile Include="Modelo\ParametroCache.cs" />
+    <Compile Include="Modelo\RentasPrestamoPlano.cs" />
+    <Compile Include="Modelo\RespuestaRentas.cs" />
+    <Compile Include="Modelo\TablaSatelite.cs" />
+    <Compile Include="Modelo\VigenciaParametro.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Infraestructura\Core.Cidi.AppComunicacion\Core.Cidi.AppComunicacion.csproj">
+      <Project>{F52B0B47-7F3B-4B4E-ADC4-1CB13DDEBE22}</Project>
+      <Name>Core.Cidi.AppComunicacion</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infraestructura\Core.Comun\Core.Comun.csproj">
+      <Project>{6D014EE5-0745-4A72-8EE0-07E134CF8F3C}</Project>
+      <Name>Core.Comun</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Sintys\SintysWS\SintysWS.csproj">
+      <Project>{F170A304-0C03-4903-92CF-93378A368D4F}</Project>
+      <Name>SintysWS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Configuracion\Configuracion.Dominio\Configuracion.Dominio.csproj">
+      <Project>{04DA0DA7-1BE6-40BB-8218-4ED9A3C5FC3A}</Project>
+      <Name>Configuracion.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Formulario\Formulario.Aplicacion.Consultas\Formulario.Aplicacion.Consultas.csproj">
+      <Project>{024F0ED3-0FD3-4D9D-8605-E6E2C5DEC4FD}</Project>
+      <Name>Formulario.Aplicacion.Consultas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Formulario\Formulario.Dominio\Formulario.Dominio.csproj">
+      <Project>{E01AC2D8-F1DE-41DB-9C11-2FB98A0F60E6}</Project>
+      <Name>Formulario.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Identidad\Identidad.Dominio\Identidad.Dominio.csproj">
+      <Project>{D67F744C-5347-406D-B853-E7C5E3AD45DA}</Project>
+      <Name>Identidad.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Soporte.Aplicacion.Consultas\Soporte.Aplicacion.Consultas.csproj">
+      <Project>{27F9946E-A9C0-4D99-98BF-6474BD00AD83}</Project>
+      <Name>Soporte.Aplicacion.Consultas</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

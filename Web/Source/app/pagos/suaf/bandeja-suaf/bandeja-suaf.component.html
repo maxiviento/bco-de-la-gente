@@ -1,0 +1,24 @@
+<div class="row bordered align-items-center">
+  <div class="col">
+    <h1 class="display-4">GESTIÓN DE LOTES SUAF</h1>
+  </div>
+  <div class="col-md-4 col-lg-4 col-xl-4">
+    <button class="btn btn-warning pull-right "
+            [routerLink]="['/armar-lote-suaf']">NUEVO LOTE SUAF
+    </button>
+    <button class="btn btn-warning pull-right separador-botones"
+            [routerLink]="['/carga-manual-devengado']">CARGA MANUAL
+    </button>
+  </div>
+</div>
+
+
+<bg-consulta-lote-suaf
+  (emitirConsulta)="almacenarConsulta($event)"
+  (totalizador)=calcularTotalizador($event)>
+</bg-consulta-lote-suaf>
+
+<bg-grilla-bandeja-suaf
+  [consulta]="consulta"
+  [totalizador]="totalizador">
+</bg-grilla-bandeja-suaf>

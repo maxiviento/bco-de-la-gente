@@ -1,0 +1,8 @@
+<form [formGroup]="form">
+  <ng-select id="cb_objetos" [dataSource]="{list: lsValores, name: 'nombre', id: 'idEntidad'}"
+             formControlName="objeto"
+             (inputTextEmitter)="emitirEvento($event)"
+             [selected]="form.get('objeto').value"
+             [clientMode]="true">
+  </ng-select>
+</form>

@@ -1,0 +1,35 @@
+<div id="row_titulo" class="row row-title line-divider-bottom">
+  <div class="col">
+    <h4 class="card-title w-75"><strong>DETALLE ONG PARA EL MICRO-PRÉSTAMO</strong></h4>
+  </div>
+</div>
+
+<div class="card-pane card-margin-top" [formGroup]="form">
+  <div class="row">
+
+    <div class="col-3 combo-ong">
+      <label for="cb_ongs">Seleccionar ONG<span class="obligatorio"> (*)</span>:</label>
+      <select class="form-control" id="cb_ongs" tabindex="1" formControlName="idOng">
+        <option value="null" disabled>Seleccione...</option>
+        <option *ngFor="let ong of listaOngs" [ngValue]="ong.idEntidad">
+          {{ong.nombre | uppercase}}
+        </option>
+      </select>
+      <control-messages [control]="form.get('idOng')"></control-messages>
+    </div>
+
+    <div class="col-4">
+      <label for="txt_nombre">Nombre del grupo <span class="obligatorio"> (*)</span>:</label>
+      <input type="text" id="txt_nombre" formControlName="nombre" class="form-control" [readonly]="!editable"
+        tabindex="2" />
+      <control-messages [control]="form.get('nombre')"></control-messages>
+    </div>
+
+    <div class="col-lg-2 col-md-3">
+      <label for="txt_numero"
+        ngbTooltip="El número de grupo se asignará automáticamente al guardar el formulario.">Número de grupo</label>
+      <input type="text" id="txt_numero" formControlName="numero" class="form-control" readonly tabindex="3" />
+    </div>
+
+  </div>
+</div>

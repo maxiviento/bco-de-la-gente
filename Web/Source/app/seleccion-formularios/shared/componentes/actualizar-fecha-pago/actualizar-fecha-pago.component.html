@@ -1,0 +1,194 @@
+<div *ngIf="formulario.estadoForm && formulario.estadoForm !== 11">
+  <div class="row align-items-center line-divider-bottom">
+    <div class="col ml-auto">
+      <h1 class="display-4">PROCESO DE REPROGRAMACIÓN</h1>
+    </div>
+  </div>
+
+  <div class="card-pane card-margin-top">
+    <b>{{mensaje}}</b>
+  </div>
+
+  <div class="row row-section">
+    <div class="col">
+      <a class="btn btn-secondary pull-right" (click)="cerrar()">Volver</a>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="formulario.estadoForm == 11">
+  <div class="row align-items-center line-divider-bottom">
+    <div class="col ml-auto">
+      <h1 class="display-4">PROCESO DE REPROGRAMACIÓN</h1>
+    </div>
+  </div>
+
+  <div *ngIf="!reprograma && mensaje">
+    <div *ngIf="formulario.esAsociativa">
+      <div class="card-pane card-margin-top">
+        <b>{{mensaje}}</b>
+      </div>
+      <div class="row row-section pull-right">
+        <button type="button" class="btn btn-primary pull-right separador-botones" [disabled]="formulario.tipoApoderado === 2" (click)="rechazar()">Rechazar
+        </button>
+        <button type="button" class="btn btn-secondary pull-right separador-botones" (click)="cerrar()">Volver
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="!formulario.esAsociativa">
+      <div *ngIf="esReprogramacion">
+        <div class="card-pane card-margin-top">
+          <b>{{mensaje}}</b>
+        </div>
+        <div class="row row-section pull-right">
+          <button type="button" class="btn btn-primary pull-right separador-botones"
+                  (click)="activarReprogramacion()">
+            Reprogramar
+          </button>
+          <button type="button" class="btn btn-secondary pull-right separador-botones" (click)="cerrar()">Volver
+          </button>
+        </div>
+      </div>
+      <div *ngIf="!esReprogramacion">
+        <div class="card-pane card-margin-top">
+          <b>{{mensaje}}</b>
+        </div>
+        <div class="row row-section pull-right">
+          <button type="button" class="btn btn-primary pull-right separador-botones"
+                  (click)="activarReprogramacion()" [disabled]="procesoTerminado">Reprogramar
+          </button>
+          <button type="button" class="btn btn-secondary pull-right separador-botones" (click)="rechazar()" [disabled]="procesoTerminado">Rechazar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="reprograma">
+    <div class="col-12">
+      <form [formGroup]="formReprogramacion">
+        <div class="card-pane">
+          <div class="col-md-12">
+            <div class="form-group col-md-6">
+              <div class="row row-section">
+                <div class="col-md-5 d-inline-block">
+                  <label for="input_fecha_pago" class="col-form-label">Fecha de Inicio de Pago actual:</label>
+                </div>
+                <div class="col-sm-auto">
+                  <input id="input_fecha_pago"
+                         class="form-control"
+                         ngbDatepicker
+                         #fechaActual="ngbDatepicker"
+                         (click)="fechaActual.toggle()"
+                         placeholder="dd/mm/aaaa"
+                         formControlName="fechaActual"
+                         disabled>
+                  <control-messages [control]="formReprogramacion.get('fechaActual')"></control-messages>
+                </div>
+              </div>
+              <div class="row row-section">
+                <div class="col-md-5 d-inline-block">
+                  <label for="input_fecha_fin_pago" class="col-form-label">Fecha de Fin de Pago actual:</label>
+                </div>
+                <div class="col-sm-auto">
+                  <input id="input_fecha_fin_pago"
+                         class="form-control"
+                         ngbDatepicker
+                         #fechaFinActual="ngbDatepicker"
+                         (click)="fechaFinActual.toggle()"
+                         placeholder="dd/mm/aaaa"
+                         formControlName="fechaFinActual"
+                         disabled>
+                  <control-messages [control]="formReprogramacion.get('fechaFinActual')"></control-messages>
+                </div>
+              </div>
+              <div class="row row-section">
+                <div class="col-md-5 d-inline-block">
+                  <label for="input_fecha_pago_nueva" class="col-form-label">Nueva fecha de Inicio de Pago<label
+                    class="obligatorio"> (*)</label>:</label>
+                </div>
+                <div class="col-sm-auto">
+                  <input id="input_fecha_pago_nueva"
+                         class="form-control"
+                         ngbDatepicker
+                         #fechaNueva="ngbDatepicker"
+                         (click)="fechaNueva.toggle()"
+                         placeholder="dd/mm/aaaa"
+                         formControlName="fechaNueva">
+                  <control-messages [control]="formReprogramacion.get('fechaNueva')"></control-messages>
+                </div>
+              </div>
+              <div class="row row-section">
+                <div class="col-md-5 d-inline-block">
+                  <label for="input_fecha_fin_pago_nueva" class="col-form-label">Nueva fecha de Fin de Pago<label
+                    class="obligatorio"> (*)</label>:</label>
+                </div>
+                <div class="col-sm-auto">
+                  <input id="input_fecha_fin_pago_nueva"
+                         class="form-control"
+                         ngbDatepicker
+                         #fechaFinNueva="ngbDatepicker"
+                         (click)="fechaFinNueva.toggle()"
+                         placeholder="dd/mm/aaaa"
+                         formControlName="fechaFinNueva">
+                  <control-messages [control]="formReprogramacion.get('fechaFinNueva')"></control-messages>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row row-section pull-right">
+          <button type="button" class="btn btn-primary pull-right separador-botones" (click)="registrar()"
+                  [disabled]="!formReprogramacion.valid">
+            Registrar
+          </button>
+          <button type="button" class="btn btn-secondary pull-right separador-botones" (click)="cerrar()">Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="reprograma">
+    <div class="col-12">
+      <div class="card-pane card-margin-top" *ngIf="!lsReprogramaciones.length">
+        <div class="text-center">
+          <b>El formulario no ha sido reprogramado con anterioridad.</b></div>
+      </div>
+      <div class="card-pane card-margin-top" *ngIf="lsReprogramaciones.length">
+        <h5>
+          HISTORIAL DE REPROGRAMACIONES
+        </h5>
+        <table class="table table-bordered table-sm table-striped">
+          <thead>
+          <tr>
+            <th class="align-middle">FECHA DE MODIFICACIÓN</th>
+            <th class="align-middle">FECHA DE INICIO DE PAGO</th>
+            <th class="align-middle">FECHA DE FIN DE PAGO</th>
+            <th class="align-middle">USUARIO</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let reprogramacion of lsReprogramaciones">
+            <td class="align-middle">
+              {{reprogramacion.fechaModif | date:'dd/MM/yyyy'}}
+            </td>
+            <td class="align-middle">
+              {{reprogramacion.fechaInicioPago | date:'dd/MM/yyyy'}}
+            </td>
+            <td class="align-middle">
+              {{reprogramacion.fechaFinPago | date:'dd/MM/yyyy'}}
+            </td>
+            <td class="align-middle">
+              {{reprogramacion.nombreUsuario}}
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,10 @@
+<div class="row bordered align-items-center">
+  <div class="col">
+    <h4 class="display-4">EDITAR ÍTEM</h4>
+  </div>
+</div>
+<bg-apartado-item [item]="form"
+                  (aceptado)="editar($event)"
+                  [tiposItem]="tiposItem"
+                  [poseeHijos]="poseeHijos">
+</bg-apartado-item>

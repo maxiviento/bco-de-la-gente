@@ -1,0 +1,110 @@
+<form [formGroup]="form" novalidate>
+  <h3>Filtros de búsqueda</h3>
+  <div class="card-pane">
+    <div class="row">
+      <div class="form-group col-md-3 col-lg-3 col-xl-3" [errorFeedback]="form.get('fechaDesde')">
+        <label for="txt_fecha_desde" class="col-form-label">Fecha desde</label>
+        <div class="input-group">
+          <input id="txt_fecha_desde" class="form-control" ngbDatepicker #fecha_desde="ngbDatepicker"
+                 (click)="fecha_desde.toggle()" placeholder="dd/mm/aaaa" formControlName="fechaDesde"/>
+        </div>
+        <control-messages [control]="form.get('fechaDesde')"></control-messages>
+      </div>
+      <div class="form-group col-md-3 col-lg-3 col-xl-3" [errorFeedback]="form.get('fechaHasta')">
+        <label for="txt_fecha_hasta" class="col-form-label">Fecha hasta</label>
+        <div class="input-group">
+          <input id="txt_fecha_hasta" class="form-control" ngbDatepicker #fecha_hasta="ngbDatepicker"
+                 (click)="fecha_hasta.toggle()" placeholder="dd/mm/aaaa" formControlName="fechaHasta"/>
+        </div>
+        <control-messages [control]="form.get('fechaHasta')"></control-messages>
+      </div>
+      <div class="form-group col-md-6 col-lg-6 col-xl-6" [errorFeedback]="form.get('linea')">
+        <label for="cb_linea" class="col-form-label">Línea de préstamo</label>
+        <ng-select id="cb_linea" [dataSource]="{list: CBLineas, name:'descripcion', id:'id'}" formControlName="linea"
+                   [selected]="form.get('linea').value" [clientMode]="true">
+        </ng-select>
+        <control-messages [control]="form.get('linea')"></control-messages>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-3 col-lg-3 col-xl-3" [errorFeedback]="form.get('nroPrestamo')">
+        <label for="txt_nro_prestamo" class="col-form-label">Nro préstamo</label>
+        <input type="text" class="form-control" id="txt_nro_prestamo" formControlName="nroPrestamo">
+        <control-messages [control]="form.get('nroPrestamo')"></control-messages>
+      </div>
+      <div class="form-group col-md-3 col-lg-3 col-xl-3" [errorFeedback]="form.get('nroFormulario')">
+        <label for="txt_nro_formulario" class="col-form-label">Nro formulario</label>
+        <input type="text" class="form-control" id="txt_nro_formulario" formControlName="nroFormulario">
+        <control-messages [control]="form.get('nroFormulario')"></control-messages>
+      </div>
+      <div class="form-group col-md-3 col-lg-3 col-xl-3" [errorFeedback]="form.get('estadoFormulario')">
+        <label for="cb_estados" class="col-form-label">Estado formulario</label>
+        <select id="cb_estados" class="form-control" formControlName="estadoFormulario">
+          <option value="null">
+            Seleccione
+          </option>
+          <option *ngFor="let item of comboEstados" [ngValue]="item.clave">
+            {{item.valor | uppercase}}
+          </option>
+        </select>
+        <control-messages [control]="form.get('estadoFormulario')"></control-messages>
+      </div>
+      <div class="form-group col-md-3 col-lg-3 col-xl-3" [errorFeedback]="form.get('elementoPago')">
+        <label for="cb_elemento_pago" class="col-form-label">Elemento de pago</label>
+        <select id="cb_elemento_pago" class="form-control" formControlName="elementoPago">
+          <option value="null">
+            Seleccione
+          </option>
+          <option *ngFor="let elemento of comboElementosPago" [ngValue]="elemento.id">
+            {{elemento.descripcion | uppercase}}
+          </option>
+        </select>
+        <control-messages [control]="form.get('elementoPago')"></control-messages>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-3 col-lg-3 col-xl-3">
+        <label for="cb_departamento">Departamento</label>
+        <div>
+          <ng-select id="cb_departamento" [dataSource]="{list: departamentos, name:'valor', id:'clave'}"
+                     formControlName="departamento" [selected]="form.get('departamento').value" [clientMode]="true">
+          </ng-select>
+        </div>
+      </div>
+      <div class="form-group col-md-3 col-lg-3 col-xl-3">
+        <label for="cb_localidad">Localidad</label>
+        <div>
+          <ng-select id="cb_localidad" [dataSource]="{list: localidades, name:'valor', id:'clave'}"
+                     formControlName="localidad" [selected]="form.get('localidad').value" [clientMode]="true">
+          </ng-select>
+        </div>
+      </div>
+      <div class="form-group col-md-3 col-lg-3 col-xl-3" [errorFeedback]="form.get('nroSticker')">
+        <label for="txt_nro_sticker">Nro sticker</label>
+        <input type="text" class="form-control" id="txt_nro_sticker" formControlName="nroSticker">
+        <control-messages [control]="form.get('nroSticker')"></control-messages>
+      </div>
+      <div class="form-group col-md-3 col-lg-3 col-xl-3 row alinear-espacio">
+        <div class="form-group col-md-6 col-lg-6 col-xl-6" [errorFeedback]="form.get('cuil')">
+          <label for="txt_cuil">Cuil</label>
+          <input type="text" class="form-control" id="txt_cuil" formControlName="cuil">
+          <control-messages [control]="form.get('cuil')"></control-messages>
+        </div>
+        <div class="form-group col-md-6 col-lg-6 col-xl-6 alinear-espacio" [errorFeedback]="form.get('dni')">
+          <label for="txt_dni">Dni</label>
+          <input type="text" class="form-control" id="txt_dni" formControlName="dni">
+          <control-messages [control]="form.get('dni')"></control-messages>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<div class="row row-section">
+  <div class="form-group col">
+    <button class="btn btn-primary pull-right" [disabled]="!this.form.valid" (click)="consultar()">
+      <i class="material-icons icono-accion alinear-texto-con-icono">search</i>
+      <span class="alinear-texto-con-icono">CONSULTAR</span>
+    </button>
+  </div>
+</div>

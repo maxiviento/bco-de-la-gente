@@ -1,0 +1,25 @@
+<form [formGroup]="form">
+  <div class="row">
+    <div class="col col-xl-6 col-lg-6" [errorFeedback]="form.get('idBanco')">
+      <label for="cb_banco" class="form-control-label">Banco<span *ngIf="bancoRequerido" class="obligatorio"> (*)</span>:</label>
+      <ng-select id="cb_banco"
+                 [dataSource]="{list: bancos, name:'valor', id:'clave'}"
+                 [selected]="form.get('idBanco')"
+                 formControlName="idBanco"
+                 [clientMode]="true">
+      </ng-select>
+      <control-messages [control]="form.get('idBanco')"></control-messages>
+    </div>
+
+    <div class="col col-xl-6 col-lg-6" [errorFeedback]="form.get('idSucursal')">
+      <label for="cb_sucursal" class="form-control-label">Sucursal<span *ngIf="sucursalRequerida" class="obligatorio"> (*)</span>:</label>
+      <ng-select id="cb_sucursal"
+                 [dataSource]="{list: sucursales, name:'valor', id:'clave'}"
+                 [selected]="form.get('idSucursal')"
+                 formControlName="idSucursal"
+                 [clientMode]="true">
+      </ng-select>
+      <control-messages [control]="form.get('idSucursal')"></control-messages>
+    </div>
+  </div>
+</form>

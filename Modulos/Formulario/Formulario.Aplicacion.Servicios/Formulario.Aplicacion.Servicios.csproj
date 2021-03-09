@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{86581976-7044-498B-98F9-DB94FF6258E4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Formulario.Aplicacion.Servicios</RootNamespace>
+    <AssemblyName>Formulario.Aplicacion.Servicios</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Testing|AnyCPU'">
+    <OutputPath>bin\Testing\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Utn|AnyCPU'">
+    <OutputPath>bin\Utn\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BancosServicio.cs" />
+    <Compile Include="DepartamentoServicio.cs" />
+    <Compile Include="DocumentoDescargaResultado.cs" />
+    <Compile Include="ProgramaServicio.cs" />
+    <Compile Include="DestinatarioServicio.cs" />
+    <Compile Include="DetalleInversionEmprendimientoServicio.cs" />
+    <Compile Include="DeudaEmprendimientoServicio.cs" />
+    <Compile Include="EmprendimientoServicio.cs" />
+    <Compile Include="EstadoFormularioServicio.cs" />
+    <Compile Include="IntegranteServicio.cs" />
+    <Compile Include="InversionEmprendimientoServicio.cs" />
+    <Compile Include="LocalidadServicio.cs" />
+    <Compile Include="MontoDisponibleServicio.cs" />
+    <Compile Include="MotivoRechazoServicio.cs" />
+    <Compile Include="OrigenFormularioServicio.cs" />
+    <Compile Include="CursoServicio.cs" />
+    <Compile Include="DestinoFondosServicio.cs" />
+    <Compile Include="FormularioServicio.cs" />
+    <Compile Include="LineaPrestamoServicio.cs" />
+    <Compile Include="PrestamoServicio.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TipoFinanciamientoServicio.cs" />
+    <Compile Include="TipoGarantiaServicio.cs" />
+    <Compile Include="TipoInteresServicio.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Infraestructura\Core.Cidi.AppComunicacion\Core.Cidi.AppComunicacion.csproj">
+      <Project>{F52B0B47-7F3B-4B4E-ADC4-1CB13DDEBE22}</Project>
+      <Name>Core.Cidi.AppComunicacion</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infraestructura\Core.Comun\Core.Comun.csproj">
+      <Project>{6D014EE5-0745-4A72-8EE0-07E134CF8F3C}</Project>
+      <Name>Core.Comun</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infraestructura\Core\Core.csproj">
+      <Project>{9A556492-41B7-4B2A-BB4C-DA4F2A08ADFD}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Configuracion\Configuracion.Aplicacion.Comandos\Configuracion.Aplicacion.Comandos.csproj">
+      <Project>{2DB370B4-7452-4D71-9986-33E34D9BBBAD}</Project>
+      <Name>Configuracion.Aplicacion.Comandos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Configuracion\Configuracion.Aplicacion.Consultas\Configuracion.Aplicacion.Consultas.csproj">
+      <Project>{BE557A78-EEF9-477B-A916-F0970439E3D6}</Project>
+      <Name>Configuracion.Aplicacion.Consultas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Configuracion\Configuracion.Dominio\Configuracion.Dominio.csproj">
+      <Project>{04DA0DA7-1BE6-40BB-8218-4ED9A3C5FC3A}</Project>
+      <Name>Configuracion.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\GrupoUnico\GrupoUnico.Aplicacion.Servicios\GrupoUnico.Aplicacion.Servicios.csproj">
+      <Project>{08F86EF5-CC0C-4E1B-B758-CF60BA9FE9A2}</Project>
+      <Name>GrupoUnico.Aplicacion.Servicios</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Identidad\Identidad.Dominio\Identidad.Dominio.csproj">
+      <Project>{d67f744c-5347-406d-b853-e7c5e3ad45da}</Project>
+      <Name>Identidad.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Soporte\Soporte.Aplicacion.Servicios\Soporte.Aplicacion.Servicios.csproj">
+      <Project>{3DCE8F3B-8137-4E50-915D-CD5210BB2BEC}</Project>
+      <Name>Soporte.Aplicacion.Servicios</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Soporte\Soporte.Dominio\Soporte.Dominio.csproj">
+      <Project>{EF479E97-DF28-47F9-8265-6CCD16529F4E}</Project>
+      <Name>Soporte.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Formulario.Aplicacion.Comandos\Formulario.Aplicacion.Comandos.csproj">
+      <Project>{9C865DDB-84FB-4F20-9333-0E7A1B2ADFA8}</Project>
+      <Name>Formulario.Aplicacion.Comandos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Formulario.Aplicacion.Consultas\Formulario.Aplicacion.Consultas.csproj">
+      <Project>{024F0ED3-0FD3-4D9D-8605-E6E2C5DEC4FD}</Project>
+      <Name>Formulario.Aplicacion.Consultas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Formulario.Dominio\Formulario.Dominio.csproj">
+      <Project>{E01AC2D8-F1DE-41DB-9C11-2FB98A0F60E6}</Project>
+      <Name>Formulario.Dominio</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

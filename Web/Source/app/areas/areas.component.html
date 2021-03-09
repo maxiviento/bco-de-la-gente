@@ -1,0 +1,76 @@
+<div class="row bordered align-items-center">
+  <div class="col-xl-10 col-lg-10">
+    <h1 class="display-4">ÁREAS</h1>
+  </div>
+  <div class="col-xl-2 col-lg-2">
+    <a [routerLink]="['/nueva-area']" class="btn btn-warning pull-right">NUEVA</a>
+  </div>
+</div>
+<form [formGroup]="form" novalidate>
+  <div class="card-pane">
+    <div class="row">
+      <div class="form-group col-md-5 col-lg-5 col-xl-5" [errorFeedback]="form.get('nombre')">
+        <label for="txt_nombre_area" class="form-control-label">Nombre</label>
+        <input type="text" id="txt_nombre_area" formControlName="nombre" class="form-control"
+          [ngbTypeahead]="searchArea" [inputFormatter]="showArea" [resultFormatter]="showArea">
+        <control-messages [control]="form.get('nombre')"></control-messages>
+      </div>
+      <div class="form-group only-form-check col-md-7 col-lg-7 col-xl-7">
+        <div class="form-check">
+          <label class="custom-control check-bge-control">
+            <input type="checkbox" class="check-bge" formControlName="incluirDadosDeBaja">
+            <span class="check-marcado"></span>
+            <span class="custom-control-description">Incluir dados de baja</span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row row-section">
+    <div class="form-group col">
+      <button class="btn btn-primary pull-right alinear" (click)="consultarAreas(0)" [disabled]="!form.valid">
+        <i class="material-icons icono-accion alinear-texto-con-icono">search</i>
+        <span class="alinear-texto-con-icono">CONSULTAR</span>
+      </button>
+    </div>
+  </div>
+</form>
+
+<h3 class="display-6">Resultados</h3>
+
+<div [hidden]="areas.length" class="card-pane">
+  No hay resultados para mostrar.
+</div>
+
+<div class="card-pane" [hidden]="!areas.length">
+  <table class="table table-bordered table-striped table-sm">
+    <thead>
+      <tr>
+        <th class="align-middle">NOMBRE</th>
+        <th class="align-middle" *ngIf="consulta.incluirDadosDeBaja">FECHA DE BAJA</th>
+        <th class="align-middle acciones">ACCIONES</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let area of areas">
+        <td class="align-middle">{{area.nombre}}</td>
+        <td class="align-middle" *ngIf="consulta.incluirDadosDeBaja">{{(area.estaDadaDeBaja() ? area.fechaUltimaModificacion : null) | date: 'dd/MM/yyyy'}}</td>
+        <td class="align-middle w-15">
+          <button type="button" class="btn btn-link" [routerLink]="['/areas',area.id]" ngbTooltip="Ver">
+            <i class="material-icons icono-accion">zoom_in</i>
+          </button>
+          <button type="button" class="btn btn-link" [routerLink]="['/edicion-area',area.id]"
+                  [disabled]=area.estaDadaDeBaja() ngbTooltip="Editar">
+            <i class="material-icons icono-accion">mode_edit</i>
+          </button>
+          <button type="button" class="btn btn-link" [routerLink]="['/eliminacion-area',area.id]"
+                  [disabled]=area.estaDadaDeBaja() ngbTooltip="Dar de baja">
+            <i class="material-icons icono-accion">delete</i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <paginacion [pagina]="pagina | async" (paginaModificada)="consultarAreas($event)">
+  </paginacion>
+</div>

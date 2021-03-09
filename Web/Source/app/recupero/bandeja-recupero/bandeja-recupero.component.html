@@ -1,0 +1,106 @@
+<div class="row bordered align-items-center">
+  <div class="col">
+    <h1 class="display-4">GESTIÓN DE RECUPERO</h1>
+  </div>
+  <div class="col-md-4 col-lg-4 col-xl-4">
+    <bg-seleccion-archivo [esGrilla]="false" [mostrarMensajeEnModal]="true" [accept]="'.dat'" [texto]="'IMPORTAR CUOTA'"
+      [buttonClass]="'btn btn-warning pull-right'" (archivoSeleccionado)="archivoRecuperoSeleccionado($event)">
+    </bg-seleccion-archivo>
+  </div>
+</div>
+
+<form [formGroup]="form" novalidate>
+  <h3>Filtros de búsqueda
+    <button class="signo-ayuda" ngbTooltip="Los campos marcados con (*) son obligatorios."> ?</button>
+  </h3>
+  <div class="card-pane">
+    <div class="spacer"></div>
+    <!-- R O W -->
+    <div class="row">
+      <!-- C O L 1/2 -->
+      <div class="col-md-4 col-lg-4 col-xl-4">
+        <div class="form-group" [errorFeedback]="form.get('fechaDesde')">
+          <label for="txt_fecha_desde">Fecha desde:
+            <span class="obligatorio"> (*)</span></label>
+          <input id="txt_fecha_desde" class="form-control " ngbDatepicker #fecha_desde="ngbDatepicker"
+            (click)="fecha_desde.toggle()" placeholder="dd/mm/aaaa" formControlName="fechaDesde" />
+          <control-messages [control]="form.get('fechaDesde')"></control-messages>
+        </div>
+      </div>
+
+      <div class="form-group row col-md-4 col-lg-4 col-xl-4" [errorFeedback]="form.get('fechaHasta')">
+        <label for="txt_fecha_hasta">Fecha hasta:
+          <span class="obligatorio"> (*)</span></label>
+        <input id="txt_fecha_hasta" class="form-control" ngbDatepicker #fecha_hasta="ngbDatepicker"
+          (click)="fecha_hasta.toggle()" placeholder="dd/mm/aaaa" formControlName="fechaHasta" />
+        <control-messages [control]="form.get('fechaHasta')"></control-messages>
+      </div>
+
+      <div class="col-md-4 col-lg-4 col-xl-4">
+        <label for="cb_tipo_entidad">Tipo entidad: </label>
+        <ng-select id="cb_tipo_entidad" [dataSource]="{list: CBTipoEntidad, name:'nombre', id:'id'}"
+          formControlName="idTipoEntidad" [selected]="form.get('idTipoEntidad').value" [clientMode]="true">
+        </ng-select>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row row-section">
+    <div class="form-group col">
+      <button class="btn btn-primary pull-right" (click)="consultar()">
+        <i class="material-icons icono-accion alinear-texto-con-icono">search</i>
+        <span class="alinear-texto-con-icono">CONSULTAR</span>
+      </button>
+    </div>
+  </div>
+</form>
+
+<div [hidden]="bandejaResultados.length" class="card-pane">
+  No hay resultados para mostrar.
+</div>
+
+<div [hidden]="!bandejaResultados.length" class="card-pane">
+  <div class="row">
+    <div class="col-xl-6 col-lg-6 col-md-6">
+      <h3>Lista/s de archivos de recupero</h3>
+    </div>
+  </div>
+
+  <table class="table table-sm table-striped table-bordered">
+    <thead>
+      <tr>
+
+        <th class="align-middle">FECHA RECEPCIÓN</th>
+        <th class="align-middle">ENTIDAD</th>
+        <th class="align-middle">NOMBRE ARCHIVO</th>
+        <th class="align-middle">CANT TOTAL REGISTROS</th>
+        <th class="align-middle">CANT CUOTAS PROC</th>
+        <th class="align-middle">CANT CUOTAS ESPEC</th>
+        <th class="align-middle">CANT CUOTAS INCONS</th>
+        <th class="align-middle">VER</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let resultado of bandejaResultados">
+        <td class="align-middle">{{resultado.fechaRecepcion | date:'dd/MM/yyyy'}}</td>
+        <td class="align-middle">{{resultado.entidad}}</td>
+        <td class="align-middle">{{resultado.nombreArchivo}}</td>
+        <td class="align-middle">{{resultado.cantTotal}}</td>
+        <td class="align-middle">{{resultado.cantProc}}</td>
+        <td class="align-middle">{{resultado.cantEspec}}</td>
+        <td class="align-middle">{{resultado.cantIncons}}</td>
+
+        <td>
+          <button type="button" class="btn btn-link boton-grilla" ngbTooltip="Ver" (click)="ver(resultado.idCabecera)">
+            <i class="material-icons icono-accion">zoom_in</i>
+          </button>
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+
+  <paginacion [pagina]="pagina | async" (paginaModificada)="consultar($event)">
+  </paginacion>
+</div>

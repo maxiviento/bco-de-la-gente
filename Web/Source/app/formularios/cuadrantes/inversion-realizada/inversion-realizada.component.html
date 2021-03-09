@@ -1,0 +1,24 @@
+<div id="row_titulo" class="row row-title line-divider-bottom">
+  <div class="col">
+    <strong>
+      <h4 class="card-title w-75">INVERSIÓN REALIZADA</h4>
+    </strong>
+    <h6>Activo destinado al proyecto que posee actualmente el microemprendimiento</h6>
+  </div>
+</div>
+
+<!--Mensaje de alerta por falta de emprendimiento-->
+<bg-apartado-alerta-emprendimiento-requerido
+  [emprendimiento]="emprendimiento"
+  [marginTop]="true"
+></bg-apartado-alerta-emprendimiento-requerido>
+
+<bg-apartado-inversiones-emprendimiento
+  [inversionesRealizadasInput]="inversionesRealizadas"
+  (inversionesSalida)="completarLista($event)"
+  (detallesParaBorrar)="completarDetallesParaBorra($event)"
+  [editable]="editable"
+  [descripcionTotalResultado] = "'Monto total de inversión realizada:'">
+</bg-apartado-inversiones-emprendimiento>
+
+

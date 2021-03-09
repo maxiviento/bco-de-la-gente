@@ -1,0 +1,38 @@
+.size-sm {
+  font-size: 85%;
+}
+
+.first-nested-table {
+  margin-top: 10px;
+}
+
+.table {
+  @extend .table;
+  margin-bottom: 10px !important;
+}
+
+.w-45 {
+  width: 45%;
+}
+
+.primerPadre {
+  margin-bottom: 10px !important;
+}
+
+.requisito-linea {
+  background-color: #aaaaaa;
+  cursor: pointer;
+}
+
+.sin-capitalizar{
+  text-transform: none;
+}
+
+.boton-nueva-version{
+  margin-top: 31px;
+}
+
+.aviso-nueva-version{
+  margin-top: 25px;
+  border-radius: 8px;
+}

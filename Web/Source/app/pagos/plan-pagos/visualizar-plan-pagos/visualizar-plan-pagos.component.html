@@ -1,0 +1,20 @@
+<div class="row align-items-center line-divider-bottom">
+  <div class="col ml-auto">
+    <h3>Ver plan de cuotas</h3>
+  </div>
+</div>
+
+<div *ngIf="sinDetalles" class="col card-pane card-margin-top">
+  <h6>No tiene un plan de cuotas generado.</h6>
+</div>
+
+<div [hidden]="sinDetalles" class="card-pane card-margin-top">
+  <small>La cantidad de cuotas y del préstamo son:</small>
+  <!--Tabla de cuotas-->
+  <bg-grilla-plan-pagos></bg-grilla-plan-pagos>
+</div>
+<div class="row" style="margin-top: 15px;">
+  <div class="col">
+    <button type="button" class="btn btn-secondary pull-right" (click)="volver()">VOLVER</button>
+  </div>
+</div>

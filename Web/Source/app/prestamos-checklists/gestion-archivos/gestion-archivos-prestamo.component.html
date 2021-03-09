@@ -1,0 +1,103 @@
+<div class="row bordered align-items-center">
+  <div class="col">
+    <h1 class="display-4">GESTIÓN DE ARCHIVOS</h1>
+  </div>
+</div>
+
+<form [formGroup]="form" novalidate>
+  <div class="card-pane" *ngIf="integrantesPrestamo.length">
+    <table class="tabla-integrantes">
+      <th class="text-left">DATOS DEL/LOS SOLICITANTE/S</th>
+      <tr>
+        <th class="text-center row-title-table">Apellido y Nombre</th>
+        <th class="text-center row-title-table">Edad</th>
+        <th class="text-center row-title-table">CUIL/DNI</th>
+        <th class="text-center row-title-table">Número de Formulario</th>
+      </tr>
+      <tr *ngFor="let integrante of integrantesPrestamo">
+        <td class="text-center row-table"><strong>{{integrante.apellidoNombre}}</strong></td>
+        <td class="text-center row-table"><strong>{{integrante.fechaNacimiento ?
+          calcularEdad(integrante.fechaNacimiento) :'-'}}</strong></td>
+        <td class="text-center row-table"><strong>{{integrante.cuil ? integrante.cuil : 'S/A'}}</strong></td>
+        <td class="text-center row-table"><strong>{{integrante.nroFormulario}}</strong></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card-pane">
+    <table class="tabla-integrantes">
+      <th class="text-left">DATOS DEL PRÉSTAMO</th>
+      <tr>
+        <th class="text-center row-title-table">Línea Micro-Préstamo</th>
+        <th class="text-center row-title-table">N° Préstamo</th>
+        <th class="text-center row-title-table">N° Sticker</th>
+        <th class="text-center row-title-table">Estado Préstamo</th>
+        <th class="text-center row-title-table">Origen</th>
+      </tr>
+      <tr>
+        <td class="text-center row-table"><strong>{{encabezadoPrestamo.nombreLinea}}</strong></td>
+        <td class="text-center row-table"><strong>{{encabezadoPrestamo.nroPrestamo}}</strong></td>
+        <td class="text-center row-table"><strong>{{encabezadoPrestamo.nroSticker ? encabezadoPrestamo.nroSticker : 'S/A'}}</strong></td>
+        <td class="text-center row-table"><strong>{{encabezadoPrestamo.nombreEstadoPrestamo}}</strong></td>
+        <td class="text-center row-table"><strong>{{encabezadoPrestamo.nombreOrigenPrestamo}}</strong></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card-pane" *ngIf="requisitosPrestamo.length">
+    <table class="table table-active">
+        <tr *ngFor="let etapa of etapasPrestamo;">
+          <div *ngIf="etapa.gestionaArchivos">
+          <table class="table">
+            <tr>
+              <th style="border-top: none !important;" class="text-left w-35">{{etapa.descripcion}}</th>
+            </tr>
+
+            <tr *ngFor="let requisito of requisitosPrestamo;" class="table-row">
+              <div
+                *ngIf="etapa.id == requisito.idEtapa && (gestionaArchivos(requisito) || (!requisito.itemPadre && requisito.gestionaArchivo))">
+                <td class="text-left w-35" style="border-top: none !important;">
+                  <div *ngIf="!requisito.itemPadre && requisito.gestionaArchivo">
+                    <small>
+                      <strong class="item-padre">
+                        {{requisito.nombreItem}}
+                      </strong>
+                    </small>
+                  </div>
+                  <div *ngIf="gestionaArchivos(requisito)">
+                    <div *ngIf="!requisito.urlRecurso && requisito.itemPadre">
+                      <small>
+                        <strong>
+                          {{requisito.nombreItem}}
+                        </strong>
+                      </small>
+                    </div>
+                    <div *ngIf="requisito.urlRecurso">
+                      <small>
+                        <a href="{{requisito.urlRecurso}}"
+                           target="_blank">
+                          {{requisito.nombreItem}}</a>
+                      </small>
+                    </div>
+                  </div>
+                </td>
+                <td style="border-top: none !important;">
+                  <button *ngIf="gestionaArchivos(requisito)"
+                          type="button"
+                          class="btn btn-link btn_archivo"
+                          ngbTooltip="Gestionar archivos"
+                          (click)="abrirModalArchivo(requisito)">
+                    <i class="material-icons">attach_file</i>
+                  </button>
+                </td>
+              </div>
+            </tr>
+          </table>
+          </div>
+        </tr>
+    </table>
+  </div>
+  <button type="button" class="btn btn-secondary pull-right"
+          (click)="cancelar()">Volver
+  </button>
+</form>

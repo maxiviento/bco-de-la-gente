@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9C865DDB-84FB-4F20-9333-0E7A1B2ADFA8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Formulario.Aplicacion.Comandos</RootNamespace>
+    <AssemblyName>Formulario.Aplicacion.Comandos</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Testing|AnyCPU'">
+    <OutputPath>bin\Testing\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Utn|AnyCPU'">
+    <OutputPath>bin\Utn\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActualizarDatosDeContactoComando.cs" />
+    <Compile Include="ActualizarDatosPrestamoComando.cs" />
+    <Compile Include="ActualizarFechaPagoFormularioComando.cs" />
+    <Compile Include="ActualizarPrecioVentaComando.cs" />
+    <Compile Include="IdsDetalleLinea.cs" />
+    <Compile Include="ActualizaSucursalComando.cs" />
+    <Compile Include="BajaComando.cs" />
+    <Compile Include="CargarNumerosControlInternoComando.cs" />
+    <Compile Include="CondicionesSolicitadasComando.cs" />
+    <Compile Include="ConfiguracionChecklistComando.cs" />
+    <Compile Include="CostoPrecioVentaComando.cs" />
+    <Compile Include="CursoComando.cs" />
+    <Compile Include="DatosIntegranteComando.cs" />
+    <Compile Include="DatosPersonaComando.cs" />
+    <Compile Include="DestinoFondosComando.cs" />
+    <Compile Include="DetalleLineaParaFormularioComando.cs" />
+    <Compile Include="DetalleLineaPrestamoComando.cs" />
+    <Compile Include="EstimaClientesComando.cs" />
+    <Compile Include="GuardarMercadoComercializacionComando.cs" />
+    <Compile Include="FormaPagoItem.cs" />
+    <Compile Include="ItemMercadoComercializacionComando.cs" />
+    <Compile Include="ModificacionOngLineaComando.cs" />
+    <Compile Include="ModificarLineaComando.cs" />
+    <Compile Include="ModificarMontoDisponibleComando.cs" />
+    <Compile Include="OngLinea.cs" />
+    <Compile Include="OpcionDestinoFondosComando.cs" />
+    <Compile Include="OrganizacionEmprendimientoComando.cs" />
+    <Compile Include="PatrimonioSolicitanteComando.cs" />
+    <Compile Include="NumeroCajaComando.cs" />
+    <Compile Include="PrestamoComando.cs" />
+    <Compile Include="OrdenFormularioComando.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RechazarFormularioComando.cs" />
+    <Compile Include="RechazarPrestamoComando.cs" />
+    <Compile Include="RegistrarDestinosFondosComando.cs" />
+    <Compile Include="RegistrarDetalleLineaComando.cs" />
+    <Compile Include="EmprendimientoComando.cs" />
+    <Compile Include="RegistrarDeudaEmprendimientoComando.cs" />
+    <Compile Include="ConsultarGrupoFamiliarComando.cs" />
+    <Compile Include="RegistrarFormularioComando.cs" />
+    <Compile Include="RegistrarInversionRealizadaComando.cs" />
+    <Compile Include="RegistrarIngresosGrupoFamiliarComando.cs" />
+    <Compile Include="RegistrarItegranteSocioComando.cs" />
+    <Compile Include="RegistrarLineaComando.cs" />
+    <Compile Include="RegistrarMontoDisponibleComando.cs" />
+    <Compile Include="RegistrarNecesidadInversionComando.cs" />
+    <Compile Include="RegistrarOngComando.cs" />
+    <Compile Include="RegistrarOrdenFormularioComando.cs" />
+    <Compile Include="RegistrarReactivacionPrestamoComando.cs" />
+    <Compile Include="RegistrarRechazoReactivacionPrestamoComando.cs" />
+    <Compile Include="RegistrarRequisitoComando.cs" />
+    <Compile Include="RegistrarSexoDestinatarioComando.cs" />
+    <Compile Include="RegistrarTipoFinanciamientoComando.cs" />
+    <Compile Include="RegistrarTipoGarantiaComando.cs" />
+    <Compile Include="RegistrarTipoInteresComando.cs" />
+    <Compile Include="RequisitoChecklistComando.cs" />
+    <Compile Include="RequisitoComando.cs" />
+    <Compile Include="SeleccionItemsComando.cs" />
+    <Compile Include="SolicitudCursoComando.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Infraestructura\Core.Comun\Core.Comun.csproj">
+      <Project>{6D014EE5-0745-4A72-8EE0-07E134CF8F3C}</Project>
+      <Name>Core.Comun</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infraestructura\Core\Core.csproj">
+      <Project>{9A556492-41B7-4B2A-BB4C-DA4F2A08ADFD}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Configuracion\Configuracion.Aplicacion.Comandos\Configuracion.Aplicacion.Comandos.csproj">
+      <Project>{2DB370B4-7452-4D71-9986-33E34D9BBBAD}</Project>
+      <Name>Configuracion.Aplicacion.Comandos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Formulario.Aplicacion.Consultas\Formulario.Aplicacion.Consultas.csproj">
+      <Project>{024F0ED3-0FD3-4D9D-8605-E6E2C5DEC4FD}</Project>
+      <Name>Formulario.Aplicacion.Consultas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Formulario.Dominio\Formulario.Dominio.csproj">
+      <Project>{E01AC2D8-F1DE-41DB-9C11-2FB98A0F60E6}</Project>
+      <Name>Formulario.Dominio</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

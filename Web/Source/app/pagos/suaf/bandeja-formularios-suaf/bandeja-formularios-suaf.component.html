@@ -1,0 +1,232 @@
+<form *ngIf="!esVerLote" [formGroup]="form" novalidate>
+  <h3>Filtros de búsqueda
+    <button class="signo-ayuda" ngbTooltip="Los campos marcados con (*) son obligatorios."> ?</button>
+  </h3>
+  <div class="card-pane">
+    <div class="spacer"></div>
+    <!-- R O W -->
+    <div class="row">
+      <!-- C O L 1/2 -->
+      <div class="col-6">
+        <div class="form-group row" [errorFeedback]="form.get('fechaDesde')">
+          <label for="txt_fecha_desde" class="col-md-6 col-lg-6 col-xl-6 col-form-label">Fecha desde
+            <span *ngIf="!componentePersona?.documentoIngresado()" class="obligatorio"> (*)</span>:</label>
+          <div class="col-md-6 col-lg-6 col-xl-6">
+            <input id="txt_fecha_desde" class="form-control " ngbDatepicker #fecha_desde="ngbDatepicker"
+              (click)="fecha_desde.toggle()" placeholder="dd/mm/aaaa" formControlName="fechaDesde" />
+            <control-messages [control]="form.get('fechaDesde')"></control-messages>
+          </div>
+        </div>
+
+        <div class="form-group row" [errorFeedback]="form.get('fechaHasta')">
+          <label for="txt_fecha_hasta" class="col-md-6 col-lg-6 col-xl-6 col-form-label">Fecha hasta
+            <span *ngIf="!componentePersona?.documentoIngresado()" class="obligatorio"> (*)</span>:</label>
+          <div class="col-md-6 col-lg-6 col-xl-6">
+            <input id="txt_fecha_hasta" class="form-control" ngbDatepicker #fecha_hasta="ngbDatepicker"
+              (click)="fecha_hasta.toggle()" placeholder="dd/mm/aaaa" formControlName="fechaHasta" />
+            <control-messages [control]="form.get('fechaHasta')"></control-messages>
+          </div>
+        </div>
+
+        <div class="form-group row" [errorFeedback]="form.get('devengado')">
+          <label for="txt_devengado" class="col-md-5 col-lg-5 col-xl-5 col-form-label">Devengado:</label>
+          <div class=" col-md-7 col-lg-7 col-xl-7">
+            <select id="txt_devengado" class="form-control" formControlName="devengado">
+              <option value="null">
+                Ambos
+              </option>
+              <option *ngFor="let item of CBDevengado" [ngValue]="item.clave">
+                {{item.valor | uppercase}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="cb_linea" class="col-md-3 col-lg-3 col-xl-3 col-form-label">Linea:</label>
+          <div class="col-xl-9 col-lg-9 col-md-9" style="width: 100px;">
+            <ng-select id="cb_linea" [dataSource]="{list: CBLinea, name:'descripcion', id:'id'}"
+              formControlName="idLinea" [selected]="form.get('idLinea').value" [clientMode]="true">
+            </ng-select>
+          </div>
+        </div>
+      </div>
+      <div class="verticalLine"></div>
+      <!-- C O L 2/2 -->
+      <div class="col-md-5 col-lg-5 col-xl-5">
+        <div class="form-group row">
+          <label for="cb_origen" class="col-md-5 col-lg-5 col-xl-5 col-form-label">Origen:</label>
+          <div class=" col-md-7 col-lg-7 col-xl-7">
+            <select id="cb_origen" class="form-control" formControlName="origen">
+              <option value="null">
+                Seleccione
+              </option>
+              <option *ngFor="let item of CBOrigen" [ngValue]="item.clave">
+                {{item.valor | uppercase}}
+              </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group row" [errorFeedback]="form.get('nroPrestamoChecklist')">
+          <label for="txt_nro_prestamo" class="col-md-5 col-lg-5 col-xl-5 col-form-label">Número préstamo:</label>
+          <div class=" col-md-7 col-lg-7 col-xl-7">
+            <input type="text" class="form-control" id="txt_nro_prestamo" formControlName="nroPrestamoChecklist">
+            <control-messages [control]="form.get('nroPrestamoChecklist')"></control-messages>
+          </div>
+        </div>
+
+        <div class="form-group row" [errorFeedback]="form.get('nroFormulario')">
+          <label for="txt_nro_formulario" class="col-md-5 col-lg-5 col-xl-5 col-form-label">Número formulario:</label>
+          <div class=" col-md-7 col-lg-7 col-xl-7">
+            <input type="text" class="form-control" id="txt_nro_formulario" formControlName="nroFormulario">
+            <control-messages [control]="form.get('nroFormulario')"></control-messages>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="cb_lote" class="col-md-5 col-lg-5 col-xl-5">Lote:</label>
+          <ng-select id="cb_lote" class="col-md-7 col-lg-7 col-xl-7"
+            [dataSource]="{list: CBLote, name:'nombre', id:'id'}" formControlName="idLoteSuaf"
+            [selected]="form.get('idLoteSuaf').value" [clientMode]="true">
+          </ng-select>
+        </div>
+
+      </div>
+    </div>
+
+    <filtro-domicilio (departamentosSeleccionados)="guardarDepartamentosSeleccionados($event)"
+      (localidadesSeleccionadas)="guardarLocalidadesSeleccionadas($event)"></filtro-domicilio>
+    <bg-busqueda-por-persona></bg-busqueda-por-persona>
+
+  </div>
+  <div class="row row-section">
+    <div class="form-group col">
+      <button class="btn btn-primary pull-right" [disabled]="!componentePersona?.formValid() || validarConsulta()"
+        (click)="consultar(true)">
+        <i class="material-icons alinear-texto-con-icono icono-accion">search</i>
+        <span class="alinear-texto-con-icono">CONSULTAR</span>
+      </button>
+    </div>
+  </div>
+</form>
+
+<div *ngIf="!(bandejaResultados.length)" class="card-pane">
+  No hay resultados para mostrar.
+</div>
+
+<div [hidden]="!bandejaResultados.length" class="card-pane">
+  <div class="row">
+    <div class="col-xl-9 col-lg-9 col-md-9">
+      <h3>Lista/s de formularios</h3>
+    </div>
+    <div *ngIf="esArmarLote" class="col-xl-3 col-lg-3 col-md-3">
+
+      <div class="form-group">
+        <label for="checkbox-todos" class="custom-control check-bge-control">
+          <input id="checkbox-todos" type="checkbox" class="check-bge" formControlName="incluirBajas"
+            (click)="clickEnSeleccionarTodos($event.target.checked)" [checked]="seleccionarTodosCheckeado">
+          <span class="check-marcado"></span>
+          <span class="custom-control-description">Seleccionar todos</span>
+        </label>
+      </div>
+
+    </div>
+  </div>
+  <table *ngIf="formFormulariosSuaf" class="table table-sm table-bordered table-striped">
+    <thead>
+      <tr>
+        <th class="align-middle">LINEA</th>
+        <th class="align-middle">DEPARTAMENTO</th>
+        <th class="align-middle">LOCALIDAD</th>
+        <th class="align-middle">SOLICITANTE</th>
+        <th class="align-middle">N° PRÉSTAMO</th>
+        <th class="align-middle">N° FORMULARIO</th>
+        <th *ngIf="esCargaManual || esVerLote" class="align-middle">DEVENGADO</th>
+        <th *ngIf="esCargaManual || esVerLote" class="align-middle">FECHA SUAF</th>
+        <th *ngIf="esArmarLote" class="align-middle">SELECCIÓN
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let resultado of formulariosFormArray.controls" [formGroup]="resultado">
+        <td class="align-middle">{{resultado.get('linea').value}}</td>
+        <td class="align-middle">{{resultado.get('departamento').value}}</td>
+        <td class="align-middle">{{resultado.get('localidad').value}}</td>
+        <td class="align-middle">{{resultado.get('apellidoYNombre').value}}</td>
+        <td class="align-middle">{{resultado.get('nroPrestamo').value}}</td>
+        <td class="align-middle">{{resultado.get('nroFormulario').value}}</td>
+        <td class="align-middle" *ngIf="esVerLote">{{resultado.get('devengado').value}}</td>
+        <td class="align-middle" *ngIf="esVerLote">{{resultado.get('fechaDevengado').value | date:'dd/MM/yyyy'}}</td>
+        <td *ngIf="resultado.get('devengado').value && esCargaManual" class="align-middle">
+          {{resultado.get('devengado').value}}
+
+          <button type="button" class="btn btn-link boton-grilla" ngbTooltip="Editar devengado"
+            (click)="editarDevengado(resultado)">
+            <i class="material-icons">edit</i>
+          </button>
+
+          <button type="button" class="btn btn-link boton-grilla" ngbTooltip="Borrar devengado"
+            (click)="borrarDevengado(resultado)">
+            <i class="material-icons">delete_forever</i>
+          </button>
+        </td>
+        <td *ngIf="!resultado.get('devengado').value && esCargaManual" class="align-middle">
+          <input type="text" class="form-control" id="txt_devangado" formControlName="devengadoNuevo" maxlength="11"
+            (change)="cambioDevengado(resultado)" (keyup)="edicionDevengado(resultado.get('devengadoNuevo'))">
+        </td>
+        <td *ngIf="esCargaManual" class="align-middle">
+          {{resultado.get('fechaDevengado').value | date:'dd/MM/yyyy'}}
+        </td>
+
+        <td *ngIf="esArmarLote" class="align-middle">
+          <button type="button" class="btn btn-link" ngbTooltip="Añadir"
+            *ngIf="!estaSeleccionado(resultado.get('idPrestamo').value)"
+            (click)="agregarPrestamoParaAgrupar(resultado.get('nroPrestamo').value)">
+            <i class="material-icons icono-accion">note_add</i>
+          </button>
+
+          <button type="button" class="btn btn-link" ngbTooltip="Quitar" #toolTipQuitar="ngbTooltip"
+            *ngIf="estaSeleccionado(resultado.get('idPrestamo').value)"
+            (click)="quitarFormulariosParaAgrupar(resultado.get('idPrestamo').value, toolTipQuitar)">
+            <i class="material-icons icono-accion">clear</i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="esArmarLote" class="row" id="cantidades">
+    Cantidad de préstamos seleccionados: {{cantPrestamosActual}}
+    <br>
+    Cantidad de formularios seleccionados: {{cantFormulariosActual}}
+  </div>
+
+  <paginacion [pagina]="pagina | async" (paginaModificada)="consultar(false, $event)">
+  </paginacion>
+
+  <div *ngIf="esArmarLote">
+    <form [formGroup]="formNombreLote" novalidate>
+      <div class="form-group col-md-6 col-lg-6 col-xl-6" [errorFeedback]="formNombreLote.get('nombre')">
+        <label for="txt_nombre_lote">Nombre lote <span class="obligatorio">(*)</span>:</label>
+        <input type="text" class="form-control" id="txt_nombre_lote" formControlName="nombre" >
+        <control-messages [control]="formNombreLote.get('nombre')"></control-messages>
+      </div>
+    </form>
+    <div class="row row-section">
+      <div class="form-group col">
+        <button class="btn btn-primary pull-right"
+          [disabled]="!formNombreLote.valid || !idsPrestamosSeleccionados.length" (click)="generarLote()">GENERAR LOTE
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="row_acciones" class="row">
+  <div class="col">
+    <div class="pull-right">
+      <a [routerLink]="['/bandeja-suaf']" class="btn btn-secondary">VOLVER
+      </a>
+    </div>
+  </div>
+</div>

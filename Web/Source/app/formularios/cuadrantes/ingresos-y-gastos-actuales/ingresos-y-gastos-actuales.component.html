@@ -1,0 +1,87 @@
+<div id="row_titulo" class="row row-title line-divider-bottom">
+  <div class="col">
+    <strong>
+      <h4 class="card-title w-75">INGRESOS Y GASTOS ACTUALES</h4>
+    </strong>
+  </div>
+</div>
+
+<div class="card-pane card-margin-top">
+
+  <div class="row">
+    <div class="col-6">
+      <h4 class="table-title">INGRESOS (Ingresos del grupo familiar)</h4>
+      <table class="table" id="tabla-ingresos">
+        <thead>
+        <th class="align-middle">CONCEPTO</th>
+        <th class="align-middle">MONTO</th>
+        </thead>
+        <tbody>
+        <tr *ngFor="let ingreso of ingresosGrupo">
+          <td class="align-middle">{{ingreso.descripcion}}</td>
+          <td>
+            <label>{{ingreso.valor | moneda}}</label>
+          </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <td class="tfooter-total">TOTAL</td>
+        <td class="tfooter-total">{{totalIngresos | moneda}}</td>
+        </tfoot>
+      </table>
+      <label class="small">*Los datos que usted visualiza en esta pestaña son datos que se obtienen de la información
+        que usted y su grupo familiar tienen registrado en el gobierno de la provincia de córdoba</label>
+    </div>
+    <div class="col-6">
+      <h4 class="table-title">GASTOS (Consumo familiar)</h4>
+      <table class="table" id="tabla-gastos">
+        <thead>
+        <th class="align-middle">CONCEPTO</th>
+        <th class="align-middle">MONTO</th>
+        </thead>
+        <tbody>
+        <tr *ngFor="let gasto of gastosGrupo">
+          <td class="align-middle">{{gasto.concepto}}</td>
+          <td>
+            <label>{{gasto.monto | moneda}}</label>
+          </td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <td class="tfooter-total">TOTAL</td>
+        <td class="tfooter-total">{{totalGastos | moneda}}</td>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+
+  <div class="row row-section">
+    <div class="col-md-3 col-lg-2 col-xl-2">
+      <label class="resumen-final pull-right">Capacidad de ahorro mensual:</label>
+    </div>
+    <div class="col-1 text-center">
+      <i class="material-icons operador-numerico">drag_handle</i>
+    </div>
+    <div class="col-xl-2 col-lg-2 col-md-3 total-label">
+      <label for="p_total_ingresos">Total ingresos</label>
+      <p id="p_total_ingresos" class="p-total">
+        {{totalIngresos | moneda}}</p>
+    </div>
+    <div class="col-1 text-center">
+      <i class="material-icons operador-numerico">remove</i>
+    </div>
+    <div class="col-xl-2 col-lg-2 col-md-3 total-label">
+      <label for="p_total_gastos">Total gastos</label>
+      <p id="p_total_gastos" class="p-total">
+        {{totalGastos | moneda}}</p>
+    </div>
+    <div class="col-1 text-center">
+      <i class="material-icons operador-numerico">drag_handle</i>
+    </div>
+    <div class="col-xl-3 col-lg-3 col-md-3 total-label">
+      <label for="p_ahorro_mensual">Capacidad de ahorro mensual</label>
+      <p id="p_ahorro_mensual" class="p-total">
+        {{capacidadAhorro() | moneda}}</p>
+    </div>
+  </div>
+</div>

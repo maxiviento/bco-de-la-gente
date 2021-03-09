@@ -1,0 +1,61 @@
+<div class="row align-items-center line-divider-bottom">
+  <div class="col ml-auto">
+    <h3>Lista de formulario/s encontrado/s
+      <button class="signo-ayuda"
+              ngbTooltip="Solo se le puede crear/actualizar el plan de cuotas a los formularios que esten en estado &quot;Pagado&quot; o &quot;En Prestamo&quot; y que pertenezcan a un prestamo que este en estado &quot;A pagar con lote&quot; o &quot;A pagar con banco&quot; o &quot;Impago&quot; o &quot;Pagado&quot;.">
+        ?
+      </button>
+    </h3>
+  </div>
+</div>
+
+<div [formGroup]="form" class="card-pane" style="margin-top: 15px !important;" [hidden]="!formularios.length">
+  <div class="col-auto form-group pull-right">
+    <label for="checkbox-todos" class="custom-control check-bge-control">
+      <input id="checkbox-todos" type="checkbox" [checked]="todosSeleccionados()" (click)="seleccionarTodos()"
+             [attr.disabled]="ningunoHabilitado()"
+             class="check-bge">
+      <span class="check-marcado"></span>
+      <span class="custom-control-description">Seleccionar todos</span>
+    </label>
+  </div>
+  <table class="table table-bordered table-sm table-striped">
+    <thead>
+    <th class="align-middle">CUIL/DNI</th>
+    <th class="align-middle">BENEFICIARIO</th>
+    <th class="align-middle">LÍNEA</th>
+    <th class="align-middle">N° PRÉSTAMO</th>
+    <th class="align-middle">N° FORMULARIO</th>
+    <th class="align-middle">FECHA FIN DE PAGO</th>
+    <th class="align-middle">MONTO APROBADO PRÉSTAMO</th>
+    <th class="align-middle">CANTIDAD CUOTAS</th>
+    <th class="align-middle">ACCIÓN</th>
+    </thead>
+    <tbody>
+    <tr [formGroup]="formulario" *ngFor="let formulario of formulariosFa.controls">
+      <td class="align-middle">{{formulario.get('cuilDni').value }}</td>
+      <td class="align-middle">{{formulario.get('apellidoNombre').value}}</td>
+      <td class="align-middle">{{formulario.get('nombreLinea').value}}</td>
+      <td class="align-middle">{{formulario.get('nroPrestamo').value}}</td>
+      <td class="align-middle">{{formulario.get('nroFormulario').value}}</td>
+      <td class="align-middle">{{formulario.get('fechFinPago').value | date:'dd/MM/yyyy'}}</td>
+      <td class="align-middle">{{formulario.get('montoPrestado').value || '-'}}</td>
+      <td class="align-middle">{{formulario.get('cantidadCuotas').value || '-'}}</td>
+      <td class="align-middle">
+        <label class="custom-control check-bge-control centrar-check-bge-tabla">
+          <input [attr.disabled]="deshabilitarCheck(formulario.get('puedeCrearPlan').value)" class="check-bge"
+                 type="checkbox" formControlName="seleccionado">
+          <span class="check-marcado"></span>
+        </label>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <paginacion [pagina]="pagina | async" (paginaModificada)="consultarSiguientesFormularios($event)">
+  </paginacion>
+</div>
+
+<div class="col card-pane" *ngIf="!formularios.length" style="margin-top: 15px !important;">
+  <h6>No se encontraron formularios asociados a la búsqueda.</h6>
+</div>

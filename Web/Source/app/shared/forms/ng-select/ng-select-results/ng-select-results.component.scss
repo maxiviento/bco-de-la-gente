@@ -1,0 +1,39 @@
+@import "../../../../../styles/variables";
+
+.select2-results-container {
+  border: $dropdown-border-width solid $dropdown-border-color;
+  min-width: 100%;
+  overflow-y: auto;
+  position: absolute;
+  background-color: $dropdown-bg;
+  margin-top: -9px;
+  z-index: 3;
+}
+
+.select2-result {
+  position: relative;
+  width: 100%;
+  padding: 0.4rem 1.25rem;
+  color: $list-group-link-color;
+  background-color: $list-group-bg;
+
+  &:hover {
+    cursor: pointer;
+    color: $list-group-link-hover-color;
+    text-decoration: none;
+    background-color: $list-group-hover-bg;
+  }
+  &.active{
+    z-index: 2; // Place active items above their siblings for proper border styling
+    color: $list-group-link-active-color;
+    background-color: $list-group-link-active-bg;
+  }
+  &.selected {
+    z-index: 2; // Place active items above their siblings for proper border styling
+    color: $list-group-active-color;
+    background-color: $list-group-active-bg;
+    border-color: $list-group-active-border;
+  }
+
+}
+

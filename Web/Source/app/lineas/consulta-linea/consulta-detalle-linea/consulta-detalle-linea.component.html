@@ -1,0 +1,80 @@
+<div class="row row-section align-items-center">
+  <div class="col">
+    <h4 class="display-4">VER DETALLE DE LA LÍNEA DE MICRO-PRÉSTAMO:
+      <small>{{detalleLinea.nombreLinea}}</small>
+    </h4>
+  </div>
+</div>
+
+<div class="row line-divider-bottom">
+  <div class="col">
+    <h5><strong>Detalle seleccionado</strong></h5>
+  </div>
+</div>
+
+<div [formGroup]="form" class="card-pane card-margin-top" *ngIf="detalleForm">
+  <bg-linea-detalle
+    *ngIf="detalleForm"
+    [detalle]="detalleLineaForm"
+    [vistaModal]="true"
+    [integrantes]="integrantes"
+    [financiamientos]="financiamientos"
+    [intereses]="intereses"
+    [garantias]="garantias"
+    [conveniosPago]="conveniosPago"
+    [conveniosRecupero]="conveniosRecupero">
+  </bg-linea-detalle>
+</div>
+
+<div class="row line-divider-bottom card-margin-top" *ngIf="detalleLinea.fechaBaja">
+  <div class="col">
+    <h5>Datos de la baja</h5>
+  </div>
+</div>
+
+<div class="card-pane card-margin-top" *ngIf="detalleLinea.fechaBaja">
+  <div class="row">
+    <div class="col-xl-6 col-lg-6 col-md-6">
+      <label for="txt_fecha_baja" class="form-control-label"> Fecha de Baja
+      </label>
+      <input type="text" id="txt_fecha_baja" class="form-control" [value]="detalleLinea.fechaBaja | date:'dd/MM/yyyy'"
+             disabled>
+    </div>
+
+    <div class="col-xl-6 col-lg-6 col-md-6">
+      <label for="txt_motivo_baja" class="form-control-label"> Motivo de Baja
+      </label>
+      <input type="text" id="txt_motivo_baja" class="form-control"
+             [value]="!detalleLinea.nombreMotivoBaja ? '' : detalleLinea.nombreMotivoBaja" disabled>
+    </div>
+  </div>
+</div>
+
+<div class="row line-divider-bottom" style="padding: 5px !important;">
+  <div class="col">
+    <h5>Datos de última modificación</h5>
+  </div>
+</div>
+
+<div class="card-pane card-margin-top">
+  <div class="row">
+    <div class="col-xl-6 col-lg-6 col-md-6">
+      <label for="txt_fecha_ult_modificacion" class="form-control-label"> Fecha última modificación
+      </label>
+      <input type="text" id="txt_fecha_ult_modificacion" class="form-control"
+             [value]="detalleLinea.fechaUltimaModificacion | date:'dd/MM/yyyy'" disabled>
+    </div>
+    <div class="col-xl-6 col-lg-6 col-md-6">
+      <label for="txt_usuario" class="form-control-label"> Usuario última modificación
+      </label>
+      <input type="text" id="txt_usuario" class="form-control"
+             [value]="!detalleLinea.nombreUsuario ? '' : detalleLinea.nombreUsuario" disabled>
+    </div>
+  </div>
+</div>
+
+<div class="row" *ngIf="detalleForm">
+  <div class="col">
+    <a [routerLink]="['/bandeja-lineas']" class="btn btn-secondary pull-right">Volver</a>
+  </div>
+</div>

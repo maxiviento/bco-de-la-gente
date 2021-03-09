@@ -1,0 +1,87 @@
+<div class="row line-divider-bottom align-items-center">
+  <div class="col">
+    <h1 class="display-4">MOTIVOS DESTINO</h1>
+  </div>
+  <div class="col-md-2 col-lg-2 col-xl-2">
+    <a [routerLink]="['/nuevo-motivo-destino']" class="btn btn-warning pull-right">NUEVO</a>
+  </div>
+</div>
+
+<form [formGroup]="form" novalidate>
+  <div class="card-pane">
+    <div class="row">
+
+      <div class="form-group col-md-5 col-lg-5 col-xl-5" [errorFeedback]="form.get('nombre')">
+        <label for="txt_nombre" class="form-control-label">Nombre</label>
+        <input type="text" class="form-control" id="txt_nombre" formControlName="nombre" [ngbTypeahead]="searchMotivos"
+          [inputFormatter]="showMotivos" [resultFormatter]="showMotivos">
+        <control-messages [control]="form.get('nombre')"></control-messages>
+      </div>
+
+      <div class="form-group only-form-check col-md-7 col-lg-7 col-xl-7">
+          <label class="form-check custom-control check-bge-control">
+            <input type="checkbox" class="form-check-input"
+             formControlName="incluirDadosBaja"
+             class="check-bge">
+          <span class="check-marcado"></span>
+          <span class="custom-control-description">Incluir dados de baja</span>
+            </label>
+      </div>
+
+
+    </div>
+  </div>
+  <div class="row row-section">
+    <div class="form-group col">
+      <button class="btn btn-primary pull-right" (click)="consultarMotivosDestino()" [disabled]="form.invalid">
+        <i class="material-icons icono-accion alinear-texto-con-icono">search</i>
+        <span class="alinear-texto-con-icono">CONSULTAR</span>
+      </button>
+    </div>
+  </div>
+</form>
+
+<h3 class="display-6">Resultados</h3>
+
+<div [hidden]="motivosDestino.length" class="card-pane">
+  No hay resultados para mostrar.
+</div>
+
+<div [hidden]="!motivosDestino.length" class="card-pane">
+  <table class="table table-bordered table-striped table-sm" *ngIf="motivosDestino.length">
+    <thead>
+    <tr>
+      <th class="align-middle">NOMBRE</th>
+      <th class="align-middle" *ngIf="consultaMotivos.incluirDadosDeBaja">DADA DE BAJA</th>
+      <th class="align-middle">ACCIONES</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let motivo of motivosDestino">
+      <td class="align-middle">{{motivo.nombre}}</td>
+      <td class="align-middle" *ngIf="consultaMotivos.incluirDadosDeBaja">{{(motivo.estaDadaDeBaja() ? motivo.fechaUltimaModificacion : null) | date: 'dd/MM/yyyy'}}</td>
+      <td class="align-middle w-15">
+        <div class="col text-center">
+          <button type="button" class="btn btn-link" [routerLink]="['/consulta-motivo-destino',motivo.id]"
+                  ngbTooltip="Ver">
+            <i class="material-icons icono-accion">zoom_in</i>
+          </button>
+          <button type="button" class="btn btn-link" [disabled]=motivo.estaDadaDeBaja() ngbTooltip="Editar"
+                  [routerLink]="['/edicion-motivo-destino', motivo.id]">
+            <i class="material-icons icono-accion">mode_edit</i>
+          </button>
+          <button type="button" class="btn btn-link" [disabled]=motivo.estaDadaDeBaja() ngbTooltip="Dar de baja"
+                  [routerLink]="['/eliminacion-motivo-destino',motivo.id]">
+            <i class="material-icons icono-accion">delete</i>
+          </button>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <paginacion
+    [pagina]="pagina | async"
+    (paginaModificada)="consultarMotivosDestino($event)">
+  </paginacion>
+</div>

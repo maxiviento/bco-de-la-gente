@@ -1,0 +1,31 @@
+<form [formGroup]="form">
+
+  <div class="form-group row">
+    <label for="cbDepartamentos"
+           class="col-md-5 col-lg-5 col-xl-5 col-form-label"
+           style="width: -webkit-fill-available;"> Departamento:</label>
+    <div class=" col-xl-6 col-lg-6 col-md-6">
+      <ss-multiselect-dropdown [options]="departamentos"
+                               [settings]="settings"
+                               [texts]="departamentosTexts"
+                               formControlName="departamentoId"
+                               id="cbDepartamentos">
+      </ss-multiselect-dropdown>
+    </div>
+  </div>
+  <div class="spacer5"></div>
+  <!-- localidad -->
+  <div class="form-group row">
+    <label for="cbLocalidades"
+           class="col-md-5 col-lg-5 col-xl-5 col-form-label"
+           style="width: -webkit-fill-available;"> Localidad:</label>
+    <div class=" col-xl-6 col-lg-6 col-md-6">
+      <ss-multiselect-dropdown [options]="localidades"
+                               [settings]="settings"
+                               [texts]="localidadesTexts"
+                               formControlName="localidadId"
+                               id="cbLocalidades">
+      </ss-multiselect-dropdown>
+    </div>
+  </div>
+</form>

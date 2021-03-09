@@ -1,0 +1,398 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build;Package" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{935D80E1-D51A-4B02-8090-65375DFEA03B}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Api</RootNamespace>
+    <AssemblyName>Api</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort>44300</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
+    <UseGlobalApplicationHostFile />
+    <TargetFrameworkProfile />
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE;RELEASE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ExcludeGeneratedDebugSymbol>false</ExcludeGeneratedDebugSymbol>
+    <AutoParameterizationWebConfigConnectionStrings>False</AutoParameterizationWebConfigConnectionStrings>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Staging|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>STAGING;TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <ExcludeGeneratedDebugSymbol>false</ExcludeGeneratedDebugSymbol>
+    <AutoParameterizationWebConfigConnectionStrings>False</AutoParameterizationWebConfigConnectionStrings>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Testing|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TESTING;TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <ExcludeGeneratedDebugSymbol>false</ExcludeGeneratedDebugSymbol>
+    <AutoParameterizationWebConfigConnectionStrings>False</AutoParameterizationWebConfigConnectionStrings>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net.ElasticSearch, Version=2.3.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.ElasticSearch.2.3.4\lib\net45\log4net.ElasticSearch.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.HttpListener">
+      <HintPath>..\packages\Microsoft.Owin.Host.HttpListener.2.0.2\lib\net45\Microsoft.Owin.Host.HttpListener.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Hosting">
+      <HintPath>..\packages\Microsoft.Owin.Hosting.2.0.2\lib\net45\Microsoft.Owin.Hosting.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.3.2.3.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess, Version=4.121.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.12.1.24160719\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Owin, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.SelfHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.SelfHost.5.2.3\lib\net45\System.Web.Http.SelfHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Manuales\BGE - Manual de usuario Bandeja de pagos.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Manuales\BGE - Manual de usuario Bandeja de prestamos.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Manuales\BGE - Manual de usuario Bandeja de recuperos.docx.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Manuales\BGE - Manual de usuario Bandeja SUAF.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Manuales\BGE - Manual de usuario Etapa.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Manuales\BGE - Manual de usuario Línea.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Manuales\BGE - Manual de usuario Motivo de rechazo.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Manuales\BGE - Manual de usuario Motivo destino.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Manuales\BGE - Manual de usuario Parámetros del sistema.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Manuales\BGE - Manual de usuario Registrar formulario.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Manuales\BGE - Manual de usuario Área.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Manuales\BGE - Manual de usuario ítem.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Web.Staging.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Testing.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Utn.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\Configuracion\TablasDefinidasController.cs" />
+    <Compile Include="Controllers\DocumentacionesController.cs" />
+    <Compile Include="Controllers\Formulario\ProgramasController.cs" />
+    <Compile Include="Controllers\ManualesController.cs" />
+    <Compile Include="Controllers\MonitorProcesosController.cs" />
+    <Compile Include="Controllers\Pagos\BancosController.cs" />
+    <Compile Include="Controllers\Configuracion\AreasController.cs" />
+    <Compile Include="Controllers\Configuracion\EtapasController.cs" />
+    <Compile Include="Controllers\Configuracion\ItemsController.cs" />
+    <Compile Include="Controllers\Formulario\DepartamentosController.cs" />
+    <Compile Include="Controllers\Formulario\CursosController.cs" />
+    <Compile Include="Controllers\Formulario\DestinatariosController.cs" />
+    <Compile Include="Controllers\Formulario\DestinosFondosController.cs" />
+    <Compile Include="Controllers\Formulario\EmprendimientosController.cs" />
+    <Compile Include="Controllers\Formulario\FormulariosController.cs" />
+    <Compile Include="Controllers\Formulario\IntegrantesController.cs" />
+    <Compile Include="Controllers\Formulario\LineasPrestamoController.cs" />
+    <Compile Include="Controllers\EstadosFormularioController.cs" />
+    <Compile Include="Controllers\Configuracion\MotivosDestinoController.cs" />
+    <Compile Include="Controllers\Pagos\PagosController.cs" />
+    <Compile Include="Controllers\Formulario\PrestamosController.cs" />
+    <Compile Include="Controllers\Formulario\TiposFinanciamientoController.cs" />
+    <Compile Include="Controllers\Formulario\TiposGarantiaController.cs" />
+    <Compile Include="Controllers\Formulario\TiposInteresController.cs" />
+    <Compile Include="Controllers\GrupoUnico\DomiciliosController.cs" />
+    <Compile Include="Controllers\GrupoUnico\GruposFamiliaresController.cs" />
+    <Compile Include="Controllers\GrupoUnico\GruposFamiliaresExtensionController.cs" />
+    <Compile Include="Controllers\GrupoUnico\GrupoUnicoControllerBase.cs" />
+    <Compile Include="Controllers\GrupoUnico\PersonasController.cs" />
+    <Compile Include="Controllers\Formulario\MotivosRechazoController.cs" />
+    <Compile Include="Controllers\Pagos\MontoDisponibleController.cs" />
+    <Compile Include="Controllers\Pagos\RecuperoController.cs" />
+    <Compile Include="Controllers\PaisesController.cs" />
+    <Compile Include="Controllers\ParametrosController.cs" />
+    <Compile Include="Controllers\RentasController.cs" />
+    <Compile Include="Controllers\SexosController.cs" />
+    <Compile Include="Controllers\Formulario\LocalidadesController.cs" />
+    <Compile Include="Controllers\OrigenesFormularioController.cs" />
+    <Compile Include="Controllers\PerfilesController.cs" />
+    <Compile Include="Controllers\MotivosBajaController.cs" />
+    <Compile Include="Controllers\ProvidenciaController.cs" />
+    <Compile Include="Controllers\SintysController.cs" />
+    <Compile Include="Controllers\UsuariosController.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Infraestructura\Core.Cidi.AppComunicacion\Core.Cidi.AppComunicacion.csproj">
+      <Project>{F52B0B47-7F3B-4B4E-ADC4-1CB13DDEBE22}</Project>
+      <Name>Core.Cidi.AppComunicacion</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infraestructura\Core.CiDi.Documentos\Core.CiDi.Documentos.csproj">
+      <Project>{79846DA7-5993-4DB5-BD40-EF3FB692F8D1}</Project>
+      <Name>Core.CiDi.Documentos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infraestructura\Core.CiDi\Core.CiDi.csproj">
+      <Project>{6B5E397A-3637-4DDF-8E3B-DDAC31389DB5}</Project>
+      <Name>Core.CiDi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infraestructura\Core.Comun\Core.Comun.csproj">
+      <Project>{6D014EE5-0745-4A72-8EE0-07E134CF8F3C}</Project>
+      <Name>Core.Comun</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infraestructura\Core\Core.csproj">
+      <Project>{9A556492-41B7-4B2A-BB4C-DA4F2A08ADFD}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulos\Configuracion\Configuracion.Aplicacion.Comandos\Configuracion.Aplicacion.Comandos.csproj">
+      <Project>{2DB370B4-7452-4D71-9986-33E34D9BBBAD}</Project>
+      <Name>Configuracion.Aplicacion.Comandos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulos\Configuracion\Configuracion.Aplicacion.Consultas\Configuracion.Aplicacion.Consultas.csproj">
+      <Project>{BE557A78-EEF9-477B-A916-F0970439E3D6}</Project>
+      <Name>Configuracion.Aplicacion.Consultas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulos\Configuracion\Configuracion.Aplicacion.Servicios\Configuracion.Aplicacion.Servicios.csproj">
+      <Project>{0D11DD96-886D-4F96-B916-CFCB1BDF145B}</Project>
+      <Name>Configuracion.Aplicacion.Servicios</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulos\Configuracion\Configuracion.Dominio\Configuracion.Dominio.csproj">
+      <Project>{04DA0DA7-1BE6-40BB-8218-4ED9A3C5FC3A}</Project>
+      <Name>Configuracion.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulos\Formulario\Formulario.Aplicacion.Comandos\Formulario.Aplicacion.Comandos.csproj">
+      <Project>{9C865DDB-84FB-4F20-9333-0E7A1B2ADFA8}</Project>
+      <Name>Formulario.Aplicacion.Comandos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulos\Formulario\Formulario.Aplicacion.Consultas\Formulario.Aplicacion.Consultas.csproj">
+      <Project>{024f0ed3-0fd3-4d9d-8605-e6e2c5dec4fd}</Project>
+      <Name>Formulario.Aplicacion.Consultas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulos\Formulario\Formulario.Aplicacion.Consultas\Formulario.Aplicacion.Consultas.csproj">
+      <Project>{024F0ED3-0FD3-4D9D-8605-E6E2C5DEC4FD}</Project>
+      <Name>Formulario.Aplicacion.Consultas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulos\Formulario\Formulario.Aplicacion.Servicios\Formulario.Aplicacion.Servicios.csproj">
+      <Project>{86581976-7044-498B-98F9-DB94FF6258E4}</Project>
+      <Name>Formulario.Aplicacion.Servicios</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulos\Formulario\Formulario.Dominio\Formulario.Dominio.csproj">
+      <Project>{E01AC2D8-F1DE-41DB-9C11-2FB98A0F60E6}</Project>
+      <Name>Formulario.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulos\Identidad\Identidad.Aplicacion.Comandos\Identidad.Aplicacion.Comandos.csproj">
+      <Project>{7AD8DD31-5CF4-40D8-9BF0-CB35D12FAA28}</Project>
+      <Name>Identidad.Aplicacion.Comandos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulos\Identidad\Identidad.Aplicacion.Consultas\Identidad.Aplicacion.Consultas.csproj">
+      <Project>{06692943-975C-477C-998A-6A6BE9BA97C8}</Project>
+      <Name>Identidad.Aplicacion.Consultas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulos\Identidad\Identidad.Aplicacion.Servicios\Identidad.Aplicacion.Servicios.csproj">
+      <Project>{3ED765AD-8FF6-4E57-AE7D-BAB92D64A6E1}</Project>
+      <Name>Identidad.Aplicacion.Servicios</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulos\Identidad\Identidad.Dominio\Identidad.Dominio.csproj">
+      <Project>{D67F744C-5347-406D-B853-E7C5E3AD45DA}</Project>
+      <Name>Identidad.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulos\Pagos\Pagos.Aplicacion.Comandos\Pagos.Aplicacion.Comandos.csproj">
+      <Project>{1515edcc-3a84-41be-84bd-2dae03f10d63}</Project>
+      <Name>Pagos.Aplicacion.Comandos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulos\Pagos\Pagos.Aplicacion.Consultas\Pagos.Aplicacion.Consultas.csproj">
+      <Project>{9e11d788-0690-47b0-806a-87d29b7878b0}</Project>
+      <Name>Pagos.Aplicacion.Consultas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulos\Pagos\Pagos.Aplicacion.Servicios\Pagos.Aplicacion.Servicios.csproj">
+      <Project>{b425e2e7-2cbe-4067-ba65-e4a53bc96fbb}</Project>
+      <Name>Pagos.Aplicacion.Servicios</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulos\Soporte\Soporte.Aplicacion.Comandos\Soporte.Aplicacion.Comandos.csproj">
+      <Project>{96D448DB-2FF1-4430-A530-80087AE6D7D2}</Project>
+      <Name>Soporte.Aplicacion.Comandos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulos\Soporte\Soporte.Aplicacion.Consultas\Soporte.Aplicacion.Consultas.csproj">
+      <Project>{27F9946E-A9C0-4D99-98BF-6474BD00AD83}</Project>
+      <Name>Soporte.Aplicacion.Consultas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modulos\Soporte\Soporte.Aplicacion.Servicios\Soporte.Aplicacion.Servicios.csproj">
+      <Project>{3DCE8F3B-8137-4E50-915D-CD5210BB2BEC}</Project>
+      <Name>Soporte.Aplicacion.Servicios</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Utn|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TESTING;TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>5837</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost.cba.gov.ar:5837/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost.cba.gov.ar:5837/</IISAppRootUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

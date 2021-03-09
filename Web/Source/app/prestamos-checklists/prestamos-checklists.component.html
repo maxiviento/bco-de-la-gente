@@ -1,0 +1,258 @@
+<div class="row bordered align-items-center">
+  <div class="col">
+    <h1 class="display-4">BANDEJA DE PRÉSTAMOS</h1>
+  </div>
+  <div class="col-md-2 col-lg-2 col-xl-2">
+    <button class="btn btn-warning pull-right" [routerLink]="['/conformar-prestamos']">CONFORMAR PRÉSTAMO
+    </button>
+  </div>
+</div>
+<form [formGroup]="form" novalidate>
+  <h3>Filtros de búsqueda
+    <button class="signo-ayuda" ngbTooltip="Los campos marcados con (*) son obligatorios."> ?</button>
+  </h3>
+  <div class="card-pane">
+    <div class="row">
+      <div class="col-md-4 col-lg-4 col-xl-4 vertical-line">
+        <div class="form-group row" [errorFeedback]="form.get('fechaDesde')">
+          <label for="txt_fecha_desde" class="col-md-5 col-lg-5 col-xl-5 col-form-label">Fecha desde
+            <span *ngIf="!componentePersona?.documentoIngresado()" class="obligatorio"> (*)</span></label>
+          <div class="col-md-6 col-lg-6 col-xl-6">
+            <input id="txt_fecha_desde" class="form-control" ngbDatepicker #fecha_desde="ngbDatepicker"
+                   (click)="fecha_desde.toggle()" placeholder="dd/mm/aaaa" formControlName="fechaDesde"/>
+          </div>
+          <control-messages [control]="form.get('fechaDesde')"></control-messages>
+        </div>
+        <div class="form-group row" [errorFeedback]="form.get('fechaHasta')">
+          <label for="txt_fecha_hasta" class="col-md-5 col-lg-5 col-xl-5 col-form-label">Fecha hasta
+            <span *ngIf="!componentePersona?.documentoIngresado()" class="obligatorio"> (*)</span></label>
+          <div class="col-md-6 col-lg-6 col-xl-6">
+            <input id="txt_fecha_hasta" class="form-control" ngbDatepicker #fecha_hasta="ngbDatepicker"
+                   (click)="fecha_hasta.toggle()" placeholder="dd/mm/aaaa" formControlName="fechaHasta"/>
+          </div>
+          <control-messages [control]="form.get('fechaHasta')"></control-messages>
+        </div>
+        <filtro-domicilio-bandeja (departamentosSeleccionados)="guardarDepartamentosSeleccionados($event)"
+                                  (localidadesSeleccionadas)="guardarLocalidadesSeleccionadas($event)">
+        </filtro-domicilio-bandeja>
+      </div>
+      <div class="col-md-4 col-lg-4 col-xl-4 vertical-line">
+        <div class="form-group row">
+          <label for="cb_origen" class="col-md-5 col-lg-5 col-xl-5 col-form-label">Origen</label>
+          <div class="col-md-7 col-lg-7 col-xl-7">
+            <ng-select id="cb_origen" [dataSource]="{list: origenes, name:'valor', id:'clave'}" formControlName="origen"
+                       [selected]="form.get('origen').value" [clientMode]="true">
+            </ng-select>
+          </div>
+        </div>
+        <multiple-seleccion [titulo]="'Estado préstamo'"
+                            [colDiv]="7"
+                            [colLabel]="5"
+                            [tipoCombo]="'comboEstadoPrestamo'"
+                            (opcionesSeleccionadas)="guardarEstadosSeleccionadas($event)">
+        </multiple-seleccion>
+        <div class="form-group row">
+          <label for="cb_usuario" class="col-md-5 col-lg-5 col-xl-5 col-form-label">Usuario</label>
+          <div class="col-md-7 col-lg-7 col-xl-7">
+            <ng-select id="cb_usuario" [dataSource]="{list: usuarios, name:'nombre', id:'id'}" formControlName="usuario"
+                       [selected]="form.get('usuario').value" [clientMode]="true">
+            </ng-select>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-lg-4 col-xl-4">
+        <div class="form-group row" [errorFeedback]="form.get('nroFormulario')">
+          <label for="txt_nroFormulario" class="col-md-5 col-lg-5 col-xl-5 col-form-label">N° Formulario</label>
+          <div class="col-md-6 col-lg-6 col-xl-6">
+            <input type="text" class="form-control" id="txt_nroFormulario" formControlName="nroFormulario">
+          </div>
+          <control-messages [control]="form.get('nroFormulario')"></control-messages>
+        </div>
+        <div class="form-group row" [errorFeedback]="form.get('nroPrestamo')">
+          <label for="txt_nroPrestamo" class="col-md-5 col-lg-5 col-xl-5 col-form-label">N° Préstamo</label>
+          <div class="col-md-6 col-lg-6 col-xl-6">
+            <input type="text" class="form-control" id="txt_nroPrestamo" formControlName="nroPrestamo">
+          </div>
+          <control-messages [control]="form.get('nroPrestamo')"></control-messages>
+        </div>
+        <div class="form-group row " [errorFeedback]="form.get('nroSticker')">
+          <label for="txt_nroSticker" class="col-md-5 col-lg-5 col-xl-5 col-form-label">N° Sticker</label>
+          <div class="col-md-6 col-lg-6 col-xl-6">
+            <input type="text" class="form-control" id="txt_nroSticker" formControlName="nroSticker">
+          </div>
+          <control-messages [control]="form.get('nroSticker')"></control-messages>
+        </div>
+      </div>
+    </div>
+
+    <div class="row  box-linea-prestamo">
+      <div class="col-md-9 col-lg-9 col-xl-9">
+        <multiple-seleccion [titulo]="'Línea micro-préstamo'"
+                            #lineas
+                            [tipoCombo]="'comboLinea'"
+                            [colDiv]="8"
+                            [colLabel]="3"
+                            (opcionesSeleccionadas)="guardarLineasSeleccionadas($event)">
+        </multiple-seleccion>
+      </div>
+      <div class="only-form-check col-md-3 col-lg-3 col-xl-3 margin-top-15">
+        <div class="form-check">
+          <label class="custom-control check-bge-control">
+            <input type="checkbox" class="check-bge" formControlName="quiereReactivar">
+            <span class="check-marcado"></span>
+            <span class="custom-control-description">Incluir préstamos a reactivar</span>
+          </label>
+        </div>
+      </div>
+    </div>
+    <bg-busqueda-por-persona></bg-busqueda-por-persona>
+  </div>
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-primary pull-right" (click)="consultarPrestamos(true)"
+              [disabled]="form.invalid || !componentePersona?.formValid() || validarConsulta()">
+        <i class="material-icons icono-accion alinear-texto-con-icono">search</i>
+        <span class="alinear-texto-con-icono">CONSULTAR</span>
+      </button>
+    </div>
+  </div>
+</form>
+
+<div class="row">
+  <h3 class="display-6 col-auto">Resultados:</h3>
+  <h5 class="margin-resultados">{{totalizador? '(' + totalizador + ' formulario/s)': ''}}</h5>
+  <div class="col-auto">
+    <single-spinner></single-spinner>
+  </div>
+</div>
+<div *ngIf="!(resultados.length)" class="card-pane">No hay resultados para mostrar.</div>
+<div [hidden]="!resultados.length" class="card-pane">
+  <table class="table table-bordered table-striped">
+    <thead>
+    <th class="align-middle " (click)="ordenarColumna(columnasEnum.NRO_PRESTAMO)">N° PRÉSTAMO
+      <i class="material-icons" [hidden]="orderByDes || columnaOrderBy !== columnasEnum.NRO_PRESTAMO">arrow_drop_up</i>
+      <i class="material-icons"
+         [hidden]="!orderByDes || columnaOrderBy !== columnasEnum.NRO_PRESTAMO">arrow_drop_down</i>
+    </th>
+    <th class="align-middle " (click)="ordenarColumna(columnasEnum.NRO_FORMULARIO)">N° FORMULARIO
+      <i class="material-icons"
+         [hidden]="orderByDes || columnaOrderBy !== columnasEnum.NRO_FORMULARIO">arrow_drop_up</i>
+      <i class="material-icons"
+         [hidden]="!orderByDes || columnaOrderBy !== columnasEnum.NRO_FORMULARIO">arrow_drop_down</i>
+    </th>
+    <th class="align-middle " (click)="ordenarColumna(columnasEnum.FECHA_ALTA_PRESTAMO)">FECHA ALTA PRESTAMO
+      <i class="material-icons" [hidden]="orderByDes || columnaOrderBy !== columnasEnum.FECHA_ALTA_PRESTAMO">arrow_drop_up</i>
+      <i class="material-icons" [hidden]="!orderByDes || columnaOrderBy !== columnasEnum.FECHA_ALTA_PRESTAMO">arrow_drop_down</i>
+    </th>
+    <th class="align-middle " (click)="ordenarColumna(columnasEnum.LINEA)">LÍNEA
+      <i class="material-icons" [hidden]="orderByDes || columnaOrderBy !== columnasEnum.LINEA">arrow_drop_up</i>
+      <i class="material-icons" [hidden]="!orderByDes || columnaOrderBy !== columnasEnum.LINEA">arrow_drop_down</i>
+    </th>
+    <th class="align-middle " (click)="ordenarColumna(columnasEnum.APELLIDO_Y_NOMBRE_DEL_SOLICITANTE)">APELLIDO Y NOMBRE
+      DEL SOLICITANTE
+      <i class="material-icons"
+         [hidden]="orderByDes || columnaOrderBy !== columnasEnum.APELLIDO_Y_NOMBRE_DEL_SOLICITANTE">arrow_drop_up</i>
+      <i class="material-icons"
+         [hidden]="!orderByDes || columnaOrderBy !== columnasEnum.APELLIDO_Y_NOMBRE_DEL_SOLICITANTE">arrow_drop_down</i>
+    </th>
+    <th class="align-middle " (click)="ordenarColumna(columnasEnum.CUIL_DNI_DEL_SOLICITANTE)">CUIL/DNI DEL SOLICITANTE
+      <i class="material-icons" [hidden]="orderByDes || columnaOrderBy !== columnasEnum.CUIL_DNI_DEL_SOLICITANTE">arrow_drop_up</i>
+      <i class="material-icons" [hidden]="!orderByDes || columnaOrderBy !== columnasEnum.CUIL_DNI_DEL_SOLICITANTE">arrow_drop_down</i>
+    </th>
+    <th class="align-middle " (click)="ordenarColumna(columnasEnum.ESTADO_PRESTAMO)">ESTADO PRESTAMO
+      <i class="material-icons"
+         [hidden]="orderByDes || columnaOrderBy !== columnasEnum.ESTADO_PRESTAMO">arrow_drop_up</i>
+      <i class="material-icons" [hidden]="!orderByDes || columnaOrderBy !== columnasEnum.ESTADO_PRESTAMO">arrow_drop_down</i>
+    </th>
+    <th class="align-middle " (click)="ordenarColumna(columnasEnum.ESTADO_FORMULARIO)">ESTADO FORMULARIO
+      <i class="material-icons"
+         [hidden]="orderByDes || columnaOrderBy !== columnasEnum.ESTADO_FORMULARIO">arrow_drop_up</i>
+      <i class="material-icons" [hidden]="!orderByDes || columnaOrderBy !== columnasEnum.ESTADO_FORMULARIO">arrow_drop_down</i>
+    </th>
+    <th class="align-middle " (click)="ordenarColumna(columnasEnum.ORIGEN)">ORIGEN
+      <i class="material-icons" [hidden]="orderByDes || columnaOrderBy !== columnasEnum.ORIGEN">arrow_drop_up</i>
+      <i class="material-icons" [hidden]="!orderByDes || columnaOrderBy !== columnasEnum.ORIGEN">arrow_drop_down</i>
+    </th>
+    <th class="align-middle " (click)="ordenarColumna(columnasEnum.MONTO_OTORGADO)">MONTO OTORGADO
+      <i class="material-icons"
+         [hidden]="orderByDes || columnaOrderBy !== columnasEnum.MONTO_OTORGADO">arrow_drop_up</i>
+      <i class="material-icons"
+         [hidden]="!orderByDes || columnaOrderBy !== columnasEnum.MONTO_OTORGADO">arrow_drop_down</i>
+    </th>
+    <th class="align-middle ">ACCIONES</th>
+    </thead>
+    <tbody>
+    <tr *ngFor="let prestamo of resultados">
+      <td class="align-middle">{{prestamo.nroPrestamo}}</td>
+      <td class="align-middle">{{prestamo.nroFormulario}}</td>
+      <td class="align-middle">{{prestamo.fechaAltaPrestamo | date:'dd/MM/yyyy'}}</td>
+      <td class="align-middle">{{prestamo.nroLinea}}</td>
+      <td class="align-middle">
+          <span [ngClass]="prestamo.esApoderado? 'destacar-apoderado': ''"
+                ngbTooltip="{{prestamo.esApoderado? 'Apoderado' : null}}">
+            {{prestamo.nombreYApellidoSolicitante}}
+          </span>
+      </td>
+      <td class="align-middle">{{prestamo.cuil}}</td>
+      <td class="align-middle" container="body"
+          ngbTooltip="{{prestamo.numeroCaja && prestamo.idEstadoPrestamo == estadosPrestamo.RECHAZADO ? 'Número de caja: ' + prestamo.numeroCaja: null}}">
+        {{prestamo.estadoPrestamo}}
+      </td>
+      <td class="align-middle" container="body"
+          ngbTooltip="{{prestamo.numeroCaja && prestamo.idEstadoFormulario == estadosFormulario.RECHAZADO ? 'Número de caja: ' + prestamo.numeroCaja: null}}">
+        {{prestamo.estadoFormulario}}
+      </td>
+      <td class="align-middle">{{prestamo.origen}}</td>
+      <td class="align-middle">{{prestamo.montoOtorgado}}</td>
+      <td class="align-middle">
+        <div class="nav-item align-items-center nav-link" ngbDropdown #ngbDropdown=ngbDropdown aria-disabled="true"
+             (mouseover)="ngbDropdown.open()" (mouseleave)="ngbDropdown.toggle()">
+          <button class="btn nav-item nav-link btn-link btn-desplegar" type="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false" ngbDropdownToggle>
+            <i class="material-icons">settings</i>
+          </button>
+          <div ngbDropdownMenu class="dropdown-menu dropdown-color box-actions" aria-labelledby="dd_prestamos">
+            <button type="button" class="btn btn-link accion-prestamo" ngbTooltip="Ver"
+                    [routerLink]="['/ver-checklist', prestamo.id]">
+              <i class="material-icons icono-accion">zoom_in</i>
+            </button>
+            <button type="button" class="btn btn-link accion-prestamo" ngbTooltip="Editar"
+                    [disabled]="prestamo.idEstadoPrestamo == estadosPrestamo.RECHAZADO || prestamo.idEstadoPrestamo == estadosPrestamo.FINALIZADO"
+                    [routerLink]="['/actualizar-checklist', prestamo.id]">
+              <i class="material-icons icono-accion">mode_edit</i>
+            </button>
+            <button type="button" class="btn btn-link accion-prestamo"
+                    [disabled]="validarRechazo(prestamo)"
+                    *ifPermission="'/prestamo/rechazar'"
+                    (click)="rechazarPrestamo(prestamo.id)" ngbTooltip="Rechazar">
+              <i class="material-icons icono-accion">do_not_disturb_alt</i>
+            </button>
+            <button type="button" class="btn btn-link accion-prestamo" ngbTooltip="Gestionar Archivos"
+                    [routerLink]="['/gestion-archivos', prestamo.idFormularioLinea]">
+              <i class="material-icons icono-accion">attach_file</i>
+            </button>
+            <button type="button" class="btn btn-link accion-prestamo" ngbTooltip="Reactivar o rechazar"
+                    [disabled]="validarReactivacion(prestamo)" [routerLink]="['/reactivar-prestamo', prestamo.id]">
+              <i class="material-icons icono-accion">cached</i>
+            </button>
+            <button type="button" class="btn btn-link accion-prestamo" [disabled]="validarRechazado(prestamo)"
+                    (click)="editarNumeroCaja(prestamo.idFormularioLinea, prestamo.numeroCaja)">
+              <i class="material-icons icono-accion" ngbTooltip="Editar número de caja" container="th">inbox</i>
+            </button>
+          </div>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <paginacion [pagina]="pagina | async" (paginaModificada)="consultarPaginaSiguiente($event)">
+  </paginacion>
+</div>
+<div class="row row-section" *ngIf="resultados.length">
+  <div class="form-group col">
+    <button class="btn btn-primary pull-right" (click)="imprimirBandeja()">
+      <i class="material-icons icono-accion alinear-texto-con-icono">print</i>
+      <span class="alinear-texto-con-icono">Imprimir</span>
+    </button>
+  </div>
+</div>

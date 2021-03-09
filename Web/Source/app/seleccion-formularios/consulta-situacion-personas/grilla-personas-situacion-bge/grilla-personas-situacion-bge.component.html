@@ -1,0 +1,89 @@
+<div class="row align-items-center line-divider-bottom" *ngIf="!personasVista.length && !personas.length">
+  <div class="col ml-auto">
+    <h3>Resultados</h3>
+  </div>
+</div>
+
+<div class="row align-items-center line-divider-bottom" *ngIf="personasVista.length && usaVista">
+  <div class="col ml-auto">
+    <h3>Resultados de la vista</h3>
+  </div>
+</div>
+
+<div [formGroup]="formVista" class="card-pane card-margin-top" *ngIf="personasVista.length && usaVista">
+  <table class="table table-bordered table-striped table-sm">
+    <thead>
+    <th class="align-middle">NOMBRE / APELLIDO</th>
+    <th class="align-middle">DNI</th>
+    <th class="align-middle">SEXO</th>
+    <th class="align-middle">NÚMERO SOLICITUD</th>
+    <th class="align-middle">FECHA PAGO</th>
+    <th class="align-middle">PRODUCTO</th>
+    <th class="align-middle">CONDICIÓN</th>
+    <th class="align-middle">MONTO ADEUDADO</th>
+    <th class="align-middle">MONTO CRÉDITO</th>
+    <th class="align-middle">MONTO ABONADO</th>
+    </thead>
+    <tbody>
+    <tr *ngFor="let persona of personasVistaFa.controls">
+      <td class="align-middle">{{persona.get('nombreApellido').value }}</td>
+      <td class="align-middle">{{persona.get('dni').value}}</td>
+      <td class="align-middle">{{persona.get('sexo').value}}</td>
+      <td class="align-middle">{{persona.get('numeroSolicitud').value}}</td>
+      <td class="align-middle">{{persona.get('fechaPago').value | date:'dd/MM/yyyy'}}</td>
+      <td class="align-middle">{{persona.get('producto').value}}</td>
+      <td class="align-middle">{{persona.get('condicion').value}}</td>
+      <td class="align-middle">{{persona.get('montoAdeudado').value}}</td>
+      <td class="align-middle">{{persona.get('montoCredito').value}}</td>
+      <td class="align-middle">{{persona.get('montoAbonado').value}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="row align-items-center line-divider-bottom" *ngIf="personas.length">
+  <div class="col ml-auto">
+    <h3>Resultados de situación actual</h3>
+  </div>
+</div>
+
+<div [formGroup]="form" class="card-pane card-margin-top" *ngIf="personas.length">
+  <table class="table table-bordered table-striped table-sm">
+    <thead>
+    <th class="align-middle">NOMBRE</th>
+    <th class="align-middle">APELLIDO</th>
+    <th class="align-middle">SEXO</th>
+    <th class="align-middle">CUIL</th>
+    <th class="align-middle">DNI</th>
+    <th class="align-middle">DEPARTAMENTO</th>
+    <th class="align-middle">LOCALIDAD</th>
+    <th class="align-middle">ACCIÓN</th>
+    </thead>
+    <tbody>
+    <tr [formGroup]="persona" *ngFor="let persona of personasFa.controls">
+      <td class="align-middle">{{persona.get('nombre').value}}</td>
+      <td class="align-middle">{{persona.get('apellido').value}}</td>
+      <td class="align-middle">{{persona.get('sexo').value}}</td>
+      <td class="align-middle">{{persona.get('cuil').value}}</td>
+      <td class="align-middle">{{persona.get('dni').value}}</td>
+      <td class="align-middle">{{persona.get('departamento').value}}</td>
+      <td class="align-middle">{{persona.get('localidad').value}}</td>
+      <td class="align-middle">
+        <button type="button"
+                class="btn btn-link boton-grilla"
+                ngbTooltip="Ver formularios"
+                (click)="emitirPersona(persona.value)">
+          <i class="material-icons icono-accion">search</i></button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <paginacion [pagina]="pagina | async"
+              (paginaModificada)="consultarSiguientesPersonas($event)">
+  </paginacion>
+</div>
+
+<div class="col card-pane card-margin-top" *ngIf="!personas.length && !personasVista.length">
+  <h6>No se encontraron resultados asociados a la búsqueda.</h6>
+</div>

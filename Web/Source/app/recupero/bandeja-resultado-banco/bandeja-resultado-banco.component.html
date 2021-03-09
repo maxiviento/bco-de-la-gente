@@ -1,0 +1,96 @@
+<div class="row bordered align-items-center">
+  <div class="col">
+    <h1 class="display-4">BANDEJA RESULTADO BANCO</h1>
+  </div>
+  <div class="col-md-4 col-lg-4 col-xl-4">
+    <bg-seleccion-archivo [esGrilla]="false" [texto]="'IMPORTAR ARCHIVO'"
+      [mostrarMensajeEnModal]="true" [accept]="'text/plain'" [buttonClass]="'btn btn-warning pull-right'"
+      (archivoSeleccionado)="archivoResultadoSeleccionado($event)">
+    </bg-seleccion-archivo>
+  </div>
+</div>
+
+<form [formGroup]="form" novalidate>
+  <h3>Filtros de búsqueda
+    <button class="signo-ayuda" ngbTooltip="Los campos marcados con (*) son obligatorios."> ?</button>
+  </h3>
+  <div class="card-pane">
+    <div class="spacer"></div>
+    <!-- R O W -->
+    <div class="row">
+      <!-- C O L 1/2 -->
+      <div class="col">
+        <div class="form-group row" [errorFeedback]="form.get('fechaDesde')">
+          <label for="txt_fecha_desde" class="col-md-6 col-lg-6 col-xl-6 col-form-label">Fecha desde
+            <label class="obligatorio"> (*)</label>:</label>
+          <div class="col-md-6 col-lg-6 col-xl-6">
+            <input id="txt_fecha_desde" class="form-control " ngbDatepicker #fecha_desde="ngbDatepicker"
+              (click)="fecha_desde.toggle()" placeholder="dd/mm/aaaa" formControlName="fechaDesde" />
+            <control-messages [control]="form.get('fechaDesde')"></control-messages>
+          </div>
+        </div>
+
+        <div class="form-group row" [errorFeedback]="form.get('fechaHasta')">
+          <label for="txt_fecha_hasta" class="col-md-6 col-lg-6 col-xl-6 col-form-label">Fecha hasta
+            <label class="obligatorio"> (*)</label>:</label>
+          <div class="col-md-6 col-lg-6 col-xl-6">
+            <input id="txt_fecha_hasta" class="form-control" ngbDatepicker #fecha_hasta="ngbDatepicker"
+              (click)="fecha_hasta.toggle()" placeholder="dd/mm/aaaa" formControlName="fechaHasta" />
+            <control-messages [control]="form.get('fechaHasta')"></control-messages>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row row-section">
+    <div class="form-group col">
+      <button class="btn btn-primary pull-right" (click)="consultar()">
+        <i class="material-icons icono-accion alinear-texto-con-icono">search</i>
+        <span class="alinear-texto-con-icono">CONSULTAR</span>
+      </button>
+    </div>
+  </div>
+</form>
+
+<div [hidden]="bandejaResultados.length" class="card-pane">
+  No hay resultados para mostrar.
+</div>
+
+<div [hidden]="!bandejaResultados.length" class="card-pane">
+  <div class="row">
+    <div class="col-xl-6 col-lg-6 col-md-6">
+      <h3>Lista/s de archivos de resultado banco</h3>
+    </div>
+  </div>
+
+  <table class="table table-bordered table-sm table-striped">
+    <thead>
+      <th class="align-middle">FECHA RECEPCIÓN</th>
+      <th class="align-middle">IMPORTE</th>
+      <th class="align-middle">PERIODO</th>
+      <th class="align-middle">FORMA PAGO</th>
+      <th class="align-middle">TIPO PAGO</th>
+      <th class="align-middle">BANCO</th>
+      <th class="align-middle">VER</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let resultado of bandejaResultados">
+        <td class="align-middle">{{resultado.fechaRecepcion | date:'dd/MM/yyyy - HH:mm'}} hs</td>
+        <td class="align-middle">${{resultado.importe}}</td>
+        <td class="align-middle">{{resultado.periodo}}</td>
+        <td class="align-middle">{{resultado.formaPago}}</td>
+        <td class="align-middle">{{resultado.tipoPago}}</td>
+        <td class="align-middle">{{resultado.banco}}</td>
+        <td>
+          <button type="button" class="btn btn-link boton-grilla" ngbTooltip="Ver" (click)="ver(resultado.idCabecera)">
+            <i class="material-icons icono-accion">zoom_in</i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <paginacion [pagina]="pagina | async" (paginaModificada)="consultar($event)">
+  </paginacion>
+</div>

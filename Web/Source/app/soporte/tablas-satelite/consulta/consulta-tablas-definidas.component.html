@@ -1,0 +1,72 @@
+<div class="row row-title line-divider-bottom align-items-center">
+  <div class="col">
+    <h1 class="display-4">Tablas definidas</h1>
+  </div>
+</div>
+<div class="row row-section">
+
+  <div class="col-12">
+    <form [formGroup]="form" novalidate>
+      <h3>Consultar tablas definidas</h3>
+      <div class="card-pane">
+        <div class="row row-section">
+          <div class="form-group col-xl-9 col-lg-12 col-12">
+            <label for="tablasDefinidasCombo">Nombre de tabla</label>
+            <ng-select id="tablasDefinidasCombo"
+                       [dataSource]="{list: tablasDefinidasCombo, name:'nombre', id:'id'}"
+                       formControlName="id"
+                       [selected]="form.get('id').value"
+                       [clientMode]="true">
+            </ng-select>
+            <control-messages [control]="form.get('id')"></control-messages>
+          </div>
+        </div>
+
+      </div>
+      <div class="row row-section justify-content-end">
+        <div class="col-12 col-md-3 col-lg-2 col-xl-2">
+          <button type="submit" (click)="prepararConsultaTablas()" class="btn btn-primary pull-right">
+            <i class="material-icons">search</i>
+            Consultar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<h3 class="display-6">Resultados</h3>
+
+<div [hidden]="tablasConsultadas.length" class="card-pane">
+  No hay resultados para mostrar.
+</div>
+
+<div [hidden]="!tablasConsultadas.length" class="card-pane">
+  <table class="table table-bordered table-striped">
+    <thead>
+    <th class="align-middle">NOMBRE TABLA</th>
+    <th class="align-middle">DESCRIPCIÓN</th>
+    <th class="align-middle">FECHA DESDE</th>
+    <th class="align-middle">ACCIONES</th>
+    </thead>
+    <tbody>
+    <tr *ngFor="let tabla of tablasConsultadas">
+      <td class="align-middle">{{tabla.nombre}}</td>
+      <td class="align-middle">{{tabla.descripcion}}</td>
+      <td class="align-middle">{{tabla.fechaDesde | date:'dd/MM/yyyy'}}</td>
+      <td class="align-middle line-divider-left w-10">
+        <button type="button"
+                class="btn btn-link"
+                ngbTooltip="Editar"
+                (click)="editarParametrosTabla(tabla.id)">
+          <i class="material-icons">mode_edit</i>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <paginacion [pagina]="pagina | async"
+              (paginaModificada)="consultarTablasDefinidas($event)">
+  </paginacion>
+</div>

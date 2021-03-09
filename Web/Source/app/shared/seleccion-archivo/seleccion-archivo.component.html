@@ -1,0 +1,15 @@
+<div [ngClass]="{'d-inline-block boton-grilla': esGrilla}" [class.has-danger]="tipoNoAceptado">
+  <input type="file" hidden #fileInput id="btn_seleccionar_oculto" [attr.class]="buttonClass" [attr.accept]="accept"
+         (change)="onChange($event)" onclick="this.value = null" style="cursor: pointer"/>
+  <button *ngIf="esGrilla" type="button"
+          [ngClass]="{true: buttonClass + ' boton-grilla', false: buttonClass}[esGrilla]"
+          (click)="select()">
+    <i class="material-icons">{{icono}}</i>
+  </button>
+  <input type="button" *ngIf="!esGrilla" [attr.class]="buttonClass" id="btn_seleccionar"
+        [attr.value]="texto" (click)="select()"/>
+  <div *ngIf="!esGrilla && !mostrarMensajeEnModal" class="form-control-feedback">
+    <span *ngIf="tipoNoAceptado">El tipo de archivo no está permitido. Tipos aceptados: {{accept}}</span>
+    <span *ngIf="archivoMuyGrande">El tamaño del archivo es mayor al máximo permitido de {{maxSize}} MB</span>
+  </div>
+</div>

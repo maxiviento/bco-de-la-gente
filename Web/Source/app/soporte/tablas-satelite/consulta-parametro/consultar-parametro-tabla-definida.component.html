@@ -1,0 +1,31 @@
+<div class="row bordered align-items-center">
+  <div class="col">
+    <h4 class="display-4">VER PARÁMETRO</h4>
+  </div>
+</div>
+<div *ngIf="tabla">
+  <div class="card-pane card-view-detail">
+    <div class="row row-section">
+      <div class="form-group col-lg-5 col-xl-5">
+        <label for="txt_nombre_parametro" class="form-control-label">Nombre</label>
+        <input type="text" id="txt_nombre_parametro" class="form-control" [value]="tabla.parametros[0].nombre" disabled>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-lg-12 col-xl-8">
+        <label for="txt_descripcion_parametro" class="form-control-label">Descripción</label>
+        <textarea type="text" id="txt_descripcion_parametro" class="form-control" rows="3"
+          disabled>{{tabla.parametros[0].descripcion}}</textarea>
+      </div>
+    </div>
+  </div>
+  <div id="row_acciones" class="row">
+    <div class="col">
+      <div class="pull-right">
+        <a [routerLink]="['/editar-tabla-definida', tabla.id]" class="btn btn-secondary">VOLVER
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>

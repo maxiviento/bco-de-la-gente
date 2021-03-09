@@ -1,0 +1,61 @@
+<div class="row row-section line-divider-bottom align-items-center">
+  <div class="col">
+    <h4 class="display-4"><strong>Asignar requisitos línea de Micro-Préstamo</strong></h4>
+  </div>
+</div>
+
+<form [formGroup]="form" class="card-pane">
+  <div class="col-auto form-group pull-right">
+    <label for="check-seleccionar-todos" class="custom-control check-bge-control">
+      <input type="checkbox" id="check-seleccionar-todos" class="check-bge"
+        (click)="clickSeleccionarTodo($event.target.checked)">
+      <span class="check-marcado"></span>
+      <span class="custom-coontrol-description">Seleccionar todos</span>
+    </label>
+  </div>
+  <table class="table table-bordered table-striped table-sm">
+    <thead>
+      <tr>
+        <th class="line-divider-right th_requisitos">
+          <strong>REQUISITOS</strong>
+        </th>
+        <th class="line-divider-right" *ngFor="let tipoItem of tiposItemFiltrados">
+          <strong>{{tipoItem.nombre}}</strong>
+        </th>
+        <th class="th_seleccion">
+          <strong>SELECCIONAR</strong>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr [formGroup]="item" *ngFor="let item of getItems.controls">
+        <td class="line-divider-right th_requisitos" width="30%">
+          <small>{{item.get('nombre').value}}</small>
+        </td>
+
+        <td style="vertical-align:middle" class="line-divider-right" *ngFor="let tipoItem of tiposItemFiltrados">
+          <small><i class="material-icons" *ngIf="checkTipoItem(item.get('id').value, tipoItem.id)">done</i>
+          </small>
+        </td>
+
+        <td class="align-middle">
+          <label class="custom-control check-bge-control centrar-check-bge-tabla">
+            <input type="checkbox" class="check-bge" formControlName="seleccionado">
+            <span class="check-marcado"></span>
+          </label>
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="row">
+    <div class="col">
+      <button (click)="enviarSeleccionados()" [disabled]="validarCantidadRequisitos()"
+        class="btn btn-primary pull-right"> ACEPTAR
+      </button>
+      <button class="btn btn-secondary pull-right separador-botones" (click)="cancelado.emit()">CANCELAR
+      </button>
+    </div>
+  </div>
+</form>

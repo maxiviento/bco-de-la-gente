@@ -1,0 +1,38 @@
+<form [formGroup]="form">
+  <div id="row_titulo" class="row row-title line-divider-bottom">
+    <div class="col-md-4 col-lg-4 col-xl-4">
+      <h4>DESTINO DE LOS FONDOS</h4>
+      <small>(Seleccione lo que corresponda, puede elegir más de una opción)</small>
+    </div>
+  </div>
+
+  <div class="card-pane card-margin-top">
+    <div class="form-group only-form-check">
+      <div *ngIf="form && form.get('destinos')" class="row row-section">
+        <div class="form-check col-md-4 col-lg-4 col-xl-4" [formGroup]="destino"
+          *ngFor="let destino of destinosFormArray.controls; let i = index">
+          <label class="custom-control check-bge-control">
+            <input type="checkbox" class="check-bge" formControlName="seleccionado">
+            <span class="check-marcado"></span>
+            <span class="custom-control-description">{{destino.get('descripcion').value}}</span>
+
+          </label>
+        </div>
+      </div>
+    </div>
+    <control-messages [control]="form" class="has-danger" *ngIf="form.hasError('noselected')">
+      Debe seleccionar un ítem
+    </control-messages>
+
+    <div class="row row-section">
+      <div class="form-group col-lg-12 col-xl-8">
+        <label for="txt_detalle_destino" class="form-control-label">Detalle</label>
+        <textarea id="txt_detalle_destino" class="form-control" formControlName="detalles" type="text"
+          rows="3"></textarea>
+      </div>
+    </div>
+    <control-messages [control]="form" class="has-danger" *ngIf="form.hasError('nodetail')">
+      Debe agregar un detalle
+    </control-messages>
+  </div>
+</form>

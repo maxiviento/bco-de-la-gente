@@ -1,0 +1,48 @@
+@media (max-width: 1366px) {
+  /* Sección para estilizar el formulario en pantalla de 1366*768*/
+  .alinear_abajo {
+    padding-top: 24px;
+  }
+
+  .label_radio_inmueble {
+    padding-right: 12px !important;
+  }
+
+  .fila-nula {
+    height: 62px !important;
+  }
+}
+
+.row {
+  margin-bottom: 5px;
+}
+
+.fila-nula {
+  height: 38px;
+}
+
+.divisorVertical {
+  border-color: #c5c5c5;
+  border-right-style: solid;
+  border-width: 1px;
+}
+
+.input_patrimonio {
+  width: 100px;
+}
+
+.input_patrimonio_dinero {
+  width: 150px;
+}
+
+.titulo_resultado {
+  padding-top: 5px;
+}
+
+.radio_si_no {
+  padding: calc(0.375rem + 1px) 0;
+}
+
+.label_radio_si_no {
+  padding-right: 0;
+}

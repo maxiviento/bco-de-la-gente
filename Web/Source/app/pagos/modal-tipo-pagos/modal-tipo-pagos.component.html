@@ -1,0 +1,33 @@
+<div class="modal-header">
+  <h4 class="modal-title"><strong>TIPO DE PAGO</strong></h4>
+  <button type="button" class="close" aria-label="Close" (click)="cancelar(true)">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="form">
+    <div class="form-group row" [errorFeedback]="form.get('tipoPago')">
+      <div class="col-md-4 col-lg-4 col-xl-4">
+        <label for="cb_tipo_pago" class="col-form-label">Tipo de pago</label>
+      </div>
+      <div class="col-md-8 col-lg-8 col-xl-8">
+        <select id="cb_tipo_pago" class="form-control" formControlName="tipoPago">
+          <option value="">
+            Seleccione
+          </option>
+          <option *ngFor="let item of CBTipoPago" [ngValue]="item.codigo">
+            {{item.tipoPago | uppercase}}
+          </option>
+        </select>
+      </div>
+      <control-messages class="margin-error" [control]="form.get('tipoPago')"></control-messages>
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="cancelar(true)">CANCELAR
+  </button>
+  <button class="btn btn-primary" (click)="generarArchivoTxt(idLote)" [disabled]="!form.valid">ACEPTAR
+  </button>
+</div>

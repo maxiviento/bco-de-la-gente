@@ -1,0 +1,182 @@
+<div [formGroup]="form">
+  <div class="card-pane" *ngIf="requisitosPrestamo.length">
+    <table *ngIf="form && form.get('etapas')" class="table table-active">
+      <tr [formGroup]="etapa"
+        *ngFor="let etapa of etapasFormArray.controls; let indiceEtapa = index; let ultimaEtapa = last">
+
+        <table class="table table-bordered">
+          <tr>
+            <th class="text-left w-35">{{etapa.get('nombreEtapa').value}}
+              <i [hidden]="!etapa.get('colapsable').value" (click)="colapsar(etapa)" class="material-icons" style="cursor: pointer;">keyboard_arrow_down</i>
+              <i [hidden]="etapa.get('colapsable').value" (click)="colapsar(etapa)" class="material-icons" style="cursor: pointer;">keyboard_arrow_up</i></th>
+           <th *ngFor="let area of areasPrestamo">{{area.nombre}}</th>
+         </tr>
+           <tr [hidden]="etapa.get('colapsable').value" [formGroup]="requisito" class="w-75" *ngFor="let requisito of etapa.get('requisitosEtapa').controls;
+                let primero = first; let indiceItem = index">
+             <td class="text-left w-35">
+               <div *ngIf="!requisito.get('urlRecurso').value || esRechazadoOFinalizado()">
+                 <small>
+                   <strong [ngClass]="{'item-padre': !requisito.get('itemPadre').value}">
+                     {{requisito.get('nombre').value}}
+                   </strong>
+                 </small>
+                 <button *ngIf="gestionaArchivos(requisito.value)" type="button" class="btn btn-link btn_archivo"
+                   ngbTooltip="Gestionar archivos" (click)="abrirModalArchivo(requisito.value)">
+                   <i class="material-icons">attach_file</i>
+                 </button>
+               </div>
+
+
+               <div *ngIf="requisito.get('urlRecurso').value && !esRechazadoOFinalizado()">
+                 <!--Si es recurso activo-->
+                  <small *ngIf="editable">
+                    <a (click)="generarSeguimiento(requisito);navegar(requisito.get('urlRecurso').value)" [ngStyle]="{'color': deshabilitarItem(requisito) ? '#212A2A' : generaAlerta(requisito),
+                        'pointer-events': deshabilitarItem(requisito) ? 'none' :'auto', 'cursor': requisito.get('urlRecurso').value ? 'pointer': 'none'}">
+                      {{requisito.get('nombre').value}}</a>
+                  </small>
+                  <!--Si no es recurso o es recurso no activo-->
+                  <small *ngIf="!editable">
+                    {{requisito.get('nombre').value}}
+                  </small>
+                  <button *ngIf="gestionaArchivos(requisito.value)" type="button" class="btn btn-link btn_archivo"
+                    ngbTooltip="Gestionar Archivos" (click)="abrirModalArchivo(requisito.value)">
+                    <i class="material-icons">attach_file</i>
+                  </button>
+                </div>
+              </td>
+
+              <td class="w-10 align-items-center" *ngFor="let area of areasPrestamo">
+
+                <div class="row justify-content-center" *ngIf="area.id == requisito.get('idArea').value ">
+                  <div *ngIf="primero && !requisito.get('itemPadre').value">
+                    <div *ngIf="!prestamo.esSolicGarante && tipoLinea == 1" class="row row-solicicGarante">
+                      <label class="lbl-item" ngbTooltip="Solicitante"><strong>S</strong></label>
+                      <label class="lbl-item" ngbTooltip="Garante"><strong>G</strong></label>
+                    </div>
+                    <div *ngIf="prestamo.esSolicGarante && tipoLinea == 1">
+                      <label class="lbl-item" ngbTooltip="Solicitante y Garante"><strong>S/G</strong></label>
+                    </div>
+                    <div *ngIf="tipoLinea >= 2">
+                      <label class="lbl-item" ngbTooltip="Solicitante"><strong>S</strong></label>
+                    </div>
+                  </div>
+
+                  <div *ngIf="requisito.get('itemPadre').value">
+                    <div class="row">
+
+                      <div *ngIf="!prestamo.esSolicGarante && tipoLinea  == 1" class="row">
+                        <div class="form-group ck_item_solicitante_garante">
+                          <label class="custom-control check-bge-control ">
+                            <input type="checkbox" [attr.id]="'ck_s' + indiceItem + 'e' + indiceEtapa"
+                              [attr.disabled]="(esEtapaVigente(etapa) && editable) ? null : true"
+                              formControlName="ck_solicitante" class="check-bge">
+                            <span class="check-marcado"></span>
+                          </label>
+                        </div>
+                        <div class="form-group ck_item_solicitante_garante">
+                          <label class="custom-control check-bge-control">
+                            <input type="checkbox" [attr.id]="'ck_g' + indiceItem + 'e' + indiceEtapa"
+                              [attr.disabled]="(esEtapaVigente(etapa) && editable)  ? null : true"
+                              formControlName="ck_garante" class="check-bge">
+                            <span class="check-marcado"></span>
+                          </label>
+                        </div>
+                      </div>
+                      <div *ngIf="prestamo.esSolicGarante && tipoLinea == 1">
+                        <div class="form-group ck_item">
+                          <label class="custom-control check-bge-control">
+                            <input type="checkbox" [attr.id]="'ck_sg' + indiceItem + 'e' + indiceEtapa"
+                              [attr.disabled]="(esEtapaVigente(etapa) && editable)  ? null : true"
+                              formControlName="ck_solicitanteGarante" class="check-bge">
+                            <span class="check-marcado"></span>
+                          </label>
+                        </div>
+                      </div>
+                      <div *ngIf="tipoLinea >= 2">
+                        <div class="form-group ck_item">
+                          <label class="custom-control check-bge-control">
+                            <input type="checkbox" [attr.id]="'ck_sg' + indiceItem + 'e' + indiceEtapa"
+                              [attr.disabled]="(esEtapaVigente(etapa) && editable)  ? null : true"
+                              formControlName="ck_solicitante" class="check-bge">
+                            <span class="check-marcado"></span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            <tr [hidden]="etapa.get('colapsable').value" *ngIf="editable && esEtapaVigente(etapa)">
+              <td [attr.colspan]="idEtapaVigente + 1" class="align-middle">
+
+                <div class="form-group col-auto pull-right">
+                  <label for="ck_seleccionar_todos" class="custom-control check-bge-control alinear-check-todos">
+                    <input type="checkbox" id="ck_seleccionar_todos" class="check-bge ck_todos"
+                      formControlName="ck_seleccionarTodos" [checked]="todosSeleccionados(etapa)"
+                      (click)="seleccionarTodos(etapa)">
+                    <span class="check-marcado ck_todos"></span>
+                    <span class="custom-control-description">Todos</span>
+                  </label>
+                </div>
+
+              </td>
+            </tr>
+
+            <tr>
+              <td [attr.colspan]="areasPrestamo.length + 1" *ngIf="ultimaEtapa">
+                <button type="button" class="btn btn-primary pull-right" style=""
+                  *ngIf="editable && esEtapaVigente(etapa)" [disabled]="deshabilitarBotonAceptar(etapa) || deshabilitar"
+                  (click)="aceptar(etapa)">{{idEtapaVigente == 1 ? 'Aceptar' : 'Aprobar' }}
+                </button>
+                <button type="button" class="btn btn-secondary pull-right separador-botones"
+                  *ngIf="editable && esEtapaVigente(etapa)" [disabled]="deshabilitarBotonGuardar(etapa)"
+                  (click)="guardar(etapa, true)">Guardar
+                </button>
+                <button type="button" class="btn btn-secondary pull-right separador-botones" (click)="cancelar()">Volver
+                </button>
+                <button type="button" class="btn btn-warning-checklist pull-right separador-botones"
+                  *ngIf="editable && esEtapaVigente(etapa)" [disabled]="deshabilitarBotonRechazar(etapa)"
+                  (click)="rechazar()">Rechazar formulario
+                </button>
+              </td>
+            </tr>
+        </table>
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="card-pane" [hidden]="!seguimientos.length">
+  <table class="table table-bordered table-adjust">
+    <tr>
+      <th>Fecha</th>
+      <th>Usuario</th>
+      <th>Estado checklist</th>
+      <th>Descripción</th>
+      <th>Observaciones</th>
+    </tr>
+    <tbody>
+      <tr *ngFor="let seguimiento of seguimientos">
+        <td>
+          <small>{{seguimiento.fecha | date: 'dd/MM/yy hh:mm a'}}</small>
+        </td>
+        <td>
+          <small>{{seguimiento.nombreUsuario}}</small>
+        </td>
+        <td>
+          <small>{{seguimiento.nombreEstado}}</small>
+        </td>
+        <td>
+          <small *ngIf="seguimiento.observaciones == CAMBIO_DE_ETAPA">{{'-'}}</small>
+          <small *ngIf="seguimiento.observaciones != CAMBIO_DE_ETAPA">{{seguimiento.nroFormulario}}</small>
+        </td>
+        <td class="td-adjust">
+          <small>{{seguimiento.observaciones}}</small>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <paginacion [pagina]="pagina | async" [mensajeAnterior]="'Más recientes'" [mensajeSiguiente]="'Más antiguos'"
+    (paginaModificada)="consultarSeguimientos($event)">
+  </paginacion>
+</div>

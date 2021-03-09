@@ -1,0 +1,49 @@
+<div class="modal-header">
+  <h3 class="modal-title">Nombre de la línea: <strong>{{nombreLinea}}</strong></h3>
+  <button type="button" class="close" (click)="activeModal.dismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body row" *ngIf="!lsOngLinea.length">
+  <div class="col align-content-center">
+    <strong> Esta línea no posee ONG asociadas.</strong>
+  </div>
+</div>
+
+<div class="modal-body align-content-center" *ngIf="lsOngLinea.length">
+  <table class="table table-bordered table-striped table-sm">
+    <thead>
+    <tr>
+      <th class="line-divider-right align-middle">
+        <strong>ONG</strong>
+      </th>
+      <th class="line-divider-right align-middle">
+        <strong>PORCENTAJE RECUPERO</strong>
+      </th>
+      <th class="th_seleccion align-middle">
+        <strong>PORCENTAJE PRÉSTAMO</strong>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let ong of lsOngLinea">
+      <td class="line-divider-right align-middle">
+        {{ong.nombre}}
+      </td>
+      <td class="line-divider-right align-middle">
+        {{ong.porcentajeRecupero}}
+      </td>
+      <td class="line-divider-right align-middle">
+        {{ong.porcentajePago}}
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div class="modal-footer">
+  <div class="col">
+    <button type="button" class="btn btn-secondary pull-right" (click)="activeModal.dismiss()">CERRAR
+    </button>
+  </div>
+</div>

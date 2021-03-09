@@ -1,0 +1,365 @@
+<div *ngIf="bandejaSimulacion === false">
+  <div class="row bordered align-items-center">
+    <div class="col">
+      <h1 class="display-4">NUEVO LOTE DE PAGOS</h1>
+    </div>
+  </div>
+
+  <form [formGroup]="form" novalidate>
+    <h3>Filtros de búsqueda
+      <button class="signo-ayuda" ngbTooltip="Los campos marcados con (*) son obligatorios."> ?</button>
+    </h3>
+    <div class="card-pane">
+      <div class="spacer"></div>
+      <!-- R O W -->
+      <div class="row">
+        <!-- C O L 1/2 -->
+        <div class="col">
+          <div class="form-group row" [errorFeedback]="form.get('fechaInicioTramite')">
+            <label for="txt_fecha_desde" class="col-md-6 col-lg-6 col-xl-6 col-form-label">Fecha inicio trámite
+              <span *ngIf="!existeNroFormulario || !componentePersona?.documentoIngresado()" class="obligatorio">
+                (*)</span>:</label>
+            <div class="col-md-6 col-lg-6 col-xl-6">
+              <input id="txt_fecha_desde" class="form-control " ngbDatepicker #fecha_desde="ngbDatepicker"
+                (click)="fecha_desde.toggle()" placeholder="dd/mm/aaaa" formControlName="fechaInicioTramite" />
+              <control-messages [control]="form.get('fechaInicioTramite')"></control-messages>
+            </div>
+          </div>
+
+          <div class="form-group row" [errorFeedback]="form.get('fechaFinTramite')">
+            <label for="txt_fecha_hasta" class="col-md-6 col-lg-6 col-xl-6 col-form-label">Fecha fin trámite
+              <span *ngIf="!existeNroFormulario || !componentePersona?.documentoIngresado()" class="obligatorio">
+                (*)</span>:</label>
+            <div class="col-md-6 col-lg-6 col-xl-6">
+              <input id="txt_fecha_hasta" class="form-control" ngbDatepicker #fecha_hasta="ngbDatepicker"
+                (click)="fecha_hasta.toggle()" placeholder="dd/mm/aaaa" formControlName="fechaFinTramite" />
+              <control-messages [control]="form.get('fechaFinTramite')"></control-messages>
+            </div>
+          </div>
+
+        </div>
+        <div class="verticalLine"></div>
+        <!-- C O L 2/2 -->
+        <div class="col">
+          <div class="form-group row">
+            <label for="cb_origen" class="col-md-5 col-lg-5 col-xl-5 col-form-label">Origen:</label>
+            <div class=" col-md-7 col-lg-7 col-xl-7">
+              <select id="cb_origen" class="form-control" formControlName="origen">
+                <option value="null">
+                  Seleccione
+                </option>
+                <option *ngFor="let item of CBOrigen" [ngValue]="item.clave">
+                  {{item.valor | uppercase}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div *ngIf="false" class="form-group row">
+            <label for="cb_estado_formulario" class="col-md-5 col-lg-5 col-xl-5 col-form-label">Lugar de origen:</label>
+            <div class=" col-md-7 col-lg-7 col-xl-7">
+              <select id="cb_estado_formulario" class="form-control" formControlName="lugarOrigen">
+                <option value="null">
+                  Seleccione
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row" [errorFeedback]="form.get('nroPrestamoChecklist')">
+            <label for="txt_nro_prestamo" class="col-md-5 col-lg-5 col-xl-5 col-form-label">N°
+              Préstamo-Checklist:</label>
+            <div class=" col-md-7 col-lg-7 col-xl-7">
+              <input type="text" class="form-control" id="txt_nro_prestamo" formControlName="nroPrestamoChecklist">
+              <control-messages [control]="form.get('nroPrestamoChecklist')"></control-messages>
+            </div>
+          </div>
+          <div class="form-group row" [errorFeedback]="form.get('nroFormulario')">
+            <label for="txt_nro_formulario" class="col-md-5 col-lg-5 col-xl-5 col-form-label">N° Formulario:</label>
+            <div class=" col-md-7 col-lg-7 col-xl-7">
+              <input type="text" class="form-control" id="txt_nro_formulario" formControlName="nroFormulario" >
+              <control-messages [control]="form.get('nroFormulario')"></control-messages>
+            </div>
+          </div>
+          <div class="form-group row" [errorFeedback]="form.get('lineas')">
+            <label for="cb_lineas" class="col-md-5 col-lg-5 col-xl-5 col-form-label">Línea de préstamo
+              <label *ngIf="!existeNroFormulario" class="obligatorio"> (*)</label>:</label>
+            <div class="col-md-7 col-lg-7 col-xl-7">
+              <ng-select id="cb_lineas" [dataSource]="{list: CBLineas, name:'descripcion', id:'id'}" [multiple]="true"
+                [cutDisplay]="2" formControlName="lineas" [selected]="form.get('lineas').value" [clientMode]="true">
+              </ng-select>
+              <control-messages [control]="form.get('lineas')"></control-messages>
+            </div>
+          </div>
+        </div>
+      </div>
+      <filtro-domicilio (departamentosSeleccionados)="guardarDepartamentosSeleccionados($event)"
+        (localidadesSeleccionadas)="guardarLocalidadesSeleccionadas($event)"></filtro-domicilio>
+      <bg-busqueda-por-persona></bg-busqueda-por-persona>
+    </div>
+    <div class="row row-section">
+      <div class="form-group col">
+        <button class="btn btn-primary pull-right" [disabled]="validarConsulta()" (click)="consultar(true)">
+          <i class="material-icons icono-accion alinear-texto-con-icono">search</i>
+          <span class="alinear-texto-con-icono">CONSULTAR</span>
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <h3 *ngIf="!(bandejaResultados.length)" class="display-6">Resultados</h3>
+  <div *ngIf="!(bandejaResultados.length)" class="card-pane">
+    No hay resultados para mostrar.
+  </div>
+
+  <div [hidden]="!bandejaResultados.length" class="card-pane">
+    <div class="row">
+      <div class="col-xl-9 col-lg-9 col-md-9">
+        <h3>Lista/s de Micro-Préstamos a pagar</h3>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-md-3">
+        <div class="form-group">
+            <label for="checkbox-todos" class="custom-control check-bge-control">
+              <input id="checkbox-todos" type="checkbox" class="check-bge"
+              (click)="clickEnSeleccionarTodos($event.target.checked)"
+              [checked]="seleccionarTodosCheckeado">
+              <span class="check-marcado"></span>
+              <span class="custom-control-description">Seleccionar todos</span>
+            </label>
+          </div>
+      </div>
+    </div>
+    <table *ngIf="formPrestamosAPagar" class="table table-bordered table-sm table-striped">
+      <thead>
+        <tr>
+          <th class="align-middle" (click)="ordenarColumna(columnasEnum.LINEA)">LINEA
+            <i class="material-icons" [hidden]="orderByDes || columnaOrderBy !== columnasEnum.LINEA">arrow_drop_up</i>
+            <i class="material-icons" [hidden]="!orderByDes || columnaOrderBy !== columnasEnum.LINEA">arrow_drop_down</i>
+          </th>
+          <th class="align-middle" (click)="ordenarColumna(columnasEnum.DEPARTAMENTO)">DEPARTAMENTO
+            <i class="material-icons" [hidden]="orderByDes || columnaOrderBy !== columnasEnum.DEPARTAMENTO">arrow_drop_up</i>
+            <i class="material-icons" [hidden]="!orderByDes || columnaOrderBy !== columnasEnum.DEPARTAMENTO">arrow_drop_down</i>
+          </th>
+          <th class="align-middle" (click)="ordenarColumna(columnasEnum.LOCALIDAD)">LOCALIDAD
+            <i class="material-icons" [hidden]="orderByDes || columnaOrderBy !== columnasEnum.LOCALIDAD">arrow_drop_up</i>
+            <i class="material-icons" [hidden]="!orderByDes || columnaOrderBy !== columnasEnum.LOCALIDAD">arrow_drop_down</i>
+          </th>
+          <th class="align-middle" (click)="ordenarColumna(columnasEnum.APELLIDO_Y_NOMBRE)">APELLIDO Y NOMBRE
+            <i class="material-icons" [hidden]="orderByDes || columnaOrderBy !== columnasEnum.APELLIDO_Y_NOMBRE">arrow_drop_up</i>
+            <i class="material-icons" [hidden]="!orderByDes || columnaOrderBy !== columnasEnum.APELLIDO_Y_NOMBRE">arrow_drop_down</i>
+          </th>
+          <th class="align-middle" (click)="ordenarColumna(columnasEnum.NRO_FORMULARIO)">NRO FORMULARIO
+            <i class="material-icons" [hidden]="orderByDes || columnaOrderBy !== columnasEnum.NRO_FORMULARIO">arrow_drop_up</i>
+            <i class="material-icons" [hidden]="!orderByDes || columnaOrderBy !== columnasEnum.NRO_FORMULARIO">arrow_drop_down</i>
+          </th>
+          <th class="align-middle" (click)="ordenarColumna(columnasEnum.NRO_PRESTAMO)">NRO PRÉSTAMO
+            <i class="material-icons" [hidden]="orderByDes || columnaOrderBy !== columnasEnum.NRO_PRESTAMO">arrow_drop_up</i>
+            <i class="material-icons" [hidden]="!orderByDes || columnaOrderBy !== columnasEnum.NRO_PRESTAMO">arrow_drop_down</i>
+          </th>
+          <th class="align-middle" (click)="ordenarColumna(columnasEnum.MONTO_OTORGADO)">MONTO OTORGADO
+            <i class="material-icons" [hidden]="orderByDes || columnaOrderBy !== columnasEnum.MONTO_OTORGADO">arrow_drop_up</i>
+            <i class="material-icons" [hidden]="!orderByDes || columnaOrderBy !== columnasEnum.MONTO_OTORGADO">arrow_drop_down</i>
+          </th>
+          <th class="align-middle">ACCIÓN</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let resultado of prestamosAPagarFormArray.controls" [formGroup]="resultado">
+          <td class="align-middle">{{resultado.get('linea').value}}</td>
+          <td class="align-middle">{{resultado.get('departamento').value}}</td>
+          <td class="align-middle">{{resultado.get('localidad').value}}</td>
+          <td class="align-middle">{{resultado.get('apellidoYNombre').value}}</td>
+          <td class="align-middle">{{resultado.get('nroFormulario').value}}</td>
+          <td class="align-middle">{{resultado.get('nroPrestamo').value}}</td>
+          <td class="align-middle">
+            {{resultado.get('montoOtorgado').value | moneda}}
+          </td>
+          <td class="align-middle">
+            <button type="button" class="btn btn-link" ngbTooltip="Añadir"
+              *ngIf="!estaSeleccionado(resultado.get('nroPrestamo').value)"
+              (click)="agregarPrestamoParaAgrupar(resultado.get('nroPrestamo').value)">
+              <i class="material-icons icono-accion">note_add</i>
+            </button>
+
+            <button type="button" class="btn btn-link" ngbTooltip="Quitar" #toolTipQuitar="ngbTooltip"
+              *ngIf="estaSeleccionado(resultado.get('nroPrestamo').value)"
+              (click)="quitarFormulariosParaAgrupar(resultado.get('nroPrestamo').value, toolTipQuitar)">
+              <i class="material-icons icono-accion">clear</i>
+            </button>
+
+            <button type="button" class="btn btn-link boton-grilla" ngbTooltip="Ver"
+              (click)="verFormularioPrestamo(resultado.get('idPrestamo').value)">
+              <i class="material-icons icono-accion">zoom_in</i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <paginacion [pagina]="pagina | async" (paginaModificada)="consultar(false, $event)">
+    </paginacion>
+
+    <div class="row" id="monto-acumulado">
+      Cantidad de préstamos seleccionados: {{montoAcumulado.cantidadPrestamos}}
+      <br>
+      Monto acumulado: {{montoAcumulado.montoAcumulado}}
+
+      <div class="form-group col">
+        <button class="btn btn-primary pull-right" [disabled]="!idsAgrupamientoSeleccionados.length"
+          (click)="simularLote()">SIMULAR LOTE
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="bandejaSimulacion === true">
+  <div class="row bordered align-items-center">
+    <div class="col">
+      <h1 class="display-4">SIMULAR LOTE</h1>
+    </div>
+  </div>
+
+  <div *ngIf="montosDisponibles.length" class="card-pane">
+    <form [formGroup]=formAsignarMontoDisponible novalidate>
+      <div class="row">
+        <div class="form-group col-md-6 col-lg-6 col-xl-6"
+          [errorFeedback]="formAsignarMontoDisponible.get('nombreLote')">
+          <label for="txt_nombre_lote">Nombre lote <span class="obligatorio">(*)</span>:</label>
+          <input type="text" class="form-control" id="txt_nombre_lote" formControlName="nombreLote"
+            [disabled]="loteConfirmado">
+          <control-messages [control]="formAsignarMontoDisponible.get('nombreLote')"></control-messages>
+        </div>
+        <div class="col-md-3 col-lg-3 col-xl-3 montos-negrita">
+          Monto acumulado(MA): {{montoAcumulado.montoAcumulado | moneda}}
+        </div>
+        <div class="col-md-3 col-lg-3 col-xl-3 montos-negrita">
+          MA + Iva + Comisión:
+          {{montoAcumulado.montoAcumuladoIvaComision | moneda}}
+        </div>
+      </div>
+    </form>
+
+    <div class="card-pane">
+      <div class="row">
+        <div class="form-group col-md-6 col-lg-6 col-xl-6">
+          Asignar monto disponible
+        </div>
+        <div *ngIf="montoSeleccionado.montoAUsar" class="form-group col-md-4 col-lg-4 col-xl-4" id="monto-seleccionado">
+          Monto disponible seleccionado:
+          {{montoSeleccionado.montoAUsar | moneda}}
+        </div>
+      </div>
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th class="align-middle">N° MONTO DISPONIBLE</th>
+            <th class="align-middle">FECHA ALTA</th>
+            <th class="align-middle">DESCRIPCIÓN</th>
+            <th class="align-middle">TOTAL MONTO DISPONIBLE</th>
+            <th class="align-middle">MONTO DISPONIBLE USADO</th>
+            <th class="align-middle">MONTO DISPONIBLE A USAR</th>
+            <th class="align-middle">SELECCIÓN</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let resultado of asignarMontoDisponibleFormArray.controls" [formGroup]="resultado">
+            <td class="align-middle">{{resultado.get('nroMonto').value}}</td>
+            <td class="align-middle">{{resultado.get('fechaAlta').value | date:'dd/MM/yyyy'}}</td>
+            <td class="align-middle">{{resultado.get('descripcion').value}}</td>
+            <td class="align-middle">
+              {{resultado.get('montoTotal').value | moneda}}
+            </td>
+            <td class="align-middle">{{resultado.get('montoUsado').value | moneda}}
+            </td>
+            <td class="align-middle valores-verde">
+              {{resultado.get('montoAUsar').value | moneda}}
+            </td>
+            <td class="align-middle">
+              <input type="radio" name="seleccionado" formControlName="seleccionado" [disabled]="loteConfirmado"
+                (click)="clickMonto(resultado.get('idMontoDisponible').value)"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="!loteConfirmado" class="row">
+      <div class="form-group col">
+        <button class="btn btn-primary pull-right" [disabled]="!formAsignarMontoDisponible.valid"
+          (click)="simular()">SIMULAR
+        </button>
+        <button *ngIf="mostrarBotonCancelar" class="btn btn-secondary pull-right separador-botones"
+          (click)="volver()">CANCELAR
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="resultadoSimulacion">
+      <form [formGroup]="formConfirmacionLote" (submit)="confirmarLote()">
+        <div class="row">
+          <div class="col">
+            Resultado simulación
+          </div>
+        </div>
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th class="align-middle">DESCRIPCIÓN</th>
+              <th class="align-middle">CANT. PRÉSTAMOS LOTE</th>
+              <th class="align-middle">MONTO LOTE</th>
+              <th class="align-middle">COMISIÓN 6%</th>
+              <th class="align-middle">IVA 21%</th>
+              <th class="align-middle">TOTAL MONTO LOTE (TML)</th>
+              <th class="align-middle">MONTO DISPONIBLE (MD)</th>
+              <th class="align-middle">DIFERENCIA (MD-TML)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="align-middle">{{resultadoSimulacion.descripcion}}</td>
+              <td class="align-middle">{{resultadoSimulacion.cantPrestamos}}</td>
+              <td class="align-middle">{{resultadoSimulacion.montoLote | moneda}}
+              </td>
+              <td class="align-middle">{{resultadoSimulacion.comision | moneda}}
+              </td>
+              <td class="align-middle">{{resultadoSimulacion.iva | moneda}}
+              </td>
+              <td class="align-middle">
+                {{resultadoSimulacion.totalMontoLote | moneda}}
+              </td>
+              <td class="align-middle">
+                {{resultadoSimulacion.montoDisponible | moneda}}
+              </td>
+              <td class="align-middle valores-verde">
+                {{resultadoSimulacion.diferencia | moneda}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <bg-modalidad-pago [loteConfirmado]="loteConfirmado" [creacionLote]="true">
+        </bg-modalidad-pago>
+
+        <div *ngIf="!loteConfirmado">
+          <div class="row justify-content-end">
+            <div class="form-group col">
+              <button type="submit" class="btn btn-primary pull-right "
+                [disabled]="validarConsultaLote() || !formAsignarMontoDisponible.valid">CONFIRMAR LOTE
+              </button>
+              <button [disabled]="loteConfirmado" class="btn btn-secondary pull-right separador-botones"
+                (click)="volver()">CANCELAR
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div id="row_acciones" class="row">
+  <div class="col">
+    <div class="pull-right">
+      <a [routerLink]="['/bandeja-lotes']" class="btn btn-secondary">VOLVER
+      </a>
+    </div>
+  </div>
+</div>

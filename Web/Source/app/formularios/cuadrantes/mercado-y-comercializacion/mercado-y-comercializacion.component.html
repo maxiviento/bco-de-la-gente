@@ -1,0 +1,173 @@
+<div id="row_titulo" class="row row-title line-divider-bottom">
+  <div class="col">
+    <strong>
+      <h4 class="card-title w-75">MERCADO Y COMERCIALIZACIÓN</h4>
+    </strong>
+  </div>
+</div>
+
+<!--Mensaje de alerta por falta de emprendimiento-->
+<bg-apartado-alerta-emprendimiento-requerido [emprendimiento]="formulario?.datosEmprendimiento" [marginTop]="true">
+</bg-apartado-alerta-emprendimiento-requerido>
+
+<div class="row">
+  <div class="col-12" *ngIf="items">
+    <form [formGroup]="formItems">
+      <div formArrayName="categorias">
+        <div *ngFor="let categoria of categorias().controls; let indice = index" class="card-pane">
+          <fieldset [formGroupName]="indice">
+            <control-messages [control]="categoria" class="has-danger" *ngIf="categoria.hasError('noselected')">
+              Debe seleccionar un ítem al menos
+            </control-messages>
+            <h5>{{categoria.get('nombre').value}} <span class="obligatorio">(*)</span>:
+            </h5>
+            <div formArrayName="items" class="row cursos">
+              <div class="form-group only-form-check col-xl-3 col-lg-4"
+                *ngFor="let curso of categoria.get('items').controls; let indice=index">
+                <div class="form-check" [formGroupName]="indice">
+                  <label class="custom-control check-bge-control">
+                    <input type="checkbox" class="check-bge" formControlName="seleccionado">
+                    <span class="check-marcado"></span>
+                    <span class="custom-control-description">
+                      {{curso.get('descripcion').value}}</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="categoria.get('otros')" formGroupName="otros" class="row">
+              <div class="col-8 form-group">
+                <label class="form-control-label">OTROS</label>
+                <input type="text" placeholder="Descripción" formControlName="descripcion" class="form-control" />
+              </div>
+            </div>
+            <control-messages [control]="formItems.get('categorias.'+indice+'.otros.descripcion')"
+              *ngIf="formItems.get('categorias.'+indice+'.otros.descripcion')" class="has-danger"></control-messages>
+          </fieldset>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<hr class="linea-gruesa">
+<div class="row">
+  <div class="col-12">
+    <form [formGroup]="formEstimaClientes" novalidate class="card-pane">
+      <div class="form-group row">
+        <label for="radios_estima_clientes" class="col-">¿Puede estimar la cantidad de clientes que tiene?</label>
+        <div class="col-2" id="radios_estima_clientes">
+          <label class="form-check-label">Si
+            <input type="radio" name="estimaClientes" [disabled]="!this.editable" (click)="clickRadioEstima(true)"
+            [checked]="estimaClientes.estima">
+          </label>
+          <div class="col-9" *ngIf="(comando.estimaClientes.estima)">
+            ¿Cuántos son?
+            <input type="text" id="txt_estima_clientes" class="form-control" formControlName="cantidad">
+            <control-messages [control]="formEstimaClientes.get('cantidad')"></control-messages>
+          </div>
+        </div>
+
+        <div class="col-1">
+          <label class="form-check-label">No
+            <input type="radio" name="estimaClientes" [disabled]="!this.editable" (click)="clickRadioEstima(false)"
+            [checked]="!estimaClientes.estima">
+          </label>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<hr>
+
+
+<form [formGroup]="formFormaPagos" class="card-pane">
+  <div class="row card-body">
+    <legend>Forma de pago de las compras y ventas</legend>
+  </div>
+  <hr>
+
+  <div class="row card-body">
+    <b>Forma de pago de las compras</b>
+  </div>
+
+  <div class="row card-body">
+    El
+    <span>
+      <input type="text" class="maxi-control" formControlName="porcentajeContadoEfectivoCompra" size="15px">
+      <control-messages [control]="formFormaPagos.get('porcentajeContadoEfectivoCompra')"></control-messages>
+    </span>
+    % es de contado efectivo
+  </div>
+
+  <div class="row  card-body">
+    El
+    <span>
+      <input type="text" class="maxi-control" formControlName="porcentajeCreditoProveedoresCompra" size="15px">
+      <control-messages [control]="formFormaPagos.get('porcentajeCreditoProveedoresCompra')"></control-messages>
+    </span>
+    % es crédito de proveedores. Plazo de pago promedio a
+    <span>
+      <input type="text" class="maxi-control" formControlName="creditoProveedoresPlazoPagoCompra" size="15px">
+      <control-messages [control]="formFormaPagos.get('creditoProveedoresPlazoPagoCompra')"></control-messages>
+    </span>
+    días.
+  </div>
+
+  <div class="row  card-body">
+    El
+    <span>
+      <input type="text" class="maxi-control" formControlName="porcentajeOtraFormaPagoCompra" size="15px">
+      <control-messages [control]="formFormaPagos.get('porcentajeOtraFormaPagoCompra')"></control-messages>
+    </span>
+    % con otra forma de pago. Plazo de pago promedio a
+    <span>
+      <input type="text" class="maxi-control" formControlName="otraFormaPagoPlazoCompra" size="15px">
+      <control-messages [control]="formFormaPagos.get('otraFormaPagoPlazoCompra')"></control-messages>
+    </span>
+    días.
+  </div>
+
+  <hr>
+  <div class="row card-body">
+    <b>Forma de pago de las ventas</b>
+  </div>
+
+  <div class="row card-body">
+    El
+    <span>
+      <input type="text" class="maxi-control" formControlName="porcentajeContadoEfectivoVenta" size="15px">
+      <control-messages [control]="formFormaPagos.get('porcentajeContadoEfectivoVenta')"></control-messages>
+    </span>
+    % es de contado efectivo
+  </div>
+
+  <div class="row card-body">
+    El
+    <span>
+      <input type="text" class="maxi-control" formControlName="porcentajeCreditoProveedoresVenta" size="15px">
+      <control-messages [control]="formFormaPagos.get('porcentajeCreditoProveedoresVenta')"></control-messages>
+    </span>
+    % es crédito de proveedores. Plazo de pago promedio a
+    <span>
+      <input type="text" class="maxi-control" formControlName="creditoProveedoresPlazoPagoVenta" size="15px">
+      <control-messages [control]="formFormaPagos.get('creditoProveedoresPlazoPagoVenta')"></control-messages>
+    </span>
+    días.
+  </div>
+
+  <div class="row  card-body">
+    El
+    <span>
+      <input type="text" class="maxi-control" formControlName="porcentajeOtraFormaPagoVenta" size="15px"
+        align="center">
+      <control-messages [control]="formFormaPagos.get('porcentajeOtraFormaPagoVenta')"></control-messages>
+    </span>
+    % con otra forma de pago. Plazo de pago promedio a
+    <span>
+      <input type="text" class="maxi-control" formControlName="otraFormaPagoPlazoVenta" size="15px">
+      <control-messages [control]="formFormaPagos.get('otraFormaPagoPlazoVenta')"></control-messages>
+    </span>
+    días.
+  </div>
+
+</form>

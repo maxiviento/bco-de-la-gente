@@ -1,0 +1,38 @@
+<div id="row_titulo" class="row row-title bordered">
+  <div class="col">
+    <h4>¿Qué cursos le interesa realizar?</h4>
+  </div>
+</div>
+<form [formGroup]="form">
+  <control-messages [control]="form" class="has-danger" *ngIf="form.hasError('noselected')">
+    Debe seleccionar un curso al menos
+  </control-messages>
+  <div formArrayName="categorias">
+    <div *ngFor="let categoria of categorias().controls; let indice = index" class="card-pane">
+      <fieldset [formGroupName]="indice">
+        <legend>{{categoria.get('nombre').value}}</legend>
+        <div formArrayName="cursos" class="row cursos">
+          <div class="form-group only-form-check col-xl-3 col-lg-4"
+            *ngFor="let curso of categoria.get('cursos').controls; let indice=index">
+            <div class="form-check" [formGroupName]="indice">
+              <label class="custom-control check-bge-control">
+                <input type="checkbox" class="check-bge" formControlName="seleccionado">
+                <span class="check-marcado"></span>
+                <span class="custom-control-description">{{curso.get('nombre').value}}</span>
+
+              </label>
+            </div>
+          </div>
+        </div>
+        <div formGroupName="otros" class="row">
+          <div class="col-8 form-group">
+            <label class="form-control-label">OTROS</label>
+            <input type="text" placeholder="Descripción" formControlName="descripcion" class="form-control" />
+          </div>
+        </div>
+        <control-messages [control]="form.get('categorias.'+indice+'.otros.descripcion')" class="has-danger">
+        </control-messages>
+      </fieldset>
+    </div>
+  </div>
+</form>

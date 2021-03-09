@@ -1,0 +1,69 @@
+<div class="modal-header">
+  <h3 class="modal-title">
+    <b>Ver motivos de rechazo</b>
+  </h3>
+  <button type="button" class="close" (click)="cerrar()">&times;</button>
+</div>
+
+<div class="modal-body">
+  <div class="pull-right">
+    <div class="col justify-content-center numeroCaja">
+      <label class="form-control-label"><b>Número de caja:</b> {{numeroCaja}}</label>
+    </div>
+  </div>
+  <div class="col ml-auto" *ngIf="lsMotivosRechazoFormulario">
+    <h4>
+      <b>RECHAZOS DE FORMULARIO</b>
+    </h4>
+    <div class="card-pane card-margin-top">
+      <table class="table table-bordered table-sm table-striped">
+        <thead>
+        <tr>
+          <th class="align-middle">FECHA DE RECHAZO</th>
+          <th class="align-middle">ABREVIATURA</th>
+          <th class="align-middle">MOTIVO</th>
+          <th class="align-middle">OBSERVACIONES</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let motivo of lsMotivosRechazoFormulario">
+          <td class="align-middle"> {{motivo.fechaRechazo | date:'dd/MM/yyyy'}}</td>
+          <td class="align-middle"> {{motivo.abreviatura}}</td>
+          <td class="align-middle"> {{motivo.descripcion}}</td>
+          <td class="align-middle"> {{motivo.observaciones}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col ml-auto" *ngIf="lsMotivosRechazoPrestamo.length > 0">
+    <h4>
+      <b>RECHAZOS DE PRÉSTAMO</b>
+    </h4>
+    <div class="card-pane card-margin-top">
+      <table class="table table-bordered table-sm table-striped">
+        <thead>
+        <tr>
+          <th class="align-middle">FECHA DE RECHAZO</th>
+          <th class="align-middle">ABREVIATURA</th>
+          <th class="align-middle">MOTIVO</th>
+          <th class="align-middle">OBSERVACIONES</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let motivo of lsMotivosRechazoPrestamo ">
+          <td class="align-middle"> {{motivo.fechaRechazo | date:'dd/MM/yyyy'}}</td>
+          <td class="align-middle"> {{motivo.abreviatura}}</td>
+          <td class="align-middle"> {{motivo.descripcion}}</td>
+          <td class="align-middle"> {{motivo.observaciones}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="cerrar()">CERRAR
+  </button>
+</div>

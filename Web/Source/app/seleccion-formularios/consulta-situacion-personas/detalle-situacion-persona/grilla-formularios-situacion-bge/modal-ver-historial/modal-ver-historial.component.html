@@ -1,0 +1,45 @@
+<div class="modal-header">
+  <h3 class="modal-title">
+    <b>Ver historial</b>
+  </h3>
+  <button type="button" class="close" (click)="cerrar()">&times;</button>
+</div>
+
+<div class="modal-body">
+  <table class="table table-bordered table-adjust table-striped">
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Usuario</th>
+        <th>Estado checklist</th>
+        <th>Descripción</th>
+        <th>Observaciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let seguimiento of seguimientos">
+        <td>
+          <small>{{seguimiento.fecha | date: 'dd/MM/yy hh:mm a'}}</small>
+        </td>
+        <td>
+          <small>{{seguimiento.nombreUsuario}}</small>
+        </td>
+        <td>
+          <small>{{seguimiento.nombreEstado}}</small>
+        </td>
+        <td>
+          <small *ngIf="seguimiento.observaciones == 'CAMBIO_DE_ETAPA'">{{'-'}}</small>
+          <small *ngIf="seguimiento.observaciones != 'CAMBIO_DE_ETAPA'">{{seguimiento.nroFormulario}}</small>
+        </td>
+        <td class="td-adjust">
+          <small>{{seguimiento.observaciones}}</small>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <paginacion [pagina]="pagina | async"
+              [mensajeAnterior]="'Más recientes'"
+              [mensajeSiguiente]="'Más antiguos'"
+              (paginaModificada)="consultarSeguimientos($event)">
+  </paginacion>
+</div>

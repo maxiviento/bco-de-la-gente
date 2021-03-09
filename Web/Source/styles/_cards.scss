@@ -1,0 +1,48 @@
+.card-pane{
+  background-color: #fff;
+  margin-bottom: 20px;
+  padding: 1.25rem;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 1px 3px 0 $mediumgrey;
+  -moz-box-shadow: 0 1px 3px 0 $mediumgrey;
+  box-shadow: 0 1px 3px 0 $mediumgrey;
+  position: relative;
+  border: 1px solid rgba(0,0,0,.125);
+}
+
+.card-title{
+  @include title(18px, 700, capitalize, $darkgrey);
+}
+
+.editable{
+  position: absolute;
+  top: 25px;
+  right: 45px;
+  color: $darkblue;
+  font-size: 18px;
+}
+
+.collapse.show,
+.collapsing{
+  width: 100%;
+  padding-right: 15px;
+}
+
+
+.footer{
+  @extend .card-pane;
+  background-color: $mediumgrey;
+  padding: 20px 0;
+  -webkit-box-shadow: 0 1px 3px 0 $disabled;
+  -moz-box-shadow: 0 1px 3px 0 $disabled;
+  box-shadow: 0 1px 3px 0 $disabled;
+  margin-bottom: 0;
+}
+
+.modal .card-title{
+  text-transform: unset;
+}
+
+.modal-content{
+  border-radius: 10px;
+}

@@ -1,0 +1,97 @@
+<div class="row align-items-center line-divider-bottom">
+  <div class="col ml-auto">
+    <h1 class="display-4">Situación domicilio del integrante</h1>
+  </div>
+</div>
+
+<div *ngIf="!(gruposIntegrantes)" class="card-pane" style="margin-top: 15px !important;">
+  No hay resultados para mostrar.
+</div>
+
+<form [formGroup]="form" *ngIf="formDomicilio" style="margin-top: 15px !important;">
+  <div class="card-pane">
+    <div class="row">
+      <div class="form-group col-lg-4 col-xl-4">
+        <label for="txt_provincia">Provincia</label>
+        <input type="text" id="txt_provincia" class="form-control" [value]="domicilioIntegrante.provincia" readonly>
+      </div>
+      <div class="form-group col-lg-4 col-xl-4">
+        <label for="txt_departamento">Departamento</label>
+        <input type="text" id="txt_departamento" class="form-control" [value]="domicilioIntegrante.departamento"
+          readonly>
+      </div>
+      <div class="form-group col-lg-4 col-xl-4">
+        <label for="txt_localidad">Localidad</label>
+        <input type="text" id="txt_localidad" class="form-control" [value]="domicilioIntegrante.localidad" readonly>
+      </div>
+      <div class="form-group col-lg-4 col-xl-4">
+        <label for="txt_barrio">Barrio</label>
+        <input type="text" id="txt_barrio" class="form-control" [value]="domicilioIntegrante.barrio" readonly>
+      </div>
+      <div class="form-group col-lg-4 col-xl-4">
+        <label for="txt_calle">Calle</label>
+        <input type="text" id="txt_calle" class="form-control" [value]="domicilioIntegrante.calle" readonly>
+      </div>
+      <div class="form-group col-lg-4 col-xl-4">
+        <label for="txt_altura">Altura</label>
+        <input type="text" id="txt_altura" class="form-control" [value]="domicilioIntegrante.altura" readonly>
+      </div>
+      <div class="form-group col-lg-2 col-xl-1">
+        <label for="txt_km">Kilómetro</label>
+        <input type="text" id="txt_km" class="form-control" [value]="domicilioIntegrante.kilometro" readonly>
+      </div>
+      <div class="form-group col-lg-2 col-xl-1">
+        <label for="txt_lote">Lote</label>
+        <input type="text" id="txt_lote" class="form-control" [value]="domicilioIntegrante.lote" readonly>
+      </div>
+      <div class="form-group col-lg-2 col-xl-1">
+        <label for="txt_manzana">Manzana</label>
+        <input type="text" id="txt_manzana" class="form-control" [value]="domicilioIntegrante.manzana" readonly>
+      </div>
+      <div class="form-group col-lg-2 col-xl-1">
+        <label for="txt_torre">Torre</label>
+        <input type="text" id="txt_torre" class="form-control" [value]="domicilioIntegrante.torre" readonly>
+      </div>
+      <div class="form-group col-lg-2 col-xl-1">
+        <label for="txt_depto">Depto</label>
+        <input type="text" id="txt_depto" class="form-control" [value]="domicilioIntegrante.depto" readonly>
+      </div>
+      <div class="form-group col-lg-2 col-xl-1">
+        <label for="txt_piso">Piso</label>
+        <input type="text" id="txt_piso" class="form-control" [value]="domicilioIntegrante.piso" readonly>
+      </div>
+    </div>
+  </div>
+</form>
+
+<form [formGroup]="form" *ngFor="let grupo of gruposIntegrantes" class="card-pane" style="margin-top: 15px !important;">
+  <table class="table table-bordered">
+    <thead>
+    <th class="align-middle">APELLIDO Y NOMBRE</th>
+    <th class="align-middle">CUIL/DNI</th>
+    <th class="align-middle">¿EXISTEN PRÉSTAMOS O SOLICITUDES?</th>
+    <th class="align-middle">¿HAY RECHAZOS?</th>
+    <th class="align-middle">DEUDA POR CUOTAS VENCIDAS</th>
+    <th class="align-middle">DEUDA POR CUOTAS A VENCER</th>
+    <th class="align-middle">DEUDA POR CUOTAS VENCIDAS NO MIGRADAS</th>
+    <th class="align-middle">DEUDA POR CUOTAS A VENCER NO MIGRADAS</th>
+    </thead>
+    <tr *ngFor="let integrante of grupo.listadoPersonas">
+      <td class="align-middle">{{integrante.apellidoNombre}}</td>
+      <td class="align-middle">{{integrante.numeroDocumento}}</td>
+      <td class="align-middle">{{integrante.vigente ? 'Si' : 'No'}}</td>
+      <td class="align-middle">{{integrante.hayRechazo ? 'Si' : 'No'}}</td>
+      <td class="align-middle">{{integrante.montoCuotasVencidas ? integrante.montoCuotasVencidas : 0}}</td>
+      <td class="align-middle">{{integrante.montoCuotasAVencer ? integrante.montoCuotasAVencer : 0}}</td>
+      <td class="align-middle">{{integrante.montoCuotasVencidasAsociativa ? integrante.montoCuotasVencidasAsociativa : 0}}</td>
+      <td class="align-middle">{{integrante.montoCuotasAVencerAsociativa ? integrante.montoCuotasAVencerAsociativa : 0}}</td>
+    </tr>
+  </table>
+</form>
+
+<div class="row row-section">
+  <div class="col">
+    <a class="btn btn-secondary pull-right" (click)="cerrar()">VOLVER
+    </a>
+  </div>
+</div>

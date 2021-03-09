@@ -1,0 +1,75 @@
+<div *ngIf="!esUnModal">
+  <form [formGroup]="form">
+    <div class="row">
+      <div class="col">
+        <div class="btn-group cuotas-tabs" ngbRadioGroup name="radioBasic" id="cuota" formControlName="cuota">
+          <label *ngFor="let plan of planes ; let i = index" ngbButtonLabel class="btn-outline-warning cuota-tab">
+            <input ngbButton
+                   [value]="i"
+                   type="radio">{{mostrarNombreCuotas(plan)}}
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="btn-group cuotas-tabs" ngbRadioGroup name="radioFormularios" id="formulario"
+             formControlName="formulario">
+          <label *ngFor="let formulario of formularios ; let i = index" ngbButtonLabel
+                 class="btn-outline-warning cuota-tab">
+            <input ngbButton
+                   [value]="i"
+                   type="radio">{{formulario.nroFormulario}}
+          </label>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="planSeleccionado?.detalles?.length > 0">
+  <div class="row row-section tabla-cuotas-scroll">
+    <div class="col-12">
+      <table class="table table-bordered table-striped" width="100%">
+        <thead class="table-headers">
+        <ng-container *ngFor="let tabla of tablas">
+          <th class="align-middle">NUM CUOTA</th>
+          <th class="align-middle">FECHA VENCIMIENTO</th>
+          <th class="align-middle">MONTO</th>
+          <th class="align-middle">FECHA REINTEGRO</th>
+        </ng-container>
+        </thead>
+        <tbody>
+        <tr *ngFor="let fila of filas">
+          <ng-container *ngFor="let tabla of tablas">
+            <td class="align-middle {{cuotaClass(getDetalle(tabla, fila))}}">{{getDetalle(tabla, fila).nroCuota}}</td>
+            <td class="align-middle {{cuotaClass(getDetalle(tabla, fila))}}">{{getDetalle(tabla, fila).fechaCuota |
+              date:'dd/MM/yyyy'}}
+            </td>
+            <td class="align-middle {{cuotaClass(getDetalle(tabla, fila))}}">{{montoMostrable(getDetalle(tabla,
+              fila))}}
+            </td>
+            <td class="align-middle {{cuotaClass(getDetalle(tabla, fila))}} borde-derecha">{{getDetalle(tabla,
+              fila).fechaPago | date:'dd/MM/yyyy'}}
+            </td>
+          </ng-container>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3 col-lg-3 col-xl-3 montos-negrita">
+      Monto total a pagar: {{planSeleccionado.montoTotal | moneda}}
+    </div>
+    <div class="col-md-3 col-lg-3 col-xl-3 montos-negrita ">
+      {{mensaje()}}
+      <span class="monto-span {{montoClass()}}"> {{planSeleccionado.montoPagado | moneda}}</span>
+    </div>
+    <div class="col-md-3 col-lg-3 col-xl-3 montos-negrita "
+         *ngIf="(planSeleccionado.montoTotal - planSeleccionado.montoPagado) >= 0">
+      Monto restante:
+      <span class="monto-span {{montoClass()}}"> {{(planSeleccionado.montoTotal - planSeleccionado.montoPagado) | moneda}}</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="row row-title line-divider-bottom align-items-center">
+  <div class="col">
+    <h1 class="display-4">PARÁMETROS</h1>
+  </div>
+</div>
+<div class="row row-section">
+
+  <div class="col-12">
+    <form *ngIf="form" [formGroup]="form" (ngSubmit)="consultar(0)" novalidate>
+      <h3>Filtros de búsqueda </h3>
+      <div class="card-pane">
+        <div class="row row-section">
+          <div class="form-group col-xl-9 col-lg-12 col-12">
+            <label for="cb_parametro">Parámetro</label>
+            <ng-select id="cb_parametro" [dataSource]="{list: parametrosCombo}" formControlName="id"
+              [clientMode]="true">
+            </ng-select>
+            <control-messages [control]="form.get('id')"></control-messages>
+          </div>
+          <div [errorFeedback]="form.get('incluirNoVigentes')" class="col-12 col-lg-12 col-xl-3" id="chk_para_no_vig">
+            <label class="custom-control check-bge-control">
+              <input type="checkbox" class="check-bge" formControlName="incluirNoVigentes" />
+              <span class="check-marcado"></span>
+              <span class="custom-control-description">Incluir no vigentes</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="row row-section justify-content-end">
+        <div class="col-12 col-md-3 col-lg-2 col-xl-2">
+          <button type="submit" class="btn btn-primary pull-right">
+            <i class="material-icons icono-accion alinear-texto-con-icono">search</i>
+            <span class="alinear-texto-con-icono">CONSULTAR</span>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+<div class="row align-items-center line-divider-bottom">
+  <div class="col ml-auto">
+    <h3>Resultados</h3>
+  </div>
+</div>
+
+<div [hidden]="parametros.length" class="card-pane card-margin-top">
+  No hay resultados para mostrar.
+</div>
+
+<div [hidden]="!parametros.length" class="card-pane card-margin-top">
+  <cce-parametros-grilla [parametros]="parametros" (modificado)="modificarParametro($event)"
+    [mostrarFechaHasta]="mostrarFechaHasta()">
+  </cce-parametros-grilla>
+
+  <div [hidden]="!parametros.length">
+    <paginacion [pagina]="pagina | async" (paginaModificada)="consultar($event)">
+    </paginacion>
+  </div>
+</div>

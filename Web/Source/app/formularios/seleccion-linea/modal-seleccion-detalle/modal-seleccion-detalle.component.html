@@ -1,0 +1,45 @@
+<div class="modal-body">
+  <div class="row text-center justify-content-center titulo">
+    <div class="col-10">
+      <p class="h4"><strong>{{detallesLinea[0].nombre}} - {{detallesLinea[0].descripcion}}</strong></p>
+    </div>
+  </div>
+  <form [formGroup]="form">
+    <div class="row justify-content-center">
+      <div class="form-group col-6">
+        <label for="cb_origen">Origen</label>
+        <select id="cb_origen" class="form-control" formControlName="origen">
+          <option *ngFor="let item of origenes" [ngValue]="item.clave">
+            {{item.valor | uppercase}}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="row" [ngClass]="{'justify-content-center': detallesArray().controls.length === 1}">
+      <div *ngFor="let detalle of detallesArray().controls; let indice = index" class="col-6">
+        <div [formGroup]="detalle">
+          <button id="btn-selec-linea" class="list-group-item list-group-item-action"
+            (click)="seleccionarDetalle(detalle)" [style.border-color]="detalle.get('color').value">
+            <span class="d-flex justify-content-between">
+              <span
+                class="h4 mb-1"><strong>{{detalle.get('visualizacion').value || 'Visualizacion del detalle linea aca'}}</strong></span>
+            </span>
+            <label *ngIf="detallesArray().length > 1" class="custom-control check-bge-control">
+              <input type="checkbox" formControlName="seleccionado" class="check-bge">
+              <span class="check-marcado"></span>
+            </label>
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+
+  <button type="button" class="btn btn-secondary" (click)="cerrar()">Cancelar
+  </button>
+
+  <button type="button" class="btn btn-primary ml-auto" (click)="aceptar()" [disabled]="habilitarAceptar()">Aceptar
+  </button>
+
+</div>

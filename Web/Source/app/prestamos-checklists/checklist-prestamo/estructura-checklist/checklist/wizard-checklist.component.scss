@@ -1,0 +1,156 @@
+@import "../../../../../styles/variables";
+
+.w-35 {
+  width: 35% !important;
+}
+
+.w-25 {
+  width: 25% !important;
+}
+
+.w-10 {
+  width: 10% !important;
+}
+
+.item-padre {
+  font-weight: bold;
+}
+
+#row-integrantes {
+  padding-top: 10px;
+}
+
+.ck_item_solicitante_garante {
+  margin: auto;
+  padding: 5px;
+  transform: scale(1.5);
+}
+.ck_item {
+  margin-left: 11px;
+  padding: 5px;
+  transform: scale(1.5);
+}
+.ck_todos {
+  margin: auto;
+  padding: 5px;
+  transform: scale(1.5);
+}
+
+.lbl-item {
+  margin: auto;
+  padding: 5px;
+}
+
+#total-folios {
+  margin-left: 10px;
+}
+
+.circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.amarillo {
+  background: #f2f502;
+}
+
+.rojo {
+  background: #e8181e;
+}
+
+.verde {
+  background: #1ccd12;
+}
+
+.gris {
+  background: #8c868b;
+}
+
+.row-formulario {
+  padding-left: 10px;
+  margin-left: 0px;
+}
+
+.row-solicicGarante {
+  margin-right: 0px;
+}
+
+.row-title-table {
+  vertical-align: bottom;
+}
+
+.row-table {
+  vertical-align: top;
+}
+
+#tx_observaciones {
+  width: 100%;
+  height: 100%;
+}
+
+#tabla-integrantes {
+  margin-bottom: 0px;
+  width: 100%;
+}
+
+#checklist {
+  font-weight: 600;
+  background-color: #2957a4;
+  color: white;
+  border-radius: 8px;
+  padding-left: 10px;
+}
+
+.h-linea {
+  font-weight: bold;
+  background-color: #2957a4;
+  color: white;
+  border-radius: 8px;
+  height: 2.2rem !important;
+  padding-left: 10px;
+}
+
+.h-motivo-rechazo {
+  font-weight: bold;
+  background-color: #e8181e;
+  color: white;
+  border-radius: 8px;
+  padding-left: 10px;
+}
+
+.table-active {
+  @extend .table-active;
+  border-radius: 15px;
+}
+
+.btn_archivo {
+  font-size: x-large;
+  color: white;
+  background-color: $warning;
+  border-radius: 60px;
+  margin-left: 10px;
+  -webkit-box-shadow: 0 1px 3px 0 #555459;
+  -moz-box-shadow: 0 1px 3px 0 #555459;
+  box-shadow: 0 1px 3px 0 #555459 !important;
+}
+
+.table-adjust {
+  table-layout: fixed;
+  white-space: normal !important;
+}
+
+.td-adjust {
+  word-wrap: break-word;
+}
+
+.alinear-check-todos {
+  @media (max-width: 1366px) {
+    margin-right: 53px;
+  }
+  margin-right: 77px;
+}
+
+.table .custom-control {
+  padding-left: 1.5rem !important;
+}

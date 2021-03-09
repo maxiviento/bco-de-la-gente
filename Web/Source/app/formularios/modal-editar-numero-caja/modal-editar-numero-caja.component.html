@@ -1,0 +1,23 @@
+<div class="modal-header">
+  <h4 class="modal-title">Editar Número de caja</h4>
+  <button type="button" class="close" (click)="cerrar()">&times;</button>
+</div>
+
+<div class="modal-body">
+  <form [formGroup]="form" (ngSubmit)="editarNumeroCaja()" novalidate>
+    <div class="row" style="margin-top: 15px">
+      <div class="col justify-content-center">
+        <label for="txt_numeroCaja" class="form-control-label">Número de caja </label><span class="obligatorio">(*)</span>
+        <input type="text" class="form-control" id="txt_numeroCaja" formControlName="numeroCaja">
+        <control-messages [control]="form.get('numeroCaja')"></control-messages>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="cerrar()">CANCELAR
+  </button>
+  <button type="button" class="btn btn-primary" [disabled]="!form.valid" (click)="editarNumeroCaja()">ACEPTAR
+  </button>
+</div>

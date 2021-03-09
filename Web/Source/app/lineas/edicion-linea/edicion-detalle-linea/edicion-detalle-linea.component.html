@@ -1,0 +1,36 @@
+<div class="row row-section align-items-center">
+  <div class="col">
+    <h4 class="display-4">EDITAR DETALLE DE LA LÍNEA DE MICRO-PRÉSTAMO:
+      <small>{{detalleLinea.nombreLinea}}</small>
+    </h4>
+  </div>
+</div>
+
+<div class="row line-divider-bottom">
+  <div class="col">
+    <h5><strong>Detalle seleccionado</strong></h5>
+  </div>
+</div>
+
+<div [formGroup]="form" class="card-pane card-margin-top" *ngIf="detalleForm">
+  <bg-linea-detalle
+    *ngIf="detalleForm"
+    [detalle]="detalleLineaForm"
+    [vistaModal]="false"
+    [integrantes]="integrantes"
+    [financiamientos]="financiamientos"
+    [intereses]="intereses"
+    [garantias]="garantias"
+    [conveniosPago]="conveniosPago"
+    [conveniosRecupero]="conveniosRecupero">
+  </bg-linea-detalle>
+</div>
+
+<div class="row" *ngIf="detalleForm">
+  <div class="col">
+    <button class="btn btn-primary pull-right" type="button"
+            (click)="guardarDetalle()"
+            [disabled]="!esDetalleValido()">Aceptar</button>
+    <a [routerLink]="['/bandeja-lineas']" class="btn btn-secondary pull-right separador-botones">Cancelar</a>
+  </div>
+</div>

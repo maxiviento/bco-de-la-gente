@@ -1,0 +1,94 @@
+<div class="row row-section line-divider-bottom align-items-center">
+  <div class="col">
+    <h3><strong>Asignar ONG a línea de micro-préstamo</strong></h3>
+  </div>
+</div>
+
+<form [formGroup]="form">
+  <div class="card-pane">
+    <div class="form-group row" *ngIf="lsOng.length">
+      <div class="col-xl-6 col-lg-6 col-md-6">
+        <label>ONG<span class="obligatorio"> (*)</span></label>
+        <buscador-drop-down
+          (stringIngresado)="buscarOng($event)"
+          (valorSeleccionado)="agregarOngSeleccionada($event)"
+          [lsValores]="lsOng"
+          [idObjeto]="'id'"
+          [nombreObjeto]="'nombre'"
+        >
+        </buscador-drop-down>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-md-3" [errorFeedback]="form.get('porcentajeRecupero')">
+        <label for="txt_porcentaje_recupero">Porcentaje recupero<span class="obligatorio"> (*)</span></label>
+        <input type="text" class="form-control" id="txt_porcentaje_recupero" formControlName="porcentajeRecupero">
+        <control-messages [control]="form.get('porcentajeRecupero')"></control-messages>
+      </div>
+      <div class="col-xl-3 col-lg-3 col-md-3" [errorFeedback]="form.get('porcentajePago')">
+        <label for="txt_porcentaje_pago">Porcentaje préstamo<span class="obligatorio"> (*)</span></label>
+        <input type="text" class="form-control" id="txt_porcentaje_pago" formControlName="porcentajePago">
+        <control-messages [control]="form.get('porcentajePago')"></control-messages>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <button (click)="agregarOngLinea()" [disabled]="!form.valid || !ongSeleccionada.idEntidad"
+                class="btn btn-primary pull-right"> AGREGAR
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<div class="card-pane" [hidden]="!lsOngLineaLocal.length">
+  <table class="table table-bordered table-striped table-sm">
+    <thead>
+    <tr>
+      <th class="line-divider-right align-middle">
+        <strong>ONG</strong>
+      </th>
+      <th class="line-divider-right align-middle">
+        <strong>PORCENTAJE RECUPERO</strong>
+      </th>
+      <th class="th_seleccion align-middle">
+        <strong>PORCENTAJE PRÉSTAMO</strong>
+      </th>
+      <th class="th_seleccion align-middle">
+        <strong>ACCIONES</strong>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let ong of lsOngLineaLocal">
+      <td class="line-divider-right align-middle">
+        {{ong.nombre}}
+      </td>
+      <td class="line-divider-right align-middle">
+        {{ong.porcentajeRecupero}}
+      </td>
+      <td class="line-divider-right align-middle">
+        {{ong.porcentajePago}}
+      </td>
+      <td class="line-divider-right align-middle">
+        <button type="button" class="btn btn-link" ngbTooltip="Quitar ONG"
+                (click)="quitarOngSeleccionada(ong)">
+          <i class="material-icons icono-accion">clear</i>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card-pane" [hidden]="lsOngLineaLocal.length">
+  No se han seleccionado ONG para esta línea.
+</div>
+
+<div class="row">
+  <div class="col">
+    <button (click)="aceptar()" [disabled]="!lsOngLineaLocal.length"
+            class="btn btn-primary pull-right"> ACEPTAR
+    </button>
+    <button class="btn btn-secondary pull-right separador-botones" (click)="cancelar()">CANCELAR
+    </button>
+  </div>
+</div>

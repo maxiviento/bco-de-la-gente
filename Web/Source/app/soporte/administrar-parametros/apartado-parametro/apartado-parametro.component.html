@@ -1,0 +1,69 @@
+<div class="modal-header">
+  <h4 class="modal-title"><strong>{{ accion }}</strong></h4>
+  <button type="button" class="close" aria-label="Close" (click)="cancelar()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form *ngIf="form" [formGroup]="form" (ngSubmit)="registrarOModificar()" novalidate>
+  <div class="modal-body">
+
+    <div class="row row-section justify-content-center">
+
+      <div class="form-group col-12 col-lg-12 col-xl-12 form-group">
+        <label class="form-control-label" for="txt_nombre_parametro">Parámetro:</label>
+        <textarea class="form-control" id="txt_nombre_parametro" rows="2" [value]="parametro.nombre" disabled>
+        </textarea>
+      </div>
+      <div class="form-group col-12 col-lg-12 col-xl-12 form-group">
+        <label class="form-control-label" for="txt_beneficio">Descripción:</label>
+        <input type="text" class="form-control col-lg-12 col-xl-12" id="txt_beneficio" [value]="parametro.descripcion"
+          disabled />
+      </div>
+      <div [errorFeedback]="form.get('fechaDesde')" class="form-group col-12 col-md-4 col-lg-4 col-xl-4">
+        <label class="form-control-label" for="txt_fecha_vigencia_desde">Fecha de inicio de vigencia:</label>
+        <input type="text" class="form-control" id="txt_fecha_vigencia_desde" placeholder="dd/mm/aaaa" ngbDatepicker
+          formControlName="fechaDesde" (click)="calendarDesde.toggle()" #calendarDesde="ngbDatepicker" />
+        <control-messages [control]="form.get('fechaDesde')"></control-messages>
+      </div>
+      <div class="form-group col-12 col-lg-4 col-xl-4 form-group">
+        <label class="form-control-label" for="txt_tipo_valor">Tipo de valor:</label>
+        <input type="text" class="form-control col-lg-12 col-xl-12" id="txt_tipo_valor"
+          [value]="parametro.nombreTipoDato" disabled />
+      </div>
+      <div [errorFeedback]="form.get('valor')" class="form-group col-12 col-lg-4 col-xl-4 form-group"
+        *ngIf="parametro.idTipoDato == 2">
+        <label class="form-control-label" for="txt_valor">Valor:</label>
+        <input type="text" class="form-control col-lg-12 col-xl-12" id="txt_valor" formControlName="valor" />
+        <control-messages [control]="form.get('valor')"></control-messages>
+      </div>
+      <div [errorFeedback]="form.get('valor')" class="form-group col-12 col-lg-4 col-xl-4 form-group"
+        *ngIf="parametro.idTipoDato == 1">
+        <label class="form-control-label" for="txt_valor_date">Valor:</label>
+        <input id="txt_valor_date" class="form-control col-lg-12 col-xl-12" placeholder="dd/mm/aaaa" ngbDatepicker
+          (click)="calendarDesde.toggle()" #calendarDesde="ngbDatepicker" formControlName="valor" />
+        <control-messages [control]="form.get('valor')"></control-messages>
+      </div>
+      <div [errorFeedback]="form.get('valor')" class="form-group col-12 col-lg-4 col-xl-4 form-group"
+        *ngIf="parametro.idTipoDato == 3">
+        <label class="form-control-label" for="txt_valor_bool">Valor:</label>
+        <select id="txt_valor_bool" class="form-control" formControlName="valor">
+          <option value="VERDADERO">VERDADERO</option>
+          <option value="FALSO">FALSO</option>
+        </select>
+        <control-messages [control]="form.get('valor')"></control-messages>
+      </div>
+      <div [errorFeedback]="form.get('valor')" class="form-group col-12 col-lg-4 col-xl-4 form-group"
+        *ngIf="parametro.idTipoDato == 4">
+        <label class="form-control-label" for="txt_valor_str">Valor:</label>
+        <input type="text" class="form-control col-lg-12 col-xl-12" id="txt_valor_str" formControlName="valor" />
+        <control-messages [control]="form.get('valor')"></control-messages>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+
+    <button type="submit" class="btn btn-primary separador-botones"
+    [disabled]="validarformulario()">Guardar</button>
+    <button type="button" class="btn btn-secondary" (click)="cancelar()">Cancelar</button>
+  </div>
+</form>

@@ -1,0 +1,243 @@
+<div id="row_titulo" class="row row-title line-divider-bottom">
+  <div class="col">
+    <strong>
+      <h4 class="card-title w-75">DATOS DEL EMPRENDIMIENTO</h4>
+    </strong>
+  </div>
+</div>
+
+
+<div class="card-pane card-margin-top">
+  <div class="row row-section">
+    <div class="col">
+      <button class="btn btn-primary pull-right" [disabled]="!this.editable"
+        (click)="crearDomicilio()">{{mostrarDatosDomicilio ? 'CAMBIAR DOMICILIO' : 'CREAR DOMICILIO'}}</button>
+    </div>
+  </div>
+  <form [formGroup]="form">
+    <div class="card-pane card-margin-top" *ngIf="!mostrarDatosDomicilio">
+      <div class="text-center text-danger">
+        <h5>
+          <b>¡No se encontró un domicilio!</b>
+        </h5>
+        <h6>
+          Para continuar, asigne un domicilio al emprendimiento.
+        </h6>
+      </div>
+    </div>
+    <div class="card-pane" *ngIf="mostrarDatosDomicilio">
+      <div class="row">
+        <div class="col-md-6 col-lg-6 col-xl-6 form-group">
+          <label for="txt_calle">Calle</label>
+          <input type="text" id="txt_calle" class="form-control" formControlName="calle" disabled>
+        </div>
+        <div class="col-md-2 col-lg-2 col-xl-2 form-group">
+          <label for="txt_nro_calle">Número</label>
+          <input type="text" id="txt_nro_calle" class="form-control" formControlName="nroCalle" disabled>
+        </div>
+        <div class="col-md-2 col-lg-2 col-xl-2 form-group">
+          <label for="txt_torre">Torre</label>
+          <input type="text" id="txt_torre" class="form-control" formControlName="torre" disabled>
+        </div>
+        <div class="col-md-2 col-lg-2 col-xl-2 form-group">
+          <label for="txt_piso">Piso</label>
+          <input type="text" id="txt_piso" class="form-control" formControlName="nroPiso" disabled>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2 col-lg-2 col-xl-2 form-group">
+          <label for="txt_nro_depto">Dpto</label>
+          <input type="text" id="txt_nro_depto" class="form-control" formControlName="nroDpto" disabled>
+        </div>
+        <div class="col-md-2 col-lg-2 col-xl-2 form-group">
+          <label for="txt_manzana">Manzana</label>
+          <input type="text" id="txt_manzana" class="form-control" formControlName="manzana" disabled>
+        </div>
+        <div class="col-md-2 col-lg-2 col-xl-2 form-group">
+          <label for="txt_casa">Casa</label>
+          <input type="text" id="txt_casa" class="form-control" formControlName="casa" disabled>
+        </div>
+        <div class="col-md-6 col-lg-6 col-xl-6 form-group">
+          <label for="txt_barrio">Barrio</label>
+          <input type="text" id="txt_barrio" class="form-control" formControlName="barrio" disabled>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-5 col-lg-5 col-xl-5 form-group">
+          <label for="cb_departamento">Departamento</label>
+          <input type="text" id="cb_departamento" class="form-control" formControlName="departamento" disabled>
+        </div>
+
+        <div class="col-md-5 col-lg-5 col-xl-5 form-group">
+          <label for="cb_localidad">Localidad</label>
+          <input type="text" id="cb_localidad" class="form-control" formControlName="localidad" disabled>
+        </div>
+
+        <div class="col-md-2 col-lg-2 col-xl-2 form-group">
+          <label for="txt_cod_postal">C.P.</label>
+          <input type="text" id="txt_cod_postal" class="form-control" formControlName="codPostal" disabled>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-5 col-lg-5 col-xl-5">
+        <label>Teléfono<span class="obligatorio"> (*)</span>:</label>
+        <div class="row">
+          <div class="col-md-2 col-lg-2 col-xl-2 form-group" [errorFeedback]="form.get('nroCodArea')">
+            <input type="text" class="form-control" formControlName="nroCodArea">
+            <control-messages [control]="form.get('nroCodArea')"></control-messages>
+          </div>
+          <div class="col-md-6 col-lg-6 col-xl-6 form-group" [errorFeedback]="form.get('nroTelefono')">
+            <input type="text" class="form-control" formControlName="nroTelefono">
+            <control-messages [control]="form.get('nroTelefono')"></control-messages>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-7 col-lg-7 col-xl-7" [errorFeedback]="form.get('email')">
+        <label for="txt_email">E-mail<span class="obligatorio"> (*)</span>:</label>
+        <input type="text" id="txt_email" class="form-control" formControlName="email">
+        <control-messages [control]="form.get('email')"></control-messages>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-xl-12 form-group">
+        <label>Este inmueble es<span class="obligatorio"> (*)</span>:</label>
+        <div class="form-inline">
+          <div [formGroup]="form" class="col-md-2 col-lg-1 col-xl-1" class="margin-right"
+            *ngFor="let tipo of tiposInmueble; let indice = index">
+            <label [attr.for]="'rb_tipo_in' + indice" class="form-check-label">
+              <input [attr.id]="'rb_tipo_in' + indice" type="radio" name="tipoInmueble" class="form-check-input"
+                [value]="tipo.id" [checked]="radioChecked(form.get('tipoInmueble'), tipo.id)"
+                formControlName="tipoInmueble">{{tipo.descripcion}}
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 col-lg-6 col-xl-6 form-group">
+        <label for="cb_rubro">Rubro <span class="obligatorio"> (*)</span>:</label>
+        <ng-select id="cb_rubro" [dataSource]="{list: rubros, name:'nombre'}" [selected]="form.get('rubro').value"
+          formControlName="rubro" [clientMode]="true">
+        </ng-select>
+      </div>
+
+      <div class="col-md-6 col-lg-6 col-xl-6 form-group">
+        <label for="cb_actividad">Actividad<span class="obligatorio"> (*)</span>:</label>
+        <ng-select id="cb_actividad" [dataSource]="{list: actividades, name:'nombre'}"
+          [selected]="form.get('actividad').value" formControlName="actividad" [clientMode]="true">
+        </ng-select>
+      </div>
+
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-xl-12 form-group">
+        <label>Tipo de proyecto</label>
+        <div class="form-inline">
+          <div [formGroup]="form" class="col-md-2 col-lg-1 col-xl-1" class="margin-right"
+            *ngFor="let tipo of tiposProyecto; let indice = index">
+            <label [attr.for]="'rb_tipo_pro' + indice" class="form-check-label">
+              <input [attr.id]="'rb_tipo_pro' + indice" type="radio" name="tipoProyecto" class="form-check-input"
+                [value]="tipo.id" [checked]="radioChecked(form.get('tipoProyecto'), tipo.id)"
+                formControlName="tipoProyecto">{{tipo.descripcion}}
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 col-lg-6 col-xl-6 form-inline margin-bottom" [errorFeedback]="form.get('fechaActivacion')">
+        <label for="txt_fecha">Proyecto activo desde/ a partir de</label>
+        <input id="txt_fecha" class="form-control margin-left" ngbDatepicker placeholder="dd/mm/aaaa"
+          #fecha="ngbDatepicker" (click)="fecha.toggle()" formControlName="fechaActivacion">
+        <control-messages [control]="form.get('fechaActivacion')"></control-messages>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-xl-12 form-group">
+        <label>Sector en el que desarrolla la actividad</label>
+        <div class="form-inline">
+          <div [formGroup]="form" class="col-md-2 col-lg-1 col-xl-1" class="margin-right"
+            *ngFor="let sector of sectoresDesarrollo; let indice = index">
+            <label [attr.for]="'rb_sector' + indice" class="form-check-label">
+              <input [attr.id]="'rb_sector' + indice" type="radio" name="sectorDesarrollo" class="form-check-input"
+                [value]="sector.id" [checked]="radioChecked(form.get('sectorDesarrollo'), sector.id)"
+                formControlName="sectorDesarrollo">{{sector.descripcion}}
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row align-items-center">
+      <div class="col-md-6 col-lg-6 col-xl-6 margin-bottom">
+        <label for="ck_tiene_experiencia" class="custom-control check-bge-control">
+          <input id="ck_tiene_experiencia" type="checkbox" class="check-bge" formControlName="tieneExperiencia">
+          <span class="check-marcado"></span>
+          <span class="custom-control-description">¿Posee experiencia en la actividad a desarrollar?</span>
+        </label>
+      </div>
+      <div class="col-md-6 col-lg-6 col-xl-6 form-inline" *ngIf="form.get('tieneExperiencia').value"
+        [errorFeedback]="form.get('tiempoExperiencia')">
+        <label for="txt_tiempo_exp">¿Cuánto tiempo?</label>
+        <input type="text" id="txt_tiempo_exp" class="form-control margin-left" formControlName="tiempoExperiencia">
+        <control-messages [control]="form.get('tiempoExperiencia')"></control-messages>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 col-lg-6 col-xl-6 margin-bottom">
+        <label for="ck_hizo_cursos" class="custom-control check-bge-control">
+          <input id="ck_hizo_cursos" type="checkbox" class="check-bge" formControlName="hizoCursos">
+          <span class="check-marcado"></span>
+          <span class="custom-control-description">¿Hizo cursos?</span>
+        </label>
+      </div>
+    </div>
+    <!--<div class="row">
+      <div class="col-md-12 col-lg-12 col-xl-12 form-group" [errorFeedback]="form.get('cursoInteres')">
+        <label for="txt_curso_interes">¿Qué curso o capacitación le gustaría realizar?</label>
+        <input id="txt_curso_interes" type="text" class="form-control" formControlName="cursoInteres">
+        <control-messages [control]="form.get('cursoInteres')"></control-messages>
+      </div>
+    </div>-->
+    <div class="row">
+      <div class="col-md-6 col-lg-6 col-xl-6 margin-bottom">
+        <label for="ck_pidio_cred" class="custom-control check-bge-control">
+          <input id="ck_pidio_cred" type="checkbox" class="check-bge" formControlName="pidioCredito">
+          <span class="check-marcado"></span>
+          <span class="custom-control-description">¿Pidió alguna vez un crédito para un microemprendimiento?</span>
+
+        </label>
+      </div>
+      <div class="col-md-6 col-lg-6 col-xl-6 " *ngIf="form.get('pidioCredito').value">
+        <label for="ck_credito_otorgado" class="custom-control check-bge-control">
+          <input id="ck_credito_otorgado" type="checkbox" class="check-bge" formControlName="creditoFueOtorgado">
+          <span class="check-marcado"></span>
+          <span class="custom-control-description">¿Se lo otorgaron?</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="form.get('pidioCredito').value">
+      <div class="col-md-12 col-lg-12 col-xl-12 form-group" [errorFeedback]="form.get('institucionSolicitante')">
+        <label for="cb_institucion">¿En qué institución lo solicitó?</label>
+        <ng-select id="cb_institucion" [dataSource]="{list: instituciones, name:'valor', id:'clave'}"
+          [selected]="form.get('institucionSolicitante').value" formControlName="institucionSolicitante"
+          [clientMode]="true">
+        </ng-select>
+        <control-messages [control]="form.get('institucionSolicitante')"></control-messages>
+      </div>
+    </div>
+  </form>
+</div>

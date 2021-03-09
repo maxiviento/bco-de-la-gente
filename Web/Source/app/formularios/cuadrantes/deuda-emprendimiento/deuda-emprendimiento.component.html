@@ -1,0 +1,81 @@
+<div id="row_titulo" class="row row-title line-divider-bottom">
+  <div class="col">
+    <h4 class="card-title w-75">DEUDA DEL EMPRENDIMIENTO</h4>
+    <h6>(Pasivo) detallar si posee actualmente deudas por adquisicion de materiales, maquinarias, etc. destinadas
+      al proyecto.
+    </h6>
+  </div>
+</div>
+
+<!--Mensaje de alerta por falta de emprendimiento-->
+<bg-apartado-alerta-emprendimiento-requerido [emprendimiento]="emprendimiento" [marginTop]="true">
+</bg-apartado-alerta-emprendimiento-requerido>
+
+
+<form [formGroup]="form" novalidate>
+  <div class="card-pane">
+    <div class="row">
+      <!--<div class="form-group col-lg-3 col-xl-3 col-md-3"-->
+      <!--[errorFeedback]="form.get('descripcion')">-->
+      <!--<label for="txt_descripcion" class="col-form-label">Descripcion</label>-->
+      <!--<input class="form-control"-->
+      <!--id="txt_descripcion"-->
+      <!--formControlName="descripcion">-->
+      <!--<control-messages [control]="form.get('descripcion')"></control-messages>-->
+      <!--</div>-->
+
+      <div class="form-group col-lg-3 col-xl-3" style="padding-top: 0.4%"
+        [errorFeedback]="form.get('idTipoDeudaEmprendimiento')">
+        <label for="cmb_tipo_inversion">Tipo de inversión</label>
+        <select id="cmb_tipo_inversion" class="form-control" formControlName="idTipoDeudaEmprendimiento">
+          <option value="null" disabled>Seleccione</option>
+          <option *ngFor="let tipoDeuda of tiposDeuda" [ngValue]="tipoDeuda.id">
+            {{tipoDeuda.descripcion | uppercase}}
+          </option>
+        </select>
+        <control-messages [control]="form.get('idTipoDeudaEmprendimiento')"></control-messages>
+      </div>
+      <div class="form-group col-lg-3 col-xl-3 col-md-3" [errorFeedback]="form.get('monto')">
+        <label for="txt_monto" class="col-form-label">Monto</label>
+        <div class="input-group">
+          <span class="input-group-addon span-pesos" id="basic-addon">$</span>
+          <input type="text" class="form-control txt-pesos" id="txt_monto" formControlName="monto">
+        </div>
+        <control-messages [control]="form.get('monto')"></control-messages>
+      </div>
+      <div class="col-lg-3 col-xl-3 col-md-3" style="padding-top: 2%">
+        <button [disabled]="!form.valid" class="btn btn-warning" (click)="agregarDeuda()">+ AGREGAR
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="deudasEmprendimiento.length > 0" class="card-pane">
+    <table class="table table-bordered">
+      <thead>
+        <th class="align-middle"> DESCRIPCIÓN</th>
+        <th class="align-middle"> MONTO</th>
+        <th style="width: 10%" class="align-middle"> ACCIONES</th>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let deuda of deudasEmprendimiento; let indice = index">
+          <td class="align-middle">{{obtenerNombreTipoDeuda(deuda.idTipoDeudaEmprendimiento)}}</td>
+          <td class="align-middle">{{"$ " + deuda.monto}}</td>
+          <td style="width: 10%" class="align-middle">
+            <button type="button" class="btn btn-link" ngbTooltip="Eliminar Detalle" [disabled]="!this.editable"
+              (click)="eliminarDetalle(indice)">
+              <i class="material-icons">clear</i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="row">
+      <div class="col-lg-9 col-md-9"></div>
+      <div class="col">
+        <label class="col-form-label">Monto total de la deuda <b>${{sumarMontos()}}</b></label>
+      </div>
+    </div>
+  </div>
+</form>

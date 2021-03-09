@@ -1,0 +1,35 @@
+<div class="row row-title line-divider-bottom align-items-center">
+  <div class="col">
+    <h1 class="display-4">MANUALES DE USUARIO</h1>
+  </div>
+</div>
+<br>
+<div class="card-pane">
+  <div *ngIf="!manuales.length">
+    <p>Sin resultados para mostrar</p>
+  </div>
+  <div *ngIf="manuales.length" class="offset-3 col-6">
+    <table class="table table-bordered table-striped table-sm">
+      <thead>
+      <tr>
+        <th class="align-middle">MANUAL</th>
+        <th class="align-middle">DESCARGAR</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let manual of manuales">
+          <td class="align-middle">{{manual}}</td>
+          <td class="align-middle">
+            <button type="button"
+                    class="btn btn-link"
+                    ngbTooltip="Descargar"
+                    (click)="descargarManual(manual)">
+              <i class="material-icons boton-descarga-manual">arrow_downward</i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

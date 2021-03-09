@@ -1,0 +1,67 @@
+<div class="row bordered align-items-center">
+  <div class="col">
+    <h1 class="display-4">ELIMINAR PERFIL</h1>
+  </div>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="eliminarPerfil()" >
+  <div class="card-pane">
+    <div class="row">
+      <div class="form-group col-xl-4 col-md-4" [errorFeedback]="form.get('nombre')">
+        <label for="txt_nombre_programa" class="form-control-label">Nombre</label>
+        <input type="text" class="form-control" id="txt_nombre_programa" formControlName="nombre"
+          placeholder="Nombre perfil" readonly />
+        <control-messages [control]="form.get('nombre')"></control-messages>
+      </div>
+
+      <div class="col-lg-4 col-xl-4 col-md-4">
+        <label for="txt_fecha_inicio">Fecha creación</label>
+        <input type="text" id="txt_fecha_inicio" class="form-control" value="{{perfil.fechaAlta | date:'dd/MM/yyyy'}}"
+          readonly />
+      </div>
+    </div>
+  </div>
+
+  <div class="card-pane">
+    <div class="row row-section" *ngIf="funcionalidades.length">
+      <div class="col">
+        <h5><strong>Funcionalidades asociadas <span class="obligatorio">(*)</span></strong></h5>
+      </div>
+    </div>
+    <table class="table table-bordered table-striped table-sm" *ngIf="funcionalidades.length">
+      <thead>
+      <tr>
+        <th class="align-middle">URL</th>
+        <th class="align-middle">FUNCIONALIDAD</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr [formGroup]="funcionalidad" *ngFor="let funcionalidad of funcionalidades.controls;let indice=index">
+        <td class="align-middle">{{funcionalidad.get('codigo').value}}</td>
+        <td class="align-middle">{{funcionalidad.get('nombre').value }}</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="!funcionalidades.length">
+      <h5 class="text-center text-danger">No hay funcionalidades asignadas a este perfil</h5>
+    </div>
+
+    <div class="row-section form-group col-xl-4 col-md-4 col-lg-4">
+      <label for="cb_categoria">Motivo de baja <span class="obligatorio">(*)</span></label>
+      <select id="cb_categoria" class="form-control" formControlName="motivoBaja">
+        <option value="">Seleccione</option>
+        <option *ngFor="let motivo of motivoBajas" [ngValue]="motivo.clave">
+          {{motivo.valor | uppercase}}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="col">
+    <div class="pull-right">
+      <a [routerLink]="['/perfiles']" class="btn btn-secondary separador-botones">CANCELAR</a>
+      <button type="submit" [disabled]="!form.valid" class="btn btn-primary">ACEPTAR
+      </button>
+    </div>
+  </div>
+</form>

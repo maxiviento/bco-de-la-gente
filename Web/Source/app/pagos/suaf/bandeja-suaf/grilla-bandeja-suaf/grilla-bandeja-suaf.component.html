@@ -1,0 +1,83 @@
+<div class="row">
+  <h3 class="display-6 col-auto">Resultados:</h3>
+  <h5 class="margin-resultados">{{totalizador? '(' + totalizador + ' lote/s)': ''}}</h5>
+  <div class="col-auto">
+    <single-spinner></single-spinner>
+  </div>
+</div>
+<div [hidden]="bandejaResultados.length" class="card-pane">
+  No hay resultados para mostrar.
+</div>
+
+<div class="card-pane" [hidden]="!bandejaResultados.length">
+
+
+  <table class="table table-bordered table-striped table-sm">
+    <thead>
+    <tr>
+      <th class="align-middle">NOMBRE DE LOTE</th>
+      <th class="align-middle">CANTIDAD DE BENEFICIARIOS</th>
+      <th class="align-middle">ACCIONES</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let resultado of bandejaResultados">
+      <td class="align-middle">{{resultado.nombreLote}}</td>
+      <td class="align-middle">{{resultado.cantBeneficiarios}}</td>
+      <td class="align-middle">
+
+        <button type="button"
+                class="btn btn-link boton-grilla espaciador-acciones"
+                ngbTooltip="Ver"
+                [routerLink]="['/ver-lote-suaf/' + resultado.idLote]">
+          <i class="material-icons">zoom_in</i>
+        </button>
+
+        <button type="button"
+                class="btn btn-link boton-grilla espaciador-acciones"
+                ngbTooltip="Generar excel activación masiva"
+                (click)="imprimirExcelActivacionMasiva(resultado.idLote)">
+          <i class="material-icons">assignment_turned_in</i>
+        </button>
+
+        <button type="button"
+                class="btn btn-link boton-grilla espaciador-acciones"
+                ngbTooltip="Generar excel suaf"
+                (click)="imprimirExcel(resultado.idLote)">
+          <i class="material-icons">print</i>
+        </button>
+
+        <bg-seleccion-archivo
+          ngbTooltip="Subir excel suaf"
+          [accept]="'application/vnd.ms-excel application/xlt'"
+          [esGrilla]="true"
+          [buttonClass]="'btn btn-link boton-grilla'"
+          [icono]="'unarchive'"
+          (archivoSeleccionado)="archivoSeleccionado($event, resultado.idLote)">
+        </bg-seleccion-archivo>
+
+        <button type="button"
+                class="btn btn-link boton-grilla espaciador-acciones"
+                ngbTooltip="Generar providencia masiva"
+                (click)="imprimirProvidenciaMasiva(resultado.idLote)">
+          <i class="material-icons">chrome_reader_mode</i>
+        </button>
+
+        <button [disabled]="resultado.idTipoLote !== 3"
+                type="button"
+                class="btn btn-link boton-grilla espaciador-acciones"
+                ngbTooltip="Generar lote pago"
+                *ifPermission="'/generar-lote-pago/:id'"
+                [routerLink]="['/generar-lote-pago/' + resultado.idLote]">
+          <i class="material-icons">dns</i>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <paginacion [pagina]="pagina | async"
+              (paginaModificada)="consultarSiguientePagina($event)">
+  </paginacion>
+
+</div>

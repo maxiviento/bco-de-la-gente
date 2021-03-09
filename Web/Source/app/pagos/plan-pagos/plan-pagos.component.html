@@ -1,0 +1,55 @@
+<div class="row bordered align-items-center">
+  <div class="col">
+    <h1 class="display-4">ADMINISTRAR PLAN DE CUOTAS</h1>
+  </div>
+</div>
+
+<bg-filtros-formularios-plan-pagos *ngIf="mostrarFiltros" [mostrarComboLotes]="mostrarComboLote()"
+  (filtrosBusqueda)="buscarFormularios($event)">
+</bg-filtros-formularios-plan-pagos>
+
+<div [formGroup]="form" class="row card-pane panel" *ngIf="filtrosBusqueda">
+  <div class="col-3"></div>
+  <div class="col-3 radio">
+    <input type="radio" [checked]="!this.quiereEditarPlan" [value]="false" id="radioVisualizar" formControlName="radioPlan"
+      name="radioPlan" >
+    <label for="radioVisualizar">Visualizar plan de cuotas</label>
+  </div>
+  <div class="col-3 radio">
+    <input type="radio" [checked]="this.quiereEditarPlan" [value]="true" formControlName="radioPlan" id="radioActualizar"
+      name="radioPlan" >
+    <label for="radioActualizar">Generar nuevo plan de cuotas</label>
+  </div>
+</div>
+
+<bg-grilla-formularios-plan-pagos [filtros]="filtrosBusqueda" [limpiarIds]="limpiarIdsSeleccionados"
+  (formulariosSeleccionados)="almacenarFormularios($event)" (fechaInicioPagos)="setFechaInicioPagos($event)">
+</bg-grilla-formularios-plan-pagos>
+
+<div class="row button-row" *ngIf="idsFormularios.length">
+  <div class="col">
+    <button type="button" class="btn btn-primary btn-accion pull-right separador-botones" [disabled]="deshabilitarCreacion"
+      (click)="crearPlanPagos()">GENERAR PLAN
+    </button>
+    <button type="button" class="btn btn-secondary btn-accion pull-right" [disabled]="verPlan" (click)="verPlanPagos()">
+      VISUALIZAR PLAN
+    </button>
+  </div>
+</div>
+
+<bg-actualizar-plan-pagos *ngIf="idsFormularios.length && crearPlan" [idLote]="idLote" [idPrestamo]="idPrestamo"
+  [idsFormularios]="idsFormularios" [fechaPago]="fechaInicioPagos" [mostrarCuotas]="mostrarCuotasPlanPagos"
+  (limpiarIdsSeleccionados)="resetearDatos($event)" (clickVolver)="volver($event)">
+</bg-actualizar-plan-pagos>
+
+<bg-visualizar-plan-pagos *ngIf="idsFormularios.length && verPlan" [idLote]="idLote" [idPrestamo]="idPrestamo"
+  [idsFormularios]="idsFormularios" (limpiarIdsSeleccionados)="resetearDatos($event)" (clickVolver)="volver($event)">
+</bg-visualizar-plan-pagos>
+
+<div class="row" style="margin-top: 15px;">
+  <div class="col">
+    <button type="button" *ngIf="origenPeticion == 2 && !idsFormularios.length" class="btn btn-secondary pull-right"
+      (click)="volver()">VOLVER
+    </button>
+  </div>
+</div>

@@ -1,0 +1,66 @@
+<div>
+  <div id="row_titulo" class="row row-title line-divider-bottom">
+    <div class="col">
+
+      <h4 class="card-title w-75">DETALLE DEL GRUPO FAMILIAR SOLICITANTE
+      </h4>
+
+    </div>
+  </div>
+
+  <div *ngIf="busco && (!detalleGrupoFamiliar || detalleGrupoFamiliar.length == 0)" class="card-pane card-margin-top">
+    <div class="row">
+      <div class="col-lg-12 col-xl-12">
+        <h4>No se encontro informacion sobre el grupo familiar del solicitante</h4>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="detalleGrupoFamiliar && detalleGrupoFamiliar.length > 0" class="card-pane card-margin-top">
+    <table class="table table-striped table-bordered table-sm">
+      <thead>
+      <th class="align-middle"> APELLIDO Y NOMBRE</th>
+      <th class="align-middle"> ESTADO CIVIL</th>
+      <th class="align-middle">VINCULO</th>
+      <th class="align-middle">SEXO</th>
+      <th class="align-middle">DISCAPACIDAD</th>
+      <th class="align-middle">POSEE CERTIFICADO</th>
+      <th class="align-middle">DOCUMENTO</th>
+      <th class="align-middle">FECHA NACIMIENTO</th>
+      <th class="align-middle">ASIST A EST EDUCATIVO</th>
+      <th class="align-middle">NIVEL ALCANZADO</th>
+      <th class="align-middle">TRABAJA</th>
+      <th class="align-middle">COND. LABORAL</th>
+      <th class="align-middle">EDAD</th>
+      <th class="align-middle">TITULAR A CARGO</th>
+      <th class="align-middle">INGRESOS MENSUALES</th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let integrante of detalleGrupoFamiliar">
+        <td class="align-middle">{{ integrante.nombreCompleto }}</td>
+        <td class="align-middle">{{ (integrante.estadoCivil || {}).id }}</td>
+        <td class="align-middle">{{ integrante.parentezco }}</td>
+        <td class="align-middle">{{ (integrante.sexo || {}).nombreCorto }}</td>
+        <td class="align-middle">{{ integrante.discapacidad ? 'S' : 'N' }}</td>
+        <td class="align-middle">{{ integrante.poseeCertificado ? 'S' : 'N' }}</td>
+        <td class="align-middle">{{ integrante.nroDocumento}}</td>
+        <td class="align-middle">{{ integrante.fechaNacimiento | date:'dd/MM/yyyy'}}</td>
+        <td class="align-middle">{{ integrante.asisteEstablecimientoEducativo}}</td>
+        <td class="align-middle">{{ integrante.nivelAlcanzado}}</td>
+        <td class="align-middle">{{ integrante.trabaja}}</td>
+        <td class="align-middle">{{ integrante.condicionLaboral}}</td>
+        <td class="align-middle">{{ integrante.edad}}</td>
+        <td class="align-middle">{{ integrante.aCargo}}</td>
+        <td class="align-middle">{{ integrante.caracteristicas[0].valor | currency:'ARS':true:'1.2-2' }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="detalleGrupoFamiliar && detalleGrupoFamiliar.length > 0" class="card-pane">
+    <div class="row">
+      <label for="txt_totalIngresos" class="offset-lg-10 offset-xl-10">
+        Total de ingresos Familiares: <strong>${{totalIngresosFamiliares}}</strong></label>
+    </div>
+  </div>
+</div>

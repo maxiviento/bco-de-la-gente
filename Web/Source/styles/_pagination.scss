@@ -1,0 +1,27 @@
+.pagination-wrapper{
+  padding-bottom: 20px;
+}
+
+.pagination li a{
+  color: $darkgrey;
+  background-color: transparent !important;
+  border: none;
+  border-radius: 50px;
+  line-height: 1.2;
+}
+.pagination .active{
+  border-radius: 50px;
+  border: 1px solid $darkblue;
+}
+.page-item:first-child .page-link{
+  border-radius: 50px;
+}
+.pagination .active a{
+  background-color: transparent;
+  color: $darkgrey !important;
+}
+.pagination-wrapper .btn-grey{
+  -webkit-box-shadow: 0 1px 3px 0 $disabled;
+  -moz-box-shadow: 0 1px 3px 0 $disabled;
+  box-shadow: 0 1px 3px 0 $disabled;
+}

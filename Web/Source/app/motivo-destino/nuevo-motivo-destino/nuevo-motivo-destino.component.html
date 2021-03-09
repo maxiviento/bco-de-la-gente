@@ -1,0 +1,21 @@
+<div class="row line-divider-bottom align-items-center">
+  <div class="col">
+    <h4 class="display-4">NUEVO MOTIVO DESTINO</h4>
+  </div>
+</div>
+<form [formGroup]="form" novalidate>
+  <bg-apartado-motivo-destino
+    [motivo]="apartadoMotivoDestino"
+    [editable]="true">
+  </bg-apartado-motivo-destino>
+
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-primary pull-right" (click)="registrarMotivoDestino()" [disabled]="form.invalid"
+              type="button">ACEPTAR
+      </button>
+      <a class="btn btn-secondary pull-right" [routerLink]="['/motivos-destino']">CANCELAR</a>
+    </div>
+  </div>
+
+</form>

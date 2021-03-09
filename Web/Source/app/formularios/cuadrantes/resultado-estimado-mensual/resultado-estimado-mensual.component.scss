@@ -1,0 +1,44 @@
+.padding_cabecera{
+  padding: 0;
+}
+
+.padding_filas{
+  padding: 2px;
+}
+
+.titulo_resultado{
+  padding-top: 5px;
+}
+
+.recuadro_resultado_negativo {
+  text-align: center;
+  font-weight: 800;
+  border: solid red;
+}
+
+.resultado_sumatoria {
+  text-align: right;
+  font-weight: 500;
+  padding-right: 5px;
+}
+
+.recuadro_resultado_positivo {
+  text-align: center;
+  font-weight: 800;
+  border: solid black;
+}
+
+.recuadro_monto {
+  text-align: center;
+  font-weight: 800;
+  border: solid black;
+}
+
+.texto_resaltado {
+  text-align: center;
+  font-weight: 800;
+}
+
+.icono {
+  font-size: 24px;
+}

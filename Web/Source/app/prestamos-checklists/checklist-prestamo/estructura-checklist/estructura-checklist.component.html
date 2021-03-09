@@ -1,0 +1,33 @@
+<bg-cabecera-checklist-prestamo
+  [titulo]="titulo"
+  [editable]="editable"
+  [integrantesPrestamo]="integrantesPrestamo"
+  [garantesPrestamo]="garantesPrestamo"
+  [tipoLinea]="tipoLinea">
+</bg-cabecera-checklist-prestamo>
+
+<ngb-tabset *ngIf="integrantesPrestamo && integrantesPrestamo.length" [justify]="'justified'">
+  <ngb-tab *ngFor="let integrante of integrantesPrestamo">
+    <ng-template ngbTabTitle><span ngbTooltip="{{integrante.tipoIntegrante == 2 ? 'Apoderado' : integrante.motivoRechazo ? 'Rechazado' : null}}"
+                                   [ngClass]="integrante.tipoIntegrante == 2 ? 'tab-apoderado' : integrante.motivoRechazo ? 'tab-rechazado' : 'tab-normal'"
+    >{{integrante.apellidoNombre}}</span></ng-template>
+    <ng-template ngbTabContent>
+      <bg-wizard-checklist
+        [titulo]="titulo"
+        [valido]="valido"
+        [tieneDeudaHistorica]="tieneDeudaHistorica"
+        [editable]="editableFunction(integrante)"
+        [tipoLinea]="tipoLinea"
+        [idFormularioLinea]="integrante.idFormulario"
+        [cantidadFormularios]="cantidadFormularios"
+        [integrantesPrestamo]="integrantesPrestamo"
+        [mensajeAvisoPersonas]="mensajeAvisoPersonas"
+        (deshabilitarAceptar)="deshabilitarAceptar($event)"
+        (disminuyeCantidad) ="cantidadFormulariosEvent($event)"
+        (rechazoIntegrante)="rechazoIntegrante($event)"
+        (editableEmitter)="editableEmitter($event)">
+      </bg-wizard-checklist>
+    </ng-template>
+  </ngb-tab>
+</ngb-tabset>
+

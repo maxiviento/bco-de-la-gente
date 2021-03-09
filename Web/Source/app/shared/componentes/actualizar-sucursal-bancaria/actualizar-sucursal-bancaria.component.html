@@ -1,0 +1,63 @@
+<div class="row bordered align-items-center">
+  <div class="col">
+    <h1 class="display-6">ACTUALIZAR SUCURSAL DE FORMULARIOS</h1>
+  </div>
+</div>
+
+<form [formGroup]="form" class="card-pane" style="margin-top: 15px;">
+  <table class="table table-bordered">
+    <tr>
+      <th>LÍNEA</th>
+      <th>APELLIDO Y NOMBRE</th>
+      <th>CUIL</th>
+      <th>ESTADO</th>
+      <th>BANCO</th>
+      <th>SUCURSAL</th>
+      <th>SELECCIONAR</th>
+    </tr>
+    <tbody>
+    <tr [formGroup]="integrante" *ngFor="let integrante of integrantesForm.controls; let indice = index">
+      <td>{{integrante.get('nroLinea').value}}</td>
+      <td>{{integrante.get('nomApe').value}}</td>
+      <td>{{integrante.get('cuil').value}}</td>
+      <td>{{integrante.get('estadoForm').value}}</td>
+      <td>{{integrante.get('nombreBanco').value}}</td>
+      <td>{{integrante.get('nombreSucursal').value}}</td>
+      <td><input type="checkbox" [attr.id]="'chk_' + indice" formControlName="seleccionado"/></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div class="row">
+    <div class="col col-xl-6 col-lg-6"
+         [errorFeedback]="form.get('idBanco')">
+      <label for="cb_banco" class="form-control-label">Banco (*)</label>
+      <ng-select id="cb_banco"
+                 [dataSource]="{list: CBBanco, name:'valor', id:'clave'}"
+                 formControlName="idBanco"
+                 [clientMode]="true">
+      </ng-select>
+      <control-messages [control]="form.get('idBanco')"></control-messages>
+    </div>
+
+    <div class="col col-xl-6 col-lg-6"
+         [errorFeedback]="form.get('idSucursal')">
+      <label for="cb_sucursal" class="form-control-label">Sucursal (*)</label>
+      <ng-select id="cb_sucursal"
+                 [dataSource]="{list: CBSucursal, name:'valor', id:'clave'}"
+                 formControlName="idSucursal"
+                 [clientMode]="true">
+      </ng-select>
+       <control-messages [control]="form.get('idSucursal')"></control-messages>
+    </div>
+  </div>
+</form>
+
+<div class="row">
+  <div class="col">
+    <button type="button" class="btn btn-primary pull-right" [disabled]="validarAceptar()"
+            (click)="agregarSucursalFormularios()">ACEPTAR
+    </button>
+    <button type="button" class="btn btn-secondary pull-right" (click)="cancelar()">VOLVER</button>
+  </div>
+</div>

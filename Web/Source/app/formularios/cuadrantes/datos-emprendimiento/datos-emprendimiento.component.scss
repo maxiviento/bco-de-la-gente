@@ -1,0 +1,40 @@
+.margin-left {
+  margin-left: 15px !important;
+}
+
+.form-check-input {
+  @extend .form-check-input;
+  margin-right: 10px;
+}
+
+.margin-right {
+  margin-right: 30px;
+}
+
+.margin-bottom {
+  margin-bottom: 15px;
+}
+
+@media (min-width: 992px) {
+  /deep/ .modal-lg {
+    max-width: 1490px !important;
+    min-width: 971px !important;
+    width: 95% !important;
+    height: 100vh !important;
+  }
+  /deep/ .modal-body {
+    padding: 0 !important;
+  }
+}
+
+@media (min-width: 576px) {
+  /deep/ .modal-lg {
+    max-width: 970px !important;
+    min-width: 600px !important;
+    width: 95% !important;
+    height: 100vh !important;
+  }
+  /deep/ .modal-body {
+    padding: 0 !important;
+  }
+}

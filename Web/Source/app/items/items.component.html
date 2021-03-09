@@ -1,0 +1,112 @@
+<div class="row bordered align-items-center">
+  <div class="col">
+    <h1 class="display-4">ITEMS</h1>
+  </div>
+  <div class="col-md-2 col-lg-2 col-xl-2">
+    <a [routerLink]="['/nuevo-item']" class="btn btn-warning pull-right">NUEVO</a>
+  </div>
+</div>
+
+<form [formGroup]="form" novalidate>
+  <div class="card-pane">
+    <div class="row">
+      <div class="form-group col-lg-6 col-xl-6" [errorFeedback]="form.get('nombre')">
+        <label for="txt_nombreItem" class="form-control-label">Nombre</label>
+        <input type="text" class="form-control" id="txt_nombreItem" formControlName="nombre" [ngbTypeahead]="searchItem"
+          [inputFormatter]="showItem" [resultFormatter]="showItem">
+        <control-messages [control]="form.get('nombre')"></control-messages>
+      </div>
+      <div class="form-group col-lg-2 col-xl-2">
+        <label for="cb_requisito">Requisito</label>
+        <select id="cb_requisito" class="form-control" formControlName="recurso">
+          <option value="null">Seleccione</option>
+          <option *ngFor="let recurso of recursos" [ngValue]="recurso.id">
+            {{recurso.nombre | uppercase}}
+          </option>
+        </select>
+      </div>
+      <div class="form-group col-lg-2 col-xl-2">
+        <label for="cb_sub_item">Es sub-ítem</label>
+        <select id="cb_sub_item" class="form-control" formControlName="esSubitem">
+          <option [value]="null">Seleccione</option>
+          <option [value]="true">VERDADERO</option>
+          <option [value]="false">FALSO</option>
+        </select>
+      </div>
+      <div class="form-group col-lg-2 col-xl-2 only-check">
+        <label class="custom-control check-bge-control">
+          <input type="checkbox" class="check-bge" disabled formControlName="incluirHijos">
+          <span class="check-marcado"></span>
+          <span class="custom-control-description">Incluir hijos</span>
+        </label>
+        <label class="custom-control check-bge-control">
+          <input type="checkbox" class="check-bge" formControlName="incluirDadosBaja">
+          <span class="check-marcado"></span>
+          <span class="custom-control-description">Incluir dados de baja</span>
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="row row-section">
+    <div class="form-group col">
+      <button class="btn btn-primary pull-right" (click)="consultarItems()" [disabled]="!form.valid">
+        <i class="material-icons icono-accion alinear-texto-con-icono">search</i>
+        <span class="alinear-texto-con-icono">CONSULTAR</span>
+      </button>
+    </div>
+  </div>
+</form>
+
+<div class="row align-items-center line-divider-bottom">
+  <div class="col ml-auto">
+    <h3 class="display-6">Resultados</h3>
+  </div>
+</div>
+
+<div class="col card-pane card-margin-top" *ngIf="!items.length">
+  <h6>No se encontraron ítems asociados a la búsqueda.</h6>
+</div>
+
+<div [hidden]="!items.length" class="card-pane card-margin-top">
+  <table class="table table-bordered table-striped table-sm">
+    <thead>
+      <tr>
+        <th class="align-middle">NOMBRE</th>
+        <th class="align-middle">REQUISITO CHECKLIST</th>
+        <th class="align-middle">REQUISITO SOLICITANTE</th>
+        <th class="align-middle">REQUISITO GARANTE</th>
+        <th class="align-middle">TIENE CDD</th>
+        <th class="align-middle" *ngIf="consultaItem.incluirDadosBaja">FECHA DE BAJA</th>
+        <th class="align-middle acciones">ACCIONES</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items; let indice = index">
+        <td class="align-middle">{{item.nombre}}</td>
+        <td class="align-middle">{{item.requisitoChecklist == 'S' ? 'X' : ''}}</td>
+        <td class="align-middle">{{item.requisitoSolicitante == 'S' ? 'X' : ''}}</td>
+        <td class="align-middle">{{item.requisitoGarante == 'S' ? 'X' : ''}}</td>
+        <td class="align-middle">{{item.tieneCDD == 'S' ? 'SI' : 'NO'}}</td>
+        <td *ngIf="consultaItem.incluirDadosBaja">
+          {{(item.estaDadaDeBaja() ? item.fechaUltimaModificacion : null) | date: 'dd/MM/yyyy'}}</td>
+        <td class="align-middle">
+          <div class="col text-center">
+            <button type="button" class="btn btn-link" [routerLink]="['/items',item.id]" ngbTooltip="Ver">
+              <i class="material-icons icono-accion">zoom_in</i>
+            </button>
+            <button type="button" class="btn btn-link" [disabled]=item.estaDadaDeBaja() ngbTooltip="Editar"
+              [routerLink]="['/edicion-item', item.id]">
+              <i class="material-icons icono-accion">mode_edit</i>
+            </button>
+            <button type="button" class="btn btn-link" [disabled]=item.estaDadaDeBaja() ngbTooltip="Dar de baja"
+              [routerLink]="['/eliminacion-item',item.id]">
+              <i class="material-icons icono-accion">delete</i>
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <paginacion [pagina]="pagina | async" (paginaModificada)="consultarItems($event)">
+  </paginacion>
+</div>

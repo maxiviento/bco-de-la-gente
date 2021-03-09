@@ -1,0 +1,10 @@
+<div class="row bordered align-items-center">
+  <div class="col">
+    <h4 class="display-4">NUEVO ÍTEM</h4>
+  </div>
+</div>
+  <bg-apartado-item *ngIf="tiposItem && form"
+                    [item]="form"
+                    [tiposItem]="tiposItem"
+                    (aceptado)="registrar($event)">
+  </bg-apartado-item>

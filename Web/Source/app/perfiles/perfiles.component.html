@@ -1,0 +1,76 @@
+<div class="row bordered align-items-center" xmlns="http://www.w3.org/1999/html">
+  <div class="col">
+    <h1 class="display-4">CONSULTAR PERFILES</h1>
+  </div>
+  <div class="col-xl-2 col-lg-2 col-md-2">
+    <a class="btn btn-warning pull-right" [routerLink]="['/perfiles/nuevo']">NUEVO</a>
+  </div>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="consultarPerfiles()">
+  <h3>Filtros de búsqueda </h3>
+  <div class="card-pane">
+    <div class="row">
+      <div class="form-group col-md-5 col-lg-5 col-xl-5" [errorFeedback]="form.get('nombre')">
+        <label for="txt_nombre_programa" class="form-control-label">Nombre de perfil</label>
+        <input type="text" class="form-control" id="txt_nombre_programa" formControlName="nombre" />
+        <control-messages [control]="form.get('nombre')"></control-messages>
+      </div>
+
+      <div class="form-group only-form-check col-md-7 col-lg-7 col-xl-7">
+        <label for="ck_dadosBaja" class="form-check-label custom-control check-bge-control">
+          <input id="ck_dadosBaja" type="checkbox" class="check-bge" formControlName="incluirBajas">
+          <span class="check-marcado"></span>
+          <span class="custom-control-description">Incluir dados de baja</span>
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group col">
+    <button type="submit" [disabled]="!form.valid" class="btn btn-primary pull-right">
+      <i class="material-icons icono-accion alinear-texto-con-icono">search</i>
+      <span class="alinear-texto-con-icono">CONSULTAR</span>
+    </button>
+  </div>
+</form>
+
+<h3 class="display-6">Resultados</h3>
+<div [hidden]="(perfiles.length)" class="card-pane">
+  No hay resultados para mostrar.
+</div>
+
+<div [hidden]="!perfiles.length" class="card-pane">
+  <table class="table table-bordered table-striped table-sm">
+    <thead>
+      <tr>
+        <th class="align-middle" style="width: 12%">#</th>
+        <th class="align-middle">NOMBRE</th>
+        <th class="align-middle" [hidden]="!mostrarBajas">FECHA DE BAJA</th>
+        <th class="align-middle" style="width: 15%">ACCIONES</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let perfil of perfiles; let indice=index">
+        <td class="align-middle" style="width: 12%"> {{numerarElemento(indice)}} </td>
+        <td class="align-middle">{{perfil.nombre}}</td>
+        <td class="align-middle" [hidden]="!mostrarBajas">{{perfil.fechaBaja | date: 'dd/MM/yyyy'}}</td>
+        <td class="col text-center" style="width: 12%">
+          <button type="button" class="btn btn-link btn-acciones-md" ngbTooltip="Ver"
+            [routerLink]="['/perfiles',perfil.id,'visualizacion']">
+            <i class="material-icons icono-accion">zoom_in</i>
+          </button>
+          <button type="button" class="btn btn-link btn-acciones-md" ngbTooltip="Editar"
+            [routerLink]="['/perfiles',perfil.id,'edicion']" [disabled]="perfil.fechaBaja">
+            <i class="material-icons icono-accion">mode_edit</i>
+          </button>
+          <button type="button" class="btn btn-link btn-acciones-md" ngbTooltip="Eliminar"
+            [routerLink]="['/perfiles',perfil.id,'eliminacion']" [disabled]="perfil.fechaBaja">
+            <i class="material-icons icono-accion">delete</i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <paginacion [pagina]="pagina | async" (paginaModificada)="consultarPerfiles($event)">
+  </paginacion>
+</div>

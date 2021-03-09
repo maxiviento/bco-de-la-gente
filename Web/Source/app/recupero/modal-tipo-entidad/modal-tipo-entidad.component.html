@@ -1,0 +1,72 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{title || 'Confirm'}}</h4>
+  <button type="button" class="close" (click)="cerrar()">&times;</button>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="aceptar()" novalidate>
+
+  <div class="modal-body">
+
+    <div class="row row-section" [errorFeedback]="form.get('entidad')" *ngIf="entidades">
+      <label for="entidad" class="col-3 col-form-label">Entidad<span
+        class="obligatorio">(*)</span>:</label>
+      <div class="col-9">
+        <select class="form-control"
+                id="entidad"
+                formControlName="entidad">
+          <option value="">Seleccione...</option>
+          <option *ngFor="let entidad of entidades"
+                  [value]=entidad.id>
+            {{entidad.nombre}}
+          </option>
+
+          <control-messages [control]="form.get('entidad')"></control-messages>
+        </select>
+      </div>
+    </div>
+
+    <div class="row-section row">
+      <label for="fecha_recupero" class="col-3 col-form-label" [errorFeedback]="form.get('fechaRecupero')">Fecha de
+        recupero<span
+          class="obligatorio">(*)</span>:</label>
+      <div class="col-3">
+        <input id="fecha_recupero"
+               class="form-control"
+               ngbDatepicker #fecha_recupero="ngbDatepicker"
+               (click)="fecha_recupero.toggle()"
+               placeholder="dd/mm/aaaa"
+               formControlName="fechaRecupero"/>
+        <control-messages [control]="form.get('fechaRecupero')"></control-messages>
+      </div>
+
+      <label for="convenio" class="col-2 col-form-label" [errorFeedback]="form.get('convenio')"
+             *ngIf="conveniosRecupero">Convenio<span
+        class="obligatorio">(*)</span>:</label>
+      <div class="col-4">
+        <select class="form-control"
+                id="convenio"
+                formControlName="convenio">
+          <option value="">Seleccione...</option>
+          <option *ngFor="let convenio of conveniosRecupero"
+                  [value]=convenio.id>
+            {{convenio.nombre}}
+          </option>
+
+          <control-messages [control]="form.get('convenio')"></control-messages>
+        </select>
+      </div>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button"
+            class="btn btn-secondary"
+            (click)="cerrar()">CANCELAR
+    </button>
+    <button type="button"
+            class="btn btn-primary"
+            [disabled]="form.invalid"
+            (click)="aceptar()">ACEPTAR
+    </button>
+  </div>
+</form>

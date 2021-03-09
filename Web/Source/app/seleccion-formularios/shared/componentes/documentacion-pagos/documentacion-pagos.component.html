@@ -1,0 +1,69 @@
+<form [formGroup]="form" [hidden]="procesando" class="card-pane margin-top-15">
+  <div class="row align-items-center line-divider-bottom">
+    <div class="col ml-auto">
+      <h6>Seleccionar documentación a imprimir
+        <button class="signo-ayuda" *ngIf="esConApoderado"
+                ngbTooltip="Para las líneas asociativas con apoderado el socio integrante sólo podrá imprimir la carátula.">?
+        </button>
+      </h6>
+    </div>
+  </div>
+
+  <div class="row margin-top-15">
+    <div class="offset-xl-4 offset-md-2" ngbRadioGroup name="radioBasic" id="rb_opcion" formControlName="idOpcion">
+      <div class="col">
+        <label ngbButtonLabel class="btn-outline-primary radio-button">
+          <input ngbButton [value]="1" type="radio"> Imprimir: Carátula, Providencia, Recibo, Pagaré y Contrato
+        </label>
+      </div>
+      <div class="col">
+        <label ngbButtonLabel class="btn-outline-primary radio-button">
+          <input type="radio" ngbButton [value]="2"> Imprimir: Cuponera
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="row row-section" *ngIf="form.get('idOpcion').value == 1">
+    <div class="col-md-12 col-lg-12 col-xl-12 form-group">
+      <label>Seleccione los reportes a imprimir:<span class="obligatorio"> (*)</span></label>
+      <div class="row margin-left">
+        <div *ngFor="let rep of reportesPagos; let indice = index">
+          <label [attr.for]="'ck_rep_in' + indice"
+            class="form-check-label custom-control check-bge-control col-md-2 col-lg-1">
+            <input [attr.id]="'ck_rep_in' + indice" type="checkbox" class="form-check-input check-bge"
+              (change)="checkReporte(rep.id, $event)" [value]="rep.id" [checked]="rep.seleccionado">
+            <span class="check-marcado"></span>
+            <span class="custom-control-description">{{rep.descripcion}}</span>
+          </label>
+        </div>
+      </div>
+      <div class="row form-group col-3" [hidden]="reportesAImprimir.length < 2">
+        <label for="nombre_reporte">Ingrese un nombre para el documento (opcional)</label>
+        <input type="text" id="nombre_reporte" class="form-control margin-left" formControlName="nombreDocumento">
+        <control-messages [control]="form.get('nombreDocumento')"></control-messages>
+      </div>
+    </div>
+  </div>
+</form>
+
+<div class="card-pane margin-top-15" [hidden]="!procesando">
+  <div class="row">
+    <div class="col-auto">
+      <p class="margin-top-15"> Procesando </p>
+    </div>
+    <div class="col-auto">
+      <div class="loader-modal"></div>
+    </div>
+  </div>
+</div>
+
+<div class="row row-section">
+  <div class="col">
+    <div class="pull-right">
+      <button [disabled]="!form.valid" [hidden]="procesando" class="btn btn-primary separador-botones"
+        (click)="confirmarImpresion()"> CONFIRMAR IMPRESIÓN
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="volver()">VOLVER</button>
+    </div>
+  </div>
+</div>

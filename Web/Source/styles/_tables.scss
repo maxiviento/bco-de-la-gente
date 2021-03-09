@@ -1,0 +1,27 @@
+.table td, .table th{
+  position: relative;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.table .custom-control{
+  min-height: 1rem;
+  padding-left: 0;
+  margin-right: 0;
+}
+
+.table .custom-control-description{
+  width: 20px;
+}
+
+.table .form-control{
+  background-color: transparent !important;
+}
+
+table .table-head{
+  background-color: $lightgrey;
+}
+
+.table-bordered td, .table-bordered th{
+  border: 1px solid $mediumgrey;
+}

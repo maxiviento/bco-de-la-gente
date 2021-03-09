@@ -1,0 +1,54 @@
+<div class="row bordered align-items-center">
+  <div class="col">
+    <h4 class="display-4">BAJA AREA</h4>
+  </div>
+</div>
+
+
+<form [formGroup]="form" (ngSubmit)="darDeBaja()" novalidate>
+  <div class="card-pane">
+    <div class="row">
+      <div class="form-group col-lg-5 col-xl-5">
+        <label for="txt_nombre_area">Nombre</label>
+        <input type="text" id="txt_nombre_area" class="form-control" [value]="area.nombre" readonly>
+      </div>
+      <div class="col-lg-7 col-xl-7">
+        <div class="well pull-right">
+          <label for="fecha_actual">Fecha actual:</label>
+          <span id="fecha_actual">
+            {{ fechaActual | date:"dd/MM/yy" }}
+          </span>
+        </div>
+      </div>
+      <div class="form-group col-lg-12 col-xl-8">
+        <label for="txt_descripcion_area">Descripción</label>
+        <textarea id="txt_descripcion_area" class="form-control" type="text" rows="3" [value]="area.descripcion"
+          readonly>
+    </textarea>
+      </div>
+    </div>
+
+    <div class="row row-section">
+      <div class="col-lg-5 col-xl-5" [errorFeedback]="form.get('motivoBaja')">
+        <label for="ddl_motivo_baja">Motivo baja<span class="obligatorio"> (*)</span></label>
+        <select class="form-control" id="ddl_motivo_baja" formControlName="motivoBaja">
+          <option value="" disabled>Seleccione...</option>
+          <option *ngFor="let motivo of motivosBaja" [value]=motivo.id>
+            {{motivo.descripcion}}
+          </option>
+
+          <control-messages [control]="form.get('motivoBaja')"></control-messages>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="row row-section">
+    <div class="col">
+      <div class="pull-right">
+        <a [routerLink]="['/areas']" class="btn btn-secondary separador-botones">CANCELAR</a>
+        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">ACEPTAR
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

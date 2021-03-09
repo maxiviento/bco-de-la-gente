@@ -1,0 +1,69 @@
+<div class="row bordered align-items-center">
+  <div class="col">
+    <h1 class="display-4">ELIMINAR USUARIO</h1>
+  </div>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="eliminarUsuario()">
+  <div class="card-pane">
+    <div class="row">
+      <div class="form-group col-md-3 col-lg-3 col-xl-3">
+        <label for="txt_nombre">Nombre</label>
+        <input type="text" id="txt_nombre"
+               class="form-control" [value]="usuario.nombre"
+               readonly>
+      </div>
+      <div class="form-group col-md-3 col-lg-3 col-xl-3">
+        <label for="txt_apellido">Apellido</label>
+        <input type="text" id="txt_apellido"
+               class="form-control" [value]="usuario.apellido"
+               readonly>
+      </div>
+      <div class="form-group col-md-3 col-lg-2 col-xl-2">
+        <label for="txt_cuil">CUIL</label>
+        <input type="text" id="txt_cuil"
+               class="form-control" [value]="usuario.cuil"
+               readonly>
+      </div>
+      <div class="form-group col-md-4 col-lg-4 col-xl-4">
+        <div class="well pull-right">
+          <label for="fecha_actual">Fecha actual:</label>
+          <span id="fecha_actual">
+        {{ fechaActual | date:"dd/MM/yy" }}
+      </span>
+        </div>
+      </div>
+    </div>
+    <div class="row row-section">
+      <div class="form-group col-md-6 col-xl-6 col-lg-6">
+        <label for="txt_perfil">Perfil asociado</label>
+        <input type="text" id="txt_perfil"
+               class="form-control" [value]="usuario.nombrePerfil"
+               readonly>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-pane">
+    <div class="form-group col col-xl-6 col-lg-6"
+         [errorFeedback]="form.get('motivoBajaId')">
+      <label for="cb_motivo" class="form-control-label">Motivo baja <span class="obligatorio">(*) </span>:</label>
+      <select id="cb_motivo" class="form-control"
+              formControlName="motivoBajaId">
+        <option value="">Seleccione</option>
+        <option *ngFor="let motivoBaja of motivosBaja" [ngValue]="motivoBaja.clave">
+          {{motivoBaja.valor}}
+        </option>
+      </select>
+      <control-messages [control]="form.get('motivoBajaId')"></control-messages>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="pull-right">
+      <a [routerLink]="['/usuarios']" class="btn btn-secondary">CANCELAR</a>
+      <button type="submit" class="btn btn-primary">ACEPTAR
+      </button>
+    </div>
+  </div>
+</form>

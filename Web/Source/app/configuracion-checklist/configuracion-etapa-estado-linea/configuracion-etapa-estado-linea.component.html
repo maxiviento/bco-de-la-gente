@@ -1,0 +1,182 @@
+<div class="row line-divider-bottom">
+  <div class="col">
+    <h5><strong>Estados y etapas</strong></h5>
+  </div>
+</div>
+
+<div class="collapse navbar-collapse" id="navbarTogglerDemo02" [ngbCollapse]="isCollapsed">
+  <div [formGroup]="form" class="card-pane" style="margin-top: 15px !important;">
+    <table class="table table-bordered">
+      <thead>
+      <th class="align-middle">ORDEN</th>
+      <th class="align-middle">ETAPA INICIO</th>
+      <th class="align-middle">ESTADO INICIO</th>
+      <th class="align-middle">ESTADO QUE PASA ETAPA</th>
+      <th class="align-middle">ETAPA SIGUIENTE</th>
+      <th class="align-middle">SELECCIÓN</th>
+      <th class="align-middle">ACCIÓN</th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let etapaEstado of etapasEstadosFa.controls; let indice = index" [formGroup]="etapaEstado">
+        <td class="align-middle">{{etapaEstado.get('orden').value}}</td>
+        <td class="align-middle">
+          <ng-select [attr.id]="'cb_etapa_inicio' + indice"
+                     [superiorDivClass]="etapaSeleccionada(etapaEstado.get('etapaInicio').value) ? 'etapa-selected' : ''"
+                     [dataSource]="{list: etapas, name:'descripcion'}"
+                     [selected]="etapaEstado.get('etapaInicio').value"
+                     formControlName="etapaInicio"
+                     [disabled]="true"
+                     [clientMode]="true">
+          </ng-select>
+        </td>
+        <td class="align-middle">
+          <ng-select [attr.id]="'cb_estado_inicial' + indice"
+                     [dataSource]="{list: estados, name:'valor', id: 'clave'}"
+                     [selected]="etapaEstado.get('estadoInicio').value"
+                     formControlName="estadoInicio"
+                     [disabled]="true"
+                     [clientMode]="true">
+          </ng-select>
+        </td>
+        <td class="align-middle">
+          <ng-select [attr.id]="'cb_estado_siguiente' + indice"
+                     [dataSource]="{list: estados, name:'valor', id: 'clave'}"
+                     [selected]="etapaEstado.get('estadoDePase').value"
+                     formControlName="estadoDePase"
+                     [disabled]="true"
+                     [clientMode]="true">
+          </ng-select>
+        </td>
+        <td class="align-middle">
+          <ng-select [attr.id]="'cb_etapa_siguiente' + indice"
+                     [dataSource]="{list: etapas, name:'descripcion'}"
+                     [selected]="etapaEstado.get('etapaSiguiente').value"
+                     formControlName="etapaSiguiente"
+                     [disabled]="true"
+                     [clientMode]="true">
+          </ng-select>
+        </td>
+        <td class="align-middle">
+          <input [attr.id]="'rb_etapa_' + indice" type="checkbox" name="seleccionado"
+                 class="check-como-radio"
+                 [value]="etapaEstado.get('etapaInicio').value"
+                 [checked]="etapaSeleccionada(etapaEstado.get('etapaInicio').value)"
+                 formControlName="seleccionado">
+        </td>
+        <td class="align-middle">
+          <button type="button" class="btn btn-link"
+                  *ngIf="etapaEditable(etapaEstado.get('orden').value) && editable"
+                  (click)="eliminarEtapa()"
+                  ngbTooltip="Eliminar" style="padding: 0; margin: auto">
+            <i class="material-icons">clear</i>
+          </button>
+        </td>
+      </tr>
+      <!--NUEVA ETAPA-->
+      <tr formGroupName="nuevaEtapa" *ngIf="editable">
+        <td class="align-middle"></td>
+        <td class="align-middle">
+          <ng-select [attr.id]="'cb_nueva_etapa_inicio'"
+                     *ngIf="habilitarNuevaEtapa"
+                     [dataSource]="{list: getComboEtapas(), name:'descripcion'}"
+                     [selected]="form.get('nuevaEtapa').get('etapaInicio').value"
+                     [disabled]="etapasEstadosLinea?.length"
+                     formControlName="etapaInicio"
+                     [clientMode]="true">
+          </ng-select>
+        </td>
+        <td class="align-middle">
+          <ng-select [attr.id]="'cb_nuevo_estado_inicial'"
+                     *ngIf="habilitarNuevaEtapa"
+                     [dataSource]="{list: getComboEstados(), name:'valor', id: 'clave'}"
+                     [selected]="form.get('nuevaEtapa').get('estadoInicio').value"
+                     [disabled]="etapasEstadosLinea?.length"
+                     formControlName="estadoInicio"
+                     [clientMode]="true">
+          </ng-select>
+        </td>
+        <td class="align-middle">
+          <ng-select [attr.id]="'cb_nuevo_estado_siguiente'"
+                     *ngIf="habilitarNuevaEtapa"
+                     [dataSource]="{list: getComboEstados(), name:'valor', id: 'clave'}"
+                     [selected]="form.get('nuevaEtapa').get('estadoDePase').value"
+                     formControlName="estadoDePase"
+                     [clientMode]="true">
+          </ng-select>
+        </td>
+        <td class="align-middle">
+          <ng-select [attr.id]="'cb_nueva_etapa_siguiente'"
+                     *ngIf="habilitarNuevaEtapa"
+                     [dataSource]="{list: getComboEtapas(), name:'descripcion'}"
+                     [selected]="form.get('nuevaEtapa').get('etapaSiguiente').value"
+                     formControlName="etapaSiguiente"
+                     [clientMode]="true">
+          </ng-select>
+        </td>
+        <td class="align-middle">
+          <!-- <input type="checkbox" formControlName="seleccionado">-->
+        </td>
+        <td class="align-middle">
+          <button type="button" class="btn btn-link"
+                  *ngIf="!habilitarNuevaEtapa && editable"
+                  (click)="habNuevaEtapa()"
+                  ngbTooltip="Agregar" style="padding: 0; margin: auto">
+            <i class="material-icons">add</i>
+          </button>
+          <button type="button" class="btn btn-link"
+                  *ngIf="habilitarNuevaEtapa && editable"
+                  (click)="cancelarAgregadoEtapa()"
+                  ngbTooltip="Cancelar" style="padding: 0; margin: auto">
+            <i class="material-icons">backspace</i>
+          </button>
+          <button type="button" class="btn btn-link"
+                  *ngIf="habilitarNuevaEtapa && editable"
+                  (click)="agregarNuevaEtapa()"
+                  ngbTooltip="Agregar" style="padding: 0; margin: auto">
+            <i class="material-icons">done</i>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="row">
+      <div class="col">
+        <button class="btn btn-secondary pull-right"
+                type="button" data-toggle="collapse"
+                aria-expanded="false"
+                placement="top" ngbTooltip="Ocultar"
+                (click)="isCollapsed = !isCollapsed"
+                [attr.aria-expanded]="!isCollapsed">
+          <i class="material-icons nav-link no-padding"
+             style="cursor: pointer;">keyboard_arrow_up</i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="isCollapsed">
+  <div class="card-pane" style="margin-top: 15px !important;">
+    <div class="row">
+      <div class="col">
+        <button class="btn btn-secondary pull-right"
+                type="button" data-toggle="collapse"
+                aria-expanded="false"
+                placement="top" ngbTooltip="Mostrar"
+                (click)="isCollapsed = !isCollapsed"
+                [attr.aria-expanded]="!isCollapsed">
+          <i class="material-icons nav-link no-padding"
+             style="cursor: pointer;">keyboard_arrow_down</i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--<div class="row" *ngIf="etapasEstadosLinea?.length">
+  <div class="col">
+    <button type="button" class="btn btn-primary pull-right"
+            (click)="limpiarConfiguracion()">LIMPIAR CONFIGURACIÓN
+    </button>
+  </div>
+</div>-->

@@ -1,0 +1,71 @@
+<div class="modal-header">
+  <h4 class="modal-title">Seleccione motivo de rechazo</h4>
+  <button type="button" class="close" (click)="cerrar()">&times;</button>
+</div>
+
+<div class="modal-body">
+  <form [formGroup]="form" (ngSubmit)="rechazar()" novalidate>
+    <div class="row align-items-end" *ngIf="!(unSoloMotivo && idsMotivoRechazo.length)">
+      <div class="col justify-content-center">
+        <label for="ddl_motivo_rechazo">Motivo rechazo </label><span class="obligatorio">(*)</span>
+        <ng-select id="ddl_motivo_rechazo" [dataSource]="{list: motivosRechazo, name:'descripcion', id:'id'}"
+          formControlName="motivoRechazoSeleccionado" [clientMode]="true">
+        </ng-select>
+        <control-messages [control]="form.get('motivoRechazoSeleccionado')"></control-messages>
+      </div>
+
+    </div>
+    <div class="row" style="margin-top: 15px" [hidden]="!muestraObservaciones">
+      <div class="col-md-10 col-lg-10 col-xl-10  justify-content-center" [errorFeedback]="form.get('observaciones')">
+        <label for="txt_observaciones" class="form-control-label">Observaciones</label>
+        <input type="text" class="form-control" id="txt_observaciones" formControlName="observaciones">
+        <control-messages [control]="form.get('observaciones')"></control-messages>
+      </div>
+      <div class="col-md-1 col-lg-1 col-xl-1 contenedor-boton-agregar">
+        <button type="button" class="btn btn-primary" (click)="agregarMotivo()"> AGREGAR
+        </button>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 15px" *ngIf="modalMultiplesObservaciones">
+      <div class="col justify-content-center">
+        <label for="txt_numeroCaja" class="form-control-label">Número de caja </label><span
+          class="obligatorio">(*)</span>
+        <input type="text" class="form-control" id="txt_numeroCaja" formControlName="numeroCaja">
+        <control-messages [control]="form.get('numeroCaja')"></control-messages>
+      </div>
+    </div>
+
+    <div [hidden]="!idsMotivoRechazo.length" class="row tabla-observaciones"
+      style="margin-left: 15px; margin-right: 15px;">
+      <table class="table table-bordered table-striped table-sm table-adjust">
+        <thead>
+          <th>Motivo de Rechazo</th>
+          <th *ngIf="modalMultiplesObservaciones">Observaciones</th>
+          <th>Acciones</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let motivo of idsMotivoRechazo; let primero = first">
+            <td [ngClass]="{'primero': primero, 'line-divider-top': primero}">
+              <div class="col"> {{motivo.descripcion}}</div>
+            </td>
+            <td *ngIf="modalMultiplesObservaciones" [ngClass]="{'primero': primero, 'line-divider-top': primero}" class="td-adjust">
+              <div class="col"> {{motivo.observaciones}}</div>
+            </td>
+            <td [ngClass]="{'primero': primero, 'line-divider-top': primero}">
+              <button type="button" class="btn btn-link" (click)="quitarMotivo(motivo.id)" ngbTooltip="Quitar"><i
+                  class="material-icons">clear</i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="cerrar()">CANCELAR
+  </button>
+  <button type="button" class="btn btn-primary" [disabled]="inhablitarRechazo()" (click)="rechazar()">ACEPTAR
+  </button>
+</div>

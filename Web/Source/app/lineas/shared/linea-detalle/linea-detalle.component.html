@@ -1,0 +1,164 @@
+<div [formGroup]="form">
+  <div class="row">
+    <div class="col-xl-3 col-lg-3 col-md-3 form-group">
+      <label for="cb_integrantes">Integrantes/Socios<span class="obligatorio"> (*)</span></label>
+      <select id="cb_integrantes" class="form-control" formControlName="integranteSocio">
+        <option value="null" disabled> Seleccione</option>
+        <option *ngFor="let integrante of integrantes" [ngValue]="integrante.id">
+          {{integrante.descripcion | uppercase}}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-xl-3 col-lg-3 col-md-3 padding_apoderado form-group">
+      <label for="checkbox-todos" class="custom-control check-bge-control">
+        <input type="checkbox" id="checkbox-todos" [checked]="form.get('apoderado').value"
+          (click)="confirmarApoderado($event.target.checked)" [disabled]="this.form.get('integranteSocio').value != 3 || vistaModal"
+          class="check-bge">
+        <span class="check-marcado"></span>
+        <span class="custom-control-description">¿Tiene apoderado?</span>
+      </label>
+    </div>
+
+    <div class="col-xl-3 col-lg-3 col-md-3 form-group" [errorFeedback]="form.get('montoPrestable')">
+      <label for="txt_monto_prestable" class="form-control-label"> Monto prestable<span class="obligatorio"> (*)</span>
+      </label>
+      <div class="input-group">
+        <span class="input-group-addon span-pesos" id="basic-addon3">$</span>
+        <input id="txt_monto_prestable" formControlName="montoPrestable" type="text" class="form-control txt-pesos"
+          aria-describedby="basic-addon3">
+      </div>
+      <control-messages [control]="form.get('montoPrestable')"></control-messages>
+    </div>
+
+    <div class="col-xl-3 col-lg-3 col-md-3 form-group" [errorFeedback]="form.get('montoTope')">
+      <label for="txt_monto_tope" class="form-control-label"> Monto tope por socio integrante
+      </label>
+      <div class="input-group">
+        <span class="input-group-addon span-pesos" id="basic-addon">$</span>
+        <input id="txt_monto_tope" formControlName="montoTope" type="text" class="form-control txt-pesos"
+          aria-describedby="basic-addon1">
+      </div>
+      <control-messages [control]="form.get('montoTope')"></control-messages>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xl-3 col-lg-3 col-md-3 form-group" [errorFeedback]="form.get('plazoDevolucion')">
+      <label for="txt_plazo_devolucion" class="form-control-label"> Plazo de devolución máximo<span class="obligatorio">
+          (*)</span>
+      </label>
+      <div class="input-group">
+        <input type="text" id="txt_plazo_devolucion" formControlName="plazoDevolucion" class="form-control txt-cuotas"
+          aria-describedby="basic-addon2">
+        <span class="input-group-addon span-cuotas" id="basic-addon1">Cuotas</span>
+      </div>
+      <control-messages [control]="form.get('plazoDevolucion')"></control-messages>
+    </div>
+
+    <div class="col-xl-3 col-lg-3 col-md-3 form-group" [errorFeedback]="form.get('valorCuotaSolidaria')">
+      <label for="txt_valor_estimado_cuota" class="form-control-label">Valor estimado de la cuota
+        <button class="signo-ayuda cuota-ayuda" ngbTooltip="Correspondiente al  valor estimado de la cuota {{cuotaIntegranteSocio}}">?</button>
+      </label>
+      <div class="input-group">
+        <span class="input-group-addon span-pesos" id="basic-addon4">$</span>
+        <input type="text" id="txt_valor_estimado_cuota" formControlName="valorCuotaSolidaria"
+          class="form-control txt-pesos" aria-describedby="basic-addon4">
+      </div>
+      <control-messages [control]="form.get('valorCuotaSolidaria')"></control-messages>
+    </div>
+
+    <div class="col-xl-3 col-lg-3 col-md-3 form-group" [errorFeedback]="form.get('cantidadMinimaIntegrantes')">
+      <label for="txt_cantidad_minima_integrantes" class="form-control-label"> Cantidad mínima integrantes<span
+          class="obligatorio"> (*)</span>
+      </label>
+      <input type="text" id="txt_cantidad_minima_integrantes" class="form-control"
+        formControlName="cantidadMinimaIntegrantes">
+      <control-messages [control]="form.get('cantidadMinimaIntegrantes')"></control-messages>
+    </div>
+    <div class="col-xl-3 col-lg-3 col-md-3" [errorFeedback]="form.get('cantidadMaximaIntegrantes')">
+      <label for="txt_cantidad_maxima_integrantes" class="form-control-label"> Cantidad máxima integrantes<span
+          class="obligatorio"> (*)</span>
+      </label>
+      <input type="text" id="txt_cantidad_maxima_integrantes" class="form-control"
+        formControlName="cantidadMaximaIntegrantes">
+      <control-messages [control]="form.get('cantidadMaximaIntegrantes')"></control-messages>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xl-3 col-lg-3 col-md-3 form-group">
+      <label for="cb_tipo_financiamiento">Tipo de financiamiento<span class="obligatorio"> (*)</span></label>
+      <select id="cb_tipo_financiamiento" class="form-control" formControlName="tipoFinanciamiento">
+        <option value="null" disabled> Seleccione</option>
+        <option *ngFor="let financiamiento of financiamientos" [ngValue]="financiamiento.id">
+          {{financiamiento.descripcion | uppercase}}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-xl-3 col-lg-3 col-md-3 form-group">
+      <label for="cb_tipo_interes">Interés<span class="obligatorio"> (*)</span></label>
+      <select id="cb_tipo_interes" class="form-control" formControlName="tipoInteres">
+        <option value="null" disabled>
+          Seleccione
+        </option>
+        <option *ngFor="let interes of intereses" [ngValue]="interes.id">
+          {{interes.descripcion | uppercase}}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-xl-3 col-lg-3 col-md-3 form-group">
+      <label for="cb_tipo_garantia">Garantía<span class="obligatorio"> (*)</span></label>
+      <select id="cb_tipo_garantia" class="form-control" formControlName="tipoGarantia">
+        <option value="null" disabled>
+          Seleccione
+        </option>
+        <option *ngFor="let garantia of garantias" [ngValue]="garantia.id">
+          {{garantia.descripcion | uppercase}}
+        </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group" [errorFeedback]="form.get('visualizacion')">
+    <label for="tx_visualizacion">Visualización<span class="obligatorio"> (*)</span></label>
+    <textarea id="tx_visualizacion" class="form-control" formControlName="visualizacion">
+           </textarea>
+    <control-messages [control]="form.get('visualizacion')"></control-messages>
+  </div>
+  <div class="row">
+    <div class="form-group col-xl-3 col-lg-3 col-md-3">
+      <label for="cb_convenioPago" class="col-form-label">Convenio pagos<span class="obligatorio"> (*)</span></label>
+      <div>
+        <select id="cb_convenioPago" class="form-control" formControlName="idConvenioPago">
+          <option value="null" disabled>Seleccione</option>
+          <option *ngFor="let convenio of conveniosPago" [value]="convenio.id">
+            {{convenio.nombre | uppercase}}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="spacer5"></div>
+    <div class="form-group col-xl-3 col-lg-3 col-md-3">
+      <label for="cb_convenioRecupero" class="col-form-label">Convenio recupero<span class="obligatorio">
+          (*)</span></label>
+      <div>
+        <select id="cb_convenioRecupero" class="form-control" formControlName="idConvenioRecupero">
+          <option value="null" disabled>Seleccione</option>
+          <option *ngFor="let convenio of conveniosRecupero" [value]="convenio.id">
+            {{convenio.nombre | uppercase}}
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div id="row_acciones" class="row row-section" *ngIf="mostrarAgregar">
+    <div class="col">
+      <button class="btn btn-warning pull-right" [disabled]="form.invalid" (click)="agregar()">+ AGREGAR
+      </button>
+    </div>
+  </div>
+</div>

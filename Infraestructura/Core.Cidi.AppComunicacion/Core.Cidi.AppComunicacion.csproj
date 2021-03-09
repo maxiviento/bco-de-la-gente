@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--Project was exported from assembly: C:\Users\cids\Downloads\AppComunicacion (1).dll-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F52B0B47-7F3B-4B4E-ADC4-1CB13DDEBE22}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>AppComunicacion</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <RootNamespace>AppComunicacion</RootNamespace>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>14.0</OldToolsVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <PublishUrl>publicar\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.2.0.0</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Utn|AnyCPU'">
+    <OutputPath>bin\Utn\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CiDiConfiguration.cs" />
+    <Compile Include="CiDiRoutes.cs" />
+    <Compile Include="CiDiService.cs" />
+    <Compile Include="Documentacion.cs" />
+    <Compile Include="JurisdiccionDomicilio.cs" />
+    <Compile Include="RolesHistoricos.cs" />
+    <Compile Include="VistaPreviaDocumentacion.cs" />
+    <Compile Include="DomicilioCiDi.cs" />
+    <Compile Include="Entrada.cs" />
+    <Compile Include="EntradaAppCom.cs" />
+    <Compile Include="EntradaDoc.cs" />
+    <Compile Include="EntradaVistaPrevia.cs" />
+    <Compile Include="Respuesta.cs" />
+    <Compile Include="RespuestaDocList.cs" />
+    <Compile Include="RespuestaDoc.cs" />
+    <Compile Include="RespuestaDocInsercion.cs" />
+    <Compile Include="RespuestaTipoDoc.cs" />
+    <Compile Include="RespuestaVistaPreviaDoc.cs" />
+    <Compile Include="RespuestaAppCom.cs" />
+    <Compile Include="TipoDocumentacion.cs" />
+    <Compile Include="UsuarioCiDi.cs" />
+    <Compile Include="Security.cs" />
+    <Compile Include="Configuracion.cs" />
+    <Compile Include="Entornos.cs" />
+    <Compile Include="TiposEntidad.cs" />
+    <Compile Include="RolesGruposFamiliar.cs" />
+    <Compile Include="RolesPersonas.cs" />
+    <Compile Include="RolesDomicilio.cs" />
+    <Compile Include="RolesAPIPersonas.cs" />
+    <Compile Include="RolesAPIGruposFamiliar.cs" />
+    <Compile Include="RolesAPIDomicilios.cs" />
+    <Compile Include="RolesAPICaracteristicasPersona.cs" />
+    <Compile Include="RolesAPICaracteristicasDomicilio.cs" />
+    <Compile Include="ParametrosURL.cs" />
+    <Compile Include="RutasAppComunes.cs" />
+    <Compile Include="ServicioComunicacion.cs" />
+    <Compile Include="ParametrosComunicacion.cs" />
+    <Compile Include="ApiModels\Aplicacion.cs" />
+    <Compile Include="ApiModels\Caracteristica.cs" />
+    <Compile Include="ApiModels\OrigenCaracteristica.cs" />
+    <Compile Include="ApiModels\TipoCaracteristica.cs" />
+    <Compile Include="ApiModels\TipoDato.cs" />
+    <Compile Include="ApiModels\Barrio.cs" />
+    <Compile Include="ApiModels\Calle.cs" />
+    <Compile Include="ApiModels\CaracteristicasDomicilio.cs" />
+    <Compile Include="ApiModels\Complejo.cs" />
+    <Compile Include="ApiModels\Departamento.cs" />
+    <Compile Include="ApiModels\Domicilio.cs" />
+    <Compile Include="ApiModels\EntradaHistoricoGrupos.cs" />
+    <Compile Include="ApiModels\EstadoCivil.cs" />
+    <Compile Include="ApiModels\EstadoGrupo.cs" />
+    <Compile Include="ApiModels\GrupoFamiliar.cs" />
+    <Compile Include="ApiModels\PersonaUnica.cs" />
+    <Compile Include="ApiModels\IntegranteGrupo.cs" />
+    <Compile Include="ApiModels\Localidad.cs" />
+    <Compile Include="ApiModels\Pais.cs" />
+    <Compile Include="ApiModels\PersonaFiltro.cs" />
+    <Compile Include="ApiModels\Provincia.cs" />
+    <Compile Include="ApiModels\RelacionConPersona.cs" />
+    <Compile Include="ApiModels\RespuestaAPIGrupoFamiliar.cs" />
+    <Compile Include="ApiModels\Sexo.cs" />
+    <Compile Include="ApiModels\TipoCalle.cs" />
+    <Compile Include="ApiModels\TipoDocumento.cs" />
+    <Compile Include="ApiModels\TipoDomicilio.cs" />
+    <Compile Include="ApiModels\TipoMovimientoHistorico.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

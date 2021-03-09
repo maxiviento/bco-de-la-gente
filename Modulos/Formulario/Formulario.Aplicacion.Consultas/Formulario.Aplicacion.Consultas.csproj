@@ -1,0 +1,482 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{024F0ED3-0FD3-4D9D-8605-E6E2C5DEC4FD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Formulario.Aplicacion.Consultas</RootNamespace>
+    <AssemblyName>Formulario.Aplicacion.Consultas</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Testing|AnyCPU'">
+    <OutputPath>bin\Testing\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Utn|AnyCPU'">
+    <OutputPath>bin\Utn\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Consultas\BandejaConformarPrestamoConsulta.cs" />
+    <Compile Include="Consultas\BandejaMonitorProcesoConsulta.cs" />
+    <Compile Include="Consultas\ConsultaDeudaGrupoConviviente.cs" />
+    <Compile Include="Consultas\GrupoFamiliarAgrupadosConsulta.cs" />
+    <Compile Include="Consultas\FormularioGrillaChequeConsulta.cs" />
+    <Compile Include="Consultas\ArchivoPrestamosConsulta.cs" />
+    <Compile Include="Consultas\InformeBandejaPrestamosConsulta.cs" />
+    <Compile Include="Consultas\MotivosRechazoReferenciaConsulta.cs" />
+    <Compile Include="Consultas\MovimientosMontoConsulta.cs" />
+    <Compile Include="Consultas\BandejaMontoDisponibleConsulta.cs" />
+    <Compile Include="Consultas\BandejaPrestamosConsulta.cs" />
+    <Compile Include="Consultas\DatosPersonaConsulta.cs" />
+    <Compile Include="Consultas\DetalleLineaConsulta.cs" />
+    <Compile Include="Consultas\FiltrosFormularioConsulta.cs" />
+    <Compile Include="Consultas\FormularioGrillaConsulta.cs" />
+    <Compile Include="Consultas\SituacionPersonasConsulta.cs" />
+    <Compile Include="Resultados\BandejaMonitorProcesosResultado.cs" />
+    <Compile Include="Resultados\DatosDomicilioIntegrante.cs" />
+    <Compile Include="Resultados\DatosProvidenciaMasivaResultado.cs" />
+    <Compile Include="Resultados\DetalleLineaCombo.cs" />
+    <Compile Include="Resultados\FormularioChequeGrillaResultado.cs" />
+    <Compile Include="Resultados\FormularioEstadoNumero.cs" />
+    <Compile Include="Resultados\GrupoFamiliarDomicilioResultado.cs" />
+    <Compile Include="Resultados\ImpresionConsultaFormularioResultado.cs" />
+    <Compile Include="Resultados\IntegrantesResultado.cs" />
+    <Compile Include="Resultados\LocalidadResultado.cs" />
+    <Compile Include="Resultados\MotivosRechazoFormularioResultado.cs" />
+    <Compile Include="Resultados\MotivosRechazoPrestamoResultado.cs" />
+    <Compile Include="Resultados\NroStickerResultado.cs" />
+    <Compile Include="Resultados\OngLineaResultado.cs" />
+    <Compile Include="Resultados\PrestamoIdResultado.cs" />
+    <Compile Include="Resultados\FechaAprobacionResultado.cs" />
+    <Compile Include="Resultados\AgrupacionCursosReporteResultado.cs" />
+    <Compile Include="Resultados\ActualizarAgrupamientoResultado.cs" />
+    <Compile Include="Resultados\ProgramaResultado.cs" />
+    <Compile Include="Resultados\OngResultado.cs" />
+    <Compile Include="Resultados\DatosProvidenciaResultado.cs" />
+    <Compile Include="Resultados\FormularioFechaPagoResultado.cs" />
+    <Compile Include="Resultados\IdFormularioAgrupamiento.cs" />
+    <Compile Include="Resultados\FormularioXDni.cs" />
+    <Compile Include="Resultados\CapacidadAsociativa.cs" />
+    <Compile Include="Resultados\AgrupacionFormulario.cs" />
+    <Compile Include="Resultados\BandejaCargaNumeroControlInternoResultado.cs" />
+    <Compile Include="Resultados\BandejaConformarPrestamoResultado.cs" />
+    <Compile Include="Resultados\BandejaMontoDisponibleResultado.cs" />
+    <Compile Include="Resultados\BandejaPrestamoResultado.cs" />
+    <Compile Include="Consultas\LineaPrestamoConsulta.cs" />
+    <Compile Include="Resultados\ConsultaConfiguracionChecklist.cs" />
+    <Compile Include="Resultados\ConsultaDeudaFormularioResultado.cs" />
+    <Compile Include="Resultados\ConsultaIntegrantesPrestamoRentasResultado.cs" />
+    <Compile Include="Resultados\ConsultarItemMercadoResultado.cs" />
+    <Compile Include="Resultados\DatosBasicosFormularioResultado.cs" />
+    <Compile Include="Resultados\DatosEmprendimientoResultado.cs" />
+    <Compile Include="Resultados\DatosPersonalesResultado.cs" />
+    <Compile Include="Resultados\DestinoFondoReporteResultado.cs" />
+    <Compile Include="Resultados\DetalleLineaGrillaResultado.cs" />
+    <Compile Include="Resultados\DetalleMotivosRechazoResultado.cs" />
+    <Compile Include="Resultados\DeudaEmprendimientoResultado.cs" />
+    <Compile Include="Resultados\EditarMontoDisponibleResultado.cs" />
+    <Compile Include="Resultados\EgresoGrupoResultado.cs" />
+    <Compile Include="Resultados\EmprendimientoResultado.cs" />
+    <Compile Include="Resultados\EstimaClienteReporteResultado.cs" />
+    <Compile Include="Resultados\EstimaClientesResultado.cs" />
+    <Compile Include="Resultados\EtapaEstadoLineaResultado.cs" />
+    <Compile Include="Resultados\FormaPagoResultado.cs" />
+    <Compile Include="Resultados\FormularioCanceladoParaPrestamo.cs" />
+    <Compile Include="Resultados\DetalleLineaResultado.cs" />
+    <Compile Include="Resultados\FormularioFiltradoResultado.cs" />
+    <Compile Include="Resultados\FormulariosInversionRealizadaResultado.cs" />
+    <Compile Include="Resultados\FormulariosSituacionResultado.cs" />
+    <Compile Include="Resultados\FuenteFinanciamientoResultado.cs" />
+    <Compile Include="Resultados\GrupoFamiliarResultado.cs" />
+    <Compile Include="Resultados\IdsResult.cs" />
+    <Compile Include="Resultados\InstitucionComboResultado.cs" />
+    <Compile Include="Resultados\InversionRealizadaResultado.cs" />
+    <Compile Include="Resultados\IngresoGrupoResultado.cs" />
+    <Compile Include="Resultados\ItemReporteConCategoriaResultado.cs" />
+    <Compile Include="Resultados\ItemReporteResultado.cs" />
+    <Compile Include="Resultados\ItemInversionResultado.cs" />
+    <Compile Include="Resultados\IdValorItem.cs" />
+    <Compile Include="Resultados\ItemsMercadoComerResultado.cs" />
+    <Compile Include="Resultados\ItemsMercadoComerString.cs" />
+    <Compile Include="Resultados\ItemsPrecioVentaResultado.cs" />
+    <Compile Include="Resultados\MercadoComercializacionResultado.cs" />
+    <Compile Include="Resultados\MiembroEmprendimientoResultado.cs" />
+    <Compile Include="Resultados\MotivosRechazoReferenciaResultado.cs" />
+    <Compile Include="Resultados\MovimientoMontoResultado.cs" />
+    <Compile Include="Resultados\NecesidadInversionResultado.cs" />
+    <Compile Include="Resultados\OngComboResultado.cs" />
+    <Compile Include="Resultados\OngFormulario.cs" />
+    <Compile Include="Resultados\OrganizacionEmprendimientoResultado.cs" />
+    <Compile Include="Resultados\PatrimonioSolicitanteResultado.cs" />
+    <Compile Include="Resultados\PrecioVentaResultado.cs" />
+    <Compile Include="Resultados\PrestamoReactivacionResultado.cs" />
+    <Compile Include="Resultados\ExportacionRecupero.cs" />
+    <Compile Include="Resultados\ExportacionPrestamo.cs" />
+    <Compile Include="Resultados\ResultadoRegistroBatch.cs" />
+    <Compile Include="Resultados\ReporteHistoricosPagados.cs" />
+    <Compile Include="Resultados\ReporteCuadroPagados.cs" />
+    <Compile Include="Resultados\Reprogramacion.cs" />
+    <Compile Include="Resultados\RegistrarPrestamoResultado.cs" />
+    <Compile Include="Resultados\ReporteDetalleMotivosRechazoResultado.cs" />
+    <Compile Include="Resultados\ReporteDeudaGrupoConvivienteResultado.cs" />
+    <Compile Include="Resultados\ReporteFormularioResultado.cs" />
+    <Compile Include="Resultados\LineaParaComboResultado.cs" />
+    <Compile Include="Resultados\LineaPrestamoGrillaResultado.cs" />
+    <Compile Include="Consultas\SeguimientosPrestamoConsulta.cs" />
+    <Compile Include="Resultados\CondicionesPrestamoResultado.cs" />
+    <Compile Include="Resultados\DatosContactoResultado.cs" />
+    <Compile Include="Resultados\DestinoFondoSeleccionadoResultado.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resultados\CondicionesSolicitadasResultado.cs" />
+    <Compile Include="Resultados\ConsultarCursosResultado.cs" />
+    <Compile Include="Resultados\DestinatarioResultado.cs" />
+    <Compile Include="Resultados\DatosFormularioResultado.cs" />
+    <Compile Include="Resultados\DatosPersonaResultado.cs" />
+    <Compile Include="Resultados\DatosSolicitanteResultado.cs" />
+    <Compile Include="Resultados\DestinoFondoResultado.cs" />
+    <Compile Include="Resultados\CuadranteResultado.cs" />
+    <Compile Include="Resultados\DetalleLineaParaFormularioResultado.cs" />
+    <Compile Include="Resultados\FormularioGrillaResultado.cs" />
+    <Compile Include="Resultados\IntegranteResultado.cs" />
+    <Compile Include="Resultados\LineaPrestamoResultado.cs" />
+    <Compile Include="Resultados\MontoDisponibleResultado.cs" />
+    <Compile Include="Resultados\OpcionDestinosFondoResultado.cs" />
+    <Compile Include="Resultados\PrestamoResultado.cs" />
+    <Compile Include="Resultados\RegistrarMontoDisponibleResultado.cs" />
+    <Compile Include="Resultados\ReportePieDePaginaFormularioResultado.cs" />
+    <Compile Include="Resultados\RequisitoResultado.cs" />
+    <Compile Include="Resultados\RequisitosCuadranteResultado.cs" />
+    <Compile Include="Resultados\RequisitosLineaResultado.cs" />
+    <Compile Include="Resultados\SituacionDomicilioIntegranteResultado.cs" />
+    <Compile Include="Resultados\SituacionPersonasResultadoVista.cs" />
+    <Compile Include="Resultados\SituacionPersonasResultado.cs" />
+    <Compile Include="Resultados\NombreDescripcionOtros.cs" />
+    <Compile Include="Resultados\SolicitudCursoReporteResultado.cs" />
+    <Compile Include="Resultados\SolicitudCursoResultado.cs" />
+    <Compile Include="Resultados\TipoDeudaResultado.cs" />
+    <Compile Include="Resultados\TipoFinanciamientoResultado.cs" />
+    <Compile Include="Resultados\TipoGarantiaResultado.cs" />
+    <Compile Include="Resultados\TipoInteresResultado.cs" />
+    <Compile Include="Resultados\ValidacionEdadResultado.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Infraestructura\Core.Cidi.AppComunicacion\Core.Cidi.AppComunicacion.csproj">
+      <Project>{F52B0B47-7F3B-4B4E-ADC4-1CB13DDEBE22}</Project>
+      <Name>Core.Cidi.AppComunicacion</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infraestructura\Core.CiDi\Core.CiDi.csproj">
+      <Project>{6B5E397A-3637-4DDF-8E3B-DDAC31389DB5}</Project>
+      <Name>Core.CiDi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infraestructura\Core.Comun\Core.Comun.csproj">
+      <Project>{6D014EE5-0745-4A72-8EE0-07E134CF8F3C}</Project>
+      <Name>Core.Comun</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Pagos\Pagos.Aplicacion.Consultas\Pagos.Aplicacion.Consultas.csproj">
+      <Project>{9e11d788-0690-47b0-806a-87d29b7878b0}</Project>
+      <Name>Pagos.Aplicacion.Consultas</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Comandos.OngFormulario.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Consultas.BandejaConformarPrestamoConsulta.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Consultas.BandejaMontoDisponibleConsulta.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Consultas.BandejaPrestamosConsulta.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Consultas.ConsultaDeudaGrupoConviviente.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Consultas.DatosPersonaConsulta.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Consultas.DetalleLineaConsulta.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Consultas.FiltrosFormularioConsulta.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Consultas.FormularioGrillaConsulta.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Consultas.InformeBandejaPrestamosConsulta1.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Consultas.InformeBandejaPrestamosConsulta2.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Consultas.LineaPrestamoConsulta.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Consultas.MotivosRechazoReferenciaConsulta.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Consultas.MovimientosMontoConsulta.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Consultas.SeguimientosPrestamoConsulta.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Consultas.SituacionPersonasConsulta.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ActualizarAgrupamientoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.AgrupacionCursosReporteResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.AgruparFormulario.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.BandejaCargaNumeroControlInternoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.BandejaConformarPrestamoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.BandejaMontoDisponibleResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.BandejaPrestamoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.CapacidadAsociativa.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.CondicionesPrestamoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.CondicionesSolicitadasResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ConsultaConfiguracionChecklist.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ConsultaDeudaFormularioResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ConsultaIntegrantesPrestamoRentasResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ConsultarCursosResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ConsultarItemComercializacionResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.CuadranteResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.DatosBasicosFormularioResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.DatosContactoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.DatosEmprendimientoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.DatosFormularioResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.DatosPersonalesResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.DatosPersonaResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.DatosProvidenciaResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.DatosSolicitanteResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.DestinatarioResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.DestinoFondoReporteResultado1.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.DestinoFondoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.DestinoFondoSeleccionadoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.DetalleLineaGrillaResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.DetalleLineaParaFormularioResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.DetalleLineaResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.DetalleMotivosRechazoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.DeudaEmprendimientoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.EditarMontoDisponibleResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.EgresoGrupoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.EgresoGrupoResultado1.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.EmprendimientoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.EstimaClienteReporteResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.EstimaClientesResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.EtapaEstadoLineaResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ExportacionPrestamo.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ExportacionRecupero.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.FechaAprobacionResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.FormaPagoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.FormularioCanceladoParaPrestamo.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.FormularioFechaPagoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.FormularioFiltradoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.FormularioGrillaResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.FormulariosInversionRealizadaResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.FormulariosSituacionResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.FormularioXDni.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.FuenteFinanciamientoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.GrupoFamiliarResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.IdFormularioAgrupamiento.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.IdsResult.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.IdValorItem.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ImpresionConsultaFormularioResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.IngresoGrupoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.InstitucionComboResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.IntegranteResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.IntegrantesResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.InversionRealizadaResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ItemInversionResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ItemReporteConCategoriaResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ItemReporteResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ItemsMercadoComerResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ItemsMercadoComerString.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ItemsPrecioVentaResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.LineaParaComboResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.LineaPrestamoGrillaResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.LineaPrestamoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.MercadoComercializacionResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.MiembroEmprendimientoFormularioResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.MiembroEmprendimientoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.MontoDisponibleResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.MotivosRechazoReferenciaResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.MovimientoMontoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.NecesidadInversionResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.NombreDescripcionOtros.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.OngComboResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.OngResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.OngResultado1.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.OpcionDestinosFondoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.OrganizacionEmprendimientoResultado.datasource">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.PatrimonioSolicitanteResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.PrecioVentaResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.PrestamoIdResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.PrestamoResultado+Datos.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.PrestamoResultado+Detallado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.PrestamoResultado+EncabezadoArchivos.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.PrestamoResultado+Integrante.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.PrestamoResultado+Seguimiento.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.PrestamoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ProgramaResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.RegistrarMontoDisponibleResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.RegistrarPrestamoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ReporteCuadroPagados.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ReporteDetalleMotivosRechazoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ReporteDeudaGrupoConvivienteResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ReporteFormularioResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ReporteHistoricoPagados.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ReportePieDePaginaFormularioResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.Reprogramacion.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.RequisitoResultado+Cargado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.RequisitoResultado+Detallado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.RequisitoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.RequisitosCuadranteResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.RequisitosLineaResultado+TiposItem.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.RequisitosLineaResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.SituacionPersonasResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.SolicitudCursoReporteResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.SolicitudCursoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.TipoDeudaResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.TipoFinanciamientoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.TipoGarantiaResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.TipoInteresResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ValidacionEdadResultado.datasource" />
+    <None Include="Properties\DataSources\Infraestructura.Core.CiDi.Model.Persona.DatosPersonaCompleto.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Consultas.BandejaFormulariosSuafConsulta.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Consultas.BandejaLotesConsulta.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Consultas.BandejaPagosConsulta.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Consultas.BandejaRecuperoConsulta.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Consultas.BandejaSuafConsulta.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Consultas.DetallesPlanDePagoConsulta.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Consultas.InformePagosConsulta.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Consultas.MontosDisponibleConsulta.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Consultas.PrestamosDetalleLoteConsulta.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Consultas.ReportePagosConsulta.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Consultas.VerArchivoInconsistenciaConsulta.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.BandejaFormulariosSuafResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.BandejaLotesResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.BandejaPagosResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.BandejaRecuperoResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.BandejaResultadoBancoResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.BandejaSuafResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.CabeceraResultadoBanco.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.CalculoMontoAcumuladoResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.ComboEntidadesRecuperoResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.ComboLotesResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.ConvenioResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.DatosFechaFormResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.DatosNotaPago.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.DetalleLoteResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.DetallePlanDePagoGrillaResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.DSExcelActivacionMasiva.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.EstadoCorrectoFormularioResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.FilaArchivoRecupero.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.FilaArchivoResultadoBanco.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.FilaExcelBanco1.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.FilaExcelSuaf.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.FormularioPlanDePagoResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.FormularioPrestamoResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.FormularioxLoteResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.GrillaPlanPagosResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.HistorialLoteResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.ImportacionSuafResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.ImportarArchivoRecuperoResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.ImportarArchivoResultadoBancoResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.MontoDisponibleSimularLoteResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.PeriodoPlanPagoComboResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.PermiteLiberarLoteResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.PlanDePagoResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.ReporteCaratulaResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.ReporteContratoMutuoResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.ReporteCuadroCreditosResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.ReporteCuponeraResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.ReporteExcelBancoResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.ReportePagareResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.ReportePagosResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.ReporteProvidenciaResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.ReporteReciboResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.SeleccionarTodosSuafResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.TasasLoteResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.ValidacionSolicitanteResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.VerInconsistenciaArchivosResultado.datasource" />
+    <EmbeddedResource Include="Reportes\Formulario\ReportePrestamo_BandejaExcel.rdlc" />
+    <EmbeddedResource Include="Reportes\Formulario\ReportePrestamo_Bandeja.rdlc" />
+    <EmbeddedResource Include="Reportes\Formulario\ReporteFormulario_Bandeja.rdlc" />
+    <EmbeddedResource Include="Reportes\Formulario\ReporteFormulario_BandejaExcel.rdlc" />
+    <EmbeddedResource Include="Reportes\Formulario\ReporteFormulario_Integrantes.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Formulario\ReporteFormulario_Ong.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Reportes\Formulario\ReporteFormulario_DeudaEmprendimiento.rdlc" />
+    <EmbeddedResource Include="Reportes\Formulario\ReporteFormulario_IngresosYGastos.rdlc" />
+    <EmbeddedResource Include="Reportes\Formulario\ReporteFormulario_DatosEmprendimiento.rdlc" />
+    <EmbeddedResource Include="Reportes\Formulario\ReporteFormulario_InversionRealizada.rdlc" />
+    <EmbeddedResource Include="Reportes\Formulario\ReporteFormulario_MercadoComercializacion.rdlc" />
+    <EmbeddedResource Include="Reportes\Formulario\ReporteFormulario_NecesidadesInversion.rdlc" />
+    <EmbeddedResource Include="Reportes\Formulario\ReporteFormulario_OrganizacionEmprendimiento.rdlc" />
+    <EmbeddedResource Include="Reportes\Formulario\ReporteFormulario_PatrimonioSolicitante.rdlc" />
+    <EmbeddedResource Include="Reportes\Formulario\ReporteFormulario_PrecioVenta.rdlc" />
+    <EmbeddedResource Include="Reportes\Formulario\ReporteFormulario_ResultadoMensual.rdlc" />
+    <EmbeddedResource Include="Reportes\Pagos\ReporteActivacionMasivaExcel.rdlc" />
+    <EmbeddedResource Include="Reportes\Pagos\ReportePagos_ContratoMutuo.rdlc" />
+    <EmbeddedResource Include="Reportes\Pagos\ReportePagos_ExportacionPrestamo.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Pagos\ReportePagos_ExportacionRecupero.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Pagos\ReportePagos_PlanCuotas.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Pagos\ReportePagos_InformesBanco.rdlc">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reportes\Pagos\ReportePagos_Providencia.rdlc" />
+    <EmbeddedResource Include="Reportes\ReporteProvidencia.rdlc" />
+    <EmbeddedResource Include="Reportes\Pagos\ReporteBancoExcel.rdlc" />
+    <EmbeddedResource Include="Reportes\Pagos\ReportePagos_Cuponera.rdlc" />
+    <EmbeddedResource Include="Reportes\Pagos\ReporteNotaPago.rdlc" />
+    <EmbeddedResource Include="Reportes\Pagos\ReportePagos.rdlc" />
+    <EmbeddedResource Include="Reportes\Pagos\ReportePagos_Caratula.rdlc" />
+    <EmbeddedResource Include="Reportes\Pagos\ReportePagos_Memorandum.rdlc" />
+    <EmbeddedResource Include="Reportes\Pagos\ReportePagos_Pagare.rdlc" />
+    <EmbeddedResource Include="Reportes\Pagos\ReportePagos_Recibo.rdlc" />
+    <EmbeddedResource Include="Reportes\Pagos\ReporteSuafExcel.rdlc" />
+    <EmbeddedResource Include="Reportes\ReporteDetalleMotivosRechazo.rdlc" />
+    <EmbeddedResource Include="Reportes\ReporteDeudaGrupoConviviente.rdlc" />
+    <EmbeddedResource Include="Reportes\Formulario\ReporteFormulario.rdlc" />
+    <EmbeddedResource Include="Reportes\Formulario\ReporteFormulario_CondicionesMicroprestamo.rdlc" />
+    <EmbeddedResource Include="Reportes\Formulario\ReporteFormulario_Cursos.rdlc" />
+    <EmbeddedResource Include="Reportes\Formulario\ReporteFormulario_DatosGarante.rdlc" />
+    <EmbeddedResource Include="Reportes\Formulario\ReporteFormulario_DestinoFondos.rdlc" />
+    <EmbeddedResource Include="Reportes\Formulario\ReporteFormulario_GrupoFamiliar.rdlc" />
+    <EmbeddedResource Include="Reportes\Formulario\ReporteFormulario_DatosPersonales.rdlc" />
+    <EmbeddedResource Include="Reportes\Formulario\ReporteFormulario_Pie.rdlc" />
+    <EmbeddedResource Include="Reportes\Formulario\ReporteFormulario_Requisitos.rdlc" />
+    <EmbeddedResource Include="Reportes\ReporteSituacionPersona.rdlc" />
+    <EmbeddedResource Include="Reportes\ReporteVacio.rdlc" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

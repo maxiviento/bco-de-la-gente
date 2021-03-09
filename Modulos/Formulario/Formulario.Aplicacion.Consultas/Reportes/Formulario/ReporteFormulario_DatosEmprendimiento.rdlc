@@ -1,0 +1,4241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="FormularioAplicacionConsultasResultados">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>35ac5e7d-01d3-4716-a4da-02e4fd6c3951</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="FormularioAplicacionConsultasResultados1">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>154569a2-df5e-4405-8b9b-82df9ef2a9cf</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="FormularioAplicacionConsultasResultados2">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>b739e2c1-e8a9-4102-a211-1f11edebe2c6</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="FormularioAplicacionConsultasResultados3">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>b44870e4-c2e5-47ae-b107-7bae41c8d72d</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="FormularioAplicacionConsultasResultados4">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>2a15d9d4-8956-4032-82fe-3fdf94d0449b</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="FormularioAplicacionConsultasResultados5">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>4c294b50-f468-47fc-b194-1eda5791c0d9</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="FormularioAplicacionConsultasResultados6">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>736a19a8-0c18-4246-a8ed-6524ecd8915b</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="FormularioAplicacionConsultasResultados7">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>a6cff327-e684-4a7e-a47b-c113fe57c4e7</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="FormularioAplicacionConsultasResultados8">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>39e7f9e4-7cfd-4bb6-862a-bf85332e86ab</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="FormularioAplicacionConsultasResultados9">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>6e891a19-9430-440d-beaf-894513dd848c</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="DSDatosEmprendimiento">
+      <Query>
+        <DataSourceName>FormularioAplicacionConsultasResultados6</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Actividad">
+          <DataField>Actividad</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Barrio">
+          <DataField>Barrio</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Calle">
+          <DataField>Calle</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Casa">
+          <DataField>Casa</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CodigoArea">
+          <DataField>CodigoArea</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="CodigoPostal">
+          <DataField>CodigoPostal</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Departamento">
+          <DataField>Departamento</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Dpto">
+          <DataField>Dpto</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Email">
+          <DataField>Email</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FechaActivo">
+          <DataField>FechaActivo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="InstitucionSolicitud">
+          <DataField>InstitucionSolicitud</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Localidad">
+          <DataField>Localidad</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Manzana">
+          <DataField>Manzana</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Numero">
+          <DataField>Numero</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Orden">
+          <DataField>Orden</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="OtorgaronCredito">
+          <DataField>OtorgaronCredito</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PidioCredito">
+          <DataField>PidioCredito</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Piso">
+          <DataField>Piso</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PoseeExperiencia">
+          <DataField>PoseeExperiencia</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="RealizoCursos">
+          <DataField>RealizoCursos</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SectorDesarrollo">
+          <DataField>SectorDesarrollo</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Telefono">
+          <DataField>Telefono</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TiempoExperiencia">
+          <DataField>TiempoExperiencia</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TipoProyecto">
+          <DataField>TipoProyecto</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Torre">
+          <DataField>Torre</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>Formulario.Aplicacion.Consultas.Resultados</rd:DataSetName>
+        <rd:TableName>DatosEmprendimientoResultado</rd:TableName>
+        <rd:ObjectDataSourceType>Formulario.Aplicacion.Consultas.Resultados.DatosEmprendimientoResultado, Formulario.Aplicacion.Consultas, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="DSTiposProyecto">
+      <Query>
+        <DataSourceName>FormularioAplicacionConsultasResultados7</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Nombre">
+          <DataField>Nombre</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Orden">
+          <DataField>Orden</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Seleccionado">
+          <DataField>Seleccionado</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>Formulario.Aplicacion.Consultas.Resultados</rd:DataSetName>
+        <rd:TableName>ItemReporteResultado</rd:TableName>
+        <rd:ObjectDataSourceType>Formulario.Aplicacion.Consultas.Resultados.ItemReporteResultado, Formulario.Aplicacion.Consultas, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="DSTiposInmuebles">
+      <Query>
+        <DataSourceName>FormularioAplicacionConsultasResultados8</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Nombre">
+          <DataField>Nombre</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Orden">
+          <DataField>Orden</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Seleccionado">
+          <DataField>Seleccionado</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>Formulario.Aplicacion.Consultas.Resultados</rd:DataSetName>
+        <rd:TableName>ItemReporteResultado</rd:TableName>
+        <rd:ObjectDataSourceType>Formulario.Aplicacion.Consultas.Resultados.ItemReporteResultado, Formulario.Aplicacion.Consultas, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="DSSectoresDesarrollo">
+      <Query>
+        <DataSourceName>FormularioAplicacionConsultasResultados9</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="Nombre">
+          <DataField>Nombre</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Orden">
+          <DataField>Orden</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Seleccionado">
+          <DataField>Seleccionado</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>Formulario.Aplicacion.Consultas.Resultados</rd:DataSetName>
+        <rd:TableName>ItemReporteResultado</rd:TableName>
+        <rd:ObjectDataSourceType>Formulario.Aplicacion.Consultas.Resultados.ItemReporteResultado, Formulario.Aplicacion.Consultas, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Line Name="Line1">
+            <Left>0.00092cm</Left>
+            <Height>0cm</Height>
+            <Width>17.85153cm</Width>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+            </Style>
+          </Line>
+          <Textbox Name="Textbox1">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!Orden.Value, "DSDatosEmprendimiento").ToString() + ". DATOS DE SU EMPRENDIMIENTO"</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>0.10583cm</Top>
+            <Left>0.00092cm</Left>
+            <Height>0.43067cm</Height>
+            <Width>17.85145cm</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox6">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Calle: </Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>0.71288cm</Top>
+            <Left>0.00094cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>0.93366cm</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox7">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!Calle.Value, "DSDatosEmprendimiento")</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>0.71288cm</Top>
+            <Left>0.9346cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>6.83114cm</Width>
+            <ZIndex>3</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BottomBorder>
+                <Style>Solid</Style>
+                <Width>0.5pt</Width>
+              </BottomBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox8">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Número: </Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>0.71288cm</Top>
+            <Left>7.80102cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>1.32877cm</Width>
+            <ZIndex>4</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox9">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!Numero.Value, "DSDatosEmprendimiento")</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>0.71288cm</Top>
+            <Left>9.12979cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>1.57572cm</Width>
+            <ZIndex>5</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BottomBorder>
+                <Style>Solid</Style>
+                <Width>0.5pt</Width>
+              </BottomBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox10">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Torre: </Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>0.71288cm</Top>
+            <Left>10.74079cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>0.90544cm</Width>
+            <ZIndex>6</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox11">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!Torre.Value, "DSDatosEmprendimiento")</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>0.71288cm</Top>
+            <Left>11.64623cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>1.5969cm</Width>
+            <ZIndex>7</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BottomBorder>
+                <Style>Solid</Style>
+                <Width>0.5pt</Width>
+              </BottomBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox12">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Piso: </Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>0.71288cm</Top>
+            <Left>13.2784cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>0.90544cm</Width>
+            <ZIndex>8</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox13">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!Piso.Value, "DSDatosEmprendimiento")</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>0.71288cm</Top>
+            <Left>14.18384cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>1.30057cm</Width>
+            <ZIndex>9</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BottomBorder>
+                <Style>Solid</Style>
+                <Width>0.5pt</Width>
+              </BottomBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox14">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Dpto.: </Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>0.71288cm</Top>
+            <Left>15.51969cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>0.90544cm</Width>
+            <ZIndex>10</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox15">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!Dpto.Value, "DSDatosEmprendimiento")</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>0.71288cm</Top>
+            <Left>16.42513cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>1.42746cm</Width>
+            <ZIndex>11</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BottomBorder>
+                <Style>Solid</Style>
+                <Width>0.5pt</Width>
+              </BottomBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Subreport Name="SubReporteDatosEmprendimiento">
+            <ReportName>SubReporteDatosEmprendimiento</ReportName>
+            <Top>9.3982cm</Top>
+            <Left>0.0009cm</Left>
+            <Height>4.08191cm</Height>
+            <Width>17.85169cm</Width>
+            <ZIndex>12</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Subreport>
+          <Textbox Name="Textbox16">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Manzana: </Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>1.33406cm</Top>
+            <Left>0.00094cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>1.45577cm</Width>
+            <ZIndex>13</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox17">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!Manzana.Value, "DSDatosEmprendimiento")</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>1.33406cm</Top>
+            <Left>1.45671cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>1.70978cm</Width>
+            <ZIndex>14</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BottomBorder>
+                <Style>Solid</Style>
+                <Width>0.5pt</Width>
+              </BottomBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox18">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Casa: </Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>1.33406cm</Top>
+            <Left>3.20176cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>0.90544cm</Width>
+            <ZIndex>15</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox19">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!Casa.Value, "DSDatosEmprendimiento")</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>1.33406cm</Top>
+            <Left>4.1072cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>1.5969cm</Width>
+            <ZIndex>16</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BottomBorder>
+                <Style>Solid</Style>
+                <Width>0.5pt</Width>
+              </BottomBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox20">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Barrio: </Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>1.33406cm</Top>
+            <Left>5.73938cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>1.04655cm</Width>
+            <ZIndex>17</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox21">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!Barrio.Value, "DSDatosEmprendimiento")</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>1.33406cm</Top>
+            <Left>6.78593cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>11.06666cm</Width>
+            <ZIndex>18</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BottomBorder>
+                <Style>Solid</Style>
+                <Width>0.5pt</Width>
+              </BottomBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox22">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Localidad: </Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>1.95523cm</Top>
+            <Left>0.00093cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>1.45578cm</Width>
+            <ZIndex>19</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox23">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!Localidad.Value, "DSDatosEmprendimiento")</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>1.95523cm</Top>
+            <Left>1.45671cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>4.86361cm</Width>
+            <ZIndex>20</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BottomBorder>
+                <Style>Solid</Style>
+                <Width>0.5pt</Width>
+              </BottomBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox24">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Departamento: </Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>1.95523cm</Top>
+            <Left>6.35559cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>2.09784cm</Width>
+            <ZIndex>21</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox25">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!Departamento.Value, "DSDatosEmprendimiento")</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>1.95523cm</Top>
+            <Left>8.4887cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>5.35749cm</Width>
+            <ZIndex>22</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BottomBorder>
+                <Style>Solid</Style>
+                <Width>0.5pt</Width>
+              </BottomBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox26">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>C.P.: </Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>1.95523cm</Top>
+            <Left>13.88147cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>0.90544cm</Width>
+            <ZIndex>23</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox27">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!CodigoPostal.Value, "DSDatosEmprendimiento")</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>1.95523cm</Top>
+            <Left>14.78691cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>3.06554cm</Width>
+            <ZIndex>24</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BottomBorder>
+                <Style>Solid</Style>
+                <Width>0.5pt</Width>
+              </BottomBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox28">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Teléfono: </Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>2.5764cm</Top>
+            <Left>0.00092cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>1.34995cm</Width>
+            <ZIndex>25</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox29">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>="(" + First(Fields!CodigoArea.Value, "DSDatosEmprendimiento") + ") " + First(Fields!Telefono.Value, "DSDatosEmprendimiento")</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>2.5764cm</Top>
+            <Left>1.35087cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>6.83817cm</Width>
+            <ZIndex>26</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BottomBorder>
+                <Style>Solid</Style>
+                <Width>0.5pt</Width>
+              </BottomBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox32">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>E-mail: </Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>2.5764cm</Top>
+            <Left>8.22432cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>1.34995cm</Width>
+            <ZIndex>27</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox33">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!Email.Value, "DSDatosEmprendimiento")</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>2.5764cm</Top>
+            <Left>9.57427cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>8.27832cm</Width>
+            <ZIndex>28</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BottomBorder>
+                <Style>Solid</Style>
+                <Width>0.5pt</Width>
+              </BottomBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox34">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Tipo de proyecto: </Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>4.54997cm</Top>
+            <Left>0.00094cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>2.46648cm</Width>
+            <ZIndex>29</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox46">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Proyecto activo a partir de: </Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>5.13587cm</Top>
+            <Left>0.00094cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>3.6571cm</Width>
+            <ZIndex>30</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox47">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!FechaActivo.Value, "DSDatosEmprendimiento")</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>5.13587cm</Top>
+            <Left>3.69332cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>2.27889cm</Width>
+            <ZIndex>31</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BottomBorder>
+                <Style>Solid</Style>
+                <Width>0.5pt</Width>
+              </BottomBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox35">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Este inmueble es: </Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>3.27351cm</Top>
+            <Left>0.00094cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>2.46648cm</Width>
+            <ZIndex>32</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox48">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Actividad del microemprendimiento: </Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>3.85941cm</Top>
+            <Left>0.00094cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>4.72726cm</Width>
+            <ZIndex>33</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox49">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!Actividad.Value, "DSDatosEmprendimiento")</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>3.85941cm</Top>
+            <Left>4.7282cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>13.12425cm</Width>
+            <ZIndex>34</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BottomBorder>
+                <Style>Solid</Style>
+                <Width>0.5pt</Width>
+              </BottomBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox50">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Sector en que se desarrolla la actividad: </Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>5.72176cm</Top>
+            <Left>0.00094cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>5.29752cm</Width>
+            <ZIndex>35</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox51">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>¿Posee experiencia previa en la actividad a desarrollar?:</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>7.01935cm</Top>
+            <Height>0.51534cm</Height>
+            <Width>7.4911cm</Width>
+            <ZIndex>36</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox52">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Si</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Right</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>7.01935cm</Top>
+            <Left>7.49111cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>0.56968cm</Width>
+            <ZIndex>37</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox54">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>No</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Right</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>7.01935cm</Top>
+            <Left>8.74004cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>0.56968cm</Width>
+            <ZIndex>38</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox56">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>¿Cuánto tiempo?: </Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>7.01935cm</Top>
+            <Left>10.02426cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>2.41064cm</Width>
+            <ZIndex>39</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox57">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!TiempoExperiencia.Value, "DSDatosEmprendimiento")</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>7.01935cm</Top>
+            <Left>12.4349cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>5.41677cm</Width>
+            <ZIndex>40</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BottomBorder>
+                <Style>Solid</Style>
+                <Width>0.5pt</Width>
+              </BottomBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox58">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>¿Ha realizado cursos de capacitación relacionados con la temática del proyecto?:</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>7.60524cm</Top>
+            <Left>0.00008cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>10.70457cm</Width>
+            <ZIndex>41</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox59">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Si</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Right</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>7.60524cm</Top>
+            <Left>10.73993cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>0.56968cm</Width>
+            <ZIndex>42</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox61">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>No</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Right</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>7.60524cm</Top>
+            <Left>11.98887cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>0.56968cm</Width>
+            <ZIndex>43</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox63">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>¿Pidió alguna vez un crédito para un microemprendimiento?:</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>8.19114cm</Top>
+            <Height>0.51534cm</Height>
+            <Width>7.83288cm</Width>
+            <ZIndex>44</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox64">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Si</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Right</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>8.19114cm</Top>
+            <Left>7.86816cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>0.56968cm</Width>
+            <ZIndex>45</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox66">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>No</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Right</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>8.19114cm</Top>
+            <Left>9.1171cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>0.56968cm</Width>
+            <ZIndex>46</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox68">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>¿Se lo otorgaron?:</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>8.19114cm</Top>
+            <Left>10.50715cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>2.58598cm</Width>
+            <ZIndex>47</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox69">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Si</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Right</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>8.19114cm</Top>
+            <Left>13.09313cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>0.56968cm</Width>
+            <ZIndex>48</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox71">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>No</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Right</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>8.19114cm</Top>
+            <Left>14.34207cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>0.56968cm</Width>
+            <ZIndex>49</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox73">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>¿En qué institución lo solicitó?: </Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>8.77703cm</Top>
+            <Left>0.00007cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>4.10627cm</Width>
+            <ZIndex>50</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox74">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!InstitucionSolicitud.Value, "DSDatosEmprendimiento")</Value>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>8.77703cm</Top>
+            <Left>4.14162cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>13.71005cm</Width>
+            <ZIndex>51</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BottomBorder>
+                <Style>Solid</Style>
+                <Width>0.5pt</Width>
+              </BottomBorder>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <GaugePanel Name="GaugePanel4">
+            <StateIndicators>
+              <StateIndicator Name="Indicator1">
+                <GaugeInputValue>
+                  <Value>=IIf(First(Fields!PoseeExperiencia.Value, "DSDatosEmprendimiento") = "S", 100, 0)</Value>
+                  <Multiplier>1</Multiplier>
+                  <DataElementOutput>NoOutput</DataElementOutput>
+                </GaugeInputValue>
+                <TransformationType>None</TransformationType>
+                <TransformationScope />
+                <MinimumValue>
+                  <Value>NaN</Value>
+                  <Multiplier>1</Multiplier>
+                </MinimumValue>
+                <MaximumValue>
+                  <Value>NaN</Value>
+                  <Multiplier>1</Multiplier>
+                </MaximumValue>
+                <IndicatorStyle>None</IndicatorStyle>
+                <IndicatorImage>
+                  <Source>External</Source>
+                  <Value />
+                </IndicatorImage>
+                <ScaleFactor>1</ScaleFactor>
+                <IndicatorStates>
+                  <IndicatorState Name="QuartersNoneFilled">
+                    <StartValue>
+                      <Value>0</Value>
+                      <Multiplier>1</Multiplier>
+                    </StartValue>
+                    <EndValue>
+                      <Value>20</Value>
+                      <Multiplier>1</Multiplier>
+                    </EndValue>
+                    <Color>Black</Color>
+                    <ScaleFactor>1</ScaleFactor>
+                    <IndicatorStyle>QuartersNoneFilled</IndicatorStyle>
+                    <IndicatorImage>
+                      <Source>External</Source>
+                      <Value />
+                    </IndicatorImage>
+                  </IndicatorState>
+                  <IndicatorState Name="QuartersOneFilled">
+                    <StartValue>
+                      <Value>20</Value>
+                      <Multiplier>1</Multiplier>
+                    </StartValue>
+                    <EndValue>
+                      <Value>40</Value>
+                      <Multiplier>1</Multiplier>
+                    </EndValue>
+                    <Color>Black</Color>
+                    <ScaleFactor>1</ScaleFactor>
+                    <IndicatorStyle>QuartersOneFilled</IndicatorStyle>
+                    <IndicatorImage>
+                      <Source>External</Source>
+                      <Value />
+                    </IndicatorImage>
+                  </IndicatorState>
+                  <IndicatorState Name="QuartersTwoFilled">
+                    <StartValue>
+                      <Value>40</Value>
+                      <Multiplier>1</Multiplier>
+                    </StartValue>
+                    <EndValue>
+                      <Value>60</Value>
+                      <Multiplier>1</Multiplier>
+                    </EndValue>
+                    <Color>Black</Color>
+                    <ScaleFactor>1</ScaleFactor>
+                    <IndicatorStyle>QuartersTwoFilled</IndicatorStyle>
+                    <IndicatorImage>
+                      <Source>External</Source>
+                      <Value />
+                    </IndicatorImage>
+                  </IndicatorState>
+                  <IndicatorState Name="QuartersThreeFilled">
+                    <StartValue>
+                      <Value>60</Value>
+                      <Multiplier>1</Multiplier>
+                    </StartValue>
+                    <EndValue>
+                      <Value>80</Value>
+                      <Multiplier>1</Multiplier>
+                    </EndValue>
+                    <Color>Black</Color>
+                    <ScaleFactor>1</ScaleFactor>
+                    <IndicatorStyle>QuartersThreeFilled</IndicatorStyle>
+                    <IndicatorImage>
+                      <Source>External</Source>
+                      <Value />
+                    </IndicatorImage>
+                  </IndicatorState>
+                  <IndicatorState Name="QuartersAllFilled">
+                    <StartValue>
+                      <Value>80</Value>
+                      <Multiplier>1</Multiplier>
+                    </StartValue>
+                    <EndValue>
+                      <Value>100</Value>
+                      <Multiplier>1</Multiplier>
+                    </EndValue>
+                    <Color>Black</Color>
+                    <ScaleFactor>1</ScaleFactor>
+                    <IndicatorStyle>QuartersAllFilled</IndicatorStyle>
+                    <IndicatorImage>
+                      <Source>External</Source>
+                      <Value />
+                    </IndicatorImage>
+                  </IndicatorState>
+                </IndicatorStates>
+                <Angle>0</Angle>
+                <StateDataElementName />
+                <rd:IconsSet>FiveQuarters</rd:IconsSet>
+                <Style>
+                  <ShadowOffset>2pt</ShadowOffset>
+                </Style>
+                <Top>4</Top>
+                <Left>4</Left>
+                <Height>92</Height>
+                <Width>92</Width>
+              </StateIndicator>
+            </StateIndicators>
+            <AutoLayout>true</AutoLayout>
+            <BackFrame>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <BackgroundColor>Gainsboro</BackgroundColor>
+                <BackgroundGradientType>DiagonalLeft</BackgroundGradientType>
+                <BackgroundGradientEndColor>Gray</BackgroundGradientEndColor>
+                <BackgroundHatchType>None</BackgroundHatchType>
+                <ShadowOffset>0pt</ShadowOffset>
+              </Style>
+              <FrameBackground>
+                <Style>
+                  <BackgroundColor>Silver</BackgroundColor>
+                  <BackgroundGradientType>DiagonalLeft</BackgroundGradientType>
+                  <BackgroundGradientEndColor>Gray</BackgroundGradientEndColor>
+                  <BackgroundHatchType>None</BackgroundHatchType>
+                </Style>
+              </FrameBackground>
+              <FrameImage>
+                <Source>External</Source>
+                <Value />
+              </FrameImage>
+            </BackFrame>
+            <TopImage>
+              <Source>External</Source>
+              <Value />
+            </TopImage>
+            <DataSetName>DSDatosEmprendimiento</DataSetName>
+            <Top>7.03468cm</Top>
+            <Left>8.06079cm</Left>
+            <Height>0.5cm</Height>
+            <Width>0.5cm</Width>
+            <ZIndex>52</ZIndex>
+            <Style>
+              <Border>
+                <Color>LightGrey</Color>
+                <Style>None</Style>
+              </Border>
+              <BackgroundColor>White</BackgroundColor>
+            </Style>
+          </GaugePanel>
+          <GaugePanel Name="GaugePanel5">
+            <StateIndicators>
+              <StateIndicator Name="Indicator1">
+                <GaugeInputValue>
+                  <Value>=IIf(First(Fields!PoseeExperiencia.Value, "DSDatosEmprendimiento") = "N", 100, 0)</Value>
+                  <Multiplier>1</Multiplier>
+                  <DataElementOutput>NoOutput</DataElementOutput>
+                </GaugeInputValue>
+                <TransformationType>None</TransformationType>
+                <TransformationScope />
+                <MinimumValue>
+                  <Value>NaN</Value>
+                  <Multiplier>1</Multiplier>
+                </MinimumValue>
+                <MaximumValue>
+                  <Value>NaN</Value>
+                  <Multiplier>1</Multiplier>
+                </MaximumValue>
+                <IndicatorStyle>None</IndicatorStyle>
+                <IndicatorImage>
+                  <Source>External</Source>
+                  <Value />
+                </IndicatorImage>
+                <ScaleFactor>1</ScaleFactor>
+                <IndicatorStates>
+                  <IndicatorState Name="QuartersNoneFilled">
+                    <StartValue>
+                      <Value>0</Value>
+                      <Multiplier>1</Multiplier>
+                    </StartValue>
+                    <EndValue>
+                      <Value>20</Value>
+                      <Multiplier>1</Multiplier>
+                    </EndValue>
+                    <Color>Black</Color>
+                    <ScaleFactor>1</ScaleFactor>
+                    <IndicatorStyle>QuartersNoneFilled</IndicatorStyle>
+                    <IndicatorImage>
+                      <Source>External</Source>
+                      <Value />
+                    </IndicatorImage>
+                  </IndicatorState>
+                  <IndicatorState Name="QuartersOneFilled">
+                    <StartValue>
+                      <Value>20</Value>
+                      <Multiplier>1</Multiplier>
+                    </StartValue>
+                    <EndValue>
+                      <Value>40</Value>
+                      <Multiplier>1</Multiplier>
+                    </EndValue>
+                    <Color>Black</Color>
+                    <ScaleFactor>1</ScaleFactor>
+                    <IndicatorStyle>QuartersOneFilled</IndicatorStyle>
+                    <IndicatorImage>
+                      <Source>External</Source>
+                      <Value />
+                    </IndicatorImage>
+                  </IndicatorState>
+                  <IndicatorState Name="QuartersTwoFilled">
+                    <StartValue>
+                      <Value>40</Value>
+                      <Multiplier>1</Multiplier>
+                    </StartValue>
+                    <EndValue>
+                      <Value>60</Value>
+                      <Multiplier>1</Multiplier>
+                    </EndValue>
+                    <Color>Black</Color>
+                    <ScaleFactor>1</ScaleFactor>
+                    <IndicatorStyle>QuartersTwoFilled</IndicatorStyle>
+                    <IndicatorImage>
+                      <Source>External</Source>
+                      <Value />
+                    </IndicatorImage>
+                  </IndicatorState>
+                  <IndicatorState Name="QuartersThreeFilled">
+                    <StartValue>
+                      <Value>60</Value>
+                      <Multiplier>1</Multiplier>
+                    </StartValue>
+                    <EndValue>
+                      <Value>80</Value>
+                      <Multiplier>1</Multiplier>
+                    </EndValue>
+                    <Color>Black</Color>
+                    <ScaleFactor>1</ScaleFactor>
+                    <IndicatorStyle>QuartersThreeFilled</IndicatorStyle>
+                    <IndicatorImage>
+                      <Source>External</Source>
+                      <Value />
+                    </IndicatorImage>
+                  </IndicatorState>
+                  <IndicatorState Name="QuartersAllFilled">
+                    <StartValue>
+                      <Value>80</Value>
+                      <Multiplier>1</Multiplier>
+                    </StartValue>
+                    <EndValue>
+                      <Value>100</Value>
+                      <Multiplier>1</Multiplier>
+                    </EndValue>
+                    <Color>Black</Color>
+                    <ScaleFactor>1</ScaleFactor>
+                    <IndicatorStyle>QuartersAllFilled</IndicatorStyle>
+                    <IndicatorImage>
+                      <Source>External</Source>
+                      <Value />
+                    </IndicatorImage>
+                  </IndicatorState>
+                </IndicatorStates>
+                <Angle>0</Angle>
+                <StateDataElementName />
+                <rd:IconsSet>FiveQuarters</rd:IconsSet>
+                <Style>
+                  <ShadowOffset>2pt</ShadowOffset>
+                </Style>
+                <Top>4</Top>
+                <Left>4</Left>
+                <Height>92</Height>
+                <Width>92</Width>
+              </StateIndicator>
+            </StateIndicators>
+            <AutoLayout>true</AutoLayout>
+            <BackFrame>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <BackgroundColor>Gainsboro</BackgroundColor>
+                <BackgroundGradientType>DiagonalLeft</BackgroundGradientType>
+                <BackgroundGradientEndColor>Gray</BackgroundGradientEndColor>
+                <BackgroundHatchType>None</BackgroundHatchType>
+                <ShadowOffset>0pt</ShadowOffset>
+              </Style>
+              <FrameBackground>
+                <Style>
+                  <BackgroundColor>Silver</BackgroundColor>
+                  <BackgroundGradientType>DiagonalLeft</BackgroundGradientType>
+                  <BackgroundGradientEndColor>Gray</BackgroundGradientEndColor>
+                  <BackgroundHatchType>None</BackgroundHatchType>
+                </Style>
+              </FrameBackground>
+              <FrameImage>
+                <Source>External</Source>
+                <Value />
+              </FrameImage>
+            </BackFrame>
+            <TopImage>
+              <Source>External</Source>
+              <Value />
+            </TopImage>
+            <DataSetName>DSDatosEmprendimiento</DataSetName>
+            <Top>7.01935cm</Top>
+            <Left>9.34787cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>0.5cm</Width>
+            <ZIndex>53</ZIndex>
+            <Style>
+              <Border>
+                <Color>LightGrey</Color>
+                <Style>None</Style>
+              </Border>
+              <BackgroundColor>White</BackgroundColor>
+            </Style>
+          </GaugePanel>
+          <GaugePanel Name="GaugePanel6">
+            <StateIndicators>
+              <StateIndicator Name="Indicator1">
+                <GaugeInputValue>
+                  <Value>=IIf(First(Fields!RealizoCursos.Value, "DSDatosEmprendimiento") = "S", 100, 0)</Value>
+                  <Multiplier>1</Multiplier>
+                  <DataElementOutput>NoOutput</DataElementOutput>
+                </GaugeInputValue>
+                <TransformationType>None</TransformationType>
+                <TransformationScope />
+                <MinimumValue>
+                  <Value>NaN</Value>
+                  <Multiplier>1</Multiplier>
+                </MinimumValue>
+                <MaximumValue>
+                  <Value>NaN</Value>
+                  <Multiplier>1</Multiplier>
+                </MaximumValue>
+                <IndicatorStyle>None</IndicatorStyle>
+                <IndicatorImage>
+                  <Source>External</Source>
+                  <Value />
+                </IndicatorImage>
+                <ScaleFactor>1</ScaleFactor>
+                <IndicatorStates>
+                  <IndicatorState Name="QuartersNoneFilled">
+                    <StartValue>
+                      <Value>0</Value>
+                      <Multiplier>1</Multiplier>
+                    </StartValue>
+                    <EndValue>
+                      <Value>20</Value>
+                      <Multiplier>1</Multiplier>
+                    </EndValue>
+                    <Color>Black</Color>
+                    <ScaleFactor>1</ScaleFactor>
+                    <IndicatorStyle>QuartersNoneFilled</IndicatorStyle>
+                    <IndicatorImage>
+                      <Source>External</Source>
+                      <Value />
+                    </IndicatorImage>
+                  </IndicatorState>
+                  <IndicatorState Name="QuartersOneFilled">
+                    <StartValue>
+                      <Value>20</Value>
+                      <Multiplier>1</Multiplier>
+                    </StartValue>
+                    <EndValue>
+                      <Value>40</Value>
+                      <Multiplier>1</Multiplier>
+                    </EndValue>
+                    <Color>Black</Color>
+                    <ScaleFactor>1</ScaleFactor>
+                    <IndicatorStyle>QuartersOneFilled</IndicatorStyle>
+                    <IndicatorImage>
+                      <Source>External</Source>
+                      <Value />
+                    </IndicatorImage>
+                  </IndicatorState>
+                  <IndicatorState Name="QuartersTwoFilled">
+                    <StartValue>
+                      <Value>40</Value>
+                      <Multiplier>1</Multiplier>
+                    </StartValue>
+                    <EndValue>
+                      <Value>60</Value>
+                      <Multiplier>1</Multiplier>
+                    </EndValue>
+                    <Color>Black</Color>
+                    <ScaleFactor>1</ScaleFactor>
+                    <IndicatorStyle>QuartersTwoFilled</IndicatorStyle>
+                    <IndicatorImage>
+                      <Source>External</Source>
+                      <Value />
+                    </IndicatorImage>
+                  </IndicatorState>
+                  <IndicatorState Name="QuartersThreeFilled">
+                    <StartValue>
+                      <Value>60</Value>
+                      <Multiplier>1</Multiplier>
+                    </StartValue>
+                    <EndValue>
+                      <Value>80</Value>
+                      <Multiplier>1</Multiplier>
+                    </EndValue>
+                    <Color>Black</Color>
+                    <ScaleFactor>1</ScaleFactor>
+                    <IndicatorStyle>QuartersThreeFilled</IndicatorStyle>
+                    <IndicatorImage>
+                      <Source>External</Source>
+                      <Value />
+                    </IndicatorImage>
+                  </IndicatorState>
+                  <IndicatorState Name="QuartersAllFilled">
+                    <StartValue>
+                      <Value>80</Value>
+                      <Multiplier>1</Multiplier>
+                    </StartValue>
+                    <EndValue>
+                      <Value>100</Value>
+                      <Multiplier>1</Multiplier>
+                    </EndValue>
+                    <Color>Black</Color>
+                    <ScaleFactor>1</ScaleFactor>
+                    <IndicatorStyle>QuartersAllFilled</IndicatorStyle>
+                    <IndicatorImage>
+                      <Source>External</Source>
+                      <Value />
+                    </IndicatorImage>
+                  </IndicatorState>
+                </IndicatorStates>
+                <Angle>0</Angle>
+                <StateDataElementName />
+                <rd:IconsSet>FiveQuarters</rd:IconsSet>
+                <Style>
+                  <ShadowOffset>2pt</ShadowOffset>
+                </Style>
+                <Top>4</Top>
+                <Left>4</Left>
+                <Height>92</Height>
+                <Width>92</Width>
+              </StateIndicator>
+            </StateIndicators>
+            <AutoLayout>true</AutoLayout>
+            <BackFrame>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <BackgroundColor>Gainsboro</BackgroundColor>
+                <BackgroundGradientType>DiagonalLeft</BackgroundGradientType>
+                <BackgroundGradientEndColor>Gray</BackgroundGradientEndColor>
+                <BackgroundHatchType>None</BackgroundHatchType>
+                <ShadowOffset>0pt</ShadowOffset>
+              </Style>
+              <FrameBackground>
+                <Style>
+                  <BackgroundColor>Silver</BackgroundColor>
+                  <BackgroundGradientType>DiagonalLeft</BackgroundGradientType>
+                  <BackgroundGradientEndColor>Gray</BackgroundGradientEndColor>
+                  <BackgroundHatchType>None</BackgroundHatchType>
+                </Style>
+              </FrameBackground>
+              <FrameImage>
+                <Source>External</Source>
+                <Value />
+              </FrameImage>
+            </BackFrame>
+            <TopImage>
+              <Source>External</Source>
+              <Value />
+            </TopImage>
+            <DataSetName>DSDatosEmprendimiento</DataSetName>
+            <Top>7.60524cm</Top>
+            <Left>11.38017cm</Left>
+            <Height>0.5cm</Height>
+            <Width>0.5cm</Width>
+            <ZIndex>54</ZIndex>
+            <Style>
+              <Border>
+                <Color>LightGrey</Color>
+                <Style>None</Style>
+              </Border>
+              <BackgroundColor>White</BackgroundColor>
+            </Style>
+          </GaugePanel>
+          <GaugePanel Name="GaugePanel7">
+            <StateIndicators>
+              <StateIndicator Name="Indicator1">
+                <GaugeInputValue>
+                  <Value>=IIf(First(Fields!RealizoCursos.Value, "DSDatosEmprendimiento") = "N", 100, 0)</Value>
+                  <Multiplier>1</Multiplier>
+                  <DataElementOutput>NoOutput</DataElementOutput>
+                </GaugeInputValue>
+                <TransformationType>None</TransformationType>
+                <TransformationScope />
+                <MinimumValue>
+                  <Value>NaN</Value>
+                  <Multiplier>1</Multiplier>
+                </MinimumValue>
+                <MaximumValue>
+                  <Value>NaN</Value>
+                  <Multiplier>1</Multiplier>
+                </MaximumValue>
+                <IndicatorStyle>None</IndicatorStyle>
+                <IndicatorImage>
+                  <Source>External</Source>
+                  <Value />
+                </IndicatorImage>
+                <ScaleFactor>1</ScaleFactor>
+                <IndicatorStates>
+                  <IndicatorState Name="QuartersNoneFilled">
+                    <StartValue>
+                      <Value>0</Value>
+                      <Multiplier>1</Multiplier>
+                    </StartValue>
+                    <EndValue>
+                      <Value>20</Value>
+                      <Multiplier>1</Multiplier>
+                    </EndValue>
+                    <Color>Black</Color>
+                    <ScaleFactor>1</ScaleFactor>
+                    <IndicatorStyle>QuartersNoneFilled</IndicatorStyle>
+                    <IndicatorImage>
+                      <Source>External</Source>
+                      <Value />
+                    </IndicatorImage>
+                  </IndicatorState>
+                  <IndicatorState Name="QuartersOneFilled">
+                    <StartValue>
+                      <Value>20</Value>
+                      <Multiplier>1</Multiplier>
+                    </StartValue>
+                    <EndValue>
+                      <Value>40</Value>
+                      <Multiplier>1</Multiplier>
+                    </EndValue>
+                    <Color>Black</Color>
+                    <ScaleFactor>1</ScaleFactor>
+                    <IndicatorStyle>QuartersOneFilled</IndicatorStyle>
+                    <IndicatorImage>
+                      <Source>External</Source>
+                      <Value />
+                    </IndicatorImage>
+                  </IndicatorState>
+                  <IndicatorState Name="QuartersTwoFilled">
+                    <StartValue>
+                      <Value>40</Value>
+                      <Multiplier>1</Multiplier>
+                    </StartValue>
+                    <EndValue>
+                      <Value>60</Value>
+                      <Multiplier>1</Multiplier>
+                    </EndValue>
+                    <Color>Black</Color>
+                    <ScaleFactor>1</ScaleFactor>
+                    <IndicatorStyle>QuartersTwoFilled</IndicatorStyle>
+                    <IndicatorImage>
+                      <Source>External</Source>
+                      <Value />
+                    </IndicatorImage>
+                  </IndicatorState>
+                  <IndicatorState Name="QuartersThreeFilled">
+                    <StartValue>
+                      <Value>60</Value>
+                      <Multiplier>1</Multiplier>
+                    </StartValue>
+                    <EndValue>
+                      <Value>80</Value>
+                      <Multiplier>1</Multiplier>
+                    </EndValue>
+                    <Color>Black</Color>
+                    <ScaleFactor>1</ScaleFactor>
+                    <IndicatorStyle>QuartersThreeFilled</IndicatorStyle>
+                    <IndicatorImage>
+                      <Source>External</Source>
+                      <Value />
+                    </IndicatorImage>
+                  </IndicatorState>
+                  <IndicatorState Name="QuartersAllFilled">
+                    <StartValue>
+                      <Value>80</Value>
+                      <Multiplier>1</Multiplier>
+                    </StartValue>
+                    <EndValue>
+                      <Value>100</Value>
+                      <Multiplier>1</Multiplier>
+                    </EndValue>
+                    <Color>Black</Color>
+                    <ScaleFactor>1</ScaleFactor>
+                    <IndicatorStyle>QuartersAllFilled</IndicatorStyle>
+                    <IndicatorImage>
+                      <Source>External</Source>
+                      <Value />
+                    </IndicatorImage>
+                  </IndicatorState>
+                </IndicatorStates>
+                <Angle>0</Angle>
+                <StateDataElementName />
+                <rd:IconsSet>FiveQuarters</rd:IconsSet>
+                <Style>
+                  <ShadowOffset>2pt</ShadowOffset>
+                </Style>
+                <Top>4</Top>
+                <Left>4</Left>
+                <Height>92</Height>
+                <Width>92</Width>
+              </StateIndicator>
+            </StateIndicators>
+            <AutoLayout>true</AutoLayout>
+            <BackFrame>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <BackgroundColor>Gainsboro</BackgroundColor>
+                <BackgroundGradientType>DiagonalLeft</BackgroundGradientType>
+                <BackgroundGradientEndColor>Gray</BackgroundGradientEndColor>
+                <BackgroundHatchType>None</BackgroundHatchType>
+                <ShadowOffset>0pt</ShadowOffset>
+              </Style>
+              <FrameBackground>
+                <Style>
+                  <BackgroundColor>Silver</BackgroundColor>
+                  <BackgroundGradientType>DiagonalLeft</BackgroundGradientType>
+                  <BackgroundGradientEndColor>Gray</BackgroundGradientEndColor>
+                  <BackgroundHatchType>None</BackgroundHatchType>
+                </Style>
+              </FrameBackground>
+              <FrameImage>
+                <Source>External</Source>
+                <Value />
+              </FrameImage>
+            </BackFrame>
+            <TopImage>
+              <Source>External</Source>
+              <Value />
+            </TopImage>
+            <DataSetName>DSDatosEmprendimiento</DataSetName>
+            <Top>7.60524cm</Top>
+            <Left>12.59383cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>0.5cm</Width>
+            <ZIndex>55</ZIndex>
+            <Style>
+              <Border>
+                <Color>LightGrey</Color>
+                <Style>None</Style>
+              </Border>
+              <BackgroundColor>White</BackgroundColor>
+            </Style>
+          </GaugePanel>
+          <GaugePanel Name="GaugePanel8">
+            <StateIndicators>
+              <StateIndicator Name="Indicator1">
+                <GaugeInputValue>
+                  <Value>=IIf(First(Fields!PidioCredito.Value, "DSDatosEmprendimiento") = "S", 100, 0)</Value>
+                  <Multiplier>1</Multiplier>
+                  <DataElementOutput>NoOutput</DataElementOutput>
+                </GaugeInputValue>
+                <TransformationType>None</TransformationType>
+                <TransformationScope />
+                <MinimumValue>
+                  <Value>NaN</Value>
+                  <Multiplier>1</Multiplier>
+                </MinimumValue>
+                <MaximumValue>
+                  <Value>NaN</Value>
+                  <Multiplier>1</Multiplier>
+                </MaximumValue>
+                <IndicatorStyle>None</IndicatorStyle>
+                <IndicatorImage>
+                  <Source>External</Source>
+                  <Value />
+                </IndicatorImage>
+                <ScaleFactor>1</ScaleFactor>
+                <IndicatorStates>
+                  <IndicatorState Name="QuartersNoneFilled">
+                    <StartValue>
+                      <Value>0</Value>
+                      <Multiplier>1</Multiplier>
+                    </StartValue>
+                    <EndValue>
+                      <Value>20</Value>
+                      <Multiplier>1</Multiplier>
+                    </EndValue>
+                    <Color>Black</Color>
+                    <ScaleFactor>1</ScaleFactor>
+                    <IndicatorStyle>QuartersNoneFilled</IndicatorStyle>
+                    <IndicatorImage>
+                      <Source>External</Source>
+                      <Value />
+                    </IndicatorImage>
+                  </IndicatorState>
+                  <IndicatorState Name="QuartersOneFilled">
+                    <StartValue>
+                      <Value>20</Value>
+                      <Multiplier>1</Multiplier>
+                    </StartValue>
+                    <EndValue>
+                      <Value>40</Value>
+                      <Multiplier>1</Multiplier>
+                    </EndValue>
+                    <Color>Black</Color>
+                    <ScaleFactor>1</ScaleFactor>
+                    <IndicatorStyle>QuartersOneFilled</IndicatorStyle>
+                    <IndicatorImage>
+                      <Source>External</Source>
+                      <Value />
+                    </IndicatorImage>
+                  </IndicatorState>
+                  <IndicatorState Name="QuartersTwoFilled">
+                    <StartValue>
+                      <Value>40</Value>
+                      <Multiplier>1</Multiplier>
+                    </StartValue>
+                    <EndValue>
+                      <Value>60</Value>
+                      <Multiplier>1</Multiplier>
+                    </EndValue>
+                    <Color>Black</Color>
+                    <ScaleFactor>1</ScaleFactor>
+                    <IndicatorStyle>QuartersTwoFilled</IndicatorStyle>
+                    <IndicatorImage>
+                      <Source>External</Source>
+                      <Value />
+                    </IndicatorImage>
+                  </IndicatorState>
+                  <IndicatorState Name="QuartersThreeFilled">
+                    <StartValue>
+                      <Value>60</Value>
+                      <Multiplier>1</Multiplier>
+                    </StartValue>
+                    <EndValue>
+                      <Value>80</Value>
+                      <Multiplier>1</Multiplier>
+                    </EndValue>
+                    <Color>Black</Color>
+                    <ScaleFactor>1</ScaleFactor>
+                    <IndicatorStyle>QuartersThreeFilled</IndicatorStyle>
+                    <IndicatorImage>
+                      <Source>External</Source>
+                      <Value />
+                    </IndicatorImage>
+                  </IndicatorState>
+                  <IndicatorState Name="QuartersAllFilled">
+                    <StartValue>
+                      <Value>80</Value>
+                      <Multiplier>1</Multiplier>
+                    </StartValue>
+                    <EndValue>
+                      <Value>100</Value>
+                      <Multiplier>1</Multiplier>
+                    </EndValue>
+                    <Color>Black</Color>
+                    <ScaleFactor>1</ScaleFactor>
+                    <IndicatorStyle>QuartersAllFilled</IndicatorStyle>
+                    <IndicatorImage>
+                      <Source>External</Source>
+                      <Value />
+                    </IndicatorImage>
+                  </IndicatorState>
+                </IndicatorStates>
+                <Angle>0</Angle>
+                <StateDataElementName />
+                <rd:IconsSet>FiveQuarters</rd:IconsSet>
+                <Style>
+                  <ShadowOffset>2pt</ShadowOffset>
+                </Style>
+                <Top>4</Top>
+                <Left>4</Left>
+                <Height>92</Height>
+                <Width>92</Width>
+              </StateIndicator>
+            </StateIndicators>
+            <AutoLayout>true</AutoLayout>
+            <BackFrame>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <BackgroundColor>Gainsboro</BackgroundColor>
+                <BackgroundGradientType>DiagonalLeft</BackgroundGradientType>
+                <BackgroundGradientEndColor>Gray</BackgroundGradientEndColor>
+                <BackgroundHatchType>None</BackgroundHatchType>
+                <ShadowOffset>0pt</ShadowOffset>
+              </Style>
+              <FrameBackground>
+                <Style>
+                  <BackgroundColor>Silver</BackgroundColor>
+                  <BackgroundGradientType>DiagonalLeft</BackgroundGradientType>
+                  <BackgroundGradientEndColor>Gray</BackgroundGradientEndColor>
+                  <BackgroundHatchType>None</BackgroundHatchType>
+                </Style>
+              </FrameBackground>
+              <FrameImage>
+                <Source>External</Source>
+                <Value />
+              </FrameImage>
+            </BackFrame>
+            <TopImage>
+              <Source>External</Source>
+              <Value />
+            </TopImage>
+            <DataSetName>DSDatosEmprendimiento</DataSetName>
+            <Top>8.20647cm</Top>
+            <Left>8.488cm</Left>
+            <Height>0.5cm</Height>
+            <Width>0.5cm</Width>
+            <ZIndex>56</ZIndex>
+            <Style>
+              <Border>
+                <Color>LightGrey</Color>
+                <Style>None</Style>
+              </Border>
+              <BackgroundColor>White</BackgroundColor>
+            </Style>
+          </GaugePanel>
+          <GaugePanel Name="GaugePanel9">
+            <StateIndicators>
+              <StateIndicator Name="Indicator1">
+                <GaugeInputValue>
+                  <Value>=IIf(First(Fields!PidioCredito.Value, "DSDatosEmprendimiento") = "N", 100, 0)</Value>
+                  <Multiplier>1</Multiplier>
+                  <DataElementOutput>NoOutput</DataElementOutput>
+                </GaugeInputValue>
+                <TransformationType>None</TransformationType>
+                <TransformationScope />
+                <MinimumValue>
+                  <Value>NaN</Value>
+                  <Multiplier>1</Multiplier>
+                </MinimumValue>
+                <MaximumValue>
+                  <Value>NaN</Value>
+                  <Multiplier>1</Multiplier>
+                </MaximumValue>
+                <IndicatorStyle>None</IndicatorStyle>
+                <IndicatorImage>
+                  <Source>External</Source>
+                  <Value />
+                </IndicatorImage>
+                <ScaleFactor>1</ScaleFactor>
+                <IndicatorStates>
+                  <IndicatorState Name="QuartersNoneFilled">
+                    <StartValue>
+                      <Value>0</Value>
+                      <Multiplier>1</Multiplier>
+                    </StartValue>
+                    <EndValue>
+                      <Value>20</Value>
+                      <Multiplier>1</Multiplier>
+                    </EndValue>
+                    <Color>Black</Color>
+                    <ScaleFactor>1</ScaleFactor>
+                    <IndicatorStyle>QuartersNoneFilled</IndicatorStyle>
+                    <IndicatorImage>
+                      <Source>External</Source>
+                      <Value />
+                    </IndicatorImage>
+                  </IndicatorState>
+                  <IndicatorState Name="QuartersOneFilled">
+                    <StartValue>
+                      <Value>20</Value>
+                      <Multiplier>1</Multiplier>
+                    </StartValue>
+                    <EndValue>
+                      <Value>40</Value>
+                      <Multiplier>1</Multiplier>
+                    </EndValue>
+                    <Color>Black</Color>
+                    <ScaleFactor>1</ScaleFactor>
+                    <IndicatorStyle>QuartersOneFilled</IndicatorStyle>
+                    <IndicatorImage>
+                      <Source>External</Source>
+                      <Value />
+                    </IndicatorImage>
+                  </IndicatorState>
+                  <IndicatorState Name="QuartersTwoFilled">
+                    <StartValue>
+                      <Value>40</Value>
+                      <Multiplier>1</Multiplier>
+                    </StartValue>
+                    <EndValue>
+                      <Value>60</Value>
+                      <Multiplier>1</Multiplier>
+                    </EndValue>
+                    <Color>Black</Color>
+                    <ScaleFactor>1</ScaleFactor>
+                    <IndicatorStyle>QuartersTwoFilled</IndicatorStyle>
+                    <IndicatorImage>
+                      <Source>External</Source>
+                      <Value />
+                    </IndicatorImage>
+                  </IndicatorState>
+                  <IndicatorState Name="QuartersThreeFilled">
+                    <StartValue>
+                      <Value>60</Value>
+                      <Multiplier>1</Multiplier>
+                    </StartValue>
+                    <EndValue>
+                      <Value>80</Value>
+                      <Multiplier>1</Multiplier>
+                    </EndValue>
+                    <Color>Black</Color>
+                    <ScaleFactor>1</ScaleFactor>
+                    <IndicatorStyle>QuartersThreeFilled</IndicatorStyle>
+                    <IndicatorImage>
+                      <Source>External</Source>
+                      <Value />
+                    </IndicatorImage>
+                  </IndicatorState>
+                  <IndicatorState Name="QuartersAllFilled">
+                    <StartValue>
+                      <Value>80</Value>
+                      <Multiplier>1</Multiplier>
+                    </StartValue>
+                    <EndValue>
+                      <Value>100</Value>
+                      <Multiplier>1</Multiplier>
+                    </EndValue>
+                    <Color>Black</Color>
+                    <ScaleFactor>1</ScaleFactor>
+                    <IndicatorStyle>QuartersAllFilled</IndicatorStyle>
+                    <IndicatorImage>
+                      <Source>External</Source>
+                      <Value />
+                    </IndicatorImage>
+                  </IndicatorState>
+                </IndicatorStates>
+                <Angle>0</Angle>
+                <StateDataElementName />
+                <rd:IconsSet>FiveQuarters</rd:IconsSet>
+                <Style>
+                  <ShadowOffset>2pt</ShadowOffset>
+                </Style>
+                <Top>4</Top>
+                <Left>4</Left>
+                <Height>92</Height>
+                <Width>92</Width>
+              </StateIndicator>
+            </StateIndicators>
+            <AutoLayout>true</AutoLayout>
+            <BackFrame>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <BackgroundColor>Gainsboro</BackgroundColor>
+                <BackgroundGradientType>DiagonalLeft</BackgroundGradientType>
+                <BackgroundGradientEndColor>Gray</BackgroundGradientEndColor>
+                <BackgroundHatchType>None</BackgroundHatchType>
+                <ShadowOffset>0pt</ShadowOffset>
+              </Style>
+              <FrameBackground>
+                <Style>
+                  <BackgroundColor>Silver</BackgroundColor>
+                  <BackgroundGradientType>DiagonalLeft</BackgroundGradientType>
+                  <BackgroundGradientEndColor>Gray</BackgroundGradientEndColor>
+                  <BackgroundHatchType>None</BackgroundHatchType>
+                </Style>
+              </FrameBackground>
+              <FrameImage>
+                <Source>External</Source>
+                <Value />
+              </FrameImage>
+            </BackFrame>
+            <TopImage>
+              <Source>External</Source>
+              <Value />
+            </TopImage>
+            <DataSetName>DSDatosEmprendimiento</DataSetName>
+            <Top>8.19114cm</Top>
+            <Left>9.72206cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>0.5cm</Width>
+            <ZIndex>57</ZIndex>
+            <Style>
+              <Border>
+                <Color>LightGrey</Color>
+                <Style>None</Style>
+              </Border>
+              <BackgroundColor>White</BackgroundColor>
+            </Style>
+          </GaugePanel>
+          <GaugePanel Name="GaugePanel10">
+            <StateIndicators>
+              <StateIndicator Name="Indicator1">
+                <GaugeInputValue>
+                  <Value>=IIf(First(Fields!OtorgaronCredito.Value, "DSDatosEmprendimiento") = "S", 100, 0)</Value>
+                  <Multiplier>1</Multiplier>
+                  <DataElementOutput>NoOutput</DataElementOutput>
+                </GaugeInputValue>
+                <TransformationType>None</TransformationType>
+                <TransformationScope />
+                <MinimumValue>
+                  <Value>NaN</Value>
+                  <Multiplier>1</Multiplier>
+                </MinimumValue>
+                <MaximumValue>
+                  <Value>NaN</Value>
+                  <Multiplier>1</Multiplier>
+                </MaximumValue>
+                <IndicatorStyle>None</IndicatorStyle>
+                <IndicatorImage>
+                  <Source>External</Source>
+                  <Value />
+                </IndicatorImage>
+                <ScaleFactor>1</ScaleFactor>
+                <IndicatorStates>
+                  <IndicatorState Name="QuartersNoneFilled">
+                    <StartValue>
+                      <Value>0</Value>
+                      <Multiplier>1</Multiplier>
+                    </StartValue>
+                    <EndValue>
+                      <Value>20</Value>
+                      <Multiplier>1</Multiplier>
+                    </EndValue>
+                    <Color>Black</Color>
+                    <ScaleFactor>1</ScaleFactor>
+                    <IndicatorStyle>QuartersNoneFilled</IndicatorStyle>
+                    <IndicatorImage>
+                      <Source>External</Source>
+                      <Value />
+                    </IndicatorImage>
+                  </IndicatorState>
+                  <IndicatorState Name="QuartersOneFilled">
+                    <StartValue>
+                      <Value>20</Value>
+                      <Multiplier>1</Multiplier>
+                    </StartValue>
+                    <EndValue>
+                      <Value>40</Value>
+                      <Multiplier>1</Multiplier>
+                    </EndValue>
+                    <Color>Black</Color>
+                    <ScaleFactor>1</ScaleFactor>
+                    <IndicatorStyle>QuartersOneFilled</IndicatorStyle>
+                    <IndicatorImage>
+                      <Source>External</Source>
+                      <Value />
+                    </IndicatorImage>
+                  </IndicatorState>
+                  <IndicatorState Name="QuartersTwoFilled">
+                    <StartValue>
+                      <Value>40</Value>
+                      <Multiplier>1</Multiplier>
+                    </StartValue>
+                    <EndValue>
+                      <Value>60</Value>
+                      <Multiplier>1</Multiplier>
+                    </EndValue>
+                    <Color>Black</Color>
+                    <ScaleFactor>1</ScaleFactor>
+                    <IndicatorStyle>QuartersTwoFilled</IndicatorStyle>
+                    <IndicatorImage>
+                      <Source>External</Source>
+                      <Value />
+                    </IndicatorImage>
+                  </IndicatorState>
+                  <IndicatorState Name="QuartersThreeFilled">
+                    <StartValue>
+                      <Value>60</Value>
+                      <Multiplier>1</Multiplier>
+                    </StartValue>
+                    <EndValue>
+                      <Value>80</Value>
+                      <Multiplier>1</Multiplier>
+                    </EndValue>
+                    <Color>Black</Color>
+                    <ScaleFactor>1</ScaleFactor>
+                    <IndicatorStyle>QuartersThreeFilled</IndicatorStyle>
+                    <IndicatorImage>
+                      <Source>External</Source>
+                      <Value />
+                    </IndicatorImage>
+                  </IndicatorState>
+                  <IndicatorState Name="QuartersAllFilled">
+                    <StartValue>
+                      <Value>80</Value>
+                      <Multiplier>1</Multiplier>
+                    </StartValue>
+                    <EndValue>
+                      <Value>100</Value>
+                      <Multiplier>1</Multiplier>
+                    </EndValue>
+                    <Color>Black</Color>
+                    <ScaleFactor>1</ScaleFactor>
+                    <IndicatorStyle>QuartersAllFilled</IndicatorStyle>
+                    <IndicatorImage>
+                      <Source>External</Source>
+                      <Value />
+                    </IndicatorImage>
+                  </IndicatorState>
+                </IndicatorStates>
+                <Angle>0</Angle>
+                <StateDataElementName />
+                <rd:IconsSet>FiveQuarters</rd:IconsSet>
+                <Style>
+                  <ShadowOffset>2pt</ShadowOffset>
+                </Style>
+                <Top>4</Top>
+                <Left>4</Left>
+                <Height>92</Height>
+                <Width>92</Width>
+              </StateIndicator>
+            </StateIndicators>
+            <AutoLayout>true</AutoLayout>
+            <BackFrame>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <BackgroundColor>Gainsboro</BackgroundColor>
+                <BackgroundGradientType>DiagonalLeft</BackgroundGradientType>
+                <BackgroundGradientEndColor>Gray</BackgroundGradientEndColor>
+                <BackgroundHatchType>None</BackgroundHatchType>
+                <ShadowOffset>0pt</ShadowOffset>
+              </Style>
+              <FrameBackground>
+                <Style>
+                  <BackgroundColor>Silver</BackgroundColor>
+                  <BackgroundGradientType>DiagonalLeft</BackgroundGradientType>
+                  <BackgroundGradientEndColor>Gray</BackgroundGradientEndColor>
+                  <BackgroundHatchType>None</BackgroundHatchType>
+                </Style>
+              </FrameBackground>
+              <FrameImage>
+                <Source>External</Source>
+                <Value />
+              </FrameImage>
+            </BackFrame>
+            <TopImage>
+              <Source>External</Source>
+              <Value />
+            </TopImage>
+            <DataSetName>DSDatosEmprendimiento</DataSetName>
+            <Top>8.20647cm</Top>
+            <Left>13.68314cm</Left>
+            <Height>0.5cm</Height>
+            <Width>0.5cm</Width>
+            <ZIndex>58</ZIndex>
+            <Style>
+              <Border>
+                <Color>LightGrey</Color>
+                <Style>None</Style>
+              </Border>
+              <BackgroundColor>White</BackgroundColor>
+            </Style>
+          </GaugePanel>
+          <GaugePanel Name="GaugePanel11">
+            <StateIndicators>
+              <StateIndicator Name="Indicator1">
+                <GaugeInputValue>
+                  <Value>=IIf(First(Fields!OtorgaronCredito.Value, "DSDatosEmprendimiento") = "N", 100, 0)</Value>
+                  <Multiplier>1</Multiplier>
+                  <DataElementOutput>NoOutput</DataElementOutput>
+                </GaugeInputValue>
+                <TransformationType>None</TransformationType>
+                <TransformationScope />
+                <MinimumValue>
+                  <Value>NaN</Value>
+                  <Multiplier>1</Multiplier>
+                </MinimumValue>
+                <MaximumValue>
+                  <Value>NaN</Value>
+                  <Multiplier>1</Multiplier>
+                </MaximumValue>
+                <IndicatorStyle>None</IndicatorStyle>
+                <IndicatorImage>
+                  <Source>External</Source>
+                  <Value />
+                </IndicatorImage>
+                <ScaleFactor>1</ScaleFactor>
+                <IndicatorStates>
+                  <IndicatorState Name="QuartersNoneFilled">
+                    <StartValue>
+                      <Value>0</Value>
+                      <Multiplier>1</Multiplier>
+                    </StartValue>
+                    <EndValue>
+                      <Value>20</Value>
+                      <Multiplier>1</Multiplier>
+                    </EndValue>
+                    <Color>Black</Color>
+                    <ScaleFactor>1</ScaleFactor>
+                    <IndicatorStyle>QuartersNoneFilled</IndicatorStyle>
+                    <IndicatorImage>
+                      <Source>External</Source>
+                      <Value />
+                    </IndicatorImage>
+                  </IndicatorState>
+                  <IndicatorState Name="QuartersOneFilled">
+                    <StartValue>
+                      <Value>20</Value>
+                      <Multiplier>1</Multiplier>
+                    </StartValue>
+                    <EndValue>
+                      <Value>40</Value>
+                      <Multiplier>1</Multiplier>
+                    </EndValue>
+                    <Color>Black</Color>
+                    <ScaleFactor>1</ScaleFactor>
+                    <IndicatorStyle>QuartersOneFilled</IndicatorStyle>
+                    <IndicatorImage>
+                      <Source>External</Source>
+                      <Value />
+                    </IndicatorImage>
+                  </IndicatorState>
+                  <IndicatorState Name="QuartersTwoFilled">
+                    <StartValue>
+                      <Value>40</Value>
+                      <Multiplier>1</Multiplier>
+                    </StartValue>
+                    <EndValue>
+                      <Value>60</Value>
+                      <Multiplier>1</Multiplier>
+                    </EndValue>
+                    <Color>Black</Color>
+                    <ScaleFactor>1</ScaleFactor>
+                    <IndicatorStyle>QuartersTwoFilled</IndicatorStyle>
+                    <IndicatorImage>
+                      <Source>External</Source>
+                      <Value />
+                    </IndicatorImage>
+                  </IndicatorState>
+                  <IndicatorState Name="QuartersThreeFilled">
+                    <StartValue>
+                      <Value>60</Value>
+                      <Multiplier>1</Multiplier>
+                    </StartValue>
+                    <EndValue>
+                      <Value>80</Value>
+                      <Multiplier>1</Multiplier>
+                    </EndValue>
+                    <Color>Black</Color>
+                    <ScaleFactor>1</ScaleFactor>
+                    <IndicatorStyle>QuartersThreeFilled</IndicatorStyle>
+                    <IndicatorImage>
+                      <Source>External</Source>
+                      <Value />
+                    </IndicatorImage>
+                  </IndicatorState>
+                  <IndicatorState Name="QuartersAllFilled">
+                    <StartValue>
+                      <Value>80</Value>
+                      <Multiplier>1</Multiplier>
+                    </StartValue>
+                    <EndValue>
+                      <Value>100</Value>
+                      <Multiplier>1</Multiplier>
+                    </EndValue>
+                    <Color>Black</Color>
+                    <ScaleFactor>1</ScaleFactor>
+                    <IndicatorStyle>QuartersAllFilled</IndicatorStyle>
+                    <IndicatorImage>
+                      <Source>External</Source>
+                      <Value />
+                    </IndicatorImage>
+                  </IndicatorState>
+                </IndicatorStates>
+                <Angle>0</Angle>
+                <StateDataElementName />
+                <rd:IconsSet>FiveQuarters</rd:IconsSet>
+                <Style>
+                  <ShadowOffset>2pt</ShadowOffset>
+                </Style>
+                <Top>4</Top>
+                <Left>4</Left>
+                <Height>92</Height>
+                <Width>92</Width>
+              </StateIndicator>
+            </StateIndicators>
+            <AutoLayout>true</AutoLayout>
+            <BackFrame>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <BackgroundColor>Gainsboro</BackgroundColor>
+                <BackgroundGradientType>DiagonalLeft</BackgroundGradientType>
+                <BackgroundGradientEndColor>Gray</BackgroundGradientEndColor>
+                <BackgroundHatchType>None</BackgroundHatchType>
+                <ShadowOffset>0pt</ShadowOffset>
+              </Style>
+              <FrameBackground>
+                <Style>
+                  <BackgroundColor>Silver</BackgroundColor>
+                  <BackgroundGradientType>DiagonalLeft</BackgroundGradientType>
+                  <BackgroundGradientEndColor>Gray</BackgroundGradientEndColor>
+                  <BackgroundHatchType>None</BackgroundHatchType>
+                </Style>
+              </FrameBackground>
+              <FrameImage>
+                <Source>External</Source>
+                <Value />
+              </FrameImage>
+            </BackFrame>
+            <TopImage>
+              <Source>External</Source>
+              <Value />
+            </TopImage>
+            <DataSetName>DSDatosEmprendimiento</DataSetName>
+            <Top>8.19114cm</Top>
+            <Left>14.98371cm</Left>
+            <Height>0.51534cm</Height>
+            <Width>0.5cm</Width>
+            <ZIndex>59</ZIndex>
+            <Style>
+              <Border>
+                <Color>LightGrey</Color>
+                <Style>None</Style>
+              </Border>
+              <BackgroundColor>White</BackgroundColor>
+            </Style>
+          </GaugePanel>
+          <Rectangle Name="rectanguloSectores">
+            <ReportItems>
+              <Tablix Name="listaSectores">
+                <TablixBody>
+                  <TablixColumns>
+                    <TablixColumn>
+                      <Width>2.96648cm</Width>
+                    </TablixColumn>
+                  </TablixColumns>
+                  <TablixRows>
+                    <TablixRow>
+                      <Height>0.59243cm</Height>
+                      <TablixCells>
+                        <TablixCell>
+                          <CellContents>
+                            <Rectangle Name="Rectangle1">
+                              <ReportItems>
+                                <Textbox Name="Textbox75">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=Fields!Nombre.Value</Value>
+                                          <Style>
+                                            <FontSize>7pt</FontSize>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox1</rd:DefaultName>
+                                  <Top>0.07709cm</Top>
+                                  <Height>0.51534cm</Height>
+                                  <Width>2.46648cm</Width>
+                                  <Style>
+                                    <Border>
+                                      <Style>None</Style>
+                                    </Border>
+                                    <VerticalAlign>Middle</VerticalAlign>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                                <GaugePanel Name="GaugePanel3">
+                                  <StateIndicators>
+                                    <StateIndicator Name="Indicator1">
+                                      <GaugeInputValue>
+                                        <Value>=Microsoft.VisualBasic.Interaction.IIf(Fields!Seleccionado.Value, 100, 0)</Value>
+                                        <Multiplier>1</Multiplier>
+                                        <DataElementOutput>NoOutput</DataElementOutput>
+                                      </GaugeInputValue>
+                                      <TransformationType>None</TransformationType>
+                                      <TransformationScope />
+                                      <MinimumValue>
+                                        <Value>NaN</Value>
+                                        <Multiplier>1</Multiplier>
+                                      </MinimumValue>
+                                      <MaximumValue>
+                                        <Value>NaN</Value>
+                                        <Multiplier>1</Multiplier>
+                                      </MaximumValue>
+                                      <IndicatorStyle>None</IndicatorStyle>
+                                      <IndicatorImage>
+                                        <Source>External</Source>
+                                        <Value />
+                                      </IndicatorImage>
+                                      <ScaleFactor>1</ScaleFactor>
+                                      <IndicatorStates>
+                                        <IndicatorState Name="QuartersNoneFilled">
+                                          <StartValue>
+                                            <Value>0</Value>
+                                            <Multiplier>1</Multiplier>
+                                          </StartValue>
+                                          <EndValue>
+                                            <Value>20</Value>
+                                            <Multiplier>1</Multiplier>
+                                          </EndValue>
+                                          <Color>Black</Color>
+                                          <ScaleFactor>1</ScaleFactor>
+                                          <IndicatorStyle>QuartersNoneFilled</IndicatorStyle>
+                                          <IndicatorImage>
+                                            <Source>External</Source>
+                                            <Value />
+                                          </IndicatorImage>
+                                        </IndicatorState>
+                                        <IndicatorState Name="QuartersOneFilled">
+                                          <StartValue>
+                                            <Value>20</Value>
+                                            <Multiplier>1</Multiplier>
+                                          </StartValue>
+                                          <EndValue>
+                                            <Value>40</Value>
+                                            <Multiplier>1</Multiplier>
+                                          </EndValue>
+                                          <Color>Black</Color>
+                                          <ScaleFactor>1</ScaleFactor>
+                                          <IndicatorStyle>QuartersOneFilled</IndicatorStyle>
+                                          <IndicatorImage>
+                                            <Source>External</Source>
+                                            <Value />
+                                          </IndicatorImage>
+                                        </IndicatorState>
+                                        <IndicatorState Name="QuartersTwoFilled">
+                                          <StartValue>
+                                            <Value>40</Value>
+                                            <Multiplier>1</Multiplier>
+                                          </StartValue>
+                                          <EndValue>
+                                            <Value>60</Value>
+                                            <Multiplier>1</Multiplier>
+                                          </EndValue>
+                                          <Color>Black</Color>
+                                          <ScaleFactor>1</ScaleFactor>
+                                          <IndicatorStyle>QuartersTwoFilled</IndicatorStyle>
+                                          <IndicatorImage>
+                                            <Source>External</Source>
+                                            <Value />
+                                          </IndicatorImage>
+                                        </IndicatorState>
+                                        <IndicatorState Name="QuartersThreeFilled">
+                                          <StartValue>
+                                            <Value>60</Value>
+                                            <Multiplier>1</Multiplier>
+                                          </StartValue>
+                                          <EndValue>
+                                            <Value>80</Value>
+                                            <Multiplier>1</Multiplier>
+                                          </EndValue>
+                                          <Color>Black</Color>
+                                          <ScaleFactor>1</ScaleFactor>
+                                          <IndicatorStyle>QuartersThreeFilled</IndicatorStyle>
+                                          <IndicatorImage>
+                                            <Source>External</Source>
+                                            <Value />
+                                          </IndicatorImage>
+                                        </IndicatorState>
+                                        <IndicatorState Name="QuartersAllFilled">
+                                          <StartValue>
+                                            <Value>80</Value>
+                                            <Multiplier>1</Multiplier>
+                                          </StartValue>
+                                          <EndValue>
+                                            <Value>100</Value>
+                                            <Multiplier>1</Multiplier>
+                                          </EndValue>
+                                          <Color>Black</Color>
+                                          <ScaleFactor>1</ScaleFactor>
+                                          <IndicatorStyle>QuartersAllFilled</IndicatorStyle>
+                                          <IndicatorImage>
+                                            <Source>External</Source>
+                                            <Value />
+                                          </IndicatorImage>
+                                        </IndicatorState>
+                                      </IndicatorStates>
+                                      <Angle>0</Angle>
+                                      <StateDataElementName />
+                                      <rd:IconsSet>FiveQuarters</rd:IconsSet>
+                                      <Style>
+                                        <ShadowOffset>2pt</ShadowOffset>
+                                      </Style>
+                                      <Top>4</Top>
+                                      <Left>4</Left>
+                                      <Height>92</Height>
+                                      <Width>92</Width>
+                                    </StateIndicator>
+                                  </StateIndicators>
+                                  <AutoLayout>true</AutoLayout>
+                                  <BackFrame>
+                                    <Style>
+                                      <Border>
+                                        <Style>None</Style>
+                                      </Border>
+                                      <BackgroundColor>Gainsboro</BackgroundColor>
+                                      <BackgroundGradientType>DiagonalLeft</BackgroundGradientType>
+                                      <BackgroundGradientEndColor>Gray</BackgroundGradientEndColor>
+                                      <BackgroundHatchType>None</BackgroundHatchType>
+                                      <ShadowOffset>0pt</ShadowOffset>
+                                    </Style>
+                                    <FrameBackground>
+                                      <Style>
+                                        <BackgroundColor>Silver</BackgroundColor>
+                                        <BackgroundGradientType>DiagonalLeft</BackgroundGradientType>
+                                        <BackgroundGradientEndColor>Gray</BackgroundGradientEndColor>
+                                        <BackgroundHatchType>None</BackgroundHatchType>
+                                      </Style>
+                                    </FrameBackground>
+                                    <FrameImage>
+                                      <Source>External</Source>
+                                      <Value />
+                                    </FrameImage>
+                                  </BackFrame>
+                                  <TopImage>
+                                    <Source>External</Source>
+                                    <Value />
+                                  </TopImage>
+                                  <DataSetName>DSSectoresDesarrollo</DataSetName>
+                                  <Top>0.05715cm</Top>
+                                  <Left>2.46648cm</Left>
+                                  <Height>0.5cm</Height>
+                                  <Width>0.5cm</Width>
+                                  <ZIndex>1</ZIndex>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>None</Style>
+                                    </Border>
+                                    <BackgroundColor>White</BackgroundColor>
+                                  </Style>
+                                </GaugePanel>
+                              </ReportItems>
+                              <KeepTogether>true</KeepTogether>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                              </Style>
+                            </Rectangle>
+                          </CellContents>
+                        </TablixCell>
+                      </TablixCells>
+                    </TablixRow>
+                  </TablixRows>
+                </TablixBody>
+                <TablixColumnHierarchy>
+                  <TablixMembers>
+                    <TablixMember>
+                      <Group Name="Group1">
+                        <GroupExpressions>
+                          <GroupExpression>=RowNumber(Nothing)</GroupExpression>
+                        </GroupExpressions>
+                      </Group>
+                      <TablixHeader>
+                        <Size>0.07938cm</Size>
+                        <CellContents>
+                          <Textbox Name="Group1">
+                            <CanGrow>true</CanGrow>
+                            <KeepTogether>true</KeepTogether>
+                            <Paragraphs>
+                              <Paragraph>
+                                <TextRuns>
+                                  <TextRun>
+                                    <Value />
+                                    <Style>
+                                      <FontSize>7pt</FontSize>
+                                    </Style>
+                                  </TextRun>
+                                </TextRuns>
+                                <Style />
+                              </Paragraph>
+                            </Paragraphs>
+                            <rd:DefaultName>Group1</rd:DefaultName>
+                            <Visibility>
+                              <Hidden>true</Hidden>
+                            </Visibility>
+                            <Style>
+                              <Border>
+                                <Style>None</Style>
+                              </Border>
+                              <PaddingLeft>2pt</PaddingLeft>
+                              <PaddingRight>2pt</PaddingRight>
+                              <PaddingTop>2pt</PaddingTop>
+                              <PaddingBottom>2pt</PaddingBottom>
+                            </Style>
+                          </Textbox>
+                        </CellContents>
+                      </TablixHeader>
+                      <TablixMembers>
+                        <TablixMember />
+                      </TablixMembers>
+                    </TablixMember>
+                  </TablixMembers>
+                </TablixColumnHierarchy>
+                <TablixRowHierarchy>
+                  <TablixMembers>
+                    <TablixMember />
+                  </TablixMembers>
+                </TablixRowHierarchy>
+                <DataSetName>DSSectoresDesarrollo</DataSetName>
+                <Height>0.67181cm</Height>
+                <Width>2.96648cm</Width>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                </Style>
+              </Tablix>
+            </ReportItems>
+            <KeepTogether>true</KeepTogether>
+            <Top>6.29232cm</Top>
+            <Left>0.00094cm</Left>
+            <Height>0.67181cm</Height>
+            <Width>17.85167cm</Width>
+            <ZIndex>60</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Rectangle>
+          <Rectangle Name="rectanguloProyectos">
+            <ReportItems>
+              <Tablix Name="listaProyectos">
+                <TablixBody>
+                  <TablixColumns>
+                    <TablixColumn>
+                      <Width>2.60839cm</Width>
+                    </TablixColumn>
+                  </TablixColumns>
+                  <TablixRows>
+                    <TablixRow>
+                      <Height>0.51534cm</Height>
+                      <TablixCells>
+                        <TablixCell>
+                          <CellContents>
+                            <Rectangle Name="Rectangle2">
+                              <ReportItems>
+                                <Textbox Name="Textbox76">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=Fields!Nombre.Value</Value>
+                                          <Style>
+                                            <FontSize>7pt</FontSize>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox1</rd:DefaultName>
+                                  <Height>0.51534cm</Height>
+                                  <Width>2.00867cm</Width>
+                                  <Style>
+                                    <Border>
+                                      <Style>None</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                                <GaugePanel Name="GaugePanel2">
+                                  <StateIndicators>
+                                    <StateIndicator Name="Indicator1">
+                                      <GaugeInputValue>
+                                        <Value>=Microsoft.VisualBasic.Interaction.IIf(Fields!Seleccionado.Value, 100, 0)</Value>
+                                        <Multiplier>1</Multiplier>
+                                        <DataElementOutput>NoOutput</DataElementOutput>
+                                      </GaugeInputValue>
+                                      <TransformationType>None</TransformationType>
+                                      <TransformationScope />
+                                      <MinimumValue>
+                                        <Value>NaN</Value>
+                                        <Multiplier>1</Multiplier>
+                                      </MinimumValue>
+                                      <MaximumValue>
+                                        <Value>NaN</Value>
+                                        <Multiplier>1</Multiplier>
+                                      </MaximumValue>
+                                      <IndicatorStyle>None</IndicatorStyle>
+                                      <IndicatorImage>
+                                        <Source>External</Source>
+                                        <Value />
+                                      </IndicatorImage>
+                                      <ScaleFactor>1</ScaleFactor>
+                                      <IndicatorStates>
+                                        <IndicatorState Name="QuartersNoneFilled">
+                                          <StartValue>
+                                            <Value>0</Value>
+                                            <Multiplier>1</Multiplier>
+                                          </StartValue>
+                                          <EndValue>
+                                            <Value>20</Value>
+                                            <Multiplier>1</Multiplier>
+                                          </EndValue>
+                                          <Color>Black</Color>
+                                          <ScaleFactor>1</ScaleFactor>
+                                          <IndicatorStyle>QuartersNoneFilled</IndicatorStyle>
+                                          <IndicatorImage>
+                                            <Source>External</Source>
+                                            <Value />
+                                          </IndicatorImage>
+                                        </IndicatorState>
+                                        <IndicatorState Name="QuartersOneFilled">
+                                          <StartValue>
+                                            <Value>20</Value>
+                                            <Multiplier>1</Multiplier>
+                                          </StartValue>
+                                          <EndValue>
+                                            <Value>40</Value>
+                                            <Multiplier>1</Multiplier>
+                                          </EndValue>
+                                          <Color>Black</Color>
+                                          <ScaleFactor>1</ScaleFactor>
+                                          <IndicatorStyle>QuartersOneFilled</IndicatorStyle>
+                                          <IndicatorImage>
+                                            <Source>External</Source>
+                                            <Value />
+                                          </IndicatorImage>
+                                        </IndicatorState>
+                                        <IndicatorState Name="QuartersTwoFilled">
+                                          <StartValue>
+                                            <Value>40</Value>
+                                            <Multiplier>1</Multiplier>
+                                          </StartValue>
+                                          <EndValue>
+                                            <Value>60</Value>
+                                            <Multiplier>1</Multiplier>
+                                          </EndValue>
+                                          <Color>Black</Color>
+                                          <ScaleFactor>1</ScaleFactor>
+                                          <IndicatorStyle>QuartersTwoFilled</IndicatorStyle>
+                                          <IndicatorImage>
+                                            <Source>External</Source>
+                                            <Value />
+                                          </IndicatorImage>
+                                        </IndicatorState>
+                                        <IndicatorState Name="QuartersThreeFilled">
+                                          <StartValue>
+                                            <Value>60</Value>
+                                            <Multiplier>1</Multiplier>
+                                          </StartValue>
+                                          <EndValue>
+                                            <Value>80</Value>
+                                            <Multiplier>1</Multiplier>
+                                          </EndValue>
+                                          <Color>Black</Color>
+                                          <ScaleFactor>1</ScaleFactor>
+                                          <IndicatorStyle>QuartersThreeFilled</IndicatorStyle>
+                                          <IndicatorImage>
+                                            <Source>External</Source>
+                                            <Value />
+                                          </IndicatorImage>
+                                        </IndicatorState>
+                                        <IndicatorState Name="QuartersAllFilled">
+                                          <StartValue>
+                                            <Value>80</Value>
+                                            <Multiplier>1</Multiplier>
+                                          </StartValue>
+                                          <EndValue>
+                                            <Value>100</Value>
+                                            <Multiplier>1</Multiplier>
+                                          </EndValue>
+                                          <Color>Black</Color>
+                                          <ScaleFactor>1</ScaleFactor>
+                                          <IndicatorStyle>QuartersAllFilled</IndicatorStyle>
+                                          <IndicatorImage>
+                                            <Source>External</Source>
+                                            <Value />
+                                          </IndicatorImage>
+                                        </IndicatorState>
+                                      </IndicatorStates>
+                                      <Angle>0</Angle>
+                                      <StateDataElementName />
+                                      <rd:IconsSet>FiveQuarters</rd:IconsSet>
+                                      <Style>
+                                        <ShadowOffset>2pt</ShadowOffset>
+                                      </Style>
+                                      <Top>4</Top>
+                                      <Left>4</Left>
+                                      <Height>92</Height>
+                                      <Width>92</Width>
+                                    </StateIndicator>
+                                  </StateIndicators>
+                                  <AutoLayout>true</AutoLayout>
+                                  <BackFrame>
+                                    <Style>
+                                      <Border>
+                                        <Style>None</Style>
+                                      </Border>
+                                      <BackgroundColor>Gainsboro</BackgroundColor>
+                                      <BackgroundGradientType>DiagonalLeft</BackgroundGradientType>
+                                      <BackgroundGradientEndColor>Gray</BackgroundGradientEndColor>
+                                      <BackgroundHatchType>None</BackgroundHatchType>
+                                      <ShadowOffset>0pt</ShadowOffset>
+                                    </Style>
+                                    <FrameBackground>
+                                      <Style>
+                                        <BackgroundColor>Silver</BackgroundColor>
+                                        <BackgroundGradientType>DiagonalLeft</BackgroundGradientType>
+                                        <BackgroundGradientEndColor>Gray</BackgroundGradientEndColor>
+                                        <BackgroundHatchType>None</BackgroundHatchType>
+                                      </Style>
+                                    </FrameBackground>
+                                    <FrameImage>
+                                      <Source>External</Source>
+                                      <Value />
+                                    </FrameImage>
+                                  </BackFrame>
+                                  <TopImage>
+                                    <Source>External</Source>
+                                    <Value />
+                                  </TopImage>
+                                  <DataSetName>DSTiposProyecto</DataSetName>
+                                  <Left>2.04394cm</Left>
+                                  <Height>0.5cm</Height>
+                                  <Width>0.5cm</Width>
+                                  <ZIndex>1</ZIndex>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>None</Style>
+                                    </Border>
+                                    <BackgroundColor>White</BackgroundColor>
+                                  </Style>
+                                </GaugePanel>
+                              </ReportItems>
+                              <KeepTogether>true</KeepTogether>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                              </Style>
+                            </Rectangle>
+                          </CellContents>
+                        </TablixCell>
+                      </TablixCells>
+                    </TablixRow>
+                  </TablixRows>
+                </TablixBody>
+                <TablixColumnHierarchy>
+                  <TablixMembers>
+                    <TablixMember>
+                      <Group Name="Group2">
+                        <GroupExpressions>
+                          <GroupExpression>=RowNumber(Nothing)</GroupExpression>
+                        </GroupExpressions>
+                      </Group>
+                      <TablixHeader>
+                        <Size>0.07938cm</Size>
+                        <CellContents>
+                          <Textbox Name="Group2">
+                            <CanGrow>true</CanGrow>
+                            <KeepTogether>true</KeepTogether>
+                            <Paragraphs>
+                              <Paragraph>
+                                <TextRuns>
+                                  <TextRun>
+                                    <Value />
+                                    <Style>
+                                      <FontSize>7pt</FontSize>
+                                    </Style>
+                                  </TextRun>
+                                </TextRuns>
+                                <Style />
+                              </Paragraph>
+                            </Paragraphs>
+                            <rd:DefaultName>Group1</rd:DefaultName>
+                            <Visibility>
+                              <Hidden>true</Hidden>
+                            </Visibility>
+                            <Style>
+                              <Border>
+                                <Style>None</Style>
+                              </Border>
+                              <PaddingLeft>2pt</PaddingLeft>
+                              <PaddingRight>2pt</PaddingRight>
+                              <PaddingTop>2pt</PaddingTop>
+                              <PaddingBottom>2pt</PaddingBottom>
+                            </Style>
+                          </Textbox>
+                        </CellContents>
+                      </TablixHeader>
+                      <TablixMembers>
+                        <TablixMember />
+                      </TablixMembers>
+                    </TablixMember>
+                  </TablixMembers>
+                </TablixColumnHierarchy>
+                <TablixRowHierarchy>
+                  <TablixMembers>
+                    <TablixMember />
+                  </TablixMembers>
+                </TablixRowHierarchy>
+                <DataSetName>DSTiposProyecto</DataSetName>
+                <Top>0.03259cm</Top>
+                <Left>0.03427cm</Left>
+                <Height>0.59472cm</Height>
+                <Width>2.60839cm</Width>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                </Style>
+              </Tablix>
+            </ReportItems>
+            <KeepTogether>true</KeepTogether>
+            <Top>4.43917cm</Top>
+            <Left>2.43315cm</Left>
+            <Height>0.62731cm</Height>
+            <Width>15.41852cm</Width>
+            <ZIndex>61</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Rectangle>
+          <Rectangle Name="rectanguloInmuebles">
+            <ReportItems>
+              <Tablix Name="listaInmuebles">
+                <TablixBody>
+                  <TablixColumns>
+                    <TablixColumn>
+                      <Width>2.60839cm</Width>
+                    </TablixColumn>
+                  </TablixColumns>
+                  <TablixRows>
+                    <TablixRow>
+                      <Height>0.59243cm</Height>
+                      <TablixCells>
+                        <TablixCell>
+                          <CellContents>
+                            <Rectangle Name="Rectangle3">
+                              <ReportItems>
+                                <Textbox Name="Textbox77">
+                                  <CanGrow>true</CanGrow>
+                                  <KeepTogether>true</KeepTogether>
+                                  <Paragraphs>
+                                    <Paragraph>
+                                      <TextRuns>
+                                        <TextRun>
+                                          <Value>=Fields!Nombre.Value</Value>
+                                          <Style>
+                                            <FontSize>7pt</FontSize>
+                                          </Style>
+                                        </TextRun>
+                                      </TextRuns>
+                                      <Style>
+                                        <TextAlign>Right</TextAlign>
+                                      </Style>
+                                    </Paragraph>
+                                  </Paragraphs>
+                                  <rd:DefaultName>Textbox1</rd:DefaultName>
+                                  <Top>0.07709cm</Top>
+                                  <Height>0.51534cm</Height>
+                                  <Width>2.00867cm</Width>
+                                  <Style>
+                                    <Border>
+                                      <Style>None</Style>
+                                    </Border>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                  </Style>
+                                </Textbox>
+                                <GaugePanel Name="GaugePanel1">
+                                  <StateIndicators>
+                                    <StateIndicator Name="Indicator1">
+                                      <GaugeInputValue>
+                                        <Value>=IIf(Fields!Seleccionado.Value, 100, 0)</Value>
+                                        <Multiplier>1</Multiplier>
+                                        <DataElementOutput>NoOutput</DataElementOutput>
+                                      </GaugeInputValue>
+                                      <TransformationType>None</TransformationType>
+                                      <TransformationScope />
+                                      <MinimumValue>
+                                        <Value>NaN</Value>
+                                        <Multiplier>1</Multiplier>
+                                      </MinimumValue>
+                                      <MaximumValue>
+                                        <Value>NaN</Value>
+                                        <Multiplier>1</Multiplier>
+                                      </MaximumValue>
+                                      <IndicatorStyle>None</IndicatorStyle>
+                                      <IndicatorImage>
+                                        <Source>External</Source>
+                                        <Value />
+                                      </IndicatorImage>
+                                      <ScaleFactor>1</ScaleFactor>
+                                      <IndicatorStates>
+                                        <IndicatorState Name="QuartersNoneFilled">
+                                          <StartValue>
+                                            <Value>0</Value>
+                                            <Multiplier>1</Multiplier>
+                                          </StartValue>
+                                          <EndValue>
+                                            <Value>20</Value>
+                                            <Multiplier>1</Multiplier>
+                                          </EndValue>
+                                          <Color>Black</Color>
+                                          <ScaleFactor>1</ScaleFactor>
+                                          <IndicatorStyle>QuartersNoneFilled</IndicatorStyle>
+                                          <IndicatorImage>
+                                            <Source>External</Source>
+                                            <Value />
+                                          </IndicatorImage>
+                                        </IndicatorState>
+                                        <IndicatorState Name="QuartersOneFilled">
+                                          <StartValue>
+                                            <Value>20</Value>
+                                            <Multiplier>1</Multiplier>
+                                          </StartValue>
+                                          <EndValue>
+                                            <Value>40</Value>
+                                            <Multiplier>1</Multiplier>
+                                          </EndValue>
+                                          <Color>Black</Color>
+                                          <ScaleFactor>1</ScaleFactor>
+                                          <IndicatorStyle>QuartersOneFilled</IndicatorStyle>
+                                          <IndicatorImage>
+                                            <Source>External</Source>
+                                            <Value />
+                                          </IndicatorImage>
+                                        </IndicatorState>
+                                        <IndicatorState Name="QuartersTwoFilled">
+                                          <StartValue>
+                                            <Value>40</Value>
+                                            <Multiplier>1</Multiplier>
+                                          </StartValue>
+                                          <EndValue>
+                                            <Value>60</Value>
+                                            <Multiplier>1</Multiplier>
+                                          </EndValue>
+                                          <Color>Black</Color>
+                                          <ScaleFactor>1</ScaleFactor>
+                                          <IndicatorStyle>QuartersTwoFilled</IndicatorStyle>
+                                          <IndicatorImage>
+                                            <Source>External</Source>
+                                            <Value />
+                                          </IndicatorImage>
+                                        </IndicatorState>
+                                        <IndicatorState Name="QuartersThreeFilled">
+                                          <StartValue>
+                                            <Value>60</Value>
+                                            <Multiplier>1</Multiplier>
+                                          </StartValue>
+                                          <EndValue>
+                                            <Value>80</Value>
+                                            <Multiplier>1</Multiplier>
+                                          </EndValue>
+                                          <Color>Black</Color>
+                                          <ScaleFactor>1</ScaleFactor>
+                                          <IndicatorStyle>QuartersThreeFilled</IndicatorStyle>
+                                          <IndicatorImage>
+                                            <Source>External</Source>
+                                            <Value />
+                                          </IndicatorImage>
+                                        </IndicatorState>
+                                        <IndicatorState Name="QuartersAllFilled">
+                                          <StartValue>
+                                            <Value>80</Value>
+                                            <Multiplier>1</Multiplier>
+                                          </StartValue>
+                                          <EndValue>
+                                            <Value>100</Value>
+                                            <Multiplier>1</Multiplier>
+                                          </EndValue>
+                                          <Color>Black</Color>
+                                          <ScaleFactor>1</ScaleFactor>
+                                          <IndicatorStyle>QuartersAllFilled</IndicatorStyle>
+                                          <IndicatorImage>
+                                            <Source>External</Source>
+                                            <Value />
+                                          </IndicatorImage>
+                                        </IndicatorState>
+                                      </IndicatorStates>
+                                      <Angle>0</Angle>
+                                      <StateDataElementName />
+                                      <rd:IconsSet>FiveQuarters</rd:IconsSet>
+                                      <Style>
+                                        <ShadowOffset>2pt</ShadowOffset>
+                                      </Style>
+                                      <Top>4</Top>
+                                      <Left>4</Left>
+                                      <Height>92</Height>
+                                      <Width>92</Width>
+                                    </StateIndicator>
+                                  </StateIndicators>
+                                  <AutoLayout>true</AutoLayout>
+                                  <BackFrame>
+                                    <Style>
+                                      <Border>
+                                        <Style>None</Style>
+                                      </Border>
+                                      <BackgroundColor>Gainsboro</BackgroundColor>
+                                      <BackgroundGradientType>DiagonalLeft</BackgroundGradientType>
+                                      <BackgroundGradientEndColor>Gray</BackgroundGradientEndColor>
+                                      <BackgroundHatchType>None</BackgroundHatchType>
+                                      <ShadowOffset>0pt</ShadowOffset>
+                                    </Style>
+                                    <FrameBackground>
+                                      <Style>
+                                        <BackgroundColor>Silver</BackgroundColor>
+                                        <BackgroundGradientType>DiagonalLeft</BackgroundGradientType>
+                                        <BackgroundGradientEndColor>Gray</BackgroundGradientEndColor>
+                                        <BackgroundHatchType>None</BackgroundHatchType>
+                                      </Style>
+                                    </FrameBackground>
+                                    <FrameImage>
+                                      <Source>External</Source>
+                                      <Value />
+                                    </FrameImage>
+                                  </BackFrame>
+                                  <TopImage>
+                                    <Source>External</Source>
+                                    <Value />
+                                  </TopImage>
+                                  <DataSetName>DSTiposInmuebles</DataSetName>
+                                  <Top>0.08362cm</Top>
+                                  <Left>2.04394cm</Left>
+                                  <Height>0.5cm</Height>
+                                  <Width>0.5cm</Width>
+                                  <ZIndex>1</ZIndex>
+                                  <Style>
+                                    <Border>
+                                      <Color>LightGrey</Color>
+                                      <Style>None</Style>
+                                    </Border>
+                                    <BackgroundColor>White</BackgroundColor>
+                                  </Style>
+                                </GaugePanel>
+                              </ReportItems>
+                              <KeepTogether>true</KeepTogether>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                              </Style>
+                            </Rectangle>
+                          </CellContents>
+                        </TablixCell>
+                      </TablixCells>
+                    </TablixRow>
+                  </TablixRows>
+                </TablixBody>
+                <TablixColumnHierarchy>
+                  <TablixMembers>
+                    <TablixMember>
+                      <Group Name="Group3">
+                        <GroupExpressions>
+                          <GroupExpression>=RowNumber(Nothing)</GroupExpression>
+                        </GroupExpressions>
+                      </Group>
+                      <TablixHeader>
+                        <Size>0.07938cm</Size>
+                        <CellContents>
+                          <Textbox Name="Group3">
+                            <CanGrow>true</CanGrow>
+                            <KeepTogether>true</KeepTogether>
+                            <Paragraphs>
+                              <Paragraph>
+                                <TextRuns>
+                                  <TextRun>
+                                    <Value />
+                                    <Style>
+                                      <FontSize>7pt</FontSize>
+                                    </Style>
+                                  </TextRun>
+                                </TextRuns>
+                                <Style />
+                              </Paragraph>
+                            </Paragraphs>
+                            <rd:DefaultName>Group1</rd:DefaultName>
+                            <Visibility>
+                              <Hidden>true</Hidden>
+                            </Visibility>
+                            <Style>
+                              <Border>
+                                <Style>None</Style>
+                              </Border>
+                              <PaddingLeft>2pt</PaddingLeft>
+                              <PaddingRight>2pt</PaddingRight>
+                              <PaddingTop>2pt</PaddingTop>
+                              <PaddingBottom>2pt</PaddingBottom>
+                            </Style>
+                          </Textbox>
+                        </CellContents>
+                      </TablixHeader>
+                      <TablixMembers>
+                        <TablixMember />
+                      </TablixMembers>
+                    </TablixMember>
+                  </TablixMembers>
+                </TablixColumnHierarchy>
+                <TablixRowHierarchy>
+                  <TablixMembers>
+                    <TablixMember />
+                  </TablixMembers>
+                </TablixRowHierarchy>
+                <DataSetName>DSTiposInmuebles</DataSetName>
+                <Top>0.04181cm</Top>
+                <Left>0.03842cm</Left>
+                <Height>0.67181cm</Height>
+                <Width>2.60839cm</Width>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                </Style>
+              </Tablix>
+            </ReportItems>
+            <KeepTogether>true</KeepTogether>
+            <Top>3.14579cm</Top>
+            <Left>2.49345cm</Left>
+            <Height>0.71362cm</Height>
+            <Width>15.35916cm</Width>
+            <ZIndex>62</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Rectangle>
+        </ReportItems>
+        <Height>5.30713in</Height>
+        <Style />
+      </Body>
+      <Width>7.02859in</Width>
+      <Page>
+        <PageHeight>29.7cm</PageHeight>
+        <PageWidth>21cm</PageWidth>
+        <LeftMargin>2cm</LeftMargin>
+        <RightMargin>2cm</RightMargin>
+        <TopMargin>2cm</TopMargin>
+        <BottomMargin>2cm</BottomMargin>
+        <ColumnSpacing>0.13cm</ColumnSpacing>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
+  <rd:ReportID>ff28f8ac-09a7-4f85-a1d9-a6d9e885387e</rd:ReportID>
+</Report>

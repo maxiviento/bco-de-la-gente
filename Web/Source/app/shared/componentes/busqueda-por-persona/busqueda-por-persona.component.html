@@ -1,0 +1,59 @@
+<form [formGroup]="form">
+  <div class="card-pane">
+    <div class="row">
+
+      <div class="col-6 divisorVertical">
+        <div class="form-group row">
+          <label for="cb_persona" class="col-md-3 col-lg-3 col-xl-3 col-form-label">Persona<span class="obligatorio">
+              (*)</span></label>
+          <div class="col-md-6 col-lg-6 col-xl-6" [errorFeedback]="form.get('persona')">
+            <select id="cb_persona" class="form-control" formControlName="persona" [tabIndex]="1">
+              <option [ngValue]="null">Seleccione</option>
+              <option *ngFor="let persona of tiposPersona" [ngValue]="persona.id">
+                {{persona.descripcion | uppercase}}
+              </option>
+            </select>
+            <control-messages [control]="form.get('persona')"></control-messages>
+          </div>
+        </div>
+
+        <div class="form-group row" [errorFeedback]="form.get('cuil')">
+          <label for="txt_cuil" class="col-md-3 col-lg-3 col-xl-3 col-form-label">CUIL</label>
+          <div class="col-md-6 col-lg-6 col-xl-6">
+            <input type="text" class="form-control" id="txt_cuil" formControlName="cuil" [tabIndex]="2">
+            <control-messages [control]="form.get('cuil')"></control-messages>
+          </div>
+        </div>
+
+        <div class="form-group row" [errorFeedback]="form.get('dni')">
+          <label for="txt_dni" class="col-md-3 col-lg-3 col-xl-3 col-form-label">DNI</label>
+          <div class="col-md-6 col-lg-6 col-xl-6">
+            <input type="text" class="form-control" id="txt_dni" formControlName="dni" [tabIndex]="3">
+            <control-messages [control]="form.get('dni')"></control-messages>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="fila-nula"></div>
+
+        <div class="form-group row" [errorFeedback]="form.get('nombre')">
+          <label for="txt_nombre" class="col-md-3 col-lg-3 col-xl-3 col-form-label">Nombre</label>
+          <div class=" col-md-6 col-lg-6 col-xl-6">
+            <input type="text" class="form-control" id="txt_nombre" formControlName="nombre" [tabIndex]="4">
+            <control-messages [control]="form.get('nombre')"></control-messages>
+          </div>
+        </div>
+
+        <div class="form-group row" [errorFeedback]="form.get('apellido')">
+          <label for="txt_apellido" class="col-md-3 col-lg-3 col-xl-3 col-form-label">Apellido</label>
+          <div class=" col-md-6 col-lg-6 col-xl-6">
+            <input type="text" class="form-control" id="txt_apellido" formControlName="apellido" [tabIndex]="5">
+            <control-messages [control]="form.get('apellido')"></control-messages>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</form>

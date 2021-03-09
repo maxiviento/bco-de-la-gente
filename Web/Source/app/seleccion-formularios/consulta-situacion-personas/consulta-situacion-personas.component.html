@@ -1,0 +1,20 @@
+<div class="row align-items-center line-divider-bottom">
+  <div class="col ml-auto">
+    <h1 class="display-6">CONSULTAR SITUACIÓN BGE POR PERSONA</h1>
+  </div>
+</div>
+
+<bg-filtros-consulta-situacion-personas
+  (filtrosBusqueda)="buscarPersonas($event)">
+</bg-filtros-consulta-situacion-personas>
+
+<bg-grilla-personas-situacion-bge
+  [filtros]="consultaSituacion"
+  (emitPersonaSeleccionada)="almacenarPersonaSeleccionada($event)">
+</bg-grilla-personas-situacion-bge>
+
+<bg-detalle-situacion-persona
+  *ngIf="personaSeleccionada"
+  [persona]="personaSeleccionada"
+  (emitClickVolver)="volver()">
+</bg-detalle-situacion-persona>

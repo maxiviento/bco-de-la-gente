@@ -1,0 +1,22 @@
+<form [formGroup]="form">
+
+  <div class="card-pane">
+    <div class="form-group col-md-5 col-lg-5 col-xl-5" [errorFeedback]="form.get('nombre')">
+      <label for="txt_nombre" class="form-control-label"> Nombre <span *ngIf="editable? true: null" class="obligatorio">(*)</span>:
+      </label>
+      <input type="text" id="txt_nombre" class="form-control" formControlName="nombre"
+        [attr.disabled]="!editable ? true: null">
+      <control-messages [control]="form.get('nombre')"></control-messages>
+    </div>
+
+    <div class="form-group col-md-12 col-lg-12 col-xl-8" [errorFeedback]="form.get('descripcion')">
+      <label for="txt_descripcion" class="form-control-label">Descripción <span *ngIf="editable? true: null" class="obligatorio">(*)</span>:
+      </label>
+      <textarea rows="3" id="txt_descripcion" class="form-control" formControlName="descripcion"
+        [attr.disabled]="!editable ? true: null">
+       </textarea>
+      <control-messages [control]="form.get('descripcion')"></control-messages>
+    </div>
+  </div>
+
+</form>

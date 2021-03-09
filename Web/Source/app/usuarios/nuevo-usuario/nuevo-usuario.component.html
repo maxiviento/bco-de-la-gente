@@ -1,0 +1,57 @@
+<div class="row bordered align-items-center">
+  <div class="col">
+    <h1 class="display-4">NUEVO USUARIO</h1>
+  </div>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="registrarUsuario()">
+  <div class="card-pane">
+    <div class="row">
+      <div class="form-group col-xl-3 col-lg-3" [errorFeedback]="form.get('cuil')">
+        <label for="txt_cuil" class="form-control-label">CUIL</label>
+        <input type="text" id="txt_cuil" formControlName="cuil" class="form-control" placeholder="Cuil usuario" />
+        <control-messages [control]="form.get('cuil')"></control-messages>
+      </div>
+      <div class="form-group col align-self-end">
+        <button type="button" class="btn btn-primary" (click)="consultarUsuarioCidi()">
+          <i class="material-icons icono-accion alinear-texto-con-icono">search</i>
+          <span class="alinear-texto-con-icono">BUSCAR</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="mostrarUsuario" class="card-pane">
+    <div class="row row-section">
+      <div class="col-lg-3 col-xl-3">
+        <label for="txt_nombre">Nombre</label>
+        <input type="text" id="txt_nombre" class="form-control" [value]="usuario.nombre" readonly>
+      </div>
+      <div class="col-lg-3 col-xl-3">
+        <label for="txt_apellido">Apellido</label>
+        <input type="text" id="txt_apellido" class="form-control" [value]="usuario.apellido" readonly>
+      </div>
+    </div>
+
+    <div class="row ">
+      <div *ngIf="mostrarUsuario" class="form-group col col-xl-6 col-lg-6" [errorFeedback]="form.get('perfilId')">
+        <label for="cb_perfil" class="form-control-label">Perfil asociado <span class="obligatorio">(*) </span>:</label>
+        <select id="cb_perfil" class="form-control" formControlName="perfilId">
+          <option value="">Seleccione</option>
+          <option *ngFor="let perfil of perfiles" [ngValue]="perfil.id">
+            {{perfil.nombre}}
+          </option>
+        </select>
+        <control-messages [control]="form.get('perfilId')"></control-messages>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="pull-right">
+      <a [routerLink]="['/usuarios']" class="btn btn-secondary separador-botones">CANCELAR</a>
+      <button type="submit" class="btn btn-primary" [disabled]="!form.valid">ACEPTAR
+      </button>
+    </div>
+  </div>
+</form>

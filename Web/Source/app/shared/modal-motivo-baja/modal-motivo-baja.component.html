@@ -1,0 +1,35 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{title || 'Confirm'}}</h4>
+  <button type="button" class="close" (click)="cerrar()">&times;</button>
+</div>
+
+<div class="modal-body">
+  <form [formGroup]="form" (ngSubmit)="darDeBaja()" novalidate>
+    <div class="row row-section">
+      <div class="col-12 justify-content-center" [errorFeedback]="form.get('motivoBaja')">
+        <label for="ddl_motivo_baja">Motivo baja<span class="obligatorio"> (*)</span></label>
+        <select class="form-control"
+                id="ddl_motivo_baja"
+                formControlName="motivoBaja">
+          <option value="">Seleccione...</option>
+          <option *ngFor="let motivo of motivosBaja"
+                  [value]=motivo.id>
+            {{motivo.descripcion}}
+          </option>
+          <control-messages [control]="form.get('motivoBaja')"></control-messages>
+        </select>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button type="button"
+          class="btn btn-secondary"
+          (click)="cerrar()">CANCELAR
+  </button>
+  <button type="button"
+          class="btn btn-primary"
+          (click)="darDeBaja()">ACEPTAR
+  </button>
+</div>

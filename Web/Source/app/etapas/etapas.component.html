@@ -1,0 +1,77 @@
+<div class="row bordered align-items-center">
+  <div class="col">
+    <h1 class="display-4">ETAPAS</h1>
+  </div>
+  <div class="col-2">
+    <a [routerLink]="['/nueva-etapa']" class="btn btn-warning pull-right">NUEVA</a>
+  </div>
+</div>
+
+<form [formGroup]="form" novalidate>
+  <div class="card-pane">
+    <div class="row ">
+      <div class="form-group col-xl-5 col-lg-5 col-md-5" [errorFeedback]="form.get('nombre')">
+        <label for="txt_nombre_etapa" class="form-control-label">Nombre</label>
+        <input type="text" id="txt_nombre_etapa" class="form-control" formControlName="nombre"
+          [ngbTypeahead]="searchEtapa" [inputFormatter]="showEtapa" [resultFormatter]="showEtapa">
+        <control-messages [control]="form.get('nombre')"></control-messages>
+      </div>
+      <div class="form-group only-form-check col-xl-7 col-lg7 col-md-7">
+        <label class="custom-control check-bge-control">
+          <input type="checkbox" class="check-bge" formControlName="incluirDadosDeBaja">
+          <span class="check-marcado"></span>
+          <span class="custom-control-description">Incluir dados de baja</span>
+        </label>
+      </div>
+
+    </div>
+  </div>
+  <div class="row row-section">
+    <div class="form-group col">
+      <button class="btn btn-primary pull-right" (click)="consultarEtapas(0)" [disabled]="!form.valid">
+        <i class="material-icons icono-accion alinear-texto-con-icono">search</i>
+      <span class="alinear-texto-con-icono">CONSULTAR</span>
+    </button>
+    </div>
+  </div>
+</form>
+
+<h3 class="display-6">Resultados</h3>
+
+<div [hidden]="etapas.length" class="card-pane">
+  No hay resultados para mostrar.
+</div>
+
+<div class="card-pane" [hidden]="!etapas.length">
+  <table class="table table-bordered table-striped table-sm">
+    <thead>
+      <tr>
+        <th class="align-middle">NOMBRE</th>
+        <th class="align-middle" *ngIf="consulta.incluirDadosDeBaja">FECHA DE BAJA</th>
+        <th class="align-middle acciones">ACCIONES</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let etapa of etapas">
+        <td class="align-middle">{{etapa.nombre}}</td>
+        <td class="align-middle" *ngIf="consulta.incluirDadosDeBaja">{{(etapa.estaDadaDeBaja() ? etapa.fechaUltimaModificacion : null) | date: 'dd/MM/yyyy'}}</td>
+        <td class="align-middle">
+          <button type="button" class="btn btn-link" [routerLink]="['/etapas',etapa.id]" ngbTooltip="Ver">
+            <i class="material-icons icono-accion">zoom_in</i>
+          </button>
+          <button type="button" class="btn btn-link" [routerLink]="['/edicion-etapa',etapa.id]"
+                  [disabled]=etapa.estaDadaDeBaja() ngbTooltip="Editar">
+            <i class="material-icons icono-accion">mode_edit</i>
+          </button>
+          <button type="button" class="btn btn-link" [routerLink]="['/eliminacion-etapa',etapa.id]"
+                  [disabled]=etapa.estaDadaDeBaja() ngbTooltip="Dar de baja">
+            <i class="material-icons icono-accion">delete</i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <paginacion [pagina]="pagina | async" (paginaModificada)="consultarEtapas($event)">
+  </paginacion>
+</div>

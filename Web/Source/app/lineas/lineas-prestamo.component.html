@@ -1,0 +1,245 @@
+<div class="row bordered align-items-center">
+  <div class="col">
+    <h1 class="display-4">CONFIGURACIÓN DE LÍNEAS</h1>
+  </div>
+  <div class="col-md-2 col-lg-2 col-xl-2">
+    <button class="btn btn-warning pull-right" [routerLink]="['/nueva-linea']">NUEVA
+    </button>
+  </div>
+</div>
+
+<form [formGroup]="form" novalidate>
+  <h3>Filtros de búsqueda </h3>
+  <div class="card-pane">
+    <div class="row">
+      <div class="form-group col-md-4 col-lg-4 col-xl-4" [errorFeedback]="form.get('nombre')">
+        <label for="txt_nombre">Línea micro-préstamo</label>
+        <input type="text" class="form-control" id="txt_nombre" formControlName="nombre" [ngbTypeahead]="searchLinea"
+               [inputFormatter]="showLinea" [resultFormatter]="showLinea">
+        <control-messages [control]="form.get('nombre')"></control-messages>
+      </div>
+
+      <div class="form-group col-xl-4 col-lg-4 col-md-4">
+        <label for="cb_motivos_destino">Motivos destino</label>
+        <select id="cb_motivos_destino" class="form-control" formControlName="idMotivoDestino">
+          <option value="null">
+            Seleccione
+          </option>
+          <option *ngFor="let motivoDestino of motivosDestino" [value]="motivoDestino.id">
+            {{motivoDestino.descripcion | uppercase}}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group col-xl-4 col-lg-4 col-md-4">
+        <label for="cb_sexo_destinatario">Sexo destinatario</label>
+        <select id="cb_sexo_destinatario" class="form-control" formControlName="idDestinatario">
+          <option value="null"> Seleccione
+          </option>
+          <option *ngFor="let destinatario of destinatarios" [value]="destinatario.id">
+            {{destinatario.descripcion | uppercase}}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Convenio Pagos  -->
+      <div class="form-group col-xl-4 col-lg-4 col-md-4">
+        <label for="cb_convenioPago" class="col-form-label">Convenio pagos</label>
+        <div>
+          <select id="cb_convenioPago" class="form-control" formControlName="idConvenioPago">
+            <option value="null">Seleccione</option>
+            <option *ngFor="let convenio of conveniosPago" [ngValue]="convenio.id">{{convenio.nombre}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="spacer5"></div>
+
+      <!-- Convenio Recupero  -->
+      <div class="form-group col-xl-4 col-lg-4 col-md-4">
+        <label for="cb_convenioRecupero" class="col-form-label">Convenio recupero</label>
+        <div>
+          <select id="cb_convenioRecupero" class="form-control" formControlName="idConvenioRecupero">
+            <option value="null">Seleccione</option>
+            <option *ngFor="let convenio of conveniosRecupero" [ngValue]="convenio.id">{{convenio.nombre}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group only-form-check col-xl-2 col-lg-2 col-md-2 card-margin-top">
+        <label class="center-block custom-control check-bge-control">
+          <input type="checkbox" class="check-bge" formControlName="conOng">
+          <span class="check-marcado"></span>
+          <span class="custom-control-description">Trabaja con ONG</span>
+        </label>
+        <label class="center-block custom-control check-bge-control">
+          <input type="checkbox" class="check-bge" formControlName="conPrograma">
+          <span class="check-marcado"></span>
+          <span class="custom-control-description">Trabaja con programas</span>
+        </label>
+      </div>
+
+      <div class="form-group only-form-check col-xl-2 col-lg-2 col-md-2 card-margin-top">
+        <label class="custom-control check-bge-control center-block">
+          <input type="checkbox" class="check-bge" formControlName="conDepartamento">
+          <span class="check-marcado"></span>
+          <span class="custom-control-description">Trabaja con localidades</span>
+        </label>
+        <label class="center-block custom-control check-bge-control">
+          <input type="checkbox" class="check-bge" formControlName="dadosBaja"
+                 (click)="clickDadosDeBaja($event.target.checked)">
+          <span class="check-marcado"></span>
+          <span class="custom-control-description">
+            Incluir dadas de baja
+          </span>
+        </label>
+      </div>
+    </div>
+
+  </div>
+  <div class="row row-section">
+    <div class="col">
+      <button class="btn btn-primary pull-right" (click)="consultarLineasPrestamo()" [disabled]="validarConsulta()">
+        <i class="material-icons icono-accion alinear-texto-con-icono">search</i>
+        <span class="alinear-texto-con-icono">CONSULTAR</span></button>
+    </div>
+  </div>
+
+  <h3>Resultados</h3>
+  <div [hidden]="(lineasResultado.length)" class="card-pane">
+    No hay resultados para mostrar.
+  </div>
+
+  <div [hidden]="!lineasResultado.length" class="card-pane">
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th class="align-middle">NOMBRE</th>
+        <th class="align-middle">DESCRIPCIÓN</th>
+        <th class="align-middle">MOTIVO DESTINO</th>
+        <th class="align-middle" style="width: 9%">TRABAJA CON ONG?</th>
+        <th class="align-middle">TRABAJA CON PROGRAMAS?</th>
+        <th class="align-middle">TRABAJA CON LOCALIDADES?</th>
+        <th class="align-middle" style="width: 11%">REQUIERE UN CURSO?</th>
+        <th class="align-middle" *ngIf="lineaConsulta.dadosBaja">FECHA BAJA</th>
+        <th class="align-middle" style="width: 12%">ACCIONES</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr id="fila-seleccionada" *ngFor="let lineaPrestamo of lineasResultado"
+          (click)="verDetalle(lineaPrestamo.id, null, lineaPrestamo)"
+          [ngClass]="{'fila-resaltada' : lineaPrestamo.id === filaSeleccionada}">
+        <td class="align-middle">{{lineaPrestamo.nombre}}</td>
+        <td class="align-middle">{{lineaPrestamo.descripcion}}</td>
+        <td class="align-middle" style="width: 15%">{{lineaPrestamo.nombreMotivoDestino}}</td>
+        <td class="align-middle">{{lineaPrestamo.conOng ? 'SI' : 'NO'}}</td>
+        <td class="align-middle">{{lineaPrestamo.conPrograma ? 'SI' : 'NO'}}</td>
+        <td class="align-middle">{{lineaPrestamo.trabajaConLocalidad ? 'SI' : 'NO'}}</td>
+        <td class="align-middle">{{lineaPrestamo.conCurso ? 'SI' : 'NO'}}</td>
+        <td class="align-middle" *ngIf="lineaConsulta.dadosBaja">{{lineaPrestamo.idMotivoBaja != 0 ?
+          (lineaPrestamo.fechaBaja | date:'dd/MM/yyyy') : ''}}
+        </td>
+        <td class="align-middle" style="width: 12%">
+
+          <button type="button" class="btn btn-link" ngbTooltip="Ver requisitos" style="padding: 0px !important;"
+                  (click)="mostrarRequisitos(lineaPrestamo.id,lineaPrestamo.nombre)"
+                  *ngIf="lineaPrestamo.idMotivoBaja == 0">
+            <i class="material-icons icono-accion">format_list_bulleted</i>
+          </button>
+          <button type="button" class="btn btn-link boton-grilla" ngbTooltip="Ver" style="padding: 0px !important;"
+                  [routerLink]="['/consulta-linea/', lineaPrestamo.id]">
+            <i class="material-icons icono-accion">zoom_in</i>
+          </button>
+          <button type="button" class="btn btn-link" ngbTooltip="Editar" style="padding: 0 !important;"
+                  (click)="asignarLocalidades(lineaPrestamo.id, lineaPrestamo.trabajaConLocalidad)"
+                  [routerLink]="['/edicion-linea/', lineaPrestamo.id]" *ngIf="lineaPrestamo.idMotivoBaja == 0">
+            <i class="material-icons icono-accion">mode_edit</i>
+          </button>
+          <button type="button" class="btn btn-link" ngbTooltip="Eliminar" style="padding: 0 !important;"
+                  [routerLink]="['/eliminacion-linea', lineaPrestamo.id]" *ngIf="lineaPrestamo.idMotivoBaja == 0">
+            <i class="material-icons icono-accion">delete</i>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <paginacion [pagina]="paginaLinea | async" (paginaModificada)="consultarLineasPrestamo($event)">
+    </paginacion>
+  </div>
+
+  <div *ngIf="mostrarDetalles">
+    <div class="row">
+      <div class="col">
+        <h3>DETALLES DE LA LÍNEA SELECCIONADA</h3>
+      </div>
+      <div class="form-group col-auto pull-right" *ngIf="hayDetallesDadosBaja()">
+        <label class="custom-control check-bge-control">
+          <input type="checkbox" class="check-bge" formControlName="detallesDadosBaja">
+          <span class="check-marcado"></span>
+          <span class="custom-control-description">Incluir dados de baja</span>
+        </label>
+      </div>
+      <div class="col-md-2 col-lg-2 col-xl-2">
+        <button class="btn btn-warning pull-right" [disabled]="form.value.idMotivoBaja != 0"
+                (click)="nuevoDetalle()">AGREGAR DETALLE
+        </button>
+      </div>
+    </div>
+    <div class="card-pane">
+      <div *ngIf="!filtrarDetallesDadosDeBaja(detallesResultado).length" class="card-pane" style="margin-top: 20px">
+        No hay resultados para mostrar.
+      </div>
+      <table *ngIf="filtrarDetallesDadosDeBaja(detallesResultado).length" class="table table-bordered"
+             style="margin-top: 15px">
+        <thead>
+        <tr>
+          <th class="align-middle">INTEGRANTES SOCIOS</th>
+          <th class="align-middle">TIENE APODERADO</th>
+          <th class="align-middle">MONTO TOPE SOCIO INTEGRANTE</th>
+          <th class="align-middle">MONTO PRESTABLE</th>
+          <th class="align-middle">CANT. MIN-MAX INTEGRANTES</th>
+          <th class="align-middle">TIPO FINANCIAMIENTO</th>
+          <th class="align-middle">PLAZO DE DEVOLUCIÓN MÁXIMO (CUOTAS)</th>
+          <th class="align-middle">VALOR ESTIMADO CUOTA</th>
+          <th class="align-middle">GARANTÍA</th>
+          <th class="align-middle" *ngIf="lineaConsulta.detallesDadosBaja">FECHA BAJA</th>
+          <th class="align-middle">ACCIONES</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let detalle of filtrarDetallesDadosDeBaja(detallesResultado)">
+          <td class="align-middle">{{detalle.nombreSocioIntegrante}}</td>
+          <td class="align-middle">{{detalle.apoderado ? 'SI' : 'NO' }}</td>
+          <td class="align-middle">{{detalle.montoTope != 0 ? detalle.montoTope : 'N/A'}}</td>
+          <td class="align-middle">{{detalle.montoPrestable}}</td>
+          <td class="align-middle">{{detalle.cantidadMinimaIntegrantes}} - {{detalle.cantidadMaximaIntegrantes}}</td>
+          <td class="align-middle">{{detalle.nombreTipoFinanciamiento}}</td>
+          <td class="align-middle">{{detalle.plazoDevolucion}}</td>
+          <td class="align-middle">{{detalle.valorCuotaSolidaria}}</td>
+          <td class="align-middle">{{detalle.nombreTipoGarantia}}</td>
+          <td class="align-middle" *ngIf="lineaConsulta.detallesDadosBaja">{{detalle.fechaBaja ?
+            (detalle.fechaBaja | date:'dd/MM/yyyy') : ''}}
+          </td>
+          <td class="align-middle">
+            <button type="button" class="btn btn-link"
+                    [routerLink]="['/consulta-detalle-linea/' + detalle.id]"
+                    ngbTooltip="Ver" style="padding: 0 !important;">
+              <i class="material-icons">zoom_in</i>
+            </button>
+            <button type="button" class="btn btn-link" ngbTooltip="Editar" style="padding: 0 !important;"
+                    [routerLink]="['/edicion-detalle-linea/' + detalle.id]" *ngIf="!detalle.fechaBaja">
+              <i class="material-icons">mode_edit</i>
+            </button>
+            <button type="button" class="btn btn-link" ngbTooltip="Eliminar" style="padding: 0 !important;"
+                    [routerLink]="['/eliminacion-detalle-linea', detalle.id]" *ngIf="!detalle.fechaBaja">
+              <i class="material-icons">delete</i>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</form>

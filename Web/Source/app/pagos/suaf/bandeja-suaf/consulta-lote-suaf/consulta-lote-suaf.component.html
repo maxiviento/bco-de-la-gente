@@ -1,0 +1,39 @@
+<form [formGroup]="form" novalidate>
+  <div class="card-pane">
+    <div class="row">
+      <div class="form-group col-md-3 col-lg-3 col-xl-3" [errorFeedback]="form.get('fechaDesde')">
+        <label for="txt_fecha_desde" class="col-form-label">Fecha desde</label>
+        <div class="input-group">
+          <input id="txt_fecha_desde" class="form-control" ngbDatepicker #fecha_desde="ngbDatepicker"
+            (click)="fecha_desde.toggle()" placeholder="dd/mm/aaaa" formControlName="fechaDesde" />
+        </div>
+        <control-messages [control]="form.get('fechaDesde')"></control-messages>
+      </div>
+
+      <div class="form-group col-md-3 col-lg-3 col-xl-3" [errorFeedback]="form.get('fechaHasta')">
+        <label for="txt_fecha_hasta" class="col-form-label">Fecha hasta</label>
+        <div class="input-group">
+          <input id="txt_fecha_hasta" class="form-control" ngbDatepicker #fecha_hasta="ngbDatepicker"
+            (click)="fecha_hasta.toggle()" placeholder="dd/mm/aaaa" formControlName="fechaHasta" />
+        </div>
+        <control-messages [control]="form.get('fechaHasta')"></control-messages>
+      </div>
+
+      <div class="form-group col-md-4 col-lg-4 col-xl-4">
+        <label for="cb_lote" class="col-form-label">Lote:</label>
+        <ng-select id="cb_lote" [dataSource]="{list: CBLote, name:'nombre', id:'id'}" formControlName="idLote"
+          [selected]="form.get('idLote').value" [clientMode]="true">
+        </ng-select>
+      </div>
+
+    </div>
+  </div>
+  <div class="row row-section">
+    <div class="form-group col">
+      <button class="btn btn-primary pull-right" (click)="consultar()">
+        <i class="material-icons icono-accion alinear-texto-con-icono">search</i>
+        <span class="alinear-texto-con-icono">CONSULTAR</span>
+      </button>
+    </div>
+  </div>
+</form>

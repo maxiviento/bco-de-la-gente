@@ -1,0 +1,15 @@
+<div class="row bordered align-items-center">
+  <div class="col">
+    <h1 class="display-4">BANDEJA DE CHEQUES</h1>
+  </div>
+</div>
+
+<bg-consulta-bandeja-cheques
+  (emitirConsulta)="almacenarConsulta($event)"
+  (totalizador)="calcularTotalizador($event)">
+</bg-consulta-bandeja-cheques>
+
+<bg-grilla-bandeja-cheques
+  [consulta]="consulta"
+  [totalizador]="totalizador">
+</bg-grilla-bandeja-cheques>

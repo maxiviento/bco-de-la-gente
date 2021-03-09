@@ -1,0 +1,30 @@
+<form [formGroup]="form">
+  <div class="card">
+    <div class="card-title"><span>Domicilio</span></div>
+    <div class="card-body">
+      <div class="row row-section">
+        <div class="col col-6">
+          <label for="cbDepartamentos" class="form-control-label"
+                 style="width: -webkit-fill-available;">Departamentos</label>
+          <ss-multiselect-dropdown [options]="departamentos"
+                                   [settings]="settings"
+                                   [texts]="departamentosTexts"
+                                   formControlName="departamentoId"
+                                   id="cbDepartamentos">
+          </ss-multiselect-dropdown>
+        </div>
+        <div class="col col-6">
+          <label for="cbLocalidades" class="form-control-label"
+                 style="width: -webkit-fill-available;">Localidades</label>
+          <ss-multiselect-dropdown [options]="localidades"
+                                   [settings]="settings"
+                                   [texts]="localidadesTexts"
+                                   formControlName="localidadId"
+                                   id="cbLocalidades">
+          </ss-multiselect-dropdown>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</form>

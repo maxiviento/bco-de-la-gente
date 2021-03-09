@@ -1,0 +1,129 @@
+<form [formGroup]="form" (ngSubmit)="aceptar()">
+  <div class="card-pane">
+    <div class="row">
+      <div class="form-group col-md-5 col-lg-5 col-xl-5" [errorFeedback]="form.get('nombre')">
+        <label for="txt_nombre_item" class="form-control-label">
+          Nombre <span class="obligatorio">(*)</span>:
+        </label>
+        <input type="text" id="txt_nombre_item" class="form-control" formControlName="nombre">
+        <control-messages [control]="form.get('nombre')"></control-messages>
+      </div>
+      <div class="form-group col-md-12 col-lg-12 col-xl-8" [errorFeedback]="form.get('descripcion')">
+        <label for="txt_descripcion_item" class="form-control-label">Descripción <span class="obligatorio">(*)</span>:
+        </label>
+        <textarea rows="3" id="txt_descripcion_item" class="form-control" formControlName="descripcion">
+       </textarea>
+        <control-messages [control]="form.get('descripcion')"></control-messages>
+      </div>
+    </div>
+
+    <div class="col-md-12 row form-group" formArrayName="tiposItem">
+      <label class="form-control-label">
+        Requisito <span class="obligatorio">(*)</span>:
+      </label>
+      <div *ngFor="let tipoItem of tiposItemFormArray.controls; let indice = index" class=" col-md-3 col-lg-2 col-xl-2">
+
+        <div class="form-check" [formGroup]="tipoItem">
+          <label [attr.for]="'chk_tipos_item' + indice" class="custom-control check-bge-control">
+            <input [attr.id]="'chk_tipos_item' + indice" type="checkbox" class="check-bge"
+              formControlName="seleccionado" />
+            <span class="check-marcado"></span>
+            <span class="custom-control-description">{{tipoItem.get('nombre').value}}</span>
+
+          </label>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="form.get('mostrarConfig').value">
+      <div class="row align-items-center">
+        <div class="form-check col-lg-2 col-xl-2">
+          <label [attr.for]="'ck_es_item_padre'" class="custom-control check-bge-control">
+            <input [attr.id]="'ck_es_item_padre'" type="checkbox" class="check-bge" formControlName="esItemPadre"
+              (change)="quitarPadreLista()" [attr.disabled]="poseeHijos ? '' : null" />
+            <span class="check-marcado"></span>
+            <span class="custom-control-description">¿Es sub-item?</span>
+          </label>
+          <label class="label-aclaracion text-muted" *ngIf="poseeHijos">Debe reasignar los sub-items del item
+            seleccionado antes de poder usar esta opción.</label>
+        </div>
+
+        <div class="form-group col-lg-7 col-xl-7" *ngIf="form.get('esItemPadre').value">
+          <label for="tx_item_padre">Ingresar de qué item depende</label>
+          <select id="tx_item_padre" class="form-control" formControlName="idItemPadre">
+            <option value="null" disabled>Seleccione</option>
+            <option *ngFor="let item of items" [ngValue]="item.id">
+              {{item.nombre | uppercase}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row align-items-center">
+        <div class="form-check col-lg-2 col-xl-2">
+          <label [attr.for]="'ck_es_item_link'" class="custom-control check-bge-control">
+            <input [attr.id]="'ck_es_item_link'" type="checkbox" class="check-bge" formControlName="esItemLink" />
+            <span class="check-marcado"></span>
+            <span class="custom-control-description">¿Es un link de opción?</span>
+          </label>
+        </div>
+        <div class="form-group col-lg-7 col-xl-7" *ngIf="form.get('esItemLink').value">
+          <label for="tx_item_link">Ingresar URL</label>
+          <select id="tx_item_link" class="form-control" formControlName="idRecurso">
+            <option value="null" disabled>Seleccione</option>
+            <option *ngFor="let recurso of recursos" [ngValue]="recurso.id">
+              {{recurso.url}}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-pane">
+    <fieldset>
+      <legend>Gestión de archivos</legend>
+      <div class="row row-section">
+        <div class=" col-md-3 col-lg-3 col-xl-3">
+          <div class="form-check">
+            <label class="custom-control check-bge-control" for="chk_genera_archivo">
+              <input id="chk_genera_archivo" type="checkbox" class="check-bge" formControlName="generaArchivo" />
+              <span class="check-marcado"></span>
+              <span class="custom-control-description">GENERA ARCHIVO SISTEMA</span>
+            </label>
+          </div>
+        </div>
+
+        <div class=" col-md-3 col-lg-3 col-xl-3">
+          <div class="form-check">
+            <label class="custom-control check-bge-control" for="chk_sube_archivo">
+              <input id="chk_sube_archivo" type="checkbox" class="check-bge" formControlName="subeArchivo" />
+              <span class="check-marcado"></span>
+              <span class="custom-control-description">SUBE ARCHIVO</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div [hidden]="!form.get('subeArchivo').value" class="form-group col-xl-6 col-lg-6 col-md-6">
+        <label for="txt_tipo_documentacion">Tipo Documentación CDD</label>
+        <select id="txt_tipo_documentacion" class="form-control" formControlName="idTipoDocumentacionCdd">
+          <option value="null"> Seleccione
+          </option>
+          <option *ngFor="let tipoDocumentacion of tiposDocumentacion" [value]="tipoDocumentacion.id">
+            {{tipoDocumentacion.descripcion | uppercase}}
+          </option>
+        </select>
+      </div>
+    </fieldset>
+  </div>
+
+  <div id="row_acciones" class="row">
+    <div class="col">
+      <div class="pull-right">
+        <a class="btn btn-secondary separador-botones" [routerLink]="['/items']">CANCELAR</a>
+        <button class="btn btn-primary"
+          [disabled]="!form.valid || !prepararTiposItem().length || !esValidoSubeArchivo()" type="submit">ACEPTAR
+        </button>
+      </div>
+    </div>
+  </div>
+</form>

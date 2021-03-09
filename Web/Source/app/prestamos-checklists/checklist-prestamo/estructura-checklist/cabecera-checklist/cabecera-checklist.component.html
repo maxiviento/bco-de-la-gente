@@ -1,0 +1,117 @@
+<div class="row align-items-center">
+  <div class="col ml-auto">
+    <h1 id="checklist" class="display-4">{{titulo}}</h1>
+    <h2 class="h-linea" [style.background-color]="prestamo?.colorLinea">{{prestamo?.nombreLinea}}
+      <small>{{prestamo?.descripcionLinea}}</small>
+    </h2>
+    <div *ngIf="prestamo && prestamo.motivosRechazo && prestamo.motivosRechazo.trim().length > 0">
+      <h4 class="h-motivo-rechazo">Préstamo rechazado por:
+        <small>{{prestamo.motivosRechazo}}</small>
+      </h4>
+    </div>
+  </div>
+</div>
+
+<div [formGroup]="form">
+  <div class="card-pane" *ngIf="integrantesPrestamo.length">
+    <bg-validacion-edades [personas]="integrantesFueraDeEdadParam">
+    </bg-validacion-edades>
+    <div class ="row">
+      <div class="col-md-6">
+        <div class="text-left"><strong>INTEGRANTE/S MICRO PRÉSTAMO</strong></div>
+      </div>
+      <div class="col-md-6 pull-right">
+        <div class="row pull-right">
+          <div id="circle1" class="circle"
+               [ngClass]="{
+                'rojo': prestamo.idEstado == 3 || prestamo.idEstado == 6,
+                'gris': prestamo.idEstado != 3 && prestamo.idEstado != 6}">
+          </div>
+          <div id="circle2" class="circle"
+               [ngClass]="{
+                'gris': prestamo.idEstado == 3 || prestamo.idEstado == 6 || prestamo.idEstado == 7,
+                'amarillo': prestamo.idEstado != 7 && prestamo.idEstado != 6 && prestamo.idEstado != 3}">
+          </div>
+          <div id="circle3" class="circle"
+               [ngClass]="{
+                'verde': prestamo.idEstado == 7,
+                'gris': prestamo.idEstado != 7}">
+          </div>
+        </div>
+      </div>
+    </div>
+    <table class="" id="tabla-integrantes">
+      <tr>
+        <th class="text-left row-title-table"></th>
+        <th class="text-left row-title-table">Apellido y Nombre</th>
+        <th class="text-center row-title-table">Edad</th>
+        <th class="text-center row-title-table">CUIL/DNI</th>
+        <th class="text-center row-title-table">Estado Formulario</th>
+        <th class="text-center row-title-table">N° Formulario</th>
+        <th class="text-center row-title-table">Departamento</th>
+        <th class="text-center row-title-table">Localidad</th>
+        <th class="text-center row-title-table">N° Devengado</th>
+      </tr>
+      <tr *ngFor="let integrante of integrantesPrestamo; let i = index">
+        <td class="text-left row-table"><i *ngIf="integrante.motivoRechazo" class="material-icons icono-accion-checklist">do_not_disturb_alt</i></td>
+        <td class="text-left row-table"><strong><span ngbTooltip="{{integrante.tipoIntegrante == 2 ? 'Apoderado' : null}}"
+          [ngClass]="integrante.tipoIntegrante == 2 ? 'tab-apoderado' : ''">
+          <ng-template #popContent><div class="row" *ngFor="let motivo of obtenerMotivosRechazo(integrante)">{{'- ' + motivo}}</div></ng-template>
+          <a [ngbPopover]="popContent" [triggers]="integrante.motivoRechazo ? 'mouseenter:mouseleave' : 'none'" popoverTitle="MOTIVOS DE RECHAZO - CAJA: {{integrante.numeroCaja}}">{{integrante.apellidoNombre}}</a></span>
+          </strong>
+        </td>
+        <td class="text-center row-table"><strong>{{integrante.fechaNacimiento ?
+          calcularEdad(integrante.fechaNacimiento) : '-'}}</strong></td>
+        <td class="text-center row-table"><strong>{{integrante.cuil ? integrante.cuil : 'S/A'}}</strong></td>
+        <td class="text-center row-table"><strong>{{integrante.estadoFormulario}}</strong></td>
+        <td class="text-center row-table"><strong>{{integrante.nroFormulario ? integrante.nroFormulario : 'S/A'}}</strong>
+        <td class="text-center row-table"><strong>{{integrante.departamento ? integrante.departamento : 'S/A'}}</strong>
+        <td class="text-center row-table"><strong>{{integrante.localidad ? integrante.localidad : 'S/A'}}</strong>
+        <td class="text-center row-table"><strong>{{integrante.numDevengado ? integrante.numDevengado : 'S/A'}}</strong>
+        <td *ngIf="i === 0" class="w-25" [attr.rowspan]="integrantesPrestamo?.length + 1">
+          <div class="row row-formulario"><strong><b>Origen solicitud Micro-Préstamo:</b>
+            {{integrante.origenFormulario}}</strong></div>
+          <div class="row row-formulario"><strong><b>Fecha creación Préstamo:</b>
+            {{ prestamo.fechaAlta | date: 'dd/MM/yyyy'}}</strong></div>
+          <div class="row row-formulario"><strong><b>N°  Préstamo:</b> {{prestamo.numeroPrestamo}}</strong></div>
+          <div class="form-inline row row-formulario " [errorFeedback]="form.get('totalFolios')">
+            <label class="justify-content-start"><b>Cant. Folios:</b>
+              <input type="text" id="total-folios" class="form-control col-lg-2 col-xl-2" formControlName="totalFolios"
+                     [attr.disabled]="!editable ? true: null" (blur)="actualizarFolios()">
+            </label>
+            <control-messages [control]="form.get('totalFolios')"></control-messages>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div *ngIf="tipoLinea == 1" class="card-pane">
+    <label class="form-control-label">GARANTE/S MICRO PRÉSTAMO
+    </label>
+    <table class="" id="tabla-garantes">
+      <tr>
+        <th class="text-left row-title-table">Apellido y Nombre</th>
+        <th class="text-center row-title-table">Edad</th>
+        <th class="text-center row-title-table">CUIL/DNI</th>
+        <th class="text-center row-title-table">N° Formulario</th>
+        <th class="text-center row-title-table">Departamento</th>
+        <th class="text-center row-title-table">Localidad</th>
+      </tr>
+      <tr *ngFor="let garante of garantesPrestamo; let i = index">
+        <td class="text-left row-table"><strong>{{garante.apellido + ',' + garante.nombre}}</strong>
+        <td class="text-center row-table"><strong>{{garante.fechaNacimiento ?
+          calcularEdad(garante.fechaNacimiento) : '-'}}</strong></td>
+        <td class="text-center row-table"><strong>{{garante.nroDocumento ? garante.nroDocumento : 'S/A'}}</strong></td>
+        <td class="text-center row-table"><strong>{{garante.nroFormulario ? garante.nroFormulario : 'S/A'}}</strong>
+        <td class="text-center row-table"><strong>{{garante.departamento ? garante.departamento : 'S/A'}}</strong>
+        <td class="text-center row-table"><strong>{{garante.localidad ? garante.localidad : 'S/A'}}</strong>
+      </tr>
+    </table>
+  </div>
+  <div class="card-pane">
+    <label for="tx_observaciones" class="form-control-label">Observaciones
+    </label>
+    <textarea id="tx_observaciones" formControlName="observaciones" maxlength="500"
+              [attr.disabled]="!editable ? true: null" (blur)="actualizarObservaciones()"> </textarea>
+  </div>
+</div>

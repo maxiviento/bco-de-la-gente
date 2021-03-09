@@ -1,0 +1,25 @@
+.paginacion {
+  padding: 15px;
+}
+.btn-siguiente{
+  border-radius: 0 200px 200px 0;
+  -moz-border-radius: 0 200px 200px 0;
+  -webkit-border-radius: 0 200px 200px 0;
+  border: 0;
+}
+.btn-anterior{
+  border-radius: 200px 0 0 200px;
+  -moz-border-radius: 200px 0 0 200px;
+  -webkit-border-radius: 200px 0 0 200px;
+  border: 0;
+}
+.btn-anterior:disabled, .btn-siguiente:disabled{
+  background-color: rgba(128, 0, 49, 0.37) !important;
+  cursor: not-allowed;
+}
+
+/*
+button {
+  border-radius: 2px;
+  font-size: 1.1em;
+}*/

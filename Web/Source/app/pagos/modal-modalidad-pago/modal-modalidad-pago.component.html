@@ -1,0 +1,30 @@
+<div class="modal-header">
+  <h4 class="modal-title"><strong>Información complementaria</strong></h4>
+  <button type="button" class="close" aria-label="Close" (click)="cancelar()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <bg-modalidad-pago [idLote]="this.idLote" [esModal]="true">
+  </bg-modalidad-pago>
+  <div class="row">
+    <div class="col-12">
+      <small *ngIf="!this.modalidad.loteValido"><i>*El lote no es valido para actualizar porque algun formulario no esta
+          en estado correcto</i></small>
+    </div>
+  </div>
+</div>
+
+<div class="row row-section" id="botones">
+  <div class="col">
+    <div class="pull-right">
+      <button type="button" class="btn btn-secondary separador-botones" (click)="cancelar()">SALIR
+      </button>
+      <button class="btn btn-primary"
+        [disabled]="(modalidad && modalidad.formModalidad && modalidad.formModalidad.invalid) || !this.modalidad.loteValido"
+        (click)="actualizarModalidad()">GUARDAR
+      </button>
+    </div>
+  </div>
+</div>

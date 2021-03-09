@@ -1,0 +1,47 @@
+<div class="row bordered align-items-center">
+  <div class="col">
+    <h1 class="display-4">{{mostrarSucursales ? 'ACTUALIZAR SUCURSAL BANCARIA' : undefined}}</h1>
+    <h1 class="display-4">{{mostrarDocumentacion ? 'IMPRIMIR DOCUMENTACIÓN DE PAGOS' : undefined}}</h1>
+  </div>
+</div>
+
+<bg-busqueda-formularios
+  *ngIf="mostrarFiltros"
+  [localidadObligatorio]="mostrarSucursales"
+  [mostrarComboLotes]="mostrarComboLotes"
+  [esDocumentacion]="esDocumentacion"
+  (filtrosBusqueda)="buscarFormularios($event)"
+  (totalizador)=calcularTotalizador($event)>
+</bg-busqueda-formularios>
+
+<bg-grilla-formularios
+  [filtros]="filtrosBusqueda"
+  [limpiarIds]="limpiarIdsSeleccionados"
+  [esDocumentacion]="esDocumentacion"
+  [totalizador]="totalizador"
+  (formulariosSeleccionados)="almacenarFormularios($event)"
+  (formulariosSeleccionadosNoApoderado)="seleccionConApoderado($event)">
+</bg-grilla-formularios>
+
+<bg-actualizar-sucursal
+  *ngIf="mostrarSucursales && idsFormularios.length"
+  [idsFormularios]="idsFormularios"
+  [esPrestamo]="esPrestamo()"
+  (limpiarIdsSeleccionados)="resetearDatos($event)"
+  (clickVolver)="volver()">
+</bg-actualizar-sucursal>
+
+<bg-documentacion-pagos
+  *ngIf="mostrarDocumentacion && idsFormularios.length"
+  [idLote]="idLote"
+  [idFormularioLinea]="idFormularioLinea"
+  [idsFormularios]="idsFormularios"
+  [esConApoderado]="esConApoderado"
+  (clickVolver)="volver()">
+</bg-documentacion-pagos>
+
+<div class="row" style="margin-top: 15px;">
+  <div class="col">
+    <button type="button" *ngIf="(origenPeticion == 1 || origenPeticion == 2) && !idsFormularios.length" class="btn btn-secondary pull-right" (click)="volver()">VOLVER</button>
+  </div>
+</div>

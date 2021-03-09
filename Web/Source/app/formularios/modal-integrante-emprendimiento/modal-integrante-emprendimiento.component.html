@@ -1,0 +1,82 @@
+<div class="modal-header">
+  <h4 *ngIf="!edicion" class="modal-title">Nuevo integrante del emprendimiento</h4>
+  <h4 *ngIf="edicion" class="modal-title">Edición de integrante del emprendimiento</h4>
+  <button type="button" class="close" (click)="cerrar()">&times;</button>
+</div>
+
+<div class="modal-body">
+  <bg-busqueda-persona [class]="'card-persona'" [sexoId]="miembro?.persona?.sexoId"
+    [codigoPais]="miembro?.persona?.codigoPais" [nroDocumento]="miembro?.persona?.nroDocumento"
+    (personaConsultada)="personaConsultada($event)" [modal]="true" [editable]="!personaSeleccionada()">
+  </bg-busqueda-persona>
+
+  <form [formGroup]="form" class="card-persona" *ngIf="personaSeleccionada()">
+    <div class="card-pane">
+      <div class="row row-section">
+        <div class="col-xl-6 col-lg-6" [errorFeedback]="form.get('nombre')">
+          <label for="txt_nombre">Nombre</label>
+          <input type="text" id="txt_nombre" disabled formControlName="nombre" class="form-control" />
+          <control-messages [control]="form.get('nombre')"></control-messages>
+        </div>
+        <div class="col-xl-6 col-lg-6" [errorFeedback]="form.get('apellido')">
+          <label for="txt_apellido">Apellido</label>
+          <input type="text" id="txt_apellido" disabled formControlName="apellido" class="form-control" />
+          <control-messages [control]="form.get('apellido')"></control-messages>
+        </div>
+      </div>
+      <div class="row row-section">
+        <div class="col-xl-6 col-lg-6" [errorFeedback]="form.get('vinculo')">
+          <label for="cb_vinculo">Vínculo<span *ngIf="!miembro?.esSolicitante" class="obligatorio"> (*)</span></label>
+          <select id="cb_vinculo" class="form-control" formControlName="vinculo"
+            [attr.disabled]="miembro?.esSolicitante">
+            <option value="null">Seleccione</option>
+            <option *ngFor="let vinculo of vinculos" [ngValue]="vinculo.id">{{vinculo.nombre | uppercase}}</option>
+          </select>
+          <control-messages [control]="form.get('vinculo')"></control-messages>
+        </div>
+
+        <div class="col-xl-3 col-lg-3" [errorFeedback]="form.get('edad')">
+          <label for="txt_edad">Edad</label>
+          <input type="text" id="txt_edad" disabled formControlName="edad" class="form-control" />
+          <control-messages [control]="form.get('edad')"></control-messages>
+        </div>
+        <div class="col-xl-3 col-lg-3" [errorFeedback]="form.get('horario')">
+          <label for="txt_horario">Horario</label>
+          <input type="text" id="txt_horario" formControlName="horario" class="form-control" />
+          <control-messages [control]="form.get('horario')"></control-messages>
+        </div>
+
+      </div>
+      <div class="row row-section">
+        <div class="col" [errorFeedback]="form.get('tarea')">
+          <label for="txt_tarea">Tarea<span class="obligatorio"> (*)</span>:</label>
+          <input type="text" id="txt_tarea" formControlName="tarea" class="form-control" />
+          <control-messages [control]="form.get('tarea')"></control-messages>
+        </div>
+      </div>
+
+      <div class="row row-section">
+        <div class="col-xl-6 col-lg-6" [errorFeedback]="form.get('sueldo')">
+          <label for="txt_sueldo">Sueldo o remuneración<span class="obligatorio"> (*)</span>:</label>
+          <input type="text" id="txt_sueldo" formControlName="sueldo" class="form-control" />
+          <control-messages [control]="form.get('sueldo')"></control-messages>
+        </div>
+        <div class="col-xl-6 col-lg-6">
+          <label class="custom-control check-bge-control form-check-label checkbox-modal form-check-input">
+            <input type="checkbox" class="check-bge" formControlName="antecedentesLaborales">
+            <span class="check-marcado"></span>
+            <span class="custom-control-description">Tiene antecedentes
+            laborales</span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="cerrar()">CANCELAR
+  </button>
+  <button type="button" class="btn btn-primary" [disabled]="form.invalid" (click)="aceptar()">ACEPTAR
+  </button>
+</div>

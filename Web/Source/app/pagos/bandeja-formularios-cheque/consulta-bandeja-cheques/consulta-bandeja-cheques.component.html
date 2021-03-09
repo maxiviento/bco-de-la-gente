@@ -1,0 +1,96 @@
+<form [formGroup]="form" novalidate>
+  <div class="card-pane">
+    <div class="row">
+      <div class="form-group col-md-3 col-lg-3 col-xl-3 alinear-espacio" [errorFeedback]="form.get('fechaDesde')">
+        <label for="txt_fecha_desde" class="col-form-label">Fecha desde</label>
+        <div class="input-group">
+          <input id="txt_fecha_desde" class="form-control" ngbDatepicker #fecha_desde="ngbDatepicker"
+                 (click)="fecha_desde.toggle()" placeholder="dd/mm/aaaa" formControlName="fechaDesde"/>
+        </div>
+        <control-messages [control]="form.get('fechaDesde')"></control-messages>
+      </div>
+      <div class="form-group col-md-3 col-lg-3 col-xl-3 alinear-espacio" [errorFeedback]="form.get('fechaHasta')">
+        <label for="txt_fecha_hasta" class="col-form-label">Fecha hasta</label>
+        <div class="input-group">
+          <input id="txt_fecha_hasta" class="form-control" ngbDatepicker #fecha_hasta="ngbDatepicker"
+                 (click)="fecha_hasta.toggle()" placeholder="dd/mm/aaaa" formControlName="fechaHasta"/>
+        </div>
+        <control-messages [control]="form.get('fechaHasta')"></control-messages>
+      </div>
+      <div class="form-group col-md-3 col-lg-3 col-xl-3 alinear-espacio">
+        <label for="cb_lineas" class="col-form-label">Linea</label>
+        <div>
+          <ng-select id="cb_lineas" [dataSource]="{list: cBLineas, name:'descripcion', id:'id'}"
+                     formControlName="linea" [selected]="form.get('linea').value" [clientMode]="true">
+          </ng-select>
+        </div>
+      </div>
+      <div class="form-group col-md-3 col-lg-3 col-xl-3 alinear-espacio">
+        <label for="cb_lotes" class="col-form-label">Lote</label>
+        <div>
+          <ng-select id="cb_lotes" [dataSource]="{list: cBLotes, name:'descripcion', id:'id'}"
+                     formControlName="lote" [selected]="form.get('lote').value" [clientMode]="true">
+          </ng-select>
+        </div>
+      </div>
+    </div>
+      <div class="row">
+        <div class="form-group col-md-3 col-lg-3 col-xl-3 alinear-espacio">
+          <label for="cb_departamento" class="col-form-label">Departamento</label>
+          <div>
+            <ng-select id="cb_departamento" [dataSource]="{list: cBDepartamentos, name:'valor', id:'clave'}"
+                       formControlName="departamento" [selected]="form.get('departamento').value" [clientMode]="true">
+            </ng-select>
+          </div>
+        </div>
+        <div class="form-group col-md-3 col-lg-3 col-xl-3 alinear-espacio">
+          <label for="cb_localidad" class="col-form-label">Localidad</label>
+          <div>
+            <ng-select id="cb_localidad" [dataSource]="{list: cBLocalidades, name:'valor', id:'clave'}"
+                       formControlName="localidad" [selected]="form.get('localidad').value" [clientMode]="true">
+            </ng-select>
+          </div>
+        </div>
+        <div class="form-group col-md-3 col-lg-3 col-xl-3 alinear-espacio" [errorFeedback]="form.get('nroPrestamo')">
+          <label for="txt_nro_prestamo" class="col-form-label">Nro préstamo</label>
+          <input type="text" class="form-control" id="txt_nro_prestamo" formControlName="nroPrestamo">
+          <control-messages [control]="form.get('nroPrestamo')"></control-messages>
+        </div>
+        <div class="form-group col-md-3 col-lg-3 col-xl-3 alinear-espacio">
+          <label for="cb_origen" class="col-form-label">Origen:</label>
+          <div>
+            <ng-select id="cb_origen" [dataSource]="{list: cBOrigen, name:'valor', id:'clave'}" formControlName="origen"
+                       [selected]="form.get('origen').value" [clientMode]="true">
+            </ng-select>
+          </div>
+        </div>
+      </div>
+    <div class ="row">
+        <div class="form-group col-md-3 col-lg-3 col-xl-3 alinear-espacio" [errorFeedback]="form.get('cuil')">
+          <label for="txt_cuil" class="col-form-label">Cuil</label>
+          <input type="text" class="form-control" id="txt_cuil" formControlName="cuil">
+          <control-messages [control]="form.get('cuil')"></control-messages>
+        </div>
+        <div class="form-group form-group col-md-3 col-lg-3 col-xl-3 alinear-espacio" [errorFeedback]="form.get('dni')">
+          <label class="col-form-label" for="txt_dni">Dni</label>
+          <input type="text" class="form-control" id="txt_dni" formControlName="dni">
+          <control-messages [control]="form.get('dni')"></control-messages>
+        </div>
+      <div class="form-group col-md-3 col-lg-3 col-xl-3 alinear-espacio" [errorFeedback]="form.get('nroFormulario')">
+        <label for="txt_nro_formuario" class="col-form-label">Nro formulario</label>
+        <input type="text" class="form-control" id="txt_nro_formuario" formControlName="nroFormulario">
+        <control-messages [control]="form.get('nroFormulario')"></control-messages>
+      </div>
+    </div>
+    </div>
+
+</form>
+
+<div class="row row-section">
+  <div class="form-group col">
+    <button class="btn btn-primary pull-right" [disabled]="validarConsulta()" (click)="consultar(true)">
+      <i class="material-icons icono-accion alinear-texto-con-icono">search</i>
+      <span class="alinear-texto-con-icono">CONSULTAR</span>
+    </button>
+  </div>
+</div>

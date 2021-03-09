@@ -1,0 +1,13 @@
+<form [formGroup]="form">
+
+    <div class="col-lg-12 col-xl-12 card-pane">
+      <h3 class="line-divider-bottom">{{'Requisitos ' + form.value.nombre + ' (*)'}}</h3>
+      <bg-requisito
+        *ngFor="let requisito of requisitos.controls; let primero=first; let ultimo=last"
+        [primero]="primero"
+        [ultimo]="ultimo"
+        [requisito]="requisito">
+      </bg-requisito>
+    </div>
+
+</form>

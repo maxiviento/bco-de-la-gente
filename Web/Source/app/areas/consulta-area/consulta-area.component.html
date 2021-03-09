@@ -1,0 +1,53 @@
+<div class="row bordered align-items-center">
+  <div class="col">
+    <h4 class="display-4">VER ÁREA</h4>
+  </div>
+</div>
+
+<div class="card-pane card-view-detail">
+  <div class="row row-section">
+    <div class="form-group col-lg-5 col-xl-5">
+      <label for="txt_nombre_area" class="form-control-label">Nombre</label>
+      <input type="text" id="txt_nombre_area" class="form-control" [value]="area.nombre" disabled>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-lg-12 col-xl-8">
+      <label for="txt_descripcion_area" class="form-control-label">Descripción</label>
+      <textarea id="txt_descripcion_area" class="form-control" type="text" rows="3"
+        disabled>{{area.descripcion}}</textarea>
+    </div>
+  </div>
+</div>
+<div class="card-pane" *ngIf="area.estaDadaDeBaja()">
+  <fieldset>
+    <legend>Datos de la baja</legend>
+    <div class="row row-section">
+      <div class="form-group col-lg-3 col-xl-3">
+        <label for="txt_fecha_baja" class="form-control-label">Fecha de baja</label>
+        <input type="text" id="txt_fecha_baja" class="form-control"
+          [value]="area.fechaUltimaModificacion | date:'dd/MM/yyyy'" disabled>
+
+      </div>
+      <div class="form-group col-lg-5 col-xl-5">
+        <label for="txt_usuario" class="form-control-label">Usuario de última modificación</label>
+        <input type="text" id="txt_usuario" class="form-control" [value]="area.cuilUsuarioUltimaModificacion" disabled>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-lg-12 col-xl-8">
+        <label for="txt_motivo_baja" class="form-control-label">Motivo de baja</label>
+        <textarea id="txt_motivo_baja" class="form-control" type="text" rows="3"
+          disabled>{{area.nombreMotivoBaja}}</textarea>
+      </div>
+    </div>
+  </fieldset>
+</div>
+<div id="row_acciones" class="row">
+  <div class="col">
+    <div class="pull-right">
+      <a [routerLink]="['/areas']" class="btn btn-secondary">VOLVER
+      </a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,192 @@
+<h3>Datos del lote</h3>
+<div class="card-pane">
+  <form [formGroup]="formLote" novalidate>
+    <div class="row centrar-elementos">
+
+      <div class="form-group col-4">
+        <label for="txt_numero" class="form-control-label">Número</label>
+        <input type="text" id="txt_numero" formControlName="numero" class="form-control" disabled="disabled">
+      </div>
+
+      <div class="form-group col-4">
+        <label for="txt_nombre" class="form-control-label">Nombre</label>
+        <input type="text" id="txt_nombre" formControlName="nombre" class="form-control" disabled="disabled">
+      </div>
+
+      <div class="form-group col-4">
+        <label for="txt_fecha_creacion" class="form-control-label">Fecha creación</label>
+        <input id="txt_fecha_creacion" formControlName="fechaCreacion" class="form-control" disabled="disabled">
+      </div>
+    </div>
+
+    <div class="row centrar-elementos">
+
+      <div class="form-group col-4">
+        <label for="txt_monto_prestamos" class="form-control-label">Monto préstamos</label>
+        <input type="text" id="txt_monto_prestamos"
+          value="{{formLote.get('montoPrestamos').value | currency:'ARS':true:'1.2-2'}}" class="form-control"
+          disabled="disabled">
+      </div>
+
+      <div class="form-group col-4">
+        <label for="txt_monto_comision" class="form-control-label">Monto comisión banco</label>
+        <input type="text" id="txt_monto_comision"
+          value="{{formLote.get('comision').value | currency:'ARS':true:'1.2-2'}}" class="form-control"
+          disabled="disabled">
+      </div>
+
+      <div class="form-group col-4">
+        <label for="txt_iva" class="form-control-label">Monto iva</label>
+        <input type="text" id="txt_iva" value="{{formLote.get('iva').value | currency:'ARS':true:'1.2-2'}}"
+          class="form-control" disabled="disabled">
+      </div>
+
+    </div>
+
+    <div class="row centrar-elementos">
+
+      <div class="form-group col-4">
+        <label for="txt_monto_lote" class="form-control-label">Monto lote</label>
+        <input type="text" id="txt_monto_lote" value="{{formLote.get('montoLote').value | currency:'ARS':true:'1.2-2'}}"
+          class="form-control" disabled="disabled">
+      </div>
+
+      <div class="form-group col-4">
+        <label for="txt_cant_prestamos" class="form-control-label">Cantidad de préstamos</label>
+        <input type="text" id="txt_cant_prestamos" formControlName="cantidadPretamos" class="form-control"
+          disabled="disabled">
+      </div>
+
+      <div class="form-group col-4">
+        <label for="txt_cant_beneficiarios" class="form-control-label">Cantidad de beneficiarios</label>
+        <input type="text" id="txt_cant_beneficiarios" formControlName="cantidadBeneficiarios" class="form-control"
+          disabled="disabled">
+      </div>
+
+    </div>
+    <div class="row ">
+      <div class="form-group col-4">
+        <label for="txt_nro_monto" class="form-control-label">Número monto</label>
+        <input type="text" id="txt_nro_monto" formControlName="nroMonto" class="form-control" disabled="disabled">
+      </div>
+    </div>
+  </form>
+</div>
+
+<h3>Historial lote</h3>
+
+<div class="card-pane">
+  <div *ngIf="!(bandejaHistorial.length)" class="card-pane">
+    No hay resultados para mostrar.
+  </div>
+
+  <div *ngIf="bandejaHistorial.length" class="card-pane">
+    <table class="table table-sm table-striped table-bordered">
+      <thead>
+        <th class="align-middle">FECHA MODIF LOTE</th>
+        <th class="align-middle">NOMBRE LOTE</th>
+        <th class="align-middle">CANT DE PRESTAMOS</th>
+        <th class="align-middle">CANT DE BENEFICIARIOS</th>
+        <th class="align-middle">MONTO TOTAL PRESTAMOS</th>
+        <th class="align-middle">MONTO COMISIÓN BANCO</th>
+        <th class="align-middle">MONTO IVA</th>
+        <th class="align-middle">MONTO TOTAL LOTE</th>
+        <th class="align-middle">USUARIO MODIF LOTE</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let resultado of historialFormArray.controls" [formGroup]="resultado">
+          <td class="align-middle">{{resultado.get('fechaModificacionLote').value | date:'dd/MM/yyyy'}}</td>
+          <td class="align-middle">{{resultado.get('nombre').value}}</td>
+          <td class="align-middle">{{resultado.get('cantPrestamos').value}}</td>
+          <td class="align-middle">{{resultado.get('cantBeneficiarios').value}}</td>
+          <td class="align-middle">
+            {{resultado.get('montoTotalPrestamo').value | moneda}}
+          </td>
+          <td class="align-middle">
+            {{resultado.get('montoComision').value | moneda}}
+          </td>
+          <td class="align-middle">
+            {{resultado.get('montoIva').value | moneda}}
+          </td>
+          <td class="align-middle">
+            {{resultado.get('montoTotalLote').value | moneda}}
+          </td>
+          <td class="align-middle">{{resultado.get('usuarioModificacion').value}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+<h3>Detalle de préstamos
+  <button *ngIf="esVer" class="signo-ayuda" ngbTooltip="Se muestran todos los préstamos del lote."> ?</button>
+  <button *ngIf="esDesagrupar" class="signo-ayuda"
+    ngbTooltip="Solo se muestran los préstamos con estado 'a pagar con lote' y 'a pagar con banco' para desagrupar.">
+    ?</button>
+  <button *ngIf="esLiberar" class="signo-ayuda"
+    ngbTooltip="Solo se puede liberar el lote cuando todos sus préstamos estan con estado 'a pagar con lote' o 'a pagar con banco'.">
+    ?</button>
+</h3>
+
+<div *ngIf="!(bandejaResultados.length)" class="card-pane">
+  No hay resultados para mostrar.
+</div>
+
+<div [hidden]="!bandejaResultados.length" class="card-pane">
+  <table *ngIf="bandejaResultados.length" class="table table-sm table-striped table-bordered">
+    <thead>
+      <tr>
+        <th class="align-middle">LINEA</th>
+        <th class="align-middle">DEPARTAMENTO</th>
+        <th class="align-middle">LOCALIDAD</th>
+        <th class="align-middle">APELLIDO Y NOMBRE</th>
+        <th class="align-middle">N° FORMULARIO</th>
+        <th class="align-middle">N° PRESTAMO</th>
+        <th class="align-middle">MONTO OTORGADO</th>
+        <th class="align-middle">FECHA PEDIDO FORMULARIO</th>
+        <th *ngIf="esDesagrupar" class="align-middle">SELECCIÓN</th>
+        <th class="align-middle">VER</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let resultado of prestamosFormArray.controls" [formGroup]="resultado">
+        <td class="align-middle">{{resultado.get('linea').value}}</td>
+        <td class="align-middle">{{resultado.get('departamento').value}}</td>
+        <td class="align-middle">{{resultado.get('localidad').value}}</td>
+        <td class="align-middle">{{resultado.get('apellidoYNombre').value}}</td>
+        <td class="align-middle">{{resultado.get('nroFormulario').value}}</td>
+        <td class="align-middle">{{resultado.get('nroPrestamo').value}}</td>
+        <td class="align-middle">
+          {{resultado.get('montoOtorgado').value | moneda}}
+        </td>
+        <td class="align-middle">{{resultado.get('fechaPedido').value | date:'dd/MM/yyyy'}}</td>
+        <td *ngIf="esDesagrupar" class="align-middle" style="align-items: center; ">
+          <label class="custom-control check-bge-control centrar-check-bge-tabla">
+            <input type="checkbox" formControlName="seleccionado"
+              (change)="clickPrestamo($event.target.checked, resultado.get('idPrestamo').value)" class="check-bge">
+            <span class="check-marcado"></span>
+          </label>
+        </td>
+        <td class="align-middle">
+          <button type="button" class="btn btn-link boton-grilla" ngbTooltip="Ver"
+            (click)="verFormularioPrestamo(resultado.get('idPrestamo').value)">
+            <i class="material-icons icono-accion">zoom_in</i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <paginacion [pagina]="pagina | async" (paginaModificada)="consultarPrestamos($event)">
+  </paginacion>
+</div>
+
+<div *ngIf="esDesagrupar" class="row row-section">
+  <div class="col">
+    <div class="pull-right">
+      <a [routerLink]="['/bandeja-lotes']" class="btn btn-secondary separador-botones">VOLVER</a>
+      <button class="btn btn-primary" [disabled]="!formulariosCheckeados.length" (click)="desagrupar()">DESAGRUPAR
+      </button>
+    </div>
+  </div>

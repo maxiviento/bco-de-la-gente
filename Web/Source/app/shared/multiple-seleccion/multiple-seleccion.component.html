@@ -1,0 +1,15 @@
+<form [formGroup]="form">
+  <div class="form-group row">
+    <label for="comboId"
+           class="col-md-{{colLabel}} col-lg-{{colLabel}} col-xl-{{colLabel}} col-form-label"
+           style="width: -webkit-fill-available;"> {{titulo}}</label>
+    <div class=" col-xl-{{colDiv}} col-lg-{{colDiv}} col-md-{{colDiv}}">
+      <ss-multiselect-dropdown [options]="seleccionCombo"
+                               [settings]="settings"
+                               [texts]="comboTexts"
+                               formControlName="comboMultipleId"
+                               id="comboId">
+      </ss-multiselect-dropdown>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,99 @@
+<div class="row row-title line-divider-bottom align-items-center">
+  <div class="col">
+    <h1 class="display-4">Editar tablas definidas</h1>
+  </div>
+  <div class="col-xl-2 col-lg-2">
+    <a (click)="nuevoParametro()" class="btn btn-warning pull-right">Nuevo parámetro</a>
+  </div>
+</div>
+
+<div class="row row-section bordered align-items-center">
+  <div class="col-xl-12 col-lg-12 col-12">
+    <div class="card-pane">
+      <div class="row row-section">
+        <div class="col-2 col-lg-2 col-xl-2">
+          <div class="row"><label>Nombre de la tabla</label></div>
+          <div class="row">{{tablaConsulta.nombre}}</div>
+        </div>
+        <div class="col-2 col-lg-2 col-xl-2">
+          <div class="row"><label>Descripción</label></div>
+          <div class="row">{{tablaConsulta.descripcion}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row row-section">
+
+  <div class="col-12">
+    <form [formGroup]="form" novalidate>
+      <h3>Administrar valores de tablas definidas</h3>
+      <div class="card-pane">
+        <div class="row row-section">
+          <div class="form-group col-9">
+            <label>Nombre del parámetro</label>
+            <ng-select id="tablasDefinidasCombo" [dataSource]="{list: tablaConsulta.parametros, name:'nombre', id:'id'}"
+              formControlName="id" [selected]="form.get('id').value" [clientMode]="true">
+            </ng-select>
+            <control-messages [control]="form.get('id')"></control-messages>
+          </div>
+          <label class="center-block custom-control check-bge-control only-form-check">
+            <input type="checkbox" (click)="obtenerParametrosCombo()" class="check-bge"
+              formControlName="incluirDadosDeBaja">
+            <span class="check-marcado"></span>
+            <span class="custom-control-description">Incluir dados de baja</span>
+          </label>
+        </div>
+      </div>
+      <div class="row row-section justify-content-end">
+        <div class="col-12 col-md-3 col-lg-2 col-xl-2">
+          <button type="submit" (click)="prepararConsultaParametros()" class="btn btn-primary pull-right">
+            <i class="material-icons alinear-texto-con-icono icono-accion">search</i>
+            <span class="alinear-texto-con-icono">CONSULTAR</span>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<div class="card-pane" [hidden]="!tablaDefinida.parametros.length">
+  <table class="table table-bordered">
+    <thead>
+      <th class="align-middle">NOMBRE PARÁMETRO</th>
+      <th class="align-middle">DESCRIPCIÓN PARÁMETRO</th>
+      <th class="align-middle">FECHA DESDE</th>
+      <th class="align-middle" [hidden]="!muestraDadosDeBaja">FECHA HASTA</th>
+      <th class="align-middle" [hidden]="!muestraDadosDeBaja">MOTIVO RECHAZO</th>
+      <th class="align-middle">ACCIÓN</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let parametro of tablaDefinida.parametros">
+        <td class="align-middle">{{parametro.nombre}}</td>
+        <td class="align-middle">{{parametro.descripcion}}</td>
+        <td class="align-middle">{{parametro.fechaDesde | date:'dd/MM/yyyy'}}</td>
+        <td class="align-middle" [hidden]="!muestraDadosDeBaja">{{parametro.fechaHasta | date:'dd/MM/yyyy'}}</td>
+        <td class="align-middle" [hidden]="!muestraDadosDeBaja">{{parametro.nombreMotivoRechazo}}</td>
+        <td class="align-middle  line-divider-left w-10">
+          <button type="button" class="btn btn-link" ngbTooltip="Dar de baja" (click)="eliminarParametro(parametro.id)"
+            [disabled]="parametro.nombreMotivoRechazo">
+            <i class="material-icons icono-accion">delete</i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <paginacion [pagina]="pagina | async" (paginaModificada)="prepararConsultaParametros($event)">
+  </paginacion>
+</div>
+
+<div id="row_acciones" class="row">
+  <div class="col">
+    <div class="pull-right">
+      <a [routerLink]="['/consultar-tablas-definidas']" class="btn btn-secondary">VOLVER
+      </a>
+    </div>
+  </div>
+</div>

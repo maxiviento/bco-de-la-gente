@@ -1,0 +1,105 @@
+<div class="row line-divider-bottom align-items-center">
+  <div class="col ml-auto">
+    <h1 id="registrar-formulario" class="display-4">{{titulo}}</h1>
+    <div *ngIf="logo" class=" h-logo-linea">
+      <img [src]="'data:image/png;base64,'+logo" width="100%" height="124px" style="border-radius: 8px;">
+    </div>
+    <h2 class="h-linea" [style.background-color]="formulario?.detalleLinea?.color">{{formulario?.detalleLinea?.nombre}}
+      <small> {{formulario?.detalleLinea?.descripcion.slice(0,135)}}</small>
+    </h2>
+    <div *ngIf="formulario && formulario.motivoRechazo && formulario.motivoRechazo.trim().length > 0">
+      <h4 class="h-motivo-rechazo">Formulario rechazado por:
+        <small>{{formulario.motivoRechazo}}</small>
+      </h4>
+    </div>
+    <div *ngIf="esVer && nroSuac">
+      <h4 class="pull-left">Número de SUAC: <small>{{nroSuac}}</small> </h4>
+    </div>
+    <div *ngIf="formulario && formulario.motivoRechazo && formulario.motivoRechazo.trim().length > 0">
+      <h4 *ngIf="formulario.numeroCaja" class="pull-right">Número de caja:
+        <small>{{formulario.numeroCaja}}</small>
+      </h4>
+    </div>
+  </div>
+</div>
+
+<p *ngIf="componentesEditables">Referencia: Los campos con asterisco<span _ngcontent-c11="" class="obligatorio">(*)</span> deben cargarse (ingreso obligatorio)</p>
+
+<bg-validacion-edades [personas]="integrantesFormulario">
+</bg-validacion-edades>
+
+<div class="row row-section" *ngIf="!esVer && !esRevisar" (keydown.enter)="$event.preventDefault()">
+  <div class="col">
+    <div class="pull-right">
+      <button (click)="guardar()" class="btn btn-primary"> GUARDAR
+      </button>
+      <button *ngIf="formulario?.idEstado < 2 || esRegistro"
+              (click)="enviar()"
+              class="btn btn-primary"> GUARDAR Y ENVIAR
+      </button>
+    </div>
+  </div>
+</div>
+<div class="row row-section" *ngIf="esRevisar">
+  <div class="col">
+    <div class="pull-right">
+      <button *ngIf="formulario?.idEstado == 1"
+              (click)="darDeBajaFormulario()"
+              class="btn btn-danger"> ELIMINAR
+      </button>
+
+      <button *ngIf="formulario?.idEstado != 1 && accion == 2"
+              (click)="rechazarFormulario()"
+              class="btn btn-danger"> RECHAZAR
+      </button>
+
+      <button *ngIf="formulario?.idEstado == 2 && accion == 1"
+              (click)="iniciar()"
+              class="btn btn-primary"> INICIAR
+      </button>
+    </div>
+  </div>
+</div>
+<div class="row row-section" *ngIf="esVer">
+  <div class="col">
+    <div class="pull-right">
+      <button *ngIf="formulario?.idEstado != 1 && formulario?.idEstado != 6"
+              (click)="imprimir(formulario.id)"
+              class="btn btn-primary"> IMPRIMIR
+      </button>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <ul class="nav nav-pills nav-justified bge-scroll" role="tablist">
+      <li class="nav-item nav-cursor-arrow" *ngFor="let cuadrante of cuadrantesPantalla; let indice=index">
+        <a role="tab" class="d-flex align-items-center nav-link"
+           [class.active]="indiceActual === indice"
+           (click)="cambiarCuadrante(indice)">{{cuadrante.nombre}}</a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane active">
+        <ng-template bg-contenedor-cuadrantes></ng-template>
+      </div>
+    </div>
+    <button class="btn btn-primary pull-left" (click)="cambiarCuadrante(indiceActual-1)" [disabled]=" indiceActual===0">
+      Anterior
+    </button>
+    <button class="btn btn-primary pull-right" (click)="cambiarCuadrante(indiceActual+1)"
+            [disabled]="indiceActual+1===cuadrantesPantalla.length">Siguiente
+    </button>
+  </div>
+</div>
+<span>
+
+</span>
+<div class="row" id="fila_volver">
+  <div class="col-12">
+    <button class="btn btn-primary pull-right"
+            (click)="volver()"
+    >Volver
+    </button>
+  </div>
+</div>

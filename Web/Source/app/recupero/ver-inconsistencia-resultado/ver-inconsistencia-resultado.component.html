@@ -1,0 +1,43 @@
+<div class="line-divider-bottom">
+  <h1>
+    Ver inconsistencias en archivo de resultado banco
+  </h1>
+</div>
+<div class="row-section">
+  <div *ngIf="!(inconsistencias.length)" class="card-pane">
+    No hay resultados para mostrar.
+  </div>
+
+  <div [hidden]="!inconsistencias.length" class="card-pane">
+    <div class="row">
+      <div class="col-xl-6 col-lg-6 col-md-6">
+        <h3>Lista/s de inconsistencias en el archivo</h3>
+      </div>
+    </div>
+
+    <table class="table table-bordered">
+      <thead>
+      <th class="align-middle">NÚMERO DE LINEA</th>
+      <th class="align-middle">MOTIVO DE INCONSISTENCIA</th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let inconsistencia of this.inconsistencias">
+        <td class="align-middle">{{inconsistencia.nroLinea}}</td>
+        <td class="align-middle">{{inconsistencia.motivoRechazo}}</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <paginacion [pagina]="pagina | async"
+                (paginaModificada)="consultar($event)">
+    </paginacion>
+  </div>
+
+
+  <div class="row-section">
+    <button
+      class="btn btn-secondary pull-right"
+      (click)="salir()">VOLVER
+    </button>
+  </div>
+</div>

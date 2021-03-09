@@ -1,0 +1,214 @@
+<div id="row_titulo" class="row row-title line-divider-bottom">
+  <div class="col">
+    <h1 class="display-4">MODIFICAR DATOS
+    </h1>
+  </div>
+</div>
+
+<div class="card-pane card-margin-top">
+  <table class="table table-sm table-striped table-bordered">
+    <thead>
+    <tr>
+      <th class="align-middle"> CUIL/DNI</th>
+      <th class="align-middle"> NOMBRE Y APELLIDO</th>
+      <th class="align-middle"> ROL</th>
+      <th style="width: 13%" class="align-middle"> ACCIONES</th>
+    </tr>
+    </thead>
+    <tbody class="table-int">
+    <tr>
+      <td class="align-middle">{{solicitante?.nroDocumento}}</td>
+      <td class="align-middle">{{solicitante?.apellido + ', ' + solicitante?.nombre}}</td>
+      <td class="align-middle">SOLICITANTE</td>
+      <td style="width: 10%" class="align-middle">
+        <button type="button" class="btn btn-link"
+                ngbTooltip="Ver datos de la persona" style="padding: 0; margin: auto"
+                (click)="verDatosPersona(solicitante)">
+          <i class="material-icons icono-accion">zoom_in</i>
+        </button>
+        <button type="button" class="btn btn-link"
+                ngbTooltip="Modificar Grupo" style="padding: 0; margin: auto"
+                (click)="modalModificarGrupoFamiliar(solicitante)">
+          <i class="material-icons icono-accion">people</i>
+        </button>
+        <button type="button" class="btn btn-link" [disabled]="formulario.idEstado != 5"
+                ngbTooltip="Modificar Condiciones Solicitadas" style="padding: 0; margin: auto"
+                (click)="modificarCondicionesSolicitadas(solicitante)">
+          <i class="material-icons icono-accion">attach_money</i>
+        </button>
+      </td>
+    </tr>
+    <tr *ngIf="formulario.garantes && formulario.garantes.length">
+      <td class="align-middle">{{garante?.nroDocumento}}</td>
+      <td class="align-middle">{{garante?.apellido + ', ' + garante?.nombre}}</td>
+      <td class="align-middle">GARANTE</td>
+      <td style="width: 10%" class="align-middle">
+        <button type="button" class="btn btn-link"
+                ngbTooltip="Ver datos de la persona" style="padding: 0; margin: auto"
+                (click)="verDatosPersona(garante)">
+          <i class="material-icons icono-accion">zoom_in</i>
+        </button>
+        <button type="button" class="btn btn-link"
+                ngbTooltip="Modificar Grupo" style="padding: 0; margin: auto"
+                (click)="modalModificarGrupoFamiliar(garante)">
+          <i class="material-icons icono-accion">people</i>
+        </button>
+        <button type="button" class="btn btn-link"
+                ngbTooltip="Cambiar garante" style="padding: 0; margin: auto"
+                (click)="cambiarGarante()"
+                [disabled]="procesoFinalizado">
+          <i class="material-icons icono-accion">mode_edit</i>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="cambiaGarante">
+  <div id="row_titulo_cambiar_garante" class="row row-title line-divider-bottom">
+    <div class="col-9">
+      <strong>
+        <h4 class="card-title w-75">DATOS DE LA PERSONA QUE GARANTIZA EL CRÉDITO
+        </h4>
+      </strong>
+    </div>
+    <div [formGroup]="formCheck" class="col">
+      <label class="custom-control check-bge-control">
+        <input [attr.id]="'ck_solicitante_garante'"
+               type="checkbox"
+               class="check-bge"
+               formControlName="ck_solicitanteGarante"
+               (change)="checkSolicitanteGarante($event)">
+        <span class="check-marcado"></span>
+        <span class="custom-control-description">Solicitante es garante</span>
+      </label>
+    </div>
+  </div>
+  <bg-busqueda-persona [sexoId]="persona.sexoId" [codigoPais]="persona.codigoPais"
+                       [nroDocumento]="persona.nroDocumento"
+                       (personaConsultada)="personaConsultada($event)"
+                       [editable]="true"
+                       [registraPersona]="true"
+                       *ngIf="!solicitanteEsGarante">
+  </bg-busqueda-persona>
+</div>
+
+<div class="card-pane" *ngIf="cambiaGarante || ver">
+  <div class="row">
+    <div class="form-group col-lg-4 col-xl-4">
+      <label for="txt_apellido">Apellido</label>
+      <input type="text" id="txt_apellido" class="form-control" [value]="persona.apellido" readonly>
+    </div>
+    <div class="form-group col-lg-4 col-xl-4">
+      <label for="txt_nombre">Nombre</label>
+      <input type="text" id="txt_nombre" class="form-control" [value]="persona.nombre" readonly>
+    </div>
+    <div class="form-group col-lg-4 col-xl-4">
+      <label for="txt_nombreSexo">Sexo</label>
+      <input type="text" id="txt_nombreSexo" class="form-control" [value]="persona.nombreSexo" readonly>
+    </div>
+    <div class="form-group col-lg-4 col-xl-4">
+      <label for="txt_tipoDocumento">Tipo documento</label>
+      <input type="text" id="txt_tipoDocumento" class="form-control" [value]="persona.tipoDocumento" readonly>
+    </div>
+    <div class="form-group col-lg-4 col-xl-4">
+      <label for="txt_nroDocumento">Número documento</label>
+      <input type="text" id="txt_nroDocumento" class="form-control" [value]="persona.nroDocumento" readonly>
+    </div>
+    <div class="form-group col-lg-4 col-xl-4">
+      <label for="txt_cuil">CUIL</label>
+      <input type="text" id="txt_cuil" class="form-control" [value]="persona.cuil" readonly>
+    </div>
+    <div class="form-group col-lg-4 col-xl-4">
+      <label for="txt_domicilio">Domicilio</label>
+      <input type="text" id="txt_domicilio" class="form-control"
+             [value]="persona.domicilioGrupoFamiliar === '' ? persona.domicilioReal : persona.domicilioGrupoFamiliar"
+             readonly>
+    </div>
+    <div class="form-group col-lg-4 col-xl-4">
+      <label for="txt_barrio">Barrio</label>
+      <input type="text" id="txt_barrio" class="form-control" [value]="persona.barrio"
+             readonly>
+    </div>
+    <div class="form-group col-lg-4 col-xl-4">
+      <label for="txt_localidad">Localidad</label>
+      <input type="text" id="txt_localidad" class="form-control"
+             [value]="persona.domicilioGrupoFamiliarLocalidad === '' ? persona.domicilioRealLocalidad : persona.domicilioGrupoFamiliarLocalidad"
+             readonly>
+    </div>
+    <div class=" form-group col-lg-4 col-xl-4">
+      <label for="txt_departamento">Departamento</label>
+      <input type="text" id="txt_departamento" class="form-control"
+             [value]="persona.domicilioGrupoFamiliarDepartamento === '' ? persona.domicilioRealDepartamento : persona.domicilioGrupoFamiliarDepartamento"
+             readonly>
+    </div>
+    <div class="form-group col-lg-3 col-xl-3">
+      <label for="txt_fechaNacimiento">Fecha de nacimiento</label>
+      <input type="text" id="txt_fechaNacimiento" class="form-control" placeholder="dd/mm/aaaa"
+             [value]="persona.fechaNacimiento| date:'dd/MM/yyyy'" readonly/>
+    </div>
+    <div class="form-group col-lg-3 col-xl-1">
+      <label for="txt_edad">Edad</label>
+      <input type="text" id="txt_edad" class="form-control" [value]="persona.edad" readonly>
+    </div>
+    <div class="form-group col-lg-4 col-xl-4">
+      <label for="txt_nacionalidad">Nacionalidad</label>
+      <input type="text" id="txt_nacionalidad" class="form-control" [value]="persona.nacionalidad" readonly>
+    </div>
+  </div>
+</div>
+<div class="card-pane" *ngIf="cambiaGarante || ver">
+  <fieldset>
+    <form [formGroup]="formDatosContacto" novalidate>
+      <legend>Datos de contacto</legend>
+      <div class="row row-section">
+        <div class="form-group col-lg-2 col-xl-2">
+          <label for="txt_codArea">Código área</label>
+          <input type="text" id="txt_codArea" class="form-control" formControlName="codigoArea">
+          <control-messages class="has-danger" [control]="formDatosContacto.get('codigoArea')"></control-messages>
+        </div>
+
+
+        <div class="form-group col-lg-4 col-xl-4">
+          <label for="txt_telefono">Teléfono</label>
+          <input type="text" id="txt_telefono" class="form-control" formControlName="telefono">
+          <control-messages class="has-danger" [control]="formDatosContacto.get('telefono')"></control-messages>
+        </div>
+
+        <div class="form-group col-lg-2 col-xl-2">
+          <label for="txt_codAreaCel">Código área</label>
+          <input type="text" id="txt_codAreaCel" class="form-control" formControlName="codigoAreaCelular">
+          <control-messages class="has-danger" [control]="formDatosContacto.get('codigoAreaCelular')">
+          </control-messages>
+        </div>
+
+        <div class="form-group col-lg-4 col-xl-4">
+          <label for="txt_celular">Celular</label>
+          <input type="text" id="txt_celular" class="form-control" formControlName="celular">
+          <control-messages class="has-danger" [control]="formDatosContacto.get('celular')"></control-messages>
+        </div>
+
+        <div class="form-group col-lg-6 col-xl-6">
+          <label for="txt_email">Email</label>
+          <input type="text" id="txt_email" class="form-control" [value]="persona.email" formControlName="email">
+          <control-messages class="has-danger" [control]="formDatosContacto.get('email')"></control-messages>
+        </div>
+      </div>
+    </form>
+  </fieldset>
+</div>
+<div *ngIf="modificarDatos" class="card-pane">
+  <bg-actualizar-condiciones-solicitadas [idFormulario]="idFormulario"></bg-actualizar-condiciones-solicitadas>
+</div>
+<div class="row row-section">
+  <div class="col">
+    <button [disabled]="!this.formDatosContacto.valid" type="button" class="btn btn-primary pull-right"
+            (click)="registrarNuevoGarante()"
+            *ngIf="cambiaGarante">
+      <i class="material-icons icono-accion alinear-texto-con-icono">add</i>
+      <span class="alinear-texto-con-icono">CAMBIAR GARANTE</span>
+    </button>
+    <button type="button" class="btn btn-secondary pull-right separador-botones" (click)="volver()">VOLVER</button>
+  </div>
+</div>

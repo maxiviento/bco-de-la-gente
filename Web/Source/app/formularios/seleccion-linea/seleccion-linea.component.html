@@ -1,0 +1,25 @@
+<div class="row bordered align-items-center">
+  <div class="col">
+    <h1 class="display-4">SELECCIONAR LÍNEA MICRO PRÉSTAMO</h1>
+  </div>
+</div>
+<div class="list-group row-section align-items-center">
+  <div class="card-pane col-md-12 col-lg-9 col-xl-6">
+    <div class="row-section" *ngFor="let linea of lineasDisponibles">
+      <button id="btn-selec-linea" class="list-group-item list-group-item-action flex-column "
+              (click)="seleccionarLinea(linea)"
+              [style.border-color]="linea.color">
+        <span class="d-flex justify-content-between">
+          <span class="h2 mb-1"><strong>{{linea.nombre}}</strong></span>
+        </span>
+        <span class="h5 mb-1 text-center">{{linea.descripcion}}</span>
+        <small class="text-center">{{linea.objetivo}}</small>
+      </button>
+    </div>
+  </div>
+  <div class="col-6 boton-volver">
+    <div class="pull-right">
+      <a [routerLink]="['/formularios']" class="btn btn-secondary">VOLVER</a>
+    </div>
+  </div>
+</div>

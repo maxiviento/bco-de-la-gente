@@ -1,0 +1,138 @@
+<div id="row_titulo" class="row row-title line-divider-bottom">
+  <div class="col">
+    <strong>
+      <h4 class="card-title w-75">DATOS PERSONALES DEL SOLICITANTE DEL MICROPRÉSTAMO
+      </h4>
+    </strong>
+  </div>
+</div>
+
+<div>
+  <bg-busqueda-persona [sexoId]="solicitante.sexoId" [codigoPais]="solicitante.codigoPais"
+                       [nroDocumento]="solicitante.nroDocumento" [editable]="this.editable" [registraPersona]="true"
+                       (personaConsultada)="personaConsultada($event)">
+  </bg-busqueda-persona>
+  <h3>Datos del integrante</h3>
+  <div class="card-pane">
+    <div class="row">
+      <div class="form-group col-lg-4 col-xl-4">
+        <label for="txt_nombre">Apellido</label>
+        <input type="text" id="txt_apellido" class="form-control" [value]="solicitante.apellido" readonly>
+      </div>
+      <div class="form-group col-lg-4 col-xl-4">
+        <label for="txt_nombre">Nombre</label>
+        <input type="text" id="txt_nombre" class="form-control" [value]="solicitante.nombre" readonly>
+      </div>
+      <div class="form-group col-lg-4 col-xl-4">
+        <label for="txt_nombreSexo">Sexo</label>
+        <input type="text" id="txt_nombreSexo" class="form-control" [value]="solicitante.nombreSexo" readonly>
+      </div>
+      <div class="form-group col-lg-4 col-xl-4">
+        <label for="txt_tipoDocumento">Tipo documento</label>
+        <input type="text" id="txt_tipoDocumento" class="form-control" [value]="solicitante.tipoDocumento" readonly>
+      </div>
+      <div class="form-group col-lg-4 col-xl-4">
+        <label for="txt_nroDocumento">Número documento</label>
+        <input type="text" id="txt_nroDocumento" class="form-control" [value]="solicitante.nroDocumento" readonly>
+      </div>
+      <div class="form-group col-lg-4 col-xl-4">
+        <label for="txt_cuil">CUIL</label>
+        <input type="text" id="txt_cuil" class="form-control" [value]="solicitante.cuil === '0' ? '' : solicitante.cuil"
+               readonly>
+      </div>
+      <div class="form-group col-lg-4 col-xl-4">
+        <label for="txt_domicilio">Domicilio</label>
+        <input type="text" id="txt_domicilio" class="form-control"
+               [value]="solicitante.domicilioGrupoFamiliar === '' ? solicitante.domicilioReal : solicitante.domicilioGrupoFamiliar"
+               readonly>
+      </div>
+      <div class="form-group col-lg-4 col-xl-4">
+        <label for="txt_barrio">Barrio</label>
+        <input type="text" id="txt_barrio" class="form-control" [value]="solicitante.barrio === '' ? 'SIN DATO' : solicitante.barrio"
+               readonly>
+      </div>
+      <div class="form-group col-lg-4 col-xl-4">
+        <label for="txt_localidad">Localidad</label>
+        <input type="text" id="txt_localidad" class="form-control"
+               [value]="solicitante.domicilioGrupoFamiliarLocalidad === '' ? solicitante.domicilioRealLocalidad : solicitante.domicilioGrupoFamiliarLocalidad"
+               readonly>
+      </div>
+      <div class="form-group col-lg-4 col-xl-4">
+        <label for="txt_departamento">Departamento</label>
+        <input type="text" id="txt_departamento" class="form-control"
+               [value]="solicitante.domicilioGrupoFamiliarDepartamento === '' ? solicitante.domicilioRealDepartamento : solicitante.domicilioGrupoFamiliarDepartamento"
+               readonly>
+      </div>
+      <div class="form-group col-lg-3 col-xl-3">
+        <label for="txt_fechaNacimiento">Fecha de nacimiento</label>
+        <input type="text" id="txt_fechaNacimiento" class="form-control" placeholder="dd/mm/aaaa"
+               [value]="solicitante.fechaNacimiento| date:'dd/MM/yyyy'" readonly/>
+      </div>
+      <div class="form-group col-lg-3 col-xl-1">
+        <label for="txt_edad">Edad</label>
+        <input type="text" id="txt_edad" class="form-control" [value]="solicitante.edad" readonly>
+      </div>
+      <div class="form-group col-lg-4 col-xl-4">
+        <label for="txt_nacionalidad">Nacionalidad</label>
+        <input type="text" id="txt_nacionalidad" class="form-control" [value]="solicitante.nacionalidad" readonly>
+      </div>
+    </div>
+  </div>
+
+  <h3>Datos de contacto</h3>
+  <div class="card-pane">
+    <form [formGroup]="formDatosContacto" novalidate>
+      <div class="row row-section">
+        <div class="form-group col-lg-2 col-xl-2">
+          <label for="txt_codArea">Código área</label>
+          <input type="text" id="txt_codArea" class="form-control" formControlName="codigoArea">
+          <control-messages class="has-danger" [control]="formDatosContacto.get('codigoArea')"></control-messages>
+        </div>
+        <div class="form-group col-lg-4 col-xl-4">
+          <label for="txt_telefono">Teléfono</label>
+          <input type="text" id="txt_telefono" class="form-control" formControlName="telefono">
+          <control-messages class="has-danger" [control]="formDatosContacto.get('telefono')"></control-messages>
+        </div>
+
+        <div class="form-group col-lg-2 col-xl-2">
+          <label for="txt_codAreaCel">Código área</label>
+          <input type="text" id="txt_codAreaCel" class="form-control" formControlName="codigoAreaCelular">
+          <control-messages class="has-danger" [control]="formDatosContacto.get('codigoAreaCelular')">
+          </control-messages>
+        </div>
+
+        <div class="form-group col-lg-4 col-xl-4">
+          <label for="txt_celular">Celular</label>
+          <input type="text" id="txt_celular" class="form-control" formControlName="celular">
+          <control-messages class="has-danger" [control]="formDatosContacto.get('celular')"></control-messages>
+        </div>
+
+        <div class="form-group col-lg-6 col-xl-6">
+          <label for="txt_email">Email</label>
+          <input type="text" id="txt_email" class="form-control" [value]="solicitante.email" formControlName="email">
+          <control-messages class="has-danger" [control]="formDatosContacto.get('email')"></control-messages>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<div class="row row-section">
+  <div class="col">
+    <button [disabled]="!this.formDatosContacto.valid" type="button" class="btn btn-primary pull-right"
+            (click)="agregarPersona()" tabindex="4">
+      <i class="material-icons icono-accion alinear-texto-con-icono">add</i>
+      <span *ngIf="!this.edicionIntegrante" class="alinear-texto-con-icono">AGREGAR SOLICITANTE</span>
+      <span *ngIf="this.edicionIntegrante" class="alinear-texto-con-icono">GUARDAR SOLICITANTE</span>
+    </button>
+  </div>
+</div>
+
+<div>
+  <bg-integrantes-grilla [editable]="this.editable"
+                         (integranteEditable)="editarIntegrante($event)"
+                         (cambioApoderado)="cambioApoderado($event)"
+                         (integranteGrupo)="modificoGrupo($event)">
+  </bg-integrantes-grilla>
+</div>

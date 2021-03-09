@@ -1,0 +1,31 @@
+<div class="row align-items-center line-divider-bottom">
+  <div class="col ml-auto">
+    <h3>Actualizar datos plan de cuotas</h3>
+  </div>
+</div>
+
+<form [formGroup]="form" class="card-pane" style="margin-top: 15px !important;">
+  <div class="row">
+    <div class="col col-xl-2 col-lg-2" [errorFeedback]="form.get('mesesGracia')">
+      <label for="txt_meses_gracia" class="form-control-label">Mes/es de gracia <label class="obligatorio"> (*)</label>
+        :</label>
+      <input type="text" id="txt_meses_gracia" class="form-control" formControlName="mesesGracia">
+      <control-messages [control]="form.get('mesesGracia')"></control-messages>
+    </div>
+    <div class="col col-xl-3 col-lg-3" style="margin-top: 40px;">
+      <button type="button" class="btn btn-primary" style="margin-right: 3px;" [disabled]="form.invalid"
+              (click)="actualizarPlanPagos()">
+        ACEPTAR
+      </button>
+    </div>
+  </div>
+  <div *ngIf="mostrarCuotas">
+    <!--Tabla de cuotas-->
+    <bg-grilla-plan-pagos></bg-grilla-plan-pagos>
+  </div>
+</form>
+<div class="row" style="margin-top: 15px;">
+  <div class="col">
+    <button type="button" class="btn btn-secondary pull-right" (click)="volver()">VOLVER</button>
+  </div>
+</div>

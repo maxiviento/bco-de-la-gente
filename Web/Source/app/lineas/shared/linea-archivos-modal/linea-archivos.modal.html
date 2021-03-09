@@ -1,0 +1,44 @@
+<div class="modal-header">
+  <h3 class="modal-title">Documentación de la línea</h3>
+  <button type="button" class="close" (click)="activeModal.dismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<form [formGroup]="form" novalidate>
+  <div class="modal-body align-content-center">
+
+      <div class="row row-section text-center line-divider-bottom">
+        <div class="col-lg-4 col-md-4 col-xl-4 line-divider-right">
+          <strong>ARCHIVO</strong>
+        </div>
+        <div class="col-lg-5 col-md-5 col-xl-5 line-divider-right">
+          <strong>NOMBRE ARCHIVO</strong>
+        </div>
+      </div>
+
+      <div class="row row-section line-divider-bottom text-center">
+        <div class="col-lg-4 col-md-4 col-xl-4" style="align-self: center">Logo</div>
+        <div class="col-lg-5 col-md-5 col-xl-5" style="align-self: center">{{nombreLogo}}</div>
+        <div class="col-lg-1 col-md-1 col-xl-1" style="z-index: 5">
+          <a class="btn btn-link" style="padding-top: 3px"
+             download="Documento"
+             [href]="getUrlDescarga(pathLogo)"
+             ngbTooltip="Descargar">
+            <i class="material-icons">get_app</i></a>
+        </div>
+      </div>
+
+      <div class="row row-section text-center">
+        <div class="col-lg-4 col-md-4 col-xl-4" style="align-self: center">Pie de Página</div>
+        <div class="col-lg-5 col-md-5 col-xl-5" style="align-self: center">{{nombrePiePagina}}</div>
+        <div class="col-lg-1 col-md-1 col-xl-1" style="z-index: 5">
+          <a class="btn btn-link" style="padding-top: 3px"
+             download="Documento"
+             [href]="getUrlDescarga(pathPiePagina)"
+             ngbTooltip="Descargar">
+            <i class="material-icons">get_app</i></a>
+        </div>
+      </div>
+  </div>
+</form>

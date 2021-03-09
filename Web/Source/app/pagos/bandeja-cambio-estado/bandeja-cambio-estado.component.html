@@ -1,0 +1,16 @@
+<div class="row bordered align-items-center">
+  <div class="col">
+    <h1 class="display-4">CAMBIO DE ESTADO</h1>
+  </div>
+</div>
+
+<bg-consulta-bandeja-cambio-estado
+  (emitirConsulta)="almacenarConsulta($event)"
+  (totalizador)=calcularTotalizador($event)>
+</bg-consulta-bandeja-cambio-estado>
+
+<bg-grilla-bandeja-cambio-estado
+  [consulta]="consulta"
+  [totalizador]="totalizador">
+</bg-grilla-bandeja-cambio-estado>
+

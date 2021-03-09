@@ -1,0 +1,17 @@
+<div class="modal-header">
+  <h4 class="modal-title">Modificar Grupo Familiar Integrante</h4>
+</div>
+
+<div class="modal-body">
+  <grupo-unico [recurso]="urlGrupoFamiliar"
+               [dni]="integrante.nroDocumento"
+               [sexo]="integrante.sexo"
+               [pais]="integrante.pais"
+               ancho="800px">
+  </grupo-unico>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="cerrar()">Cerrar
+  </button>
+</div>

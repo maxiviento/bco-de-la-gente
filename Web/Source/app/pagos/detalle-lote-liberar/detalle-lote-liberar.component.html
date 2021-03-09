@@ -1,0 +1,27 @@
+<div class="row bordered align-items-center">
+  <div class="col">
+    <h1 class="display-4">LIBERAR LOTE</h1>
+  </div>
+</div>
+
+<bg-detalle-lote
+  [esVer]="false"
+  [esDesagrupar]="false"
+  [esLiberar]="true"
+  [idLote]="idLote">
+</bg-detalle-lote>
+
+<div class="row row-section">
+  <div class="col">
+    <div class="pull-right">
+      <a
+        [routerLink]="['/bandeja-lotes']"
+        class="btn btn-secondary separador-botones">VOLVER</a>
+      <button
+        class="btn btn-primary"
+        [disabled]="!puedeLiberarLote"
+        (click)="liberar()">LIBERAR
+      </button>
+    </div>
+  </div>
+</div>

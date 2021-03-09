@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="FormularioAplicacionConsultasResultados">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>cde3a8b9-3b4a-491f-9667-6c138916437c</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="FormularioAplicacionConsultasResultados1">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>6c9eb70f-e646-4104-8adc-615d657082af</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="FormularioAplicacionConsultasResultados2">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>0686c02a-bfb0-402f-82a0-f7d7561aced1</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="FormularioAplicacionConsultasResultados3">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>ad5d206f-cc49-4386-987a-0ec386817aeb</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="FormularioAplicacionConsultasResultados4">
+      <ConnectionProperties>
+        <DataProvider>System.Data.DataSet</DataProvider>
+        <ConnectString>/* Local Connection */</ConnectString>
+      </ConnectionProperties>
+      <rd:DataSourceID>6f507c55-b324-4e04-91eb-61c4c0991a86</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="DSDetalleLinea">
+      <Query>
+        <DataSourceName>FormularioAplicacionConsultasResultados3</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="CantidadMaximaIntegrantes">
+          <DataField>CantidadMaximaIntegrantes</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="CantidadMinimaIntegrantes">
+          <DataField>CantidadMinimaIntegrantes</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Color">
+          <DataField>Color</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ConCurso">
+          <DataField>ConCurso</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="ConCursoStr">
+          <DataField>ConCursoStr</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ConOng">
+          <DataField>ConOng</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="ConPrograma">
+          <DataField>ConPrograma</DataField>
+          <rd:TypeName>System.Boolean</rd:TypeName>
+        </Field>
+        <Field Name="Descripcion">
+          <DataField>Descripcion</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Id">
+          <DataField>Id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="LineaId">
+          <DataField>LineaId</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Logo">
+          <DataField>Logo</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="MontoPrestable">
+          <DataField>MontoPrestable</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Nombre">
+          <DataField>Nombre</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="PlazoDevolucionMaximo">
+          <DataField>PlazoDevolucionMaximo</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="SexoDestinatarioId">
+          <DataField>SexoDestinatarioId</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="TipoGarantiaId">
+          <DataField>TipoGarantiaId</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="TipoIntegranteId">
+          <DataField>TipoIntegranteId</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ValorCuotaSocioAsoc">
+          <DataField>ValorCuotaSocioAsoc</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ValorCuotaSocioIndep">
+          <DataField>ValorCuotaSocioIndep</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Visualizacion">
+          <DataField>Visualizacion</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>Formulario.Aplicacion.Consultas.Resultados</rd:DataSetName>
+        <rd:TableName>DetalleLineaParaFormularioResultado</rd:TableName>
+        <rd:ObjectDataSourceType>Formulario.Aplicacion.Consultas.Resultados.DetalleLineaParaFormularioResultado, Formulario.Aplicacion.Consultas, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
+    <DataSet Name="DSPie">
+      <Query>
+        <DataSourceName>FormularioAplicacionConsultasResultados4</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="UrlImagenPie">
+          <DataField>UrlImagenPie</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>Formulario.Aplicacion.Consultas.Resultados</rd:DataSetName>
+        <rd:TableName>ReportePieDePaginaFormularioResultado</rd:TableName>
+        <rd:ObjectDataSourceType>Formulario.Aplicacion.Consultas.Resultados.ReportePieDePaginaFormularioResultado, Formulario.Aplicacion.Consultas, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+      </rd:DataSetInfo>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Textbox Name="Textbox24">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Contacto: Banco de la Gente - Av. Juan B. Justo 3600 CP X5001GYN - Tel.: (00 54 351) 432-2900 int. 2045 / 2056 - bancodelagente@cba.gov.ar</Value>
+                    <Style>
+                      <FontSize>6.5pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                      <Color>White</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox24</rd:DefaultName>
+            <Top>3.82853cm</Top>
+            <Left>0.00002cm</Left>
+            <Height>0.51533cm</Height>
+            <Width>17.8518cm</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BackgroundColor>=First(Fields!Color.Value, "DSDetalleLinea")</BackgroundColor>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Subreport Name="SubReportePie">
+            <ReportName>SubReportePie</ReportName>
+            <KeepTogether>true</KeepTogether>
+            <Top>4.34386cm</Top>
+            <Left>0.00002cm</Left>
+            <Height>0.25517cm</Height>
+            <Width>17.8518cm</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Subreport>
+          <Image Name="ImagenPie">
+            <Source>External</Source>
+            <Value>="file:" + First(Fields!UrlImagenPie.Value, "DSPie")</Value>
+            <Sizing>FitProportional</Sizing>
+            <Left>0.00001cm</Left>
+            <Height>3.09cm</Height>
+            <Width>17.8518cm</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Image>
+          <Textbox Name="Textbox1">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Los datos ingresados en la presente solicitud revisten el carácter de Declaración Jurada y no pueden ser falseados ni omitidos, bajo apercibimiento de lo dispuesto en los artículos 172 y 292 del Código Penal para los delitos de estafa y falsificación de documentos</Value>
+                    <Style>
+                      <FontStyle>Italic</FontStyle>
+                      <FontSize>6.5pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Left</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>3.09cm</Top>
+            <Left>0.00002cm</Left>
+            <Height>0.71994cm</Height>
+            <Width>17.8518cm</Width>
+            <ZIndex>3</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+        </ReportItems>
+        <Height>1.81064in</Height>
+        <Style />
+      </Body>
+      <Width>7.02828in</Width>
+      <Page>
+        <PageHeight>29.7cm</PageHeight>
+        <PageWidth>21cm</PageWidth>
+        <LeftMargin>2cm</LeftMargin>
+        <RightMargin>1cm</RightMargin>
+        <TopMargin>1cm</TopMargin>
+        <BottomMargin>0cm</BottomMargin>
+        <ColumnSpacing>0.13cm</ColumnSpacing>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
+  <rd:ReportID>dbc90682-b305-4b06-9214-fb11e7a7f25e</rd:ReportID>
+</Report>

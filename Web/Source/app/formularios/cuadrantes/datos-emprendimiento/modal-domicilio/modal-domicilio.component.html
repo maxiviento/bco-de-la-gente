@@ -1,0 +1,10 @@
+<div class="modal-body">
+  <iframe style="height: 90vh !important;" width="100%" frameborder="0"
+          [src]="url | safe"></iframe>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="cerrar(false)">CANCELAR
+  </button>
+  <button type="button" class="btn btn-primary" (click)="cerrar(true)">CONFIRMAR
+  </button>
+</div>

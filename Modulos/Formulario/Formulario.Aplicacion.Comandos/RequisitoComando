@@ -1,0 +1,21 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
+namespace Formulario.Aplicacion.Comandos
+{
+    public class RequisitoComando
+    {
+        public long IdItem { get; set; }
+
+        public long IdArea { get; set; }
+
+        public long IdEtapa { get; set; }
+
+        public bool EsSoliciante { get; set; }
+
+        public bool EsGarante { get; set; }
+
+        public bool EsSolicianteGarante { get; set; }
+
+}

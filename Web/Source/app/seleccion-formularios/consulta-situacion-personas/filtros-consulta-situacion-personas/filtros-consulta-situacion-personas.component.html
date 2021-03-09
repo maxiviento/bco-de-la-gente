@@ -1,0 +1,53 @@
+<div class="row align-items-center filtros-busqueda" id="busqueda-persona">
+  <h3>Filtros de búsqueda
+    <button class="signo-ayuda" ngbTooltip="Al ingresar un DNI, se buscará además la situación de deuda de dicha persona"> ?</button>
+  </h3>
+</div>
+<div class="card-pane">
+  <bg-busqueda-por-persona></bg-busqueda-por-persona>
+  <form [formGroup]="form">
+    <div class="row">
+      <div class="form-group col-4 row">
+        <label for="txt_numeroSticker" class="col-md-5 col-lg-5 col-xl-5 col-form-label">Número de sticker</label>
+        <div class=" col-md-7 col-lg-7 col-xl-7">
+          <input class="form-control"
+                 id="txt_numeroSticker"
+                 formControlName="numeroSticker"
+                 type="text"
+                 [tabIndex]="1">
+          <control-messages [control]="form.get('numeroSticker')"></control-messages>
+        </div>
+      </div>
+      <div class="form-group col-4 row">
+        <label for="txt_numeroFormulario" class="col-md-5 col-lg-5 col-xl-5 col-form-label">Número de formulario</label>
+        <div class=" col-md-7 col-lg-7 col-xl-7">
+          <input class="form-control"
+                 id="txt_numeroFormulario"
+                 formControlName="numeroFormulario"
+                 type="text"
+                 [tabIndex]="2">
+          <control-messages [control]="form.get('numeroFormulario')"></control-messages>
+        </div>
+      </div>
+      <div class="form-group col-4 row">
+        <label for="txt_numeroPrestamo" class="col-md-5 col-lg-5 col-xl-5 col-form-label">Número de préstamo</label>
+        <div class=" col-md-7 col-lg-7 col-xl-7">
+          <input class="form-control"
+                 id="txt_numeroPrestamo"
+                 formControlName="numeroPrestamo"
+                 type="text"
+                 [tabIndex]="3">
+          <control-messages [control]="form.get('numeroPrestamo')"></control-messages>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="row">
+  <div class="col">
+    <button class="btn btn-primary pull-right" type="button" [disabled]="!consultaValida()" (click)="emitirConsulta()">
+      <i class="material-icons icono-accion alinear-texto-con-icono">search</i>
+      <span class="alinear-texto-con-icono">CONSULTAR</span>
+    </button>
+  </div>
+</div>

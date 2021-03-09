@@ -1,0 +1,46 @@
+<div class="modal-header">
+  <h3 class="modal-title">Nombre de la línea: <strong>{{nombreLinea}}</strong></h3>
+  <button type="button" class="close" (click)="activeModal.dismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body  row" *ngIf="!requisitos.length">
+  <div class="col align-content-center">
+    <strong> Esta línea no posee requisitos cargados</strong>
+  </div>
+</div>
+
+<div class="modal-body align-content-center" *ngIf="requisitos.length">
+  <table class="table table-striped table-sm">
+    <thead>
+    <th class="line-divider-right" width="50%">
+      <strong>REQUISITOS</strong>
+    </th>
+    <ng-container *ngFor="let tipoItem of tiposItem">
+      <th class="line-divider-right" *ngIf="tipoItem.id != 1">
+        <strong>{{tipoItem.nombre}}</strong>
+      </th>
+    </ng-container>
+    </thead>
+    <tbody>
+    <tr *ngFor="let requisito of requisitos">
+      <td class="line-divider-right" width="50%">
+        <small>{{requisito.nombreItem}}</small>
+      </td>
+      <ng-container *ngFor="let tipoItem of tiposItem">
+        <td style="vertical-align:middle" *ngIf="tipoItem.id != 1">
+          <small><i class="material-icons" *ngIf="checkTipoItem(requisito.idItem, tipoItem.id)">done</i>
+          </small>
+        </td>
+      </ng-container>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div class="modal-footer">
+  <div class="col">
+    <button type="button" class="btn btn-secondary pull-right" (click)="activeModal.dismiss()">CERRAR
+    </button>
+  </div>
+</div>

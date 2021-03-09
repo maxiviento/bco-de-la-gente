@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{04DA0DA7-1BE6-40BB-8218-4ED9A3C5FC3A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Configuracion.Dominio</RootNamespace>
+    <AssemblyName>Configuracion.Dominio</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Testing|AnyCPU'">
+    <OutputPath>bin\Testing\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Utn|AnyCPU'">
+    <OutputPath>bin\Utn\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IRepositorio\IAreaRepositorio.cs" />
+    <Compile Include="IRepositorio\IConfiguracionChecklistRepositorio.cs" />
+    <Compile Include="IRepositorio\IEtapaRepositorio.cs" />
+    <Compile Include="IRepositorio\IItemRepositorio.cs" />
+    <Compile Include="IRepositorio\IMotivoDestinoRepositorio.cs" />
+    <Compile Include="IRepositorio\IPaisRepositorio.cs" />
+    <Compile Include="IRepositorio\ISexoRepositorio.cs" />
+    <Compile Include="IRepositorio\IMotivoBajaRepositorio.cs" />
+    <Compile Include="IRepositorio\ITablaDefinidasRepositorio.cs" />
+    <Compile Include="IRepositorio\ITipoItemRepositorio.cs" />
+    <Compile Include="IRepositorio\ITipoDocumentacionRepositorio.cs" />
+    <Compile Include="Modelo\Area.cs" />
+    <Compile Include="Modelo\ConsultaParametrosTablasDefinidas.cs" />
+    <Compile Include="Modelo\ConsultaTablasDefinidas.cs" />
+    <Compile Include="Modelo\Etapa.cs" />
+    <Compile Include="Modelo\Item.cs" />
+    <Compile Include="Modelo\MotivoBaja.cs" />
+    <Compile Include="Modelo\MotivoDestino.cs" />
+    <Compile Include="Modelo\Pais.cs" />
+    <Compile Include="Modelo\ParametroTablaDefinida.cs" />
+    <Compile Include="Modelo\ParametroTablaDefinidaResult.cs" />
+    <Compile Include="Modelo\RechazarParametroTablaDefinida.cs" />
+    <Compile Include="Modelo\Sexo.cs" />
+    <Compile Include="Modelo\TablaDefinida.cs" />
+    <Compile Include="Modelo\TipoItem.cs" />
+    <Compile Include="Modelo\VersionChecklist.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Modelo\Recurso.cs" />
+    <Compile Include="Modelo\TipoDocumentacion.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Infraestructura\Core.Comun\Core.Comun.csproj">
+      <Project>{6D014EE5-0745-4A72-8EE0-07E134CF8F3C}</Project>
+      <Name>Core.Comun</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Identidad\Identidad.Dominio\Identidad.Dominio.csproj">
+      <Project>{D67F744C-5347-406D-B853-E7C5E3AD45DA}</Project>
+      <Name>Identidad.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Configuracion.Aplicacion.Consultas\Configuracion.Aplicacion.Consultas.csproj">
+      <Project>{BE557A78-EEF9-477B-A916-F0970439E3D6}</Project>
+      <Name>Configuracion.Aplicacion.Consultas</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

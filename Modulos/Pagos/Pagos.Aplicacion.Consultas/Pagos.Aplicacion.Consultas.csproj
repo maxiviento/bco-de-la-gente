@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9E11D788-0690-47B0-806A-87D29B7878B0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Pagos.Aplicacion.Consultas</RootNamespace>
+    <AssemblyName>Pagos.Aplicacion.Consultas</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Utn|AnyCPU'">
+    <OutputPath>bin\Utn\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Consultas\FormulariosSeleccionadosAdendaConsulta.cs" />
+    <Compile Include="Consultas\DetallesAdenda.cs" />
+    <Compile Include="Consultas\BandejaCambioEstadoConsulta.cs" />
+    <Compile Include="Consultas\BandejaLotesConsulta.cs" />
+    <Compile Include="Consultas\BandejaAdendaConsulta.cs" />
+    <Compile Include="Consultas\BandejaPagosConsulta.cs" />
+    <Compile Include="Consultas\BandejaFormulariosSuafConsulta.cs" />
+    <Compile Include="Consultas\BandejaRecuperoConsulta.cs" />
+    <Compile Include="Consultas\BandejaSuafConsulta.cs" />
+    <Compile Include="Consultas\DetallesPlanDePagoConsulta.cs" />
+    <Compile Include="Consultas\MontosDisponibleConsulta.cs" />
+    <Compile Include="Consultas\PrestamosDetalleLoteConsulta.cs" />
+    <Compile Include="Consultas\InformePagosConsulta.cs" />
+    <Compile Include="Consultas\ReportePagosConsulta.cs" />
+    <Compile Include="Consultas\VerArchivoInconsistenciaConsulta.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resultados\FormulariosSeleccionadosAdendaResultado.cs" />
+    <Compile Include="Resultados\ModificacionAdendaResultado.cs" />
+    <Compile Include="Resultados\BandejaCambioEstadoResultado.cs" />
+    <Compile Include="Resultados\BandejaAdendaResultado.cs" />
+    <Compile Include="Resultados\Convenio.cs" />
+    <Compile Include="Resultados\ComboTiposPagoResultado.cs" />
+    <Compile Include="Resultados\MontoTotalLote.cs" />
+    <Compile Include="Resultados\EstadoCorrectoFormularioResultado.cs" />
+    <Compile Include="Resultados\FilaExcelActivacionMasiva.cs" />
+    <Compile Include="Resultados\DSExcelActivacionMasiva.cs" />
+    <Compile Include="Resultados\LineaAdendaResultado.cs" />
+    <Compile Include="Resultados\ReporteCuadroCreditoResultado.cs" />
+    <Compile Include="Resultados\ReporteDocumentosPagoResultado.cs" />
+    <Compile Include="Resultados\ValidacionSolicitanteResultado.cs" />
+    <Compile Include="Resultados\BandejaLotesResultado.cs" />
+    <Compile Include="Resultados\DatosFechaFormResultado.cs" />
+    <Compile Include="Resultados\BandejaPagosResultado.cs" />
+    <Compile Include="Resultados\BandejaFormulariosSuafResultado.cs" />
+    <Compile Include="Resultados\BandejaRecuperoResultado.cs" />
+    <Compile Include="Resultados\BandejaResultadoBancoResultado.cs" />
+    <Compile Include="Resultados\BandejaSuafResultado.cs" />
+    <Compile Include="Resultados\CabeceraResultadoBanco.cs" />
+    <Compile Include="Resultados\CalculoMontoAcumuladoResultado.cs" />
+    <Compile Include="Resultados\ComboEntidadesRecuperoResultado.cs" />
+    <Compile Include="Resultados\ComboLotesResultado.cs" />
+    <Compile Include="Resultados\ConvenioResultado.cs" />
+    <Compile Include="Resultados\DatosNotaPago.cs" />
+    <Compile Include="Resultados\DetalleLoteResultado.cs" />
+    <Compile Include="Resultados\FilaArchivoRecupero.cs" />
+    <Compile Include="Resultados\FilaArchivoResultadoBanco.cs" />
+    <Compile Include="Resultados\FilaExcelBanco.cs" />
+    <Compile Include="Resultados\DetallePlanDePagoGrillaResultado.cs" />
+    <Compile Include="Resultados\FilaExcelSuaf.cs" />
+    <Compile Include="Resultados\FormularioPlanDePagoResultado.cs" />
+    <Compile Include="Resultados\FormularioPrestamoResultado.cs" />
+    <Compile Include="Resultados\FormulariosxLoteResultado.cs" />
+    <Compile Include="Resultados\GrillaPlanPagosResultado.cs" />
+    <Compile Include="Resultados\HistorialLoteResultado.cs" />
+    <Compile Include="Resultados\ImportacionSuafResultado.cs" />
+    <Compile Include="Resultados\ImportarArchivoRecuperoResultado.cs" />
+    <Compile Include="Resultados\ImportarArchivoResultadoBancoResultado.cs" />
+    <Compile Include="Resultados\MontoDisponibleSimularLoteResultado.cs" />
+    <Compile Include="Resultados\PeriodoPlanPagoComboResultado.cs" />
+    <Compile Include="Resultados\PermiteLiberarLoteResultado.cs" />
+    <Compile Include="Resultados\PlanDePagoResultado.cs" />
+    <Compile Include="Resultados\ReporteCaratulaResultado.cs" />
+    <Compile Include="Resultados\ReporteContratoMutuoResultado.cs" />
+    <Compile Include="Resultados\ReporteCuponeraResultado.cs" />
+    <Compile Include="Resultados\ReporteExcelBancoResultado.cs" />
+    <Compile Include="Resultados\ReporteProvidenciaResultado.cs" />
+    <Compile Include="Resultados\ReportePagareResultado.cs" />
+    <Compile Include="Resultados\ReportePagosResultado.cs" />
+    <Compile Include="Resultados\ReporteReciboResultado.cs" />
+    <Compile Include="Resultados\SeleccionarTodosSuafResultado.cs" />
+    <Compile Include="Resultados\TasasLoteResultado.cs" />
+    <Compile Include="Resultados\VerInconsistenciaArchivosResultado.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Infraestructura\Core.Comun\Core.Comun.csproj">
+      <Project>{6d014ee5-0745-4a72-8ee0-07e134cf8f3c}</Project>
+      <Name>Core.Comun</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Consultas.BandejaFormulariosSuafConsulta.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Consultas.BandejaLotesConsulta.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Consultas.BandejaPagosConsulta.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Consultas.BandejaRecuperoConsulta.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Consultas.BandejaSuafConsulta.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Consultas.DetallesPlanDePagoConsulta.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Consultas.MontosDisponibleConsulta.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Consultas.PrestamosDetalleLoteConsulta.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Consultas.ReportePagosConsulta.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Consultas.VerArchivoInconsistenciaConsulta.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.BandejaFormulariosSuafResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.BandejaLotesResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.BandejaPagosResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.BandejaRecuperoResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.BandejaResultadoBancoResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.BandejaSuafResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.CabeceraResultadoBanco.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.CalculoMontoAcumuladoResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.ComboEntidadesRecuperoResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.ComboLotesResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.ConvenioResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.DatosFechaFormResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.DatosNotaPago.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.DetalleLoteResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.DetallePlanDePagoGrillaResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.EstadoCorrectoFormularioResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.FilaArchivoRecupero.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.FilaArchivoResultadoBanco.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.FilaExcelBanco.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.FilaExcelSuaf.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.FormularioPlanDePagoResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.FormularioPrestamoResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.FormularioxLoteResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.GrillaPlanPagosResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.HistorialLoteResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.ImportacionSuafResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.ImportarArchivoRecuperoResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.ImportarArchivoResultadoBancoResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.MontoDisponibleSimularLoteResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.PeriodoPlanPagoComboResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.PermiteLiberarLoteResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.PlanDePagoResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.ReporteCaratulaResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.ReporteContratoMutuoResultado.datasource">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.ReporteCuponeraResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.ReporteExcelBancoResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.ReporteMemorandumResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.ReportePagareResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.ReportePagosResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.ReporteReciboResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.SeleccionarTodosSuafResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.TasasLoteResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.ValidacionSolicitanteResultado.datasource" />
+    <None Include="Properties\DataSources\Pagos.Aplicacion.Consultas.Resultados.VerInconsistenciaArchivosResultado.datasource" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

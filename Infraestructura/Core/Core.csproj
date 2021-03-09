@@ -1,0 +1,368 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9A556492-41B7-4B2A-BB4C-DA4F2A08ADFD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Infraestructura.Core</RootNamespace>
+    <AssemblyName>Infraestructura.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;RELEASE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Staging|AnyCPU'">
+    <OutputPath>bin\Staging\</OutputPath>
+    <DefineConstants>TRACE;STAGING</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Testing|AnyCPU'">
+    <OutputPath>bin\Testing\</OutputPath>
+    <DefineConstants>TRACE;TESTING</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Utn|AnyCPU'">
+    <OutputPath>bin\Utn\</OutputPath>
+    <DefineConstants>TRACE;TESTING</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BarCodeGenerator, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\BarcodeGenerator.1.0.0.0\lib\BarCodeGenerator.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net.ElasticSearch, Version=2.3.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\log4net.ElasticSearch.2.3.4\lib\net45\log4net.ElasticSearch.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NHibernate, Version=4.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NHibernate.4.1.1.4000\lib\net40\NHibernate.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Conventions">
+      <HintPath>..\..\packages\ninject.extensions.conventions.3.2.0.0\lib\net45-full\Ninject.Extensions.Conventions.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Ninject.Web.Common.3.2.3.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject.Web.Common.OwinHost">
+      <HintPath>..\..\packages\Ninject.Web.Common.OwinHost.3.2.3.0\lib\net45-full\Ninject.Web.Common.OwinHost.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.WebApi">
+      <HintPath>..\..\packages\Ninject.Web.WebApi.3.2.0.0\lib\net45-full\Ninject.Web.WebApi.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp, Version=1.32.3057.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\PDFsharp.1.32.3057.0\lib\net20\PdfSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PdfSharp.Charting, Version=1.32.3057.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\PDFsharp.1.32.3057.0\lib\net20\PdfSharp.Charting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Swashbuckle.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cd1bb07a5ac7c7bc, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Swashbuckle.Core.5.5.3\lib\net40\Swashbuckle.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DI\DiSettings.cs" />
+    <Compile Include="DI\Modulos\ModuloBaseDeDatos.cs" />
+    <Compile Include="DI\Modulos\ModuloSesionUsuario.cs" />
+    <Compile Include="DI\Modulos\ModuloRepositorios.cs" />
+    <Compile Include="DI\Modulos\ModuloServicios.cs" />
+    <Compile Include="DI\Injector.cs" />
+    <Compile Include="DI\NinjectHttpModules.cs" />
+    <Compile Include="DI\NinjectHttpResolver.cs" />
+    <Compile Include="Documentador\DocSettings.cs" />
+    <Compile Include="Documentador\Documentador.cs" />
+    <Compile Include="Extentions.cs" />
+    <Compile Include="Filtros\CamelCaseFilter.cs" />
+    <Compile Include="Filtros\ExceptionFilter.cs" />
+    <Compile Include="Filtros\Filtros.cs" />
+    <Compile Include="Filtros\FiltrosSettings.cs" />
+    <Compile Include="Filtros\HandleFromUriParam.cs" />
+    <Compile Include="Filtros\ValidateModelFilter.cs" />
+    <Compile Include="Formateadores\Formateadores.cs" />
+    <Compile Include="Formateadores\MultipartData\Converters\FormDataToObjectConverter.cs" />
+    <Compile Include="Formateadores\MultipartData\Converters\HttpContentToFormDataConverter.cs" />
+    <Compile Include="Formateadores\MultipartData\Converters\ObjectToMultipartDataByteArrayConverter.cs" />
+    <Compile Include="Formateadores\MultipartData\FormMultipartEncodedMediaTypeFormatter.cs" />
+    <Compile Include="Formateadores\MultipartData\Infrastructure\Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Formateadores\MultipartData\Infrastructure\Extensions\TypeExtensions.cs" />
+    <Compile Include="Formateadores\MultipartData\Infrastructure\FormData.cs" />
+    <Compile Include="Formateadores\MultipartData\Infrastructure\HttpFile.cs" />
+    <Compile Include="Formateadores\MultipartData\Infrastructure\Logger\FormatterLoggerAdapter.cs" />
+    <Compile Include="Formateadores\MultipartData\Infrastructure\Logger\FormDataConverterLogger.cs" />
+    <Compile Include="Formateadores\MultipartData\Infrastructure\Logger\IFormDataConverterLogger.cs" />
+    <Compile Include="Formateadores\MultipartData\Infrastructure\MultipartFormatterSettings.cs" />
+    <Compile Include="Formateadores\MultipartData\Infrastructure\TypeConverters\BooleanConverterEx.cs" />
+    <Compile Include="Formateadores\MultipartData\Infrastructure\TypeConverters\DateTimeConverterISO8601.cs" />
+    <Compile Include="Formateadores\MultipartData\Infrastructure\TypeConverters\FromStringConverterAdapter.cs" />
+    <Compile Include="Manejadores\CustomExceptionHandler.cs" />
+    <Compile Include="Manejadores\Manejadores.cs" />
+    <Compile Include="Manejadores\MessageHandler.cs" />
+    <Compile Include="Proveedores\CustomBindingValueProvider.cs" />
+    <Compile Include="Proveedores\CustomBindingValueProviderFactory.cs" />
+    <Compile Include="Proveedores\FromUriOrBodyParameterBinding.cs" />
+    <Compile Include="Proveedores\RouteProvider.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reportes\BarCode\CodigoBarras.cs" />
+    <Compile Include="Reportes\ConcatenadorPDF.cs" />
+    <Compile Include="Reportes\ConvertidorNumeroLetras.cs" />
+    <Compile Include="Reportes\Reporte.cs" />
+    <Compile Include="Reportes\ReporteBuilder.cs" />
+    <Compile Include="Reportes\ReporteConcatenado.cs" />
+    <Compile Include="Reportes\ReportFactory.cs" />
+    <Compile Include="Reportes\SubReporte.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Comandos.OngFormulario.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Consultas.BandejaConformarPrestamoConsulta.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Consultas.BandejaMontoDisponibleConsulta.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Consultas.BandejaPrestamosConsulta.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Consultas.ConsultaDeudaGrupoConviviente.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Consultas.DatosPersonaConsulta.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Consultas.DetalleLineaConsulta.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Consultas.FiltrosFormularioConsulta.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Consultas.FormularioGrillaConsulta.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Consultas.LineaPrestamoConsulta.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Consultas.MotivosRechazoReferenciaConsulta.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Consultas.MovimientosMontoConsulta.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Consultas.SeguimientosPrestamoConsulta.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Consultas.SituacionPersonasConsulta.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ActualizarAgrupamientoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.AgrupacionCursosReporteResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.AgruparFormulario.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.BandejaCargaNumeroControlInternoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.BandejaConformarPrestamoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.BandejaMontoDisponibleResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.BandejaPrestamoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.CapacidadAsociativa.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.CondicionesPrestamoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.CondicionesSolicitadasResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ConsultaConfiguracionChecklist.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ConsultaDeudaFormularioResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ConsultaIntegrantesPrestamoRentasResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ConsultarCursosResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ConsultarItemComercializacionResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.CuadranteResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.DatosBasicosFormularioResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.DatosContactoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.DatosEmprendimientoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.DatosFormularioResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.DatosPersonalesResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.DatosPersonaResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.DatosProvidenciaResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.DatosSolicitanteResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.DestinatarioResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.DestinoFondoReporteResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.DestinoFondoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.DestinoFondoSeleccionadoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.DetalleLineaGrillaResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.DetalleLineaParaFormularioResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.DetalleLineaResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.DetalleMotivosRechazoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.DeudaEmprendimientoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.EditarMontoDisponibleResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.EgresoGrupoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.EmprendimientoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.EstimaClienteReporteResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.EstimaClientesResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.EtapaEstadoLineaResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.FechaAprobacionResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.FormaPagoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.FormularioCanceladoParaPrestamo.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.FormularioFechaPagoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.FormularioFiltradoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.FormularioGrillaResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.FormulariosInversionRealizadaResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.FormulariosSituacionResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.FormularioXDni.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.FuenteFinanciamientoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.GrupoFamiliarResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.IdFormularioAgrupamiento.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.IdsResult.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.IdValorItem.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.IngresoGrupoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.InstitucionComboResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.IntegranteResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.IntegrantesResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.InversionRealizadaResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ItemInversionResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ItemReporteConCategoriaResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ItemReporteResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ItemsMercadoComerResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ItemsMercadoComerString.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ItemsPrecioVentaResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.LineaParaComboResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.LineaPrestamoGrillaResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.LineaPrestamoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.MercadoComercializacionResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.MiembroEmprendimientoFormularioResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.MiembroEmprendimientoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.MontoDisponibleResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.MotivosRechazoReferenciaResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.MovimientoMontoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.NecesidadInversionResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.NombreDescripcionOtros.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.OngComboResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.OngResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.OpcionDestinosFondoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.OrganizacionEmprendimientoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.PatrimonioSolicitanteResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.PrecioVentaResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.PrestamoIdResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.PrestamoResultado+Datos.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.PrestamoResultado+Detallado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.PrestamoResultado+EncabezadoArchivos.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.PrestamoResultado+Integrante.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.PrestamoResultado+Seguimiento.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.PrestamoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ProgramaResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.RegistrarMontoDisponibleResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.RegistrarPrestamoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ReporteDetalleMotivosRechazoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ReporteDeudaGrupoConvivienteResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ReporteFormularioResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ReportePieDePaginaFormularioResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.Reprogramacion.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.RequisitoResultado+Cargado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.RequisitoResultado+Detallado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.RequisitoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.RequisitosCuadranteResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.RequisitosLineaResultado+TiposItem.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.RequisitosLineaResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.SituacionPersonasResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.SolicitudCursoReporteResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.SolicitudCursoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.TipoDeudaResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.TipoFinanciamientoResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.TipoGarantiaResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.TipoInteresResultado.datasource" />
+    <None Include="Properties\DataSources\Formulario.Aplicacion.Consultas.Resultados.ValidacionEdadResultado.datasource" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Datos\Repositorios\Repositorios.csproj">
+      <Project>{9BC7C21D-18CD-4EF8-9077-9987BEB7B2E2}</Project>
+      <Name>Repositorios</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Modulos\Formulario\Formulario.Aplicacion.Consultas\Formulario.Aplicacion.Consultas.csproj">
+      <Project>{024F0ED3-0FD3-4D9D-8605-E6E2C5DEC4FD}</Project>
+      <Name>Formulario.Aplicacion.Consultas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Modulos\Identidad\Identidad.Dominio\Identidad.Dominio.csproj">
+      <Project>{d67f744c-5347-406d-b853-e7c5e3ad45da}</Project>
+      <Name>Identidad.Dominio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core.CiDi\Core.CiDi.csproj">
+      <Project>{6B5E397A-3637-4DDF-8E3B-DDAC31389DB5}</Project>
+      <Name>Core.CiDi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core.Comun\Core.Comun.csproj">
+      <Project>{6D014EE5-0745-4A72-8EE0-07E134CF8F3C}</Project>
+      <Name>Core.Comun</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core.Datos\Core.Datos.csproj">
+      <Project>{ae864853-0215-4172-911e-17d64ce02e2f}</Project>
+      <Name>Core.Datos</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

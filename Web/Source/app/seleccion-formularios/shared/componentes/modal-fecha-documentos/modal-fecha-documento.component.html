@@ -1,0 +1,56 @@
+<div class="modal-header">
+  <h4 class="modal-title"><strong>FECHA DE DOCUMENTACIÓN</strong></h4>
+  <button type="button" class="close" aria-label="Close" (click)="cancelar()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <div class="row row-section" id="botonesFecha">
+    <div class="col text-center">
+      <button type="button"
+              class="btn btn-primary col-5"
+              (click)="utilizarFechaAprobacion()">Utilizar Fecha Aprobación
+      </button>
+      <button type="button"
+              class="btn btn-primary col-5"
+              (click)="ingresoManualFecha()">Ingreso Manual de Fecha
+      </button>
+    </div>
+  </div>
+
+  <form [formGroup]="form">
+    <div class="row-section align-middle" >
+      <div *ngIf="ingresoManual" class="col-4 centrar">
+        <label for="input_fecha_nueva" class="col-form-label">Ingrese una fecha
+          <span class="obligatorio"> (*)</span>:</label>
+        <input id="input_fecha_nueva"
+               class="form-control"
+               ngbDatepicker
+               #input_fecha="ngbDatepicker"
+               (click)="input_fecha.toggle()"
+               placeholder="dd/mm/aaaa"
+               formControlName="fecha"/>
+        <control-messages [control]="form.get('fecha')"></control-messages>
+        </div>
+
+    </div>
+  </form>
+</div>
+
+<div class="row row-section" id="botones">
+  <div class="col">
+    <div class="pull-right">
+      <button type="button"
+              class="btn btn-secondary pull-left separador-botones"
+              (click)="cancelar()">SALIR
+      </button>
+      <button *ngIf="ingresoManual"
+              class="btn btn-primary separador-botones"
+              [disabled]="!form.valid"
+              (click)="confirmarFecha()">ACEPTAR
+      </button>
+
+    </div>
+  </div>
+</div>

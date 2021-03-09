@@ -1,0 +1,105 @@
+<h1>BAJA DE MONTO DISPONIBLE</h1>
+
+<form [formGroup]="form" novalidate>
+  <div class="card-pane">
+    <div class="row">
+      <div class="form-group col-md-12 col-lg-12 col-xl-12" [errorFeedback]="form.get('descripcion')">
+        <label for="txt_descripcion" class="form-control-label">Descripción <span class="obligatorio">(*) </span>:</label>
+        <input type="text" id="txt_descripcion" formControlName="descripcion" class="form-control" disabled>
+        <control-messages [control]="form.get('descripcion')"></control-messages>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="form-group col-md-4 col-lg-4 col-xl-4" [errorFeedback]="form.get('fechaDepositoBancario')">
+        <label for="txt_fecha_deposito_bancario" class="col-form-label">Fecha depósito bancario <span class="obligatorio">(*) </span>:</label>
+        <div class="input-group">
+          <input id="txt_fecha_deposito_bancario" class="form-control" ngbDatepicker
+            #fecha_deposito_bancario="ngbDatepicker" (click)="fecha_deposito_bancario.toggle()" placeholder="dd/mm/aaaa"
+            formControlName="fechaDepositoBancario" disabled />
+          <control-messages [control]="form.get('fechaDepositoBancario')"></control-messages>
+        </div>
+      </div>
+
+      <div class="form-group col-md-4 col-lg-4 col-xl-4" [errorFeedback]="form.get('fechaInicioPago')">
+        <label for="txt_fecha_inicio_pago" class="col-form-label">Fecha inicio pago <span class="obligatorio">(*) </span>:</label>
+        <div class="input-group">
+          <input id="txt_fecha_inicio_pago" class="form-control" ngbDatepicker #fecha_inicio_pago="ngbDatepicker"
+            (click)="fecha_inicio_pago.toggle()" placeholder="dd/mm/aaaa" formControlName="fechaInicioPago" disabled />
+          <control-messages [control]="form.get('fechaInicioPago')"></control-messages>
+        </div>
+      </div>
+
+      <div class="form-group col-md-4 col-lg-4 col-xl-4" [errorFeedback]="form.get('fechaFinPago')">
+        <label for="txt_fecha_fin_pago" class="col-form-label">Fecha fin pago <span class="obligatorio">(*) </span>:</label>
+        <div class="input-group">
+          <input id="txt_fecha_fin_pago" class="form-control" ngbDatepicker #fecha_fin_pago="ngbDatepicker"
+            (click)="fecha_fin_pago.toggle()" placeholder="dd/mm/aaaa" formControlName="fechaFinPago" disabled />
+          <control-messages [control]="form.get('fechaFinPago')"></control-messages>
+        </div>
+      </div>
+
+      <div class="form-group col-xl-6 col-lg-6 col-md-6">
+        <label for="cb_banco">Banco <span class="obligatorio">(*) </span>:</label>
+        <select id="cb_banco" class="form-control" formControlName="idBanco" disabled>
+          <option value="null">
+            Seleccione...
+          </option>
+          <option *ngFor="let item of CBBanco" [ngValue]="item.clave">
+            {{item.valor | uppercase}}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group col-xl-6 col-lg-6 col-md-6">
+        <label for="cb_sucursal">Sucursal <span class="obligatorio">(*) </span>:</label>
+        <select id="cb_sucursal" class="form-control" formControlName="idSucursal" disabled>
+          <option value="null">
+            Seleccione...
+          </option>
+          <option *ngFor="let item of CBSucursal" [ngValue]="item.clave">
+            {{item.valor | uppercase}}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group col-md-3 col-lg-3 col-xl-3" [errorFeedback]="form.get('monto')">
+        <label for="txt_monto" class="form-control-label">Monto <span class="obligatorio">(*) </span>:</label>
+        <input type="text" id="txt_monto" formControlName="monto" class="form-control" disabled>
+        <control-messages [control]="form.get('monto')"></control-messages>
+      </div>
+
+      <div class="form-group col-md-3 col-lg-3 col-xl-3">
+        <label for="txt_nro_monto" class="form-control-label">Número monto</label>
+        <input type="text" id="txt_nro_monto" formControlName="nroMonto" class="form-control" disabled>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="card-pane">
+    <div class="row">
+      <div class="col-lg-5 col-xl-5" [errorFeedback]="form.get('motivoBaja')">
+        <label for="ddl_motivo_baja">Motivo baja</label>
+        <select class="form-control" id="ddl_motivo_baja" formControlName="motivoBaja">
+          <option value="">Seleccione...</option>
+          <option *ngFor="let motivo of motivosBaja" [value]=motivo.id>
+            {{motivo.descripcion}}
+          </option>
+          <control-messages [control]="form.get('motivoBaja')"></control-messages>
+        </select>
+      </div>
+    </div>
+  </div>
+</form>
+
+<div class="row row-section">
+  <div class="col">
+    <div class="pull-right">
+      <a [routerLink]="['/monto-disponible']" class="btn btn-secondary">VOLVER</a>
+      <button class="btn btn-primary" (click)="darDeBaja()" [disabled]="!form.valid">ACEPTAR
+      </button>
+    </div>
+  </div>
+</div>

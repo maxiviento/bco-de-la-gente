@@ -1,0 +1,58 @@
+<div *ngIf="solicitantes?.length > 0" id="row_titulo" class="row row-title">
+  <div class="col">
+    <strong>
+      <h4 class="card-title w-75">DATOS PERSONALES DE LOS SOLICITANTES
+        <i class="material-icons" *ngIf="!this.integrantesTienenGrupo" ngbTooltip="Algún integrante no posee grupo familiar">warning</i>
+      </h4>
+    </strong>
+  </div>
+</div>
+
+<div *ngIf="solicitantes?.length > 0" class="card-pane">
+  <table class="table table-sm table-striped table-bordered">
+    <thead>
+    <tr>
+      <th class="align-middle"> CUIL/DNI</th>
+      <th class="align-middle"> NOMBRE Y APELLIDO</th>
+      <th class="align-middle"> ESTADO</th>
+      <th *ngIf="this.formulariosService.formulario.detalleLinea.apoderado" class="align-middle"> APODERADO</th>
+      <th style="width: 13%" class="align-middle" *ngIf="this.editable"> ACCIONES</th>
+    </tr>
+    </thead>
+    <tbody class="table-int">
+    <tr *ngFor="let integrante of solicitantes; let indice = index">
+      <td class="align-middle">{{integrante?.nroDocumento}}</td>
+      <td class="align-middle">{{integrante?.apellido + ', ' + integrante?.nombre}}</td>
+      <td class="align-middle">{{integrante?.estado}}</td>
+      <td *ngIf="this.formulariosService.formulario.detalleLinea.apoderado" class="align-middle">
+        <input [disabled]="noPuedeApoderar(integrante)" type="radio"
+               name="apoderado"
+               [checked]="integrante.esApoderado == 2"
+               (change)="apoderadoChecked(indice)">
+      </td>
+
+      <td style="width: 10%" class="align-middle" *ngIf="this.editable">
+        <button type="button" class="btn btn-link"
+                *ngIf="permiteAccionar(integrante)"
+                ngbTooltip="Modificar Grupo" style="padding: 0; margin: auto"
+                (click)="modificarGrupoIntegrante(integrante)">
+          <i class="material-icons icono-accion">people</i>
+        </button>
+        <button type="button" class="btn btn-link"
+                *ngIf="permiteAccionar(integrante)"
+                ngbTooltip="Editar" style="padding: 0; margin: auto"
+                (click)="editarIntegrante(integrante)">
+          <i class="material-icons icono-accion">mode_edit</i>
+        </button>
+        <button type="button" class="btn btn-link"
+                *ngIf="permiteAccionar(integrante)"
+                ngbTooltip="Eliminar integrante"
+                (click)="eliminarDetalle(indice)">
+          <i class="material-icons icono-accion">clear</i>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+

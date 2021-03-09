@@ -1,0 +1,63 @@
+<form [formGroup]="form" novalidate>
+  <div class="card-pane">
+    <div class="row">
+      <div class="form-group col-md-3 col-lg-3 col-xl-3" [errorFeedback]="form.get('fechaInicio')">
+        <label for="txt_fecha_desde" class="col-form-label">Fecha desde</label>
+        <div class="input-group">
+          <input id="txt_fecha_desde" class="form-control" ngbDatepicker #fecha_desde="ngbDatepicker"
+            (click)="fecha_desde.toggle()" placeholder="dd/mm/aaaa" formControlName="fechaInicio" />
+        </div>
+        <control-messages [control]="form.get('fechaInicio')"></control-messages>
+      </div>
+      <div class="form-group col-md-3 col-lg-3 col-xl-3" [errorFeedback]="form.get('nroLoteDesde')">
+        <label for="txt_nro_lote_desde" class="col-form-label">Nro Lote Desde</label>
+        <input type="text" class="form-control" id="txt_nro_lote_desde" formControlName="nroLoteDesde">
+        <control-messages [control]="form.get('nroLoteDesde')"></control-messages>
+      </div>
+      <div class="form-group col-md-6 col-lg-6 col-xl-6" [errorFeedback]="form.get('linea')">
+        <label for="cb_lineas" class="col-form-label">Línea de préstamo</label>
+        <select id="cb_lineas" class="form-control" formControlName="linea">
+          <option value="null">
+            Seleccione
+          </option>
+          <option *ngFor="let item of CBLineas" [ngValue]="item.id">
+            {{item.descripcion | uppercase}}
+          </option>
+        </select>
+        <control-messages [control]="form.get('linea')"></control-messages>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="form-group col-md-3 col-lg-3 col-xl-3" [errorFeedback]="form.get('fechaFin')">
+        <label for="txt_fecha_hasta" class="col-form-label">Fecha hasta</label>
+        <div class="input-group">
+          <input id="txt_fecha_hasta" class="form-control" ngbDatepicker #fecha_hasta="ngbDatepicker"
+                 (click)="fecha_hasta.toggle()" placeholder="dd/mm/aaaa" formControlName="fechaFin" />
+        </div>
+        <control-messages [control]="form.get('fechaFin')"></control-messages>
+      </div>
+      <div class="form-group col-md-3 col-lg-3 col-xl-3" [errorFeedback]="form.get('nroLoteHasta')">
+        <label for="txt_nro_lote_hasta" class="col-form-label">Nro Lote Hasta</label>
+        <input type="text" class="form-control" id="txt_nro_lote_hasta" formControlName="nroLoteHasta">
+        <control-messages [control]="form.get('nroLoteHasta')"></control-messages>
+      </div>
+      <div class="form-group col-md-3 col-lg-3 col-xl-3" [errorFeedback]="form.get('nroPrestamo')">
+        <label for="txt_nro_prestamo" class="col-form-label">Nro préstamo</label>
+        <input type="text" class="form-control" id="txt_nro_prestamo" formControlName="nroPrestamo">
+        <control-messages [control]="form.get('nroPrestamo')"></control-messages>
+      </div>
+    </div>
+    <bg-busqueda-por-persona></bg-busqueda-por-persona>
+
+  </div>
+</form>
+
+<div class="row row-section">
+  <div class="form-group col">
+    <button class="btn btn-primary pull-right" [disabled]="validarConsulta()" (click)="consultar(true)">
+      <i class="material-icons icono-accion alinear-texto-con-icono">search</i>
+      <span class="alinear-texto-con-icono">CONSULTAR</span>
+    </button>
+  </div>
+</div>

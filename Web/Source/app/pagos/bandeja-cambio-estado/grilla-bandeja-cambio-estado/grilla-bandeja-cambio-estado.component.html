@@ -1,0 +1,58 @@
+<div class="row">
+  <h3 class="display-6 col-auto">Resultados:</h3>
+  <h5 class="margin-resultados">{{totalizador? '(' + totalizador + ' formulario/s)': ''}}</h5>
+  <div class="col-auto">
+    <single-spinner></single-spinner>
+  </div>
+</div>
+
+<div class="card-pane" [hidden]="bandejaResultados.length">
+  No hay resultados para mostrar.
+</div>
+
+<div class="card-pane" [hidden]="!bandejaResultados.length">
+
+  <table class="table table-bordered table-striped table-sm">
+    <thead>
+    <tr>
+      <th class="align-middle">NÚMERO PRÉSTAMO</th>
+      <th class="align-middle">NÚMERO FORMULARIO</th>
+      <th class="align-middle">LÍNEA</th>
+      <th class="align-middle">APELLIDO Y NOMBRE DEL SOLICITANTE</th>
+      <th class="align-middle">ESTADO DEL PRÉSTAMO</th>
+      <th class="align-middle">ESTADO DEL FORMULARIO</th>
+      <th class="align-middle">FECHA FORMULARIO</th>
+      <th class="align-middle">ELEMENTO DE PAGO</th>
+      <th class="align-middle">LOCALIDAD</th>
+      <th class="align-middle">ACCIÓN</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr [formGroup]="resultado" *ngFor="let resultado of lotesFormArray.controls">
+      <td class="align-middle">{{resultado.get('nroPrestamo').value}}</td>
+      <td class="align-middle">{{resultado.get('nroFormulario').value}}</td>
+      <td class="align-middle">{{resultado.get('idLinea').value}}</td>
+      <td class="align-middle">{{resultado.get('nombreYApellido').value}}</td>
+      <td class="align-middle">{{resultado.get('estadoPrestamo').value}}</td>
+      <td class="align-middle">{{resultado.get('estadoFormulario').value}}</td>
+      <td class="align-middle">{{resultado.get('fechaFormulario').value | date:"dd/MM/yy"}}</td>
+      <td class="align-middle">{{resultado.get('elementoPago').value}}</td>
+      <td class="align-middle">{{resultado.get('localidad').value}}</td>
+      <td class="align-middle">
+        <button type="button"
+                class="btn btn-link boton-grilla"
+                ngbTooltip="Cambiar estado"
+                (click)="cambiarEstadoFormulario(resultado.get('idFormulario').value)"
+                [disabled]="false">
+          <i class="material-icons icono-accion">
+            compare_arrows
+          </i>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <paginacion [pagina]="pagina | async" (paginaModificada)="consultarFormularios($event)">
+  </paginacion>
+</div>

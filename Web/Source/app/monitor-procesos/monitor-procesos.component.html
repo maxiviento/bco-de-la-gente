@@ -1,0 +1,122 @@
+<div class="row line-divider-bottom align-items-center">
+  <div class="col">
+    <h1 class="display-4">MONITOR PROCESOS</h1>
+  </div>
+</div>
+
+<form [formGroup]="form" novalidate>
+  <div class="card-pane card-margin-top">
+    <div class="row">
+        <div class="col-md-4 col-lg-4 col-xl-4">
+          <div class="form-group row " [errorFeedback]="form.get('fechaAlta')" style="margin-top: 15px">
+                <label for="txt_fecha_desde" class="col-md-3 col-lg-3 col-xl-3 col-form-label">Fecha alta
+                  <span class="obligatorio"> (*)</span></label>
+              <div class="col-md-6 col-lg-6 col-xl-6">
+                <input id="txt_fecha_desde" class="form-control" ngbDatepicker #fecha_desde="ngbDatepicker"
+                      (click)="fecha_desde.toggle()" placeholder="dd/mm/aaaa" formControlName="fechaAlta"/>
+              </div>
+              <div class="col-md-9 col-lg-9 col-xl-9">
+              <control-messages [control]="form.get('fechaAlta')"></control-messages>
+             </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-4 col-xl-4">
+          <multiple-seleccion [titulo]="'Estado proceso:'"
+          [colDiv]="6"
+          [colLabel]="3"
+          [tipoCombo]="'comboEstadoProceso'"
+          (opcionesSeleccionadas)="guardarEstadosSeleccionadas($event)">
+          </multiple-seleccion>
+        </div>
+        <div class="col-md-4 col-lg-4 col-xl-4">
+          <multiple-seleccion [titulo]="'Tipo proceso:'"
+                                [colDiv]="6"
+                                [colLabel]="3"
+                                [tipoCombo]="'comboTipoProceso'"
+                                (opcionesSeleccionadas)="guardarTiposSeleccionados($event)">
+          </multiple-seleccion>
+      </div>
+   </div>
+   <div class="form-group row">
+    <label for="cb_usuario" class="col-md-1 col-lg-1 col-xl-1 col-form-label">Usuario</label>
+    <div class="col-md-2 col-lg-2 col-xl-2">
+      <ng-select id="cb_usuario" [dataSource]="{list: usuarios, name:'nombre', id:'id'}" formControlName="usuario"
+                 [selected]="form.get('usuario').value" [clientMode]="true">
+      </ng-select>
+    </div>
+  </div>
+  </div>
+  <div class="row row-section">
+    <div class="form-group col">
+      <button class="btn btn-primary pull-right" (click)="consultarProcesos(true)" [disabled]="form.invalid">
+        <i class="material-icons icono-accion alinear-texto-con-icono">search</i>
+        <span class="alinear-texto-con-icono">CONSULTAR</span>
+      </button>
+    </div>
+  </div>
+</form>
+
+<div class="row">
+  <h3 class="display-6 col-auto">Resultados:</h3>
+  <h5 class="margin-resultados">{{totalizador? '(' + totalizador + ' proceso/s)': ''}}</h5>
+  <div class="col-auto">
+    <single-spinner></single-spinner>
+  </div>
+</div>
+
+<div *ngIf="!(resultados.length)" class="card-pane">No hay resultados para mostrar.</div>
+<div [hidden]="!resultados.length" class="card-pane">
+  <table class="table table-bordered table-striped">
+    <thead>
+    <th class="align-middle">TIPO PROCESO
+    </th>
+    <th class="align-middle">FECHA ALTA
+    </th>
+    <th class="align-middle">FECHA INICIO
+    </th>
+    <th class="align-middle">FECHA GENERACIÓN
+    </th>
+    <th class="align-middle">FECHA MODIFICACIÓN
+    </th>
+    <th class="align-middle">ESTADO PROCESO
+    </th>
+    <th class="align-middle">USUARIO MODIFICACIÓN
+    </th>
+    <th class="align-middle">USUARIO ALTA
+    </th>
+    <th class="align-middle">ACCIONES</th>
+    </thead>
+    <tbody>
+    <tr *ngFor="let proceso of resultados">
+      <td class="align-middle">{{proceso.tipo}}</td>
+      <td class="align-middle">{{proceso.fechaAlta | date:'dd/MM/yyyy'}}</td>
+      <td class="align-middle">{{proceso.fechaInicioProceso | date:'dd/MM/yyyy'}}</td>
+      <td class="align-middle">{{proceso.fechaGeneracionPdf | date:'dd/MM/yyyy'}}</td>
+      <td class="align-middle">{{proceso.fechaModificacion | date:'dd/MM/yyyy'}}</td>
+      <td class="align-middle">{{proceso.estado}}</td>
+      <td class="align-middle">{{proceso.usuarioModificacion}}</td>
+      <td class="align-middle">{{proceso.usuarioAlta}}</td>
+      <td class="align-middle">
+        <div class="nav-item align-items-center nav-link" aria-disabled="true">
+          <div aria-labelledby="dd_procesos">
+            <button type="button"
+                  [disabled]="proceso.idEstado != 5"
+                  class="btn btn-link"
+                  ngbTooltip="Descargar"
+                  (click)="descargarReporte(proceso)">
+            <i class="material-icons">arrow_downward</i>
+            </button>
+            <button type="button" class="btn btn-link accion-prestamo"
+                    [disabled]="validarCancelacion(proceso)"
+                    (click)="cancelarProceso(proceso.id)" ngbTooltip="Cancelar">
+              <i class="material-icons icono-accion">do_not_disturb_alt</i>
+            </button>
+          </div>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <paginacion [pagina]="pagina | async" (paginaModificada)="consultarPaginaSiguiente($event)">
+  </paginacion>
+</div>

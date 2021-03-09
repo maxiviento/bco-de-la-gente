@@ -1,0 +1,41 @@
+<div class="card-pane">
+  <table class="table table-sm table-striped table-bordered">
+    <thead>
+    <tr>
+      <th class="align-middle"> INTEGRANTES SOCIOS</th>
+      <th class="align-middle"> TIENE APODERADO</th>
+      <th class="align-middle"> MONTO TOPE SOCIO INTEGRANTE</th>
+      <th class="align-middle"> MONTO PRESTABLE</th>
+      <th class="align-middle"> TIPO FINANCIAMIENTO</th>
+      <th class="align-middle"> PLAZO DEVOLUCIÓN MÁXIMO</th>
+      <th class="align-middle"> VALOR ESTIMADO CUOTA SOLIDARIA</th>
+      <th class="align-middle"> GARANTÍA</th>
+      <th class="align-middle">CONVENIOS PAGO</th>
+      <th class="align-middle">CONVENIO RECUPERO</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let detalle of detalles; let indice=index">
+      <td class="align-middle">{{obtenerDescripcion(detalle.integranteSocio.id, integrantes)}}</td>
+      <td class="align-middle">{{(detalle.apoderado) ? 'SI':'NO'}}</td>
+      <td class="align-middle">{{detalle.montoTope != 0 ? detalle.montoTope : 'N/A'}}</td>
+      <td class="align-middle">{{detalle.montoPrestable}}</td>
+      <td class="align-middle">{{obtenerDescripcion(detalle.tipoFinanciamiento.id, financiamientos)}}</td>
+      <td class="align-middle">{{detalle.plazoDevolucion}}</td>
+      <td class="align-middle">{{detalle.valorCuotaSolidaria ? detalle.valorCuotaSolidaria : 'N/A'}}</td>
+      <td class="align-middle">{{obtenerDescripcion(detalle.tipoGarantia.id, garantias)}}</td>
+      <td class="align-middle">{{obtenerNombre(detalle.convenioPago.id, conveniosPago)}}</td>
+      <td class="align-middle">{{obtenerNombre(detalle.convenioRecupero.id, conveniosRecupero)}}</td>
+      <td class="align-middle">
+        <button type="button" class="btn-link" *ngIf="!detalle.id"
+                ngbTooltip="Eliminar Detalle"
+                (click)="eliminarDetalle(indice)">
+          <i class="material-icons">clear</i>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+

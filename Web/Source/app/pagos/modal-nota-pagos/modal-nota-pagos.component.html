@@ -1,0 +1,35 @@
+<div class="modal-header">
+  <h4 class="modal-title"><strong>DATOS PARA LA NOTA PARA EL BANCO</strong></h4>
+  <button type="button" class="close" aria-label="Close" (click)="cancelar()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <form [formGroup]="form" novalidate>
+
+    <div class="row">
+      <div class="form-group col-md-12 col-lg-12 col-xl-12" [errorFeedback]="form.get('nombre')">
+        <label for="txt_nombre" class="form-control-label">Nombre </label>
+        <span class="obligatorio">(*)</span>
+        <input type="text" id="txt_nombre" formControlName="nombre" class="form-control">
+        <control-messages [control]="form.get('nombre')"></control-messages>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-12 col-lg-12 col-xl-12" [errorFeedback]="form.get('cc')">
+        <label for="txt_cc" class="col-form-label">Cc</label>
+        <input type="text" id="txt_cc" formControlName="cc" class="form-control">
+        <control-messages [control]="form.get('cc')"></control-messages>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="cancelar()">CANCELAR
+  </button>
+  <button class="btn btn-primary" (click)="crearNota()" [disabled]="!form.valid">ACEPTAR
+  </button>
+</div>

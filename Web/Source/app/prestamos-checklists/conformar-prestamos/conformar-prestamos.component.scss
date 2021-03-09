@@ -1,0 +1,38 @@
+.linea-no-seleccionable {
+  background-color: rgba(102, 106, 111, 0.20);
+  cursor: not-allowed;
+}
+
+.titulo-grilla {
+  margin-bottom: 15px;
+}
+
+.spacer5 {
+  height: 16px;
+}
+
+.spacer10 {
+  height: 14px;
+}
+
+.bottom-buffer {
+  margin-bottom: -10px;
+}
+
+.check-grilla {
+  position: inherit;
+}
+
+.seleccionado {
+  background-color: lightgray;
+  cursor: not-allowed;
+}
+
+.box-linea-formulario {
+  margin-bottom: 15px;
+  margin-top: 35px;
+}
+
+.margin-top-label{
+  margin-top: 5%;
+}

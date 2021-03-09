@@ -1,0 +1,43 @@
+<div class="row align-items-center line-divider-bottom" id="detalle-persona">
+  <div class="col ml-auto">
+    <h3>Detalle</h3>
+  </div>
+</div>
+<div class="card-pane card-margin-top">
+  <div class="row row-section">
+
+    <div class="col texto-centrado-justificado">
+      <h5><b>Nombre completo:</b> {{persona?.apellido ? persona.apellido : 'SIN DATOS'}},
+        {{persona?.nombre ? persona.nombre : 'SIN DATOS'}}
+        | <b>Edad:</b> {{persona?.edad ? persona.edad : 'SIN DATOS'}}
+        | <b>Fecha de nacimiento:</b> {{persona?.fechaNacimiento ? (persona.fechaNacimiento | date: 'dd/MM/yyyy') : 'SIN DATOS'}}
+        | <b>Documento:</b> {{persona?.nroDocumento ? persona.nroDocumento : 'SIN DATOS'}}
+        | <b>CUIL:</b> {{persona?.cuil ? persona.cuil : 'SIN DATOS'}}
+        | <b>Departamento:</b> {{persona?.departamento ? persona.departamento : 'SIN DATOS'}}
+        | <b>Localidad:</b> {{persona?.localidad ? persona.localidad : 'SIN DATOS'}}
+        | <b>Código de área:</b> {{persona?.codigoArea ? persona.codigoArea : 'SIN DATOS'}}
+        | <b>Teléfono:</b> {{persona?.telefono ? persona.telefono : 'SIN DATOS'}}
+        | <b>Código de área:</b> {{persona?.codigoAreaCelular ? persona.codigoAreaCelular : 'SIN DATOS'}}
+        | <b>Celular:</b> {{persona?.celular ? persona.celular : 'SIN DATOS'}}
+        | <b>Email:</b> {{persona?.email ? persona.email : 'SIN DATOS'}}
+      </h5>
+    </div>
+  </div>
+
+  <bg-grilla-formularios-situacion-bge
+    [filtros]="persona"
+    (emitirMotivos)="almacenarListadoMotivos($event)">
+  </bg-grilla-formularios-situacion-bge>
+</div>
+
+<div class="row row-section">
+  <div class="col text-center">
+    <button type="button" *ngIf="persona" class="btn btn-secondary pull-left" (click)="top()">
+      <i class="material-icons alinear-texto-con-icono btn-top">keyboard_arrow_up</i>
+    </button>
+    <button type="button" *ngIf="persona" class="btn btn-primary pull-right" (click)="imprimir()">
+      <i class="material-icons alinear-texto-con-icono">print</i>
+      <span class="alinear-texto-con-icono">IMPRIMIR</span>
+    </button>
+  </div>
+</div>

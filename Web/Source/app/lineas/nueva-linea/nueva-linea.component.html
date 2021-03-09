@@ -1,0 +1,167 @@
+<div class="row bordered align-items-center">
+  <div class="col">
+    <h1 class="display-4">REGISTRAR LÍNEA DE MICRO-PRÉSTAMO</h1>
+  </div>
+</div>
+
+<form [formGroup]="form">
+  <div id="registrar_linea" [ngSwitch]="pantallaActual">
+
+    <div *ngSwitchCase="'linea'">
+      <div class="row row-section line-divider-bottom">
+        <div class="col">
+          <h5><strong>Ítems de la línea</strong></h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-pane card-margin-top" *ngSwitchCase="'linea'">
+      <bg-linea-items
+        [linea]="itemLineaForm"
+        (requisitos)="modificarPantalla($event)">
+      </bg-linea-items>
+      <div class="row row-section">
+        <div class="col-xl-6 col-lg-6 col-md-6">
+          <label for="btn_requisitos" class="form-control-label padding_labels">
+            Asignar requisitos a la línea de préstamo<span class="obligatorio"> (*)</span>
+          </label>
+          <button class="btn btn-warning boton_requisitos"
+                  type="button"
+                  id="btn_requisitos"
+                  (click)="guardarLinea(form.get('itemLineaForm'),'requisitos')">REQUISITOS
+          </button>
+        </div>
+      </div>
+      <div class="row row-section" *ngIf="verOng">
+        <div class="col-xl-6 col-lg-6 col-md-6">
+          <label for="btn_ong" class="form-control-label padding_labels">
+            Asignar ONG a la línea de préstamo<span class="obligatorio"> (*)</span>
+          </label>
+          <button class="btn btn-warning boton_requisitos"
+                  type="button"
+                  id="btn_ong"
+                  (click)="guardarLinea(form.get('itemLineaForm'), 'ong')">ONG
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div *ngSwitchCase="'linea'">
+      <div class="row row-section line-divider-bottom">
+        <div class="col">
+          <h5><strong>Archivos de la línea</strong></h5>
+        </div>
+      </div>
+    </div>
+    <div class="card-pane card-margin-top" *ngSwitchCase="'linea'">
+
+      <div class="row">
+        <div class="col-lg-6 col-xl-6 row justify-content-center">
+          <div class="col-lg-12 col-xl-12 text-center">
+            <strong><p> Logo/Imágen cabecera de línea de préstamo<span class="obligatorio"> (*)</span>:</p></strong>
+          </div>
+          <bg-seleccion-archivo
+            [accept]="'image/jpeg, image/png'"
+            (archivoSeleccionado)="archivoSeleccionadoLogo($event)">
+          </bg-seleccion-archivo>
+
+          <div class="row col-lg-12 col-xl-12 justify-content-center" *ngIf="archivoLogo?.name">
+            <span><strong>Archivo a importar: </strong><em>{{archivoLogo.name | uppercase}}</em></span>
+          </div>
+        </div>
+
+        <div class="col-lg-6 col-xl-6 row justify-content-center">
+          <div class="col-lg-12 col-xl-12 text-center">
+            <strong><p>Firmantes/Imágen pie de línea préstamo<span class="obligatorio"> (*)</span>:</p></strong>
+          </div>
+          <bg-seleccion-archivo
+            [accept]="'image/jpeg, image/png'"
+            (archivoSeleccionado)="archivoSeleccionadoPiePagina($event)">
+          </bg-seleccion-archivo>
+
+          <div class="row col-lg-12 col-xl-12 justify-content-center" *ngIf="archivoPiePagina?.name">
+            <span><strong>Archivo a importar: </strong><em>{{archivoPiePagina.name | uppercase}}</em></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <bg-linea-requisitos
+      *ngSwitchCase="'requisitos'"
+      [requisitos]="linea.requisitos"
+      [esCreacionDeLinea]="true"
+      (aceptado)="agregarRequisitos($event)"
+      (cancelado)="modificarPantalla('linea')">
+    </bg-linea-requisitos>
+
+    <bg-lineas-ong
+      *ngSwitchCase="'ong'"
+      [lsOngLinea]="linea.lsOng"
+      [esModificacion]="false"
+      (aceptado)="agregarOng($event)"
+      (cancelado)="modificarPantalla('linea')">
+    </bg-lineas-ong>
+
+    <div class="card-pane card-margin-top" [hidden]="!(deptoLocalidad && verDeptoLocalidad)">
+      <filtro-domicilio-linea
+        (departamentosSeleccionados)="guardarDepartamentosSeleccionados($event)"
+        (localidadesSeleccionadas)="guardarLocalidadesSeleccionadas($event)"
+        [esEditable]="esEditable"
+      ></filtro-domicilio-linea>
+    </div>
+
+    <div *ngSwitchCase="'linea'">
+      <div class="row row-section line-divider-bottom padding_row">
+        <div class="col">
+          <h5><strong>Detalle de la línea</strong></h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-pane card-margin-top" *ngSwitchCase="'linea'">
+      <bg-linea-detalle
+        [detalle]="detalleLineaForm"
+        [mostrarAgregar]="true"
+        [integrantes]="integrantes"
+        [financiamientos]="financiamientos"
+        [intereses]="intereses"
+        [garantias]="garantias"
+        [conveniosPago]="conveniosPago"
+        [conveniosRecupero]="conveniosRecupero"
+        (detalleLinea)="agregarDetalleLinea($event)">
+      </bg-linea-detalle>
+    </div>
+
+    <div *ngSwitchCase="'linea'">
+      <div *ngIf="linea.detalleLineaPrestamo.length > 0">
+        <div class="row row-section line-divider-bottom"
+             style="padding: 5px 20px 5px 5px !important;margin-bottom: 15px">
+          <div class="col">
+            <h5><strong>Datos seleccionados</strong></h5>
+          </div>
+        </div>
+        <bg-linea-datos-seleccionados
+          [integrantes]="integrantes"
+          [financiamientos]="financiamientos"
+          [intereses]="intereses"
+          [garantias]="garantiasCompletas"
+          [conveniosPago]="conveniosPago"
+          [conveniosRecupero]="conveniosRecupero"
+          [detalles]="linea.detalleLineaPrestamo">
+        </bg-linea-datos-seleccionados>
+      </div>
+    </div>
+
+    <div class="row" *ngSwitchCase="'linea'">
+      <div class="col">
+        <button [disabled]="ocultarAceptar"
+                type="button"
+                class="btn btn-primary pull-right"
+                (click)="registrarLinea()">ACEPTAR
+        </button>
+        <a [routerLink]="['/bandeja-lineas']" class="btn btn-secondary pull-right separador-botones">CANCELAR
+        </a>
+      </div>
+    </div>
+  </div>
+</form>

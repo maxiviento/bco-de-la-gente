@@ -1,0 +1,299 @@
+<div class="row bordered align-items-center">
+  <div class="col">
+    <h1 class="display-4">Registrar configuración check-list</h1>
+  </div>
+</div>
+
+<form [formGroup]="form" novalidate style="margin-top: 15px">
+  <div class="card-pane">
+    <div class="row">
+      <div class="form-group col-xl-7 col-lg-7 col-md-7">
+        <label for="cb_linea">Línea Micro-Préstamo</label>
+        <ng-select id="cb_linea" [dataSource]="{list: lineasCombo,name:'descripcion'}"
+          [selected]="form.get('idLinea').value" formControlName="idLinea" [clientMode]="true">
+        </ng-select>
+      </div>
+
+      <div class="form-group col-3" *ngIf="version">
+        <label for="cb_linea">Versión actual</label>
+        <input type="text" id="txt_version_checklist" disabled class="form-control" [value]="version?.version">
+      </div>
+
+      <div class="form-group col-2">
+        <button type="button" class="btn btn-primary boton-nueva-version" *ngIf="version && !editable"
+          (click)="nuevaVersion()">NUEVA VERSIÓN
+        </button>
+        <div class="alert alert-warning aviso-nueva-version" *ngIf="version && editable && version.enUso" role="alert">
+          Actualmente está trabajando en una nueva versión</div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<bg-configuracion-etapa-estado-linea *ngIf="verTablaEtapaEstados" [etapas]="etapasCombo" [estados]="estadosCombo"
+  [etapasEstadosLinea]="etapasEstadosLinea" (idEtapaSeleccionada)="setEtapa($event)" [editable]="editable">
+</bg-configuracion-etapa-estado-linea>
+
+<form [formGroup]="formItems" novalidate [hidden]="!form.get('idEtapa').value">
+  <div class="row line-divider-bottom" *ngIf="itemsSinConfigurar.length">
+    <div class="col">
+      <h5><strong>Seleccionar ítems</strong></h5>
+    </div>
+  </div>
+  <div *ngIf="itemsSinConfigurar.length && editable" class="card-pane" style="margin-top: 15px">
+    <table class="table table-active">
+      <tr [formGroup]="item" *ngFor="let item of itemsFormArray.controls; let indice = index; let primerItem=first">
+        <table class="table table-bordered">
+          <tr *ngIf="primerItem">
+            <th class="align-middle text-left w-40">Ítem</th>
+            <th class="align-middle text-center w-10">Solicitante</th>
+            <th class="align-middle text-center w-10">Garante</th>
+            <th class="align-middle text-center w-10">Checklist</th>
+            <th class="align-middle text-center w-15">Área</th>
+            <th class="align-middle text-center w-10">Seleccionar</th>
+          </tr>
+          <tr
+            [ngClass]="{'first-nested-table': primerItem, 'requisito-linea': item.get('idTipoRequisito').value === 1}">
+            <td class="align-middle text-left w-40" [ngStyle]="{'font-weight': esItemPadre(item)}">
+              {{item.get('nombre').value}}
+            </td>
+            <td class="align-middle text-center w-10" [ngStyle]="{'font-weight': esItemPadre(item)}">
+              <i class="material-icons" *ngIf="item.get('esSolic').value">done</i>
+            </td>
+            <td class="align-middle text-center w-10" [ngStyle]="{'font-weight': esItemPadre(item)}">
+              <i class="material-icons" *ngIf="item.get('esGarante').value">done</i>
+            </td>
+            <td class="align-middle text-center w-10" [ngStyle]="{'font-weight': esItemPadre(item)}">
+              <i class="material-icons" *ngIf="item.get('esChecklist').value">done</i>
+            </td>
+
+            <td class="align-middle text-center w-15" [ngStyle]="{'font-weight': esItemPadre(item)}">
+              <select id="cb_area" class="form-control" formControlName="idArea">
+                <option value="null">Seleccione</option>
+                <option *ngFor="let area of areasCombo" [value]="area.id">
+                  {{area.descripcion}}
+                </option>
+              </select>
+            </td>
+            <td class="align-middle text-center w-10" [ngStyle]="{'font-weight': esItemPadre(item)}">
+              <div class="form-group">
+                <label class="custom-control check-bge-control centrar-check-bge-tabla">
+                  <input type="checkbox" [ngStyle]="{'opacity': opacidadCheckbox(item)}" formControlName="seleccionado"
+                    class="check-bge">
+                  <span class="check-marcado"></span>
+                </label>
+              </div>
+            </td>
+          </tr>
+
+          <tr [formGroup]="itemHijo" *ngFor="let itemHijo of item.get('itemsHijos').controls; let indice = index">
+            <td class="align-middle text-left size-sm w-40" [ngStyle]="{'font-weight': esItemPadre(itemHijo)}">
+              {{' - ' + itemHijo.get('nombre').value}}
+            </td>
+            <td class="align-middle text-center w-10" [ngStyle]="{'font-weight': esItemPadre(itemHijo)}">
+              <i class="material-icons size-sm" *ngIf="itemHijo.get('esSolic').value">done</i>
+            </td>
+            <td class="align-middle text-center w-10" [ngStyle]="{'font-weight': esItemPadre(itemHijo)}">
+              <i class="material-icons size-sm" *ngIf="itemHijo.get('esGarante').value">done</i>
+            </td>
+            <td class="align-middle text-center w-10" [ngStyle]="{'font-weight': esItemPadre(itemHijo)}">
+              <i class="material-icons size-sm" *ngIf="itemHijo.get('esChecklist').value">done</i>
+            </td>
+
+            <td class="align-middle text-center w-15" [ngStyle]="{'font-weight': esItemPadre(itemHijo)}">
+              <select class="form-control" formControlName="idArea">
+                <option value="null"> Seleccione</option>
+                <option *ngFor="let area of areasCombo" [value]="area.id">
+                  {{area.descripcion}}
+                </option>
+              </select>
+            </td>
+            <td class="align-middle text-center w-10" [ngStyle]="{'font-weight': esItemPadre(item)}">
+              <div class="form-group">
+                <label class="custom-control check-bge-control centrar-check-bge-tabla">
+                  <input type="checkbox" [ngStyle]="{'opacity': opacidadCheckbox(item)}" formControlName="seleccionado"
+                    class="check-bge">
+                  <span class="check-marcado"></span>
+                </label>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </tr>
+    </table>
+    <div class="row">
+      <div class="col">
+        <button type="button" class="btn btn-secondary pull-right" [disabled]="form.get('idEtapa').invalid"
+          (click)="agregarRequisitos()">AGREGAR
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<form [formGroup]="formRequisitos" *ngIf="etapasOrdenadas.length">
+  <div class="row line-divider-bottom">
+    <div class="col">
+      <h5><strong>Indicar el orden de los items seleccionados</strong></h5>
+    </div>
+  </div>
+
+  <div class="collapse navbar-collapse" id="requisitosOrdenadosCollapse" [ngbCollapse]="requisitosCollapsed">
+    <div class="card-pane" style="margin-top: 15px">
+      <ngb-tabset #tabSet="ngbTabset" [justify]="'center'">
+        <ngb-tab [formGroup]="etapa" *ngFor="let etapa of etapasOrdenadasFormArray.controls;let indiceEtapa= index"
+          [id]="indiceEtapa">
+          <ng-template ngbTabTitle>{{etapa.get('nombre').value | uppercase}}</ng-template>
+          <ng-template ngbTabContent>
+
+            <table class=" table table-active">
+              <tr [formGroup]="requisitoOrdenado"
+                *ngFor="let requisitoOrdenado of etapa.get('requisitosOrdenados').controls; let indicePadre = index; let primerPadre = first; let ultimoPadre = last">
+                <table class="table table-bordered table-active" [ngClass]="{'first-nested-table': primerPadre}">
+                  <tr *ngIf="primerPadre">
+                    <th class="align-middle text-left w-35">Ítem</th>
+                    <th class="align-middle text-center w-10">Solicitante</th>
+                    <th class="align-middle text-center w-10">Garante</th>
+                    <th class="align-middle text-center w-10">Checklist</th>
+                    <th class="align-middle text-center w-15">Área</th>
+                    <th class="align-middle text-center"
+                      [ngClass]="{'w-20':!form.get('idEtapa').value,  ' w-15':!!form.get('idEtapa').value}">Orden
+                    </th>
+                    <th class="align-middle text-center w-5"
+                      *ngIf="form.get('idEtapa').value !== 'null' && !!form.get('idEtapa').value">Acción
+                    </th>
+                  </tr>
+
+                  <tr>
+                    <td class="align-middle text-left w-35" [ngStyle]="{'font-weight': esItemPadre(requisitoOrdenado)}">
+                      {{requisitoOrdenado.get('nombre').value}}
+                    </td>
+                    <td class="align-middle text-center w-10"
+                      [ngStyle]="{'font-weight': esItemPadre(requisitoOrdenado)}">
+                      <i class="material-icons" *ngIf="requisitoOrdenado.get('esSolic').value">done</i>
+                    </td>
+                    <td class="align-middle text-center w-10"
+                      [ngStyle]="{'font-weight': esItemPadre(requisitoOrdenado)}">
+                      <i class="material-icons" *ngIf="requisitoOrdenado.get('esGarante').value">done</i>
+                    </td>
+                    <td class="align-middle text-center w-10"
+                      [ngStyle]="{'font-weight': esItemPadre(requisitoOrdenado)}">
+                      <i class="material-icons" *ngIf="requisitoOrdenado.get('esChecklist').value">done</i>
+                    </td>
+                    <td class="align-middle text-center w-15"
+                      [ngStyle]="{'font-weight': esItemPadre(requisitoOrdenado)}">
+                      {{requisitoOrdenado.get('nombreArea').value}}
+                    </td>
+
+                    <td class="align-middle text-center"
+                      [ngClass]="{'w-20':!form.get('idEtapa').value,  ' w-15':!!form.get('idEtapa').value}"
+                      [ngStyle]="{'font-weight': esItemPadre(requisitoOrdenado)}">
+                      <button type="button" class="btn btn-link" ngbTooltip="Subir"
+                        (click)="moverPadre(indicePadre,indiceEtapa,-1)" *ngIf="!primerPadre">
+                        <i class="material-icons">arrow_upward</i>
+                      </button>
+                      <button type="button" class="btn btn-link" ngbTooltip="Bajar"
+                        (click)="moverPadre(indicePadre,indiceEtapa,1)" *ngIf="!ultimoPadre">
+                        <i class="material-icons">arrow_downward</i>
+                      </button>
+                    </td>
+                    <td class="align-middle text-center w-5"
+                      *ngIf="form.get('idEtapa').value !== 'null' && !!form.get('idEtapa').value">
+                      <button type="button" class="btn btn-link" ngbTooltip="Borrar"
+                        (click)="quitarRequisitoPadre(etapa, requisitoOrdenado)">
+                        <i class="material-icons">clear</i>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr [formGroup]="requisitoHijo"
+                    *ngFor="let requisitoHijo of requisitoOrdenado.get('itemsHijos').controls; let indiceHijo = index; let primerHijo= first;let ultimoHijo=last">
+                    <td class="align-middle text-left w-35 size-sm"
+                      [ngStyle]="{'font-weight': esItemPadre(requisitoHijo)}">
+                      {{' - ' + requisitoHijo.get('nombre').value}}
+                    </td>
+                    <td class="align-middle text-center w-10" [ngStyle]="{'font-weight': esItemPadre(requisitoHijo)}">
+                      <i class="material-icons size-sm" *ngIf="requisitoHijo.get('esSolic').value">done</i>
+                    </td>
+                    <td class="align-middle text-center w-10" [ngStyle]="{'font-weight': esItemPadre(requisitoHijo)}">
+                      <i class="material-icons size-sm" *ngIf="requisitoHijo.get('esGarante').value">done</i>
+                    </td>
+                    <td class="align-middle text-center w-10" [ngStyle]="{'font-weight': esItemPadre(requisitoHijo)}">
+                      <i class="material-icons size-sm" *ngIf="requisitoHijo.get('esChecklist').value">done</i>
+                    </td>
+
+                    <td class="align-middle text-center size-sm w-15"
+                      [ngStyle]="{'font-weight': esItemPadre(requisitoHijo)}">
+                      {{requisitoHijo.get('nombreArea').value}}
+                    </td>
+                    <td class="align-middle text-center"
+                      [ngClass]="{'w-20':!form.get('idEtapa').value,  ' w-15':!!form.get('idEtapa').value}"
+                      [ngStyle]="{'font-weight': esItemPadre(requisitoHijo)}">
+                      <button type="button" class="btn btn-link" ngbTooltip="Subir"
+                        (click)="moverHijo(indiceHijo,indicePadre,indiceEtapa, -1)" *ngIf="!primerHijo">
+                        <i class="material-icons size-sm">arrow_upward</i>
+                      </button>
+                      <button type="button" class="btn btn-link" ngbTooltip="Bajar"
+                        (click)="moverHijo(indiceHijo,indicePadre,indiceEtapa, 1)" *ngIf="!ultimoHijo">
+                        <i class="material-icons size-sm">arrow_downward</i>
+                      </button>
+                    </td>
+                    <td class="align-middle text-center w-5"
+                      *ngIf="form.get('idEtapa').value !== 'null' && !!form.get('idEtapa').value">
+                      <button type="button" class="btn btn-link" ngbTooltip="Borrar"
+                        (click)="quitarRequisitoHijo(etapa,requisitoOrdenado,requisitoHijo)">
+                        <i class="material-icons size-sm">clear</i>
+                      </button>
+                    </td>
+                  </tr>
+                </table>
+              </tr>
+            </table>
+
+          </ng-template>
+        </ngb-tab>
+      </ngb-tabset>
+      <div class="row">
+        <div class="col">
+          <button class="btn btn-secondary pull-right" type="button" data-toggle="collapse" aria-expanded="false"
+            placement="top" ngbTooltip="Ocultar" (click)="requisitosCollapsed = !requisitosCollapsed"
+            [attr.aria-expanded]="!requisitosCollapsed">
+            <i class="material-icons nav-link no-padding" style="cursor: pointer;">keyboard_arrow_up</i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="requisitosCollapsed">
+    <div class="card-pane" style="margin-top: 15px !important;">
+      <div class="row">
+        <div class="col">
+          <button class="btn btn-secondary pull-right" type="button" data-toggle="collapse" aria-expanded="false"
+            placement="top" ngbTooltip="Mostrar" (click)="requisitosCollapsed = !requisitosCollapsed"
+            [attr.aria-expanded]="!requisitosCollapsed">
+            <i class="material-icons nav-link no-padding" style="cursor: pointer;">keyboard_arrow_down</i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<div class="row">
+  <div class="col">
+    <div class="pull-right">
+      <button type="button" class="btn btn-secondary" [routerLink]="['/']">CANCELAR
+      </button>
+      <button type="button" (click)="actualizarConfiguracion()" [disabled]="validarAceptar()" class="btn btn-primary"
+        *ngIf="form.get('idEtapa').value === 'null' || !form.get('idEtapa').value">ACEPTAR
+      </button>
+      <button type="button" class="btn btn-primary"
+        *ngIf="form.get('idEtapa').value !== 'null' && !!form.get('idEtapa').value" [disabled]="!registrarValido()"
+        (click)="registrarConfiguracion(form.get('idEtapa').value)">REGISTRAR
+      </button>
+      <button type="button" class="btn btn-primary"
+        *ngIf="form.get('idEtapa').value !== 'null' && !!form.get('idEtapa').value && editable"
+        [disabled]="!pasarEtapaValido()" (click)="pasarEtapa()">PASAR DE ETAPA
+      </button>
+    </div>
+  </div>
+</div>

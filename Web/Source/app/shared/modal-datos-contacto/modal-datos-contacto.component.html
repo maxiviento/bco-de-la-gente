@@ -1,0 +1,52 @@
+<div class="modal-header">
+  <h3 class="display-6">Datos de contacto</h3>
+</div>
+
+<div class="card-pane">
+  <form [formGroup]="formDatosContacto" novalidate>
+    <div class="row row-section">
+      <div class="form-group col-lg-2 col-xl-2">
+        <label for="txt_codArea">Código área</label>
+        <input type="text" id="txt_codArea" class="form-control" formControlName="codigoArea">
+        <control-messages class="has-danger" [control]="formDatosContacto.get('codigoArea')"></control-messages>
+      </div>
+
+
+      <div class="form-group col-lg-4 col-xl-4">
+        <label for="txt_telefono">Teléfono</label>
+        <input type="text" id="txt_telefono" class="form-control" formControlName="telefono">
+        <control-messages class="has-danger" [control]="formDatosContacto.get('telefono')"></control-messages>
+      </div>
+
+      <div class="form-group col-lg-2 col-xl-2">
+        <label for="txt_codAreaCel">Código área</label>
+        <input type="text" id="txt_codAreaCel" class="form-control" formControlName="codigoAreaCelular">
+        <control-messages class="has-danger" [control]="formDatosContacto.get('codigoAreaCelular')">
+        </control-messages>
+      </div>
+
+      <div class="form-group col-lg-4 col-xl-4">
+        <label for="txt_celular">Celular</label>
+        <input type="text" id="txt_celular" class="form-control" formControlName="celular">
+        <control-messages class="has-danger" [control]="formDatosContacto.get('celular')"></control-messages>
+      </div>
+
+      <div class="form-group col-lg-6 col-xl-6">
+        <label for="txt_email">Email</label>
+        <input type="text" id="txt_email" class="form-control" [value]="persona.email" formControlName="email">
+        <control-messages class="has-danger" [control]="formDatosContacto.get('email')"></control-messages>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button"
+          class="btn btn-secondary"
+          (click)="cerrar()">CANCELAR
+  </button>
+  <button type="button"
+          class="btn btn-primary"
+          [disabled]="!formDatosContacto.valid"
+          (click)="actualizarDatosDeContacto()">GUARDAR
+  </button>
+</div>

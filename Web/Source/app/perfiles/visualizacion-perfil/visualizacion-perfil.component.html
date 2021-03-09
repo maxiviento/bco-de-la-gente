@@ -1,0 +1,72 @@
+<div class="row bordered align-items-center">
+  <div class="col">
+    <h4 class="display-4">VER PERFIL</h4>
+  </div>
+</div>
+
+<form [formGroup]="form">
+  <div class="card-pane">
+    <div class="row">
+      <div class="form-group col-xl-4 col-md-4" [errorFeedback]="form.get('nombre')">
+        <label for="txt_nombre_programa" class="form-control-label">Nombre</label>
+        <input type="text" class="form-control" id="txt_nombre_programa" formControlName="nombre"
+          placeholder="Nombre perfil" readonly />
+        <control-messages [control]="form.get('nombre')"></control-messages>
+      </div>
+
+      <div class="col col-xl-4 col-md-4">
+        <label for="txt_fecha_inicio">Fecha creación</label>
+        <input type="text" id="txt_fecha_inicio" class="form-control" value="{{perfil.fechaAlta | date:'dd/MM/yyyy'}}"
+          readonly />
+      </div>
+    </div>
+  </div>
+
+  <div class="card-pane" *ngIf="perfil.fechaBaja">
+    <fieldset>
+      <legend>Datos de la baja</legend>
+      <div class="row row-section">
+        <div class="form-group col-lg-3 col-xl-3">
+          <label for="txt_fecha_baja" class="form-control-label">Fecha de baja</label>
+          <input type="text" id="txt_fecha_baja" class="form-control" [value]="perfil.fechaBaja | date:'dd/MM/yyyy'"
+            disabled>
+        </div>
+
+        <div class="form-group col-lg-7 col-xl-7">
+          <label for="txt_motivo_baja" class="form-control-label">Motivo de baja</label>
+          <input type="text" id="txt_motivo_baja" class="form-control" [value]="perfil.motivoBaja" disabled>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+
+  <div class="card-pane" *ngIf="funcionalidadesCheck.length">
+    <div class="row row-section">
+      <div class="col">
+        <h5><strong>Funcionalidades asociadas <span class="obligatorio">(*) </span>:</strong></h5>
+      </div>
+    </div>
+
+    <table class="table table-bordered table-striped table-sm" *ngIf="funcionalidadesCheck.length">
+      <thead>
+      <tr>
+        <th class="align-middle">URL</th>
+        <th class="align-middle">FUNCIONALIDAD</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr [formGroup]="funcionalidad" *ngFor="let funcionalidad of funcionalidades.controls;let indice=index">
+        <td class="align-middle">{{funcionalidad.get('codigo').value}}</td>
+        <td class="align-middle">{{funcionalidad.get('nombre').value }}</td>
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+  <div class="col">
+    <div class="pull-right">
+      <a [routerLink]="['/perfiles']" class="btn btn-secondary">VOLVER</a>
+    </div>
+  </div>
+</form>

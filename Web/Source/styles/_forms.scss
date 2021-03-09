@@ -1,0 +1,99 @@
+form {
+  padding-top: 15px;
+}
+
+.form-row{
+  margin: 10px 0 !important;
+  display: flex;
+  align-items: center;
+}
+
+.form-row .form-group{
+  padding-left: 0;
+}
+
+.custom-select{
+  display: block !important;
+  width: 100%;
+}
+
+.custom-select:disabled{
+  color: $disabled !important;
+}
+
+.custom-control-indicator{
+  background-color: $lightgrey;
+}
+
+.custom-control-input:focus~.custom-control-indicator,
+.custom-control-input:active~.custom-control-indicator{
+  box-shadow: none !important
+}
+
+.custom-control-input:checked~.custom-control-indicator{
+  background-color: $darkblue;
+}
+
+.custom-control-input:disabled~.custom-control-indicator{
+  cursor: not-allowed;
+  background-color: transparentize($darkblue, 0.7);
+}
+
+input, select, textarea{
+  color: $darkgrey !important;
+  border-radius: 10px !important;
+}
+
+ng-select div ul{
+  color: $darkgrey !important;
+  border-radius: 10px !important;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.form-control:disabled::-webkit-input-placeholder {
+  color: $disabled;
+}
+
+.form-control:disabled:-moz-placeholder {
+  color: $disabled;
+}
+
+.form-control:disabled::-moz-placeholder {
+  color: $disabled;
+}
+
+.form-control:disabled:-ms-input-placeholder {
+  color: $disabled;
+}
+
+input[type=date]:disabled::-webkit-datetime-edit{
+  color: $disabled;
+}
+
+input[type=date]:disabled:-moz-datetime-edit {
+  color: $disabled;
+}
+
+input[type=date]:disabled::-moz-datetime-edit {
+  color: $disabled;
+}
+
+input[type=date]:disabled:-ms-input-datetime-edit {
+  color: $disabled;
+}
+
+.required{
+  color: $darkblue;
+}
+
+a:hover{
+  text-decoration: none !important;
+}
+
+.card-view-detail{
+  margin-top: 15px;
+}
